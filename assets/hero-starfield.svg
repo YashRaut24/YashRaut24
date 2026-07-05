@@ -1,0 +1,85 @@
+<svg width="100%" height="360" viewBox="0 0 1200 360" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="bgGlow" cx="50%" cy="40%" r="75%">
+      <stop offset="0%" stop-color="#111827"/>
+      <stop offset="55%" stop-color="#0b0f1a"/>
+      <stop offset="100%" stop-color="#050505"/>
+    </radialGradient>
+    <radialGradient id="planetGrad" cx="35%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#93c5fd"/>
+      <stop offset="45%" stop-color="#3b82f6"/>
+      <stop offset="100%" stop-color="#111827"/>
+    </radialGradient>
+    <linearGradient id="orbitStroke" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0"/>
+      <stop offset="50%" stop-color="#38bdf8" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#a78bfa" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="titleGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#e5e7eb"/>
+      <stop offset="50%" stop-color="#93c5fd"/>
+      <stop offset="100%" stop-color="#c4b5fd"/>
+    </linearGradient>
+    <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="360" fill="url(#bgGlow)"/>
+
+  <!-- starfield -->
+  <g fill="#e5e7eb">
+    <circle cx="60" cy="40" r="1.4" opacity="0.8"/>
+    <circle cx="130" cy="90" r="1" opacity="0.5"/>
+    <circle cx="220" cy="30" r="1.6" opacity="0.7"/>
+    <circle cx="310" cy="120" r="1" opacity="0.4"/>
+    <circle cx="400" cy="60" r="1.2" opacity="0.6"/>
+    <circle cx="500" cy="20" r="1" opacity="0.5"/>
+    <circle cx="80" cy="200" r="1.3" opacity="0.6"/>
+    <circle cx="180" cy="260" r="1" opacity="0.4"/>
+    <circle cx="260" cy="310" r="1.5" opacity="0.7"/>
+    <circle cx="950" cy="50" r="1.4" opacity="0.7"/>
+    <circle cx="1020" cy="110" r="1" opacity="0.5"/>
+    <circle cx="1100" cy="40" r="1.6" opacity="0.8"/>
+    <circle cx="1150" cy="150" r="1" opacity="0.5"/>
+    <circle cx="1060" cy="220" r="1.3" opacity="0.6"/>
+    <circle cx="980" cy="290" r="1" opacity="0.4"/>
+    <circle cx="900" cy="330" r="1.5" opacity="0.7"/>
+    <circle cx="700" cy="30" r="1" opacity="0.5"/>
+    <circle cx="620" cy="90" r="1.3" opacity="0.6"/>
+    <circle cx="760" cy="140" r="1" opacity="0.4"/>
+  </g>
+
+  <!-- orbit rings -->
+  <ellipse cx="600" cy="190" rx="420" ry="70" fill="none" stroke="url(#orbitStroke)" stroke-width="1.2"/>
+  <ellipse cx="600" cy="190" rx="300" ry="46" fill="none" stroke="url(#orbitStroke)" stroke-width="1"/>
+
+  <!-- distant planet, top right -->
+  <circle cx="1080" cy="70" r="26" fill="url(#planetGrad)" filter="url(#softGlow)"/>
+  <ellipse cx="1080" cy="70" rx="42" ry="8" fill="none" stroke="#93c5fd" stroke-opacity="0.4" stroke-width="1"/>
+
+  <!-- small satellite -->
+  <g transform="translate(180,150) rotate(20)">
+    <rect x="-6" y="-3" width="12" height="6" rx="1.5" fill="#c4b5fd"/>
+    <rect x="-16" y="-1" width="8" height="2" fill="#93c5fd" opacity="0.8"/>
+    <rect x="8" y="-1" width="8" height="2" fill="#93c5fd" opacity="0.8"/>
+  </g>
+
+  <!-- comet -->
+  <g transform="translate(950,260)">
+    <line x1="0" y1="0" x2="-70" y2="-25" stroke="#93c5fd" stroke-width="1.5" stroke-opacity="0.5"/>
+    <circle cx="0" cy="0" r="2.2" fill="#e5e7eb"/>
+  </g>
+
+  <!-- title -->
+  <text x="600" y="175" text-anchor="middle" font-family="Verdana, Geneva, sans-serif" font-size="46" font-weight="700" fill="url(#titleGrad)" filter="url(#softGlow)" letter-spacing="2">
+    DEVELOPER UNIVERSE
+  </text>
+  <text x="600" y="212" text-anchor="middle" font-family="Verdana, Geneva, sans-serif" font-size="15" fill="#9ca3af" letter-spacing="4">
+    A JOURNEY THROUGH CODE, SPACE &amp; OPEN SOURCE
+  </text>
+</svg>

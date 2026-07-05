@@ -1,0 +1,13 @@
+<svg width="100%" height="60" viewBox="0 0 1200 60" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="signalStroke" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0"/>
+      <stop offset="50%" stop-color="#38bdf8" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#38bdf8" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <path d="M0,30 Q100,10 200,30 T400,30 T600,30 T800,30 T1000,30 T1200,30"
+        fill="none" stroke="url(#signalStroke)" stroke-width="1.5"/>
+  <path d="M0,30 Q100,45 200,30 T400,30 T600,30 T800,30 T1000,30 T1200,30"
+        fill="none" stroke="url(#signalStroke)" stroke-width="1" opacity="0.5"/>
+</svg>

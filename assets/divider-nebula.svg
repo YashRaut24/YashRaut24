@@ -1,0 +1,12 @@
+<svg width="100%" height="50" viewBox="0 0 1200 50" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="nebulaFade" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0f172a" stop-opacity="0"/>
+      <stop offset="30%" stop-color="#3b82f6" stop-opacity="0.35"/>
+      <stop offset="50%" stop-color="#a78bfa" stop-opacity="0.5"/>
+      <stop offset="70%" stop-color="#3b82f6" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#0f172a" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <rect x="0" y="20" width="1200" height="10" fill="url(#nebulaFade)"/>
+</svg>
