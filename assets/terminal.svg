@@ -1,0 +1,40 @@
+<svg width="620" height="330" viewBox="0 0 620 330" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .win   { fill: #0A0A0A; stroke: #2A2A2A; stroke-width: 1; }
+      .bar   { fill: #111111; }
+      .title { font-family: 'Courier New', monospace; font-size: 13px; fill: #B8B8B8; }
+      .code  { font-family: 'Courier New', monospace; font-size: 14px; }
+      .key   { fill: #FFD400; }
+      .str   { fill: #FFFFFF; }
+      .bool  { fill: #FFD400; }
+      .punct { fill: #6E6E6E; }
+    </style>
+  </defs>
+
+  <rect x="8" y="8" width="612" height="322" fill="#FFD400"/>
+  <rect width="612" height="322" class="win"/>
+
+  <!-- title bar -->
+  <rect width="612" height="34" class="bar"/>
+  <circle cx="24" cy="17" r="6" fill="#FF5F56"/>
+  <circle cx="46" cy="17" r="6" fill="#FFBD2E"/>
+  <circle cx="68" cy="17" r="6" fill="#27C93F"/>
+  <text x="270" y="22" class="title">whoami.json</text>
+  <line x1="0" y1="34" x2="612" y2="34" stroke="#2A2A2A" stroke-width="1"/>
+
+  <!-- content -->
+  <text x="24" y="70" class="code punct">{</text>
+  <text x="44" y="98" class="code"><tspan class="key">"success"</tspan><tspan class="punct">: </tspan><tspan class="bool">true</tspan><tspan class="punct">,</tspan></text>
+  <text x="44" y="126" class="code"><tspan class="key">"data"</tspan><tspan class="punct">: {</tspan></text>
+  <text x="64" y="154" class="code"><tspan class="key">"name"</tspan><tspan class="punct">: </tspan><tspan class="str">"Yash Raut"</tspan><tspan class="punct">,</tspan></text>
+  <text x="64" y="182" class="code"><tspan class="key">"role"</tspan><tspan class="punct">: </tspan><tspan class="str">"AI Engineer in Progress"</tspan><tspan class="punct">,</tspan></text>
+  <text x="64" y="210" class="code"><tspan class="key">"stack"</tspan><tspan class="punct">: </tspan><tspan class="str">"MERN &#8594; AI/ML"</tspan><tspan class="punct">,</tspan></text>
+  <text x="64" y="238" class="code"><tspan class="key">"status"</tspan><tspan class="punct">: </tspan><tspan class="str">"Building"</tspan><tspan class="punct">,</tspan></text>
+  <text x="64" y="266" class="code"><tspan class="key">"available"</tspan><tspan class="punct">: </tspan><tspan class="bool">true</tspan></text>
+  <text x="44" y="294" class="code punct">}</text>
+
+  <rect x="590" y="90" width="10" height="18" fill="#FFD400">
+    <animate attributeName="opacity" values="1;0;1" dur="1s" repeatCount="indefinite"/>
+  </rect>
+</svg>

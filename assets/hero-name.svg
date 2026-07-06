@@ -1,0 +1,16 @@
+<svg width="900" height="260" viewBox="0 0 900 260" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .big { font-family: 'Arial Narrow', 'Helvetica Neue Condensed', Arial, sans-serif; font-weight: 900; font-size: 108px; letter-spacing: 2px; }
+    </style>
+  </defs>
+  <rect width="900" height="260" fill="#000000"/>
+
+  <!-- YASH -->
+  <text x="46" y="112" class="big" fill="#FFD400">YASH</text>
+  <text x="38" y="104" class="big" fill="#FFFFFF">YASH</text>
+
+  <!-- RAUT -->
+  <text x="46" y="222" class="big" fill="#FFD400">RAUT</text>
+  <text x="38" y="214" class="big" fill="#FFFFFF">RAUT</text>
+</svg>
