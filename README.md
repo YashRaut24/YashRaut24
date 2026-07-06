@@ -124,4 +124,3 @@
 
 <br/>
 
-<img src="./assets/footer.svg" alt="footer" width="100%" />
