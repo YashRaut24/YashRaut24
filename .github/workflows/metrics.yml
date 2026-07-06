@@ -12,7 +12,7 @@ jobs:
       contents: write
     steps:
       - name: generate metrics.svg
-        uses: lowlighter/metrics@latest
+        uses: lowlighter/metrics@v3
         with:
           token: ${{ secrets.YashR2405 }}
           filename: metrics.svg
