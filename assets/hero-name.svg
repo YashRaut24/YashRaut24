@@ -1,16 +1,54 @@
-<svg width="900" height="260" viewBox="0 0 900 260" xmlns="http://www.w3.org/2000/svg">
+<svg width="900" height="220" viewBox="0 0 900 220" fill="none" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <style>
-      .big { font-family: 'Arial Narrow', 'Helvetica Neue Condensed', Arial, sans-serif; font-weight: 900; font-size: 108px; letter-spacing: 2px; }
+      .name-main { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', Roboto, sans-serif; font-weight: 800; font-size: 58px; letter-spacing: -1.5px; fill: #F8FAFC; }
+      .name-sub { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', Roboto, sans-serif; font-weight: 400; font-size: 16px; fill: #94A3B8; letter-spacing: 0.2px; }
+      .badge-text { font-family: 'JetBrains Mono', 'Fira Code', Consolas, monospace; font-weight: 600; font-size: 11px; letter-spacing: 1px; fill: #38BDF8; }
+      .pill-text { font-family: 'JetBrains Mono', 'Fira Code', Consolas, monospace; font-weight: 500; font-size: 12px; fill: #E2E8F0; }
+      .status-text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-weight: 500; font-size: 12px; fill: #10B981; }
+      .card-border { stroke: #232D3F; stroke-width: 1; }
     </style>
   </defs>
-  <rect width="900" height="260" fill="#000000"/>
 
-  <!-- YASH -->
-  <text x="46" y="112" class="big" fill="#FFD400">YASH</text>
-  <text x="38" y="104" class="big" fill="#FFFFFF">YASH</text>
+  <!-- Background Base -->
+  <rect width="900" height="220" rx="12" fill="#0B0F17" class="card-border"/>
 
-  <!-- RAUT -->
-  <text x="46" y="222" class="big" fill="#FFD400">RAUT</text>
-  <text x="38" y="214" class="big" fill="#FFFFFF">RAUT</text>
+  <!-- Subtle Architectural Grid Elements (Flat, No Glow) -->
+  <line x1="32" y1="0" x2="32" y2="220" stroke="#161F30" stroke-width="1" stroke-dasharray="4 4"/>
+  <line x1="868" y1="0" x2="868" y2="220" stroke="#161F30" stroke-width="1" stroke-dasharray="4 4"/>
+  <line x1="0" y1="168" x2="900" y2="168" stroke="#1E293B" stroke-width="1"/>
+
+  <!-- Top Pill / Role Category -->
+  <rect x="52" y="32" width="220" height="26" rx="6" fill="#111C2E" stroke="#1E3A5F" stroke-width="1"/>
+  <text x="64" y="49" class="badge-text">AI ENGINEER &amp; FULL-STACK</text>
+
+  <!-- Status Indicator Pill (Right aligned) -->
+  <rect x="684" y="32" width="164" height="26" rx="13" fill="#0D2818" stroke="#059669" stroke-width="1"/>
+  <circle cx="700" cy="45" r="4" fill="#10B981"/>
+  <text x="712" y="49" class="status-text">AVAILABLE TO BUILD</text>
+
+  <!-- Main Hero Identity Name -->
+  <text x="52" y="112" class="name-main">Yash Raut</text>
+  <text x="52" y="142" class="name-sub">Engineering intelligent systems, robust backends &amp; high-performance web applications.</text>
+
+  <!-- Bottom Quick Links / Meta Bar -->
+  <g transform="translate(52, 182)">
+    <rect x="0" y="0" width="8" height="8" rx="2" fill="#38BDF8"/>
+    <text x="16" y="8" class="pill-text">MERN STACK</text>
+
+    <circle cx="130" cy="4" r="2" fill="#475569"/>
+
+    <rect x="150" y="0" width="8" height="8" rx="2" fill="#818CF8"/>
+    <text x="166" y="8" class="pill-text">AI / AGENTS / LLMs</text>
+
+    <circle cx="340" cy="4" r="2" fill="#475569"/>
+
+    <rect x="360" y="0" width="8" height="8" rx="2" fill="#34D399"/>
+    <text x="376" y="8" class="pill-text">SYSTEM ARCHITECTURE</text>
+
+    <circle cx="580" cy="4" r="2" fill="#475569"/>
+
+    <rect x="600" y="0" width="8" height="8" rx="2" fill="#FBBF24"/>
+    <text x="616" y="8" class="pill-text">MUMBAI, IN (UTC +5:30)</text>
+  </g>
 </svg>

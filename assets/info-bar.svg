@@ -1,43 +1,50 @@
-<svg width="900" height="120" viewBox="0 0 900 120" xmlns="http://www.w3.org/2000/svg">
+<svg width="900" height="110" viewBox="0 0 900 110" fill="none" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <style>
-      .label { font-family: Arial, sans-serif; font-weight: 700; font-size: 13px; letter-spacing: 1.5px; fill: #FFD400; }
-      .value { font-family: Arial, sans-serif; font-weight: 700; font-size: 17px; fill: #FFFFFF; }
-      .sub   { font-family: Arial, sans-serif; font-weight: 400; font-size: 12px; fill: #B8B8B8; }
-      .card  { fill: #0A0A0A; stroke: #2A2A2A; stroke-width: 1; }
-      .shadow{ fill: #FFD400; }
+      .card-bg   { fill: #0B0F17; }
+      .border    { stroke: #232D3F; stroke-width: 1; }
+      .tag       { font-family: 'JetBrains Mono', 'Fira Code', Consolas, monospace; font-size: 11px; font-weight: 600; letter-spacing: 1.2px; fill: #38BDF8; }
+      .val       { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', sans-serif; font-size: 15px; font-weight: 700; fill: #F8FAFC; }
+      .sub       { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', sans-serif; font-size: 12px; font-weight: 400; fill: #94A3B8; }
+      .live-dot  { fill: #10B981; }
     </style>
   </defs>
-  <rect width="900" height="120" fill="#000000"/>
 
-  <!-- Card template x offsets: 0, 230, 460, 690 ; width 210 -->
+  <!-- 4 Cards Layout: Width 216 each, Gap 12, Total 900 -->
+  <!-- Card 1: LOCATION -->
+  <g transform="translate(0, 0)">
+    <rect width="216" height="110" rx="10" class="card-bg"/>
+    <rect width="216" height="110" rx="10" class="border" fill="none"/>
+    <text x="20" y="32" class="tag">LOCATION</text>
+    <text x="20" y="60" class="val">Mumbai, India</text>
+    <text x="20" y="84" class="sub">Maharashtra, IN</text>
+  </g>
 
-  <!-- LOCATION -->
-  <rect x="12" y="12" width="210" height="96" class="shadow"/>
-  <rect x="6" y="6" width="210" height="96" class="card"/>
-  <text x="26" y="34" class="label">LOCATION</text>
-  <text x="26" y="60" class="value">Mumbai, India</text>
-  <text x="26" y="82" class="sub">Maharashtra</text>
+  <!-- Card 2: TIMEZONE -->
+  <g transform="translate(228, 0)">
+    <rect width="216" height="110" rx="10" class="card-bg"/>
+    <rect width="216" height="110" rx="10" class="border" fill="none"/>
+    <text x="20" y="32" class="tag">TIMEZONE</text>
+    <text x="20" y="60" class="val">Asia / Kolkata</text>
+    <text x="20" y="84" class="sub">IST (UTC +05:30)</text>
+  </g>
 
-  <!-- TIMEZONE -->
-  <rect x="242" y="12" width="210" height="96" class="shadow"/>
-  <rect x="236" y="6" width="210" height="96" class="card"/>
-  <text x="256" y="34" class="label">TIMEZONE</text>
-  <text x="256" y="60" class="value">Asia/Kolkata</text>
-  <text x="256" y="82" class="sub">IST · UTC +05:30</text>
+  <!-- Card 3: CURRENT FOCUS -->
+  <g transform="translate(456, 0)">
+    <rect width="216" height="110" rx="10" class="card-bg"/>
+    <rect width="216" height="110" rx="10" class="border" fill="none"/>
+    <text x="20" y="32" class="tag">PRIMARY FOCUS</text>
+    <text x="20" y="60" class="val">AI Engineering</text>
+    <text x="20" y="84" class="sub">LLM Agents &amp; MERN</text>
+  </g>
 
-  <!-- FOCUS -->
-  <rect x="472" y="12" width="210" height="96" class="shadow"/>
-  <rect x="466" y="6" width="210" height="96" class="card"/>
-  <text x="486" y="34" class="label">FOCUS</text>
-  <text x="486" y="58" class="value">AI Engineering</text>
-  <text x="486" y="80" class="sub">System Design · MERN</text>
-
-  <!-- STATUS -->
-  <rect x="702" y="12" width="192" height="96" class="shadow"/>
-  <rect x="696" y="6" width="192" height="96" class="card"/>
-  <text x="716" y="34" class="label">STATUS</text>
-  <text x="716" y="60" class="value">Building</text>
-  <text x="716" y="82" class="sub">in Public</text>
-  <circle cx="850" cy="30" r="5" fill="#3FB950"/>
+  <!-- Card 4: STATUS -->
+  <g transform="translate(684, 0)">
+    <rect width="216" height="110" rx="10" class="card-bg"/>
+    <rect width="216" height="110" rx="10" class="border" fill="none"/>
+    <circle cx="186" cy="28" r="4" class="live-dot"/>
+    <text x="20" y="32" class="tag">STATUS</text>
+    <text x="20" y="60" class="val">Building &amp; Scaling</text>
+    <text x="20" y="84" class="sub">Open to Opportunities</text>
+  </g>
 </svg>

@@ -2,13 +2,9 @@
 
 <img src="./assets/hero-name.svg" alt="Yash Raut" width="100%" />
 
-**Engineering software that is scalable, maintainable, and impactful.**
-
-`Learn` • `Build` • `Repeat`
-
-[![GitHub](https://img.shields.io/badge/GitHub-YashRaut24-FFD400?style=for-the-badge&logo=github&logoColor=000000&labelColor=000000)](https://github.com/YashRaut24)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Yash%20Raut-FFD400?style=for-the-badge&logo=linkedin&logoColor=000000&labelColor=000000)](https://www.linkedin.com/in/yash-raut-240505-yr30/)
-[![Email](https://img.shields.io/badge/Email-yashdr2405%40gmail.com-FFD400?style=for-the-badge&logo=gmail&logoColor=000000&labelColor=000000)](mailto:yashdr2405@gmail.com)
+[![GitHub](https://img.shields.io/badge/GitHub-YashRaut24-0B0F17?style=for-the-badge&logo=github&logoColor=38BDF8&labelColor=0B0F17)](https://github.com/YashRaut24)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Yash_Raut-0B0F17?style=for-the-badge&logo=linkedin&logoColor=38BDF8&labelColor=0B0F17)](https://www.linkedin.com/in/yash-raut-240505-yr30/)
+[![Email](https://img.shields.io/badge/Email-yashdr2405%40gmail.com-0B0F17?style=for-the-badge&logo=gmail&logoColor=38BDF8&labelColor=0B0F17)](mailto:yashdr2405@gmail.com)
 
 </div>
 
@@ -19,9 +15,9 @@
 <div>
 <br/>
 
-> I write code that solves problems, automates the boring stuff, and builds
-> meaningful digital experiences — currently making the shift from full-stack
-> MERN development into AI engineering.
+> **Engineering software with architectural rigor and purpose.**
+> 
+> Full-stack engineer advancing into **AI systems, autonomous agents, and RAG architectures**. Dedicated to shipping performant, clean, and scalable digital products.
 
 </div>
 
@@ -32,90 +28,86 @@
 
 <br/>
 
-## `//` Tech Stack
+## `//` Tech Stack &amp; Tooling
 
-**Languages**
+**Core Languages**
 
-![JavaScript](https://img.shields.io/badge/JavaScript-000000?style=for-the-badge&logo=javascript&logoColor=FFD400)
-![Python](https://img.shields.io/badge/Python-000000?style=for-the-badge&logo=python&logoColor=FFD400)
-![Java](https://img.shields.io/badge/Java-000000?style=for-the-badge&logo=openjdk&logoColor=FFD400)
-![C++](https://img.shields.io/badge/C++-000000?style=for-the-badge&logo=cplusplus&logoColor=FFD400)
+![JavaScript](https://img.shields.io/badge/JavaScript-0B0F17?style=for-the-badge&logo=javascript&logoColor=F7DF1E)
+![TypeScript](https://img.shields.io/badge/TypeScript-0B0F17?style=for-the-badge&logo=typescript&logoColor=3178C6)
+![Python](https://img.shields.io/badge/Python-0B0F17?style=for-the-badge&logo=python&logoColor=3776AB)
+![Java](https://img.shields.io/badge/Java-0B0F17?style=for-the-badge&logo=openjdk&logoColor=ED8B00)
+![C++](https://img.shields.io/badge/C++-0B0F17?style=for-the-badge&logo=cplusplus&logoColor=00599C)
 
-**Frontend**
+**Frontend Engineering**
 
-![React](https://img.shields.io/badge/React-000000?style=for-the-badge&logo=react&logoColor=FFD400)
-![HTML5](https://img.shields.io/badge/HTML5-000000?style=for-the-badge&logo=html5&logoColor=FFD400)
-![CSS3](https://img.shields.io/badge/CSS3-000000?style=for-the-badge&logo=css3&logoColor=FFD400)
+![React](https://img.shields.io/badge/React-0B0F17?style=for-the-badge&logo=react&logoColor=61DAFB)
+![Next.js](https://img.shields.io/badge/Next.js-0B0F17?style=for-the-badge&logo=nextdotjs&logoColor=FFFFFF)
+![HTML5](https://img.shields.io/badge/HTML5-0B0F17?style=for-the-badge&logo=html5&logoColor=E34F26)
+![CSS3](https://img.shields.io/badge/CSS3-0B0F17?style=for-the-badge&logo=css3&logoColor=1572B6)
+![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-0B0F17?style=for-the-badge&logo=tailwindcss&logoColor=06B6D4)
 
-**Backend**
+**Backend &amp; APIs**
 
-![Node.js](https://img.shields.io/badge/Node.js-000000?style=for-the-badge&logo=nodedotjs&logoColor=FFD400)
-![Express](https://img.shields.io/badge/Express-000000?style=for-the-badge&logo=express&logoColor=FFD400)
-![FastAPI](https://img.shields.io/badge/FastAPI-000000?style=for-the-badge&logo=fastapi&logoColor=FFD400)
+![Node.js](https://img.shields.io/badge/Node.js-0B0F17?style=for-the-badge&logo=nodedotjs&logoColor=5FA04E)
+![Express](https://img.shields.io/badge/Express-0B0F17?style=for-the-badge&logo=express&logoColor=FFFFFF)
+![FastAPI](https://img.shields.io/badge/FastAPI-0B0F17?style=for-the-badge&logo=fastapi&logoColor=009688)
 
-**Databases**
+**AI, Machine Learning &amp; Vector DBs**
 
-![MongoDB](https://img.shields.io/badge/MongoDB-000000?style=for-the-badge&logo=mongodb&logoColor=FFD400)
-![MySQL](https://img.shields.io/badge/MySQL-000000?style=for-the-badge&logo=mysql&logoColor=FFD400)
+![LangChain](https://img.shields.io/badge/LangChain-0B0F17?style=for-the-badge&logo=langchain&logoColor=1C3C3C)
+![ChromaDB](https://img.shields.io/badge/ChromaDB-0B0F17?style=for-the-badge&logo=databricks&logoColor=FF4F00)
+![Groq](https://img.shields.io/badge/Groq-0B0F17?style=for-the-badge&logo=groq&logoColor=F55036)
+![OpenAI](https://img.shields.io/badge/OpenAI-0B0F17?style=for-the-badge&logo=openai&logoColor=FFFFFF)
 
-**AI / ML**
+**Databases &amp; Cloud Storage**
 
-![LangChain](https://img.shields.io/badge/LangChain-000000?style=for-the-badge&logo=langchain&logoColor=FFD400)
-![ChromaDB](https://img.shields.io/badge/ChromaDB-000000?style=for-the-badge&logo=databricks&logoColor=FFD400)
-![Groq](https://img.shields.io/badge/Groq-000000?style=for-the-badge&logo=groq&logoColor=FFD400)
+![MongoDB](https://img.shields.io/badge/MongoDB-0B0F17?style=for-the-badge&logo=mongodb&logoColor=47A248)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-0B0F17?style=for-the-badge&logo=postgresql&logoColor=4169E1)
+![MySQL](https://img.shields.io/badge/MySQL-0B0F17?style=for-the-badge&logo=mysql&logoColor=4479A1)
 
-**DevOps / Cloud**
+**DevOps &amp; Workflow**
 
-![Docker](https://img.shields.io/badge/Docker-000000?style=for-the-badge&logo=docker&logoColor=FFD400)
-![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=FFD400)
-![Render](https://img.shields.io/badge/Render-000000?style=for-the-badge&logo=render&logoColor=FFD400)
-
-**Tools**
-
-![Git](https://img.shields.io/badge/Git-000000?style=for-the-badge&logo=git&logoColor=FFD400)
-![GitHub](https://img.shields.io/badge/GitHub-000000?style=for-the-badge&logo=github&logoColor=FFD400)
-![Postman](https://img.shields.io/badge/Postman-000000?style=for-the-badge&logo=postman&logoColor=FFD400)
-![VS Code](https://img.shields.io/badge/VS%20Code-000000?style=for-the-badge&logo=visualstudiocode&logoColor=FFD400)
+![Docker](https://img.shields.io/badge/Docker-0B0F17?style=for-the-badge&logo=docker&logoColor=2496ED)
+![Git](https://img.shields.io/badge/Git-0B0F17?style=for-the-badge&logo=git&logoColor=F05032)
+![GitHub](https://img.shields.io/badge/GitHub-0B0F17?style=for-the-badge&logo=github&logoColor=FFFFFF)
+![Vercel](https://img.shields.io/badge/Vercel-0B0F17?style=for-the-badge&logo=vercel&logoColor=FFFFFF)
+![Postman](https://img.shields.io/badge/Postman-0B0F17?style=for-the-badge&logo=postman&logoColor=FF6C37)
+![VS Code](https://img.shields.io/badge/VS_Code-0B0F17?style=for-the-badge&logo=visualstudiocode&logoColor=007ACC)
 
 <br/>
 
-## `//` GitHub Activity
+## `//` GitHub Performance &amp; Analytics
 
 <div align="center">
 
-<img src="https://github-readme-stats.vercel.app/api?username=YashRaut24&show_icons=true&hide_border=true&bg_color=000000&title_color=FFD400&text_color=FFFFFF&icon_color=FFD400&border_color=2A2A2A" width="49%" />
-<img src="https://github-readme-streak-stats.herokuapp.com/?user=YashRaut24&hide_border=true&background=000000&stroke=2A2A2A&ring=FFD400&fire=FFD400&currStreakLabel=FFFFFF&sideLabels=FFFFFF&currStreakNum=FFFFFF&sideNums=FFFFFF&dates=B8B8B8" width="49%" />
+<img src="https://github-readme-stats.vercel.app/api?username=YashRaut24&show_icons=true&hide_border=false&bg_color=0B0F17&title_color=38BDF8&text_color=94A3B8&icon_color=38BDF8&border_color=232D3F" width="49%" />
+<img src="https://github-readme-streak-stats.herokuapp.com/?user=YashRaut24&hide_border=false&background=0B0F17&border=232D3F&stroke=232D3F&ring=38BDF8&fire=38BDF8&currStreakLabel=F8FAFC&sideLabels=94A3B8&currStreakNum=38BDF8&sideNums=F8FAFC&dates=64748B" width="49%" />
 
-<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=YashRaut24&layout=compact&hide_border=true&bg_color=000000&title_color=FFD400&text_color=FFFFFF&border_color=2A2A2A" width="49%" />
-<img src="https://github-readme-activity-graph.vercel.app/graph?username=YashRaut24&bg_color=000000&color=FFD400&line=FFD400&point=FFFFFF&area=true&area_color=FFD400&hide_border=true&title_color=FFD400" width="49%" />
+<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=YashRaut24&layout=compact&hide_border=false&bg_color=0B0F17&title_color=38BDF8&text_color=94A3B8&border_color=232D3F" width="49%" />
+<img src="https://github-readme-activity-graph.vercel.app/graph?username=YashRaut24&bg_color=0B0F17&color=38BDF8&line=38BDF8&point=F8FAFC&area=true&area_color=111726&hide_border=false&border_color=232D3F&title_color=38BDF8" width="49%" />
 
-<img src="https://github-profile-trophy.vercel.app/?username=YashRaut24&theme=onedark&no-frame=true&column=7&margin-w=8&margin-h=8" width="100%" />
+<img src="https://github-profile-trophy.vercel.app/?username=YashRaut24&theme=dracula&no-frame=true&column=7&margin-w=8&margin-h=8" width="100%" />
 
 </div>
 
 <br/>
 
-## `//` Pac-Man Mode
+## `//` Contribution Graph (Snake Mode)
 
-Instead of a snake, a Pac-Man clears the contribution grid every day — dots are
-commits, ghosts are bugs, and the power pellet is a merged pull request.
-Auto-generated by [`abozanona/pacman-contribution-graph`](https://github.com/abozanona/pacman-contribution-graph)
-via GitHub Actions — see [`.github/workflows/pacman.yml`](./.github/workflows/pacman.yml).
+A dynamic snake autonomously navigates and collects commits across the contribution matrix in real-time.
+Powered by [`Platane/snk`](https://github.com/Platane/snk) via GitHub Actions — see [`.github/workflows/snake.yml`](./.github/workflows/snake.yml).
 
 <div align="center">
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/YashRaut24/YashRaut24/output/pacman-contribution-graph-dark.svg">
-  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/YashRaut24/YashRaut24/output/pacman-contribution-graph.svg">
-  <img alt="Pac-Man contribution graph" src="https://raw.githubusercontent.com/YashRaut24/YashRaut24/output/pacman-contribution-graph.svg" width="100%">
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/YashRaut24/YashRaut24/output/github-contribution-grid-snake-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/YashRaut24/YashRaut24/output/github-contribution-grid-snake.svg">
+  <img alt="Contribution snake animation" src="https://raw.githubusercontent.com/YashRaut24/YashRaut24/output/github-contribution-grid-snake-dark.svg" width="100%">
 </picture>
 
 </div>
 
-> **Note:** this image goes live only after the workflow runs once on your repo
-> (push to `main`, or trigger it manually from the Actions tab). Until then
-> it'll 404 — that's expected on a brand-new repo. Full steps in
-> [`INSTALLATION.md`](./INSTALLATION.md).
+> **Note:** The animated graph automatically updates whenever the GitHub Action executes. Full setup details in [`INSTALLATION.md`](./INSTALLATION.md).
 
 <br/>
 
@@ -125,33 +117,27 @@ via GitHub Actions — see [`.github/workflows/pacman.yml`](./.github/workflows/
 
 <br/>
 
-## `//` Random Dev Quote
+## `//` Engineering Principle
 
 <img src="./assets/quote.svg" alt="quote" width="100%" />
 
 <br/>
 
-## `//` WakaTime Stats
+## `//` Coding Activity (WakaTime)
 
 <!--START_SECTION:waka-->
 ```text
-From Jul 06 2026 - Jul 06 2026
-
-No activity tracked yet — connect WakaTime and this section
-will auto-update on the next scheduled run.
+Connecting telemetry... Activity syncs on scheduled workflow runs.
 ```
 <!--END_SECTION:waka-->
 
-Powered by [`anmol098/waka-readme-stats`](https://github.com/anmol098/waka-readme-stats) —
-config in [`.github/workflows/wakatime.yml`](./.github/workflows/wakatime.yml).
-Requires a free [WakaTime](https://wakatime.com/) account + editor plugin;
-see [`INSTALLATION.md`](./INSTALLATION.md) for the exact setup steps.
+Powered by [`anmol098/waka-readme-stats`](https://github.com/anmol098/waka-readme-stats) — config in [`.github/workflows/wakatime.yml`](./.github/workflows/wakatime.yml).
 
 <br/>
 
 <div align="center">
 
-![Visitor Count](https://komarev.com/ghpvc/?username=YashRaut24&style=for-the-badge&color=FFD400&labelColor=000000&label=DEVELOPERS+STOPPED+BY)
+![Visitor Count](https://komarev.com/ghpvc/?username=YashRaut24&style=for-the-badge&color=38BDF8&labelColor=0B0F17&label=PROFILE+VIEWS)
 
 </div>
 

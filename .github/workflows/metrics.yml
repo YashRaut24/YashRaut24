@@ -14,10 +14,10 @@ jobs:
       - name: generate metrics.svg
         uses: lowlighter/metrics@v3
         with:
-          token: ${{ secrets.YashR2405 }}
+          token: ${{ secrets.METRICS_TOKEN }}
           filename: metrics.svg
 
-          # --- theme: black / white / yellow, matches profile palette ---
+          # --- flat theme: dark obsidian & cyan accent ---
           config_timezone: Asia/Kolkata
           plugin_lines: yes
           plugin_habits: yes
@@ -26,6 +26,6 @@ jobs:
           plugin_languages_analysis_timeout: 15
           plugin_languages_limit: 8
 
-          # base colors — background transparent so it sits on the black card
+          # base colors
           config_display: large
           config_base: header, activity, community, repositories, metadata
