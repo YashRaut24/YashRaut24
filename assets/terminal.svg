@@ -3,77 +3,67 @@
     <style>
       .win-bg   { fill: #0B0F17; }
       .bar-bg   { fill: #111726; }
-      .border   { stroke: #232D3F; stroke-width: 1; }
-      .title    { font-family: 'JetBrains Mono', 'Fira Code', Consolas, monospace; font-size: 12px; fill: #8B949E; }
-      .code     { font-family: 'JetBrains Mono', 'Fira Code', Consolas, monospace; font-size: 13.5px; }
-      .kw       { fill: #F472B6; }
-      .type     { fill: #38BDF8; }
-      .var      { fill: #E2E8F0; }
-      .prop     { fill: #93C5FD; }
+      .border   { stroke: #232D3F; stroke-width: 1.5; }
+      .title    { font-family: 'JetBrains Mono', monospace; font-size: 11.5px; fill: #64748B; letter-spacing: 0.5px; }
+      .code     { font-family: 'JetBrains Mono', monospace; font-size: 13px; }
+      .kw       { fill: #38BDF8; font-weight: bold; }
+      .fn       { fill: #818CF8; }
+      .prop     { fill: #94A3B8; }
       .str      { fill: #34D399; }
-      .num      { fill: #FBBF24; }
-      .bool     { fill: #F87171; }
-      .punct    { fill: #64748B; }
-      .comment  { fill: #475569; font-style: italic; }
+      .bool     { fill: #FBBF24; }
+      .punct    { fill: #475569; }
+      .cmd      { fill: #F8FAFC; font-weight: 600; }
       .cursor   { fill: #38BDF8; }
     </style>
   </defs>
 
-  <!-- Window Container -->
-  <rect width="620" height="340" rx="10" class="win-bg"/>
-  <rect width="620" height="340" rx="10" class="border" fill="none"/>
+  <rect width="620" height="340" rx="12" class="win-bg"/>
+  <rect width="620" height="340" rx="12" class="border" fill="none"/>
 
-  <!-- Title Bar -->
-  <path d="M0 10C0 4.47715 4.47715 0 10 0H610C615.523 0 620 4.47715 620 10V38H0V10Z" class="bar-bg"/>
-  <line x1="0" y1="38" x2="620" y2="38" stroke="#1E293B" stroke-width="1"/>
+  <!-- Top Bar -->
+  <path d="M0 12C0 5.37258 5.37258 0 12 0H608C614.627 0 620 5.37258 620 12V36H0V12Z" class="bar-bg"/>
+  <line x1="0" y1="36" x2="620" y2="36" stroke="#1E293B" stroke-width="1"/>
 
   <!-- Window Dots -->
-  <circle cx="22" cy="19" r="5" fill="#EF4444"/>
-  <circle cx="40" cy="19" r="5" fill="#F59E0B"/>
-  <circle cx="58" cy="19" r="5" fill="#10B981"/>
+  <circle cx="22" cy="18" r="4.5" fill="#EF4444"/>
+  <circle cx="38" cy="18" r="4.5" fill="#F59E0B"/>
+  <circle cx="54" cy="18" r="4.5" fill="#10B981"/>
 
-  <!-- Title -->
-  <text x="310" y="23" text-anchor="middle" class="title">~/yash-raut/developer.ts</text>
+  <text x="310" y="22" text-anchor="middle" class="title">yr@architect: ~ (zsh)</text>
 
-  <!-- Code Lines -->
-  <!-- Line 1: import / comment -->
-  <text x="24" y="68" class="code comment">// Initializing developer runtime state</text>
-  
-  <!-- Line 2: const developer -->
-  <text x="24" y="96" class="code">
-    <tspan class="kw">const </tspan><tspan class="var">engineer</tspan><tspan class="punct">: </tspan><tspan class="type">AIProfile </tspan><tspan class="punct">= {</tspan>
-  </text>
+  <!-- Interactive Terminal Inspector Output -->
+  <g transform="translate(24, 62)">
+    <text x="0" y="0" class="code">
+      <tspan class="kw">➜ </tspan><tspan class="fn">yr </tspan><tspan class="cmd">inspect --target=neural-systems</tspan>
+    </text>
 
-  <!-- Properties -->
-  <text x="48" y="124" class="code">
-    <tspan class="prop">name</tspan><tspan class="punct">: </tspan><tspan class="str">"Yash Raut"</tspan><tspan class="punct">,</tspan>
-  </text>
-  <text x="48" y="152" class="code">
-    <tspan class="prop">focus</tspan><tspan class="punct">: </tspan><tspan class="str">"AI Engineering &amp; Full-Stack"</tspan><tspan class="punct">,</tspan>
-  </text>
-  <text x="48" y="180" class="code">
-    <tspan class="prop">specialization</tspan><tspan class="punct">: </tspan><tspan class="punct">[</tspan><tspan class="str">"LLMs"</tspan><tspan class="punct">, </tspan><tspan class="str">"RAG"</tspan><tspan class="punct">, </tspan><tspan class="str">"Agents"</tspan><tspan class="punct">, </tspan><tspan class="str">"MERN"</tspan><tspan class="punct">],</tspan>
-  </text>
-  <text x="48" y="208" class="code">
-    <tspan class="prop">architecture</tspan><tspan class="punct">: </tspan><tspan class="str">"Scalable &amp; Clean Systems"</tspan><tspan class="punct">,</tspan>
-  </text>
-  <text x="48" y="236" class="code">
-    <tspan class="prop">openToCollaborate</tspan><tspan class="punct">: </tspan><tspan class="bool">true</tspan><tspan class="punct">,</tspan>
-  </text>
-  <text x="48" y="264" class="code">
-    <tspan class="prop">currentStatus</tspan><tspan class="punct">: </tspan><tspan class="str">"Shipping high-impact software"</tspan>
-  </text>
+    <text x="0" y="28" class="code punct">[i] Initializing runtime kernel v2.4 ... [OK]</text>
 
-  <!-- Closing -->
-  <text x="24" y="292" class="code punct">};</text>
+    <!-- JSON Structure -->
+    <text x="0" y="56" class="code">
+      <tspan class="prop">engineer</tspan><tspan class="punct">: </tspan><tspan class="str">"Yash Raut"</tspan><tspan class="punct">,</tspan>
+    </text>
+    <text x="0" y="82" class="code">
+      <tspan class="prop">trajectory</tspan><tspan class="punct">: </tspan><tspan class="str">"Full-Stack ──&gt; AI Engineering"</tspan><tspan class="punct">,</tspan>
+    </text>
+    <text x="0" y="108" class="code">
+      <tspan class="prop">coreSpecialties</tspan><tspan class="punct">: [</tspan><tspan class="str">"LLMs"</tspan><tspan class="punct">, </tspan><tspan class="str">"RAG"</tspan><tspan class="punct">, </tspan><tspan class="str">"Agents"</tspan><tspan class="punct">, </tspan><tspan class="str">"FastAPI"</tspan><tspan class="punct">],</tspan>
+    </text>
+    <text x="0" y="134" class="code">
+      <tspan class="prop">systemArchitecture</tspan><tspan class="punct">: </tspan><tspan class="str">"Deterministic &amp; Modular"</tspan><tspan class="punct">,</tspan>
+    </text>
+    <text x="0" y="160" class="code">
+      <tspan class="prop">availableForBuild</tspan><tspan class="punct">: </tspan><tspan class="bool">true</tspan>
+    </text>
 
-  <!-- Active command prompt line -->
-  <text x="24" y="320" class="code">
-    <tspan class="str" style="font-weight:bold;">➜ </tspan><tspan class="type">git </tspan><tspan class="var">commit -m "ready to build"</tspan>
-  </text>
+    <!-- Command Prompt -->
+    <text x="0" y="200" class="code">
+      <tspan class="kw">➜ </tspan><tspan class="fn">git </tspan><tspan class="cmd">push origin main --force-with-quality</tspan>
+    </text>
 
-  <!-- Blinking Cursor -->
-  <rect x="300" y="308" width="8" height="15" class="cursor">
-    <animate attributeName="opacity" values="1;0;1" dur="1.1s" repeatCount="indefinite"/>
-  </rect>
+    <!-- Blinking Cursor -->
+    <rect x="420" y="188" width="8" height="15" class="cursor">
+      <animate attributeName="opacity" values="1;0;1" dur="1s" repeatCount="indefinite"/>
+    </rect>
+  </g>
 </svg>

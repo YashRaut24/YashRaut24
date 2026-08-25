@@ -1,54 +1,71 @@
-<svg width="900" height="220" viewBox="0 0 900 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg width="900" height="240" viewBox="0 0 900 240" fill="none" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <style>
-      .name-main { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', Roboto, sans-serif; font-weight: 800; font-size: 58px; letter-spacing: -1.5px; fill: #F8FAFC; }
-      .name-sub { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', Roboto, sans-serif; font-weight: 400; font-size: 16px; fill: #94A3B8; letter-spacing: 0.2px; }
-      .badge-text { font-family: 'JetBrains Mono', 'Fira Code', Consolas, monospace; font-weight: 600; font-size: 11px; letter-spacing: 1px; fill: #38BDF8; }
-      .pill-text { font-family: 'JetBrains Mono', 'Fira Code', Consolas, monospace; font-weight: 500; font-size: 12px; fill: #E2E8F0; }
-      .status-text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-weight: 500; font-size: 12px; fill: #10B981; }
-      .card-border { stroke: #232D3F; stroke-width: 1; }
+      .hero-title   { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', Arial, sans-serif; font-weight: 900; font-size: 64px; letter-spacing: -2px; fill: #F8FAFC; }
+      .hero-sub     { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', sans-serif; font-weight: 500; font-size: 15px; fill: #94A3B8; letter-spacing: 0.5px; }
+      .mono-tag     { font-family: 'JetBrains Mono', 'Fira Code', Consolas, monospace; font-size: 11px; font-weight: 600; fill: #38BDF8; letter-spacing: 1.5px; }
+      .mono-dim     { font-family: 'JetBrains Mono', 'Fira Code', Consolas, monospace; font-size: 11px; font-weight: 500; fill: #64748B; letter-spacing: 1px; }
+      .status-pill  { font-family: 'JetBrains Mono', Consolas, monospace; font-size: 11px; font-weight: 600; fill: #10B981; letter-spacing: 0.8px; }
+      .crosshair    { font-family: 'JetBrains Mono', monospace; font-size: 14px; fill: #38BDF8; font-weight: bold; }
     </style>
   </defs>
 
-  <!-- Background Base -->
-  <rect width="900" height="220" rx="12" fill="#0B0F17" class="card-border"/>
+  <!-- Container Frame -->
+  <rect width="900" height="240" rx="14" fill="#0B0F17" stroke="#232D3F" stroke-width="1.5"/>
 
-  <!-- Subtle Architectural Grid Elements (Flat, No Glow) -->
-  <line x1="32" y1="0" x2="32" y2="220" stroke="#161F30" stroke-width="1" stroke-dasharray="4 4"/>
-  <line x1="868" y1="0" x2="868" y2="220" stroke="#161F30" stroke-width="1" stroke-dasharray="4 4"/>
-  <line x1="0" y1="168" x2="900" y2="168" stroke="#1E293B" stroke-width="1"/>
+  <!-- Architectural Crosshairs in Corners -->
+  <text x="20" y="28" class="crosshair">+</text>
+  <text x="868" y="28" class="crosshair">+</text>
+  <text x="20" y="224" class="crosshair">+</text>
+  <text x="868" y="224" class="crosshair">+</text>
 
-  <!-- Top Pill / Role Category -->
-  <rect x="52" y="32" width="220" height="26" rx="6" fill="#111C2E" stroke="#1E3A5F" stroke-width="1"/>
-  <text x="64" y="49" class="badge-text">AI ENGINEER &amp; FULL-STACK</text>
+  <!-- Technical Grid Guide Lines -->
+  <line x1="44" y1="0" x2="44" y2="240" stroke="#161F30" stroke-width="1" stroke-dasharray="3 3"/>
+  <line x1="856" y1="0" x2="856" y2="240" stroke="#161F30" stroke-width="1" stroke-dasharray="3 3"/>
+  <line x1="0" y1="174" x2="900" y2="174" stroke="#1E293B" stroke-width="1"/>
 
-  <!-- Status Indicator Pill (Right aligned) -->
-  <rect x="684" y="32" width="164" height="26" rx="13" fill="#0D2818" stroke="#059669" stroke-width="1"/>
-  <circle cx="700" cy="45" r="4" fill="#10B981"/>
-  <text x="712" y="49" class="status-text">AVAILABLE TO BUILD</text>
+  <!-- Top Metadata Bar -->
+  <g transform="translate(60, 36)">
+    <rect x="0" y="0" width="160" height="24" rx="4" fill="#111C2E" stroke="#1E3A5F" stroke-width="1"/>
+    <text x="10" y="16" class="mono-tag">SYS_ID // YR-2026</text>
 
-  <!-- Main Hero Identity Name -->
-  <text x="52" y="112" class="name-main">Yash Raut</text>
-  <text x="52" y="142" class="name-sub">Engineering intelligent systems, robust backends &amp; high-performance web applications.</text>
+    <text x="180" y="16" class="mono-dim">AI SYSTEMS &amp; FULL-STACK ARCHITECTURE</text>
 
-  <!-- Bottom Quick Links / Meta Bar -->
-  <g transform="translate(52, 182)">
-    <rect x="0" y="0" width="8" height="8" rx="2" fill="#38BDF8"/>
-    <text x="16" y="8" class="pill-text">MERN STACK</text>
+    <!-- Radar Pulse Status -->
+    <rect x="620" y="0" width="160" height="24" rx="12" fill="#0D2818" stroke="#059669" stroke-width="1"/>
+    <circle cx="634" cy="12" r="4" fill="#10B981">
+      <animate attributeName="opacity" values="1;0.3;1" dur="2s" repeatCount="indefinite"/>
+    </circle>
+    <text x="646" y="16" class="status-pill">OPEN TO INNOVATION</text>
+  </g>
 
-    <circle cx="130" cy="4" r="2" fill="#475569"/>
+  <!-- Main Hero Display Typography -->
+  <g transform="translate(60, 118)">
+    <text x="0" y="0" class="hero-title">YASH RAUT</text>
+    <text x="0" y="32" class="hero-sub">Constructing deterministic AI workflows, neural architectures &amp; robust distributed backends.</text>
+  </g>
 
-    <rect x="150" y="0" width="8" height="8" rx="2" fill="#818CF8"/>
-    <text x="166" y="8" class="pill-text">AI / AGENTS / LLMs</text>
+  <!-- Bottom Technical Blueprint Strip -->
+  <g transform="translate(60, 198)">
+    <text x="0" y="12" class="mono-dim">CORE:</text>
+    <rect x="42" y="0" width="8" height="8" rx="1.5" fill="#38BDF8"/>
+    <text x="56" y="12" class="mono-tag" style="fill:#F8FAFC;">MERN</text>
 
-    <circle cx="340" cy="4" r="2" fill="#475569"/>
+    <circle cx="120" cy="5" r="2" fill="#334155"/>
 
-    <rect x="360" y="0" width="8" height="8" rx="2" fill="#34D399"/>
-    <text x="376" y="8" class="pill-text">SYSTEM ARCHITECTURE</text>
+    <text x="140" y="12" class="mono-dim">FOCUS:</text>
+    <rect x="190" y="0" width="8" height="8" rx="1.5" fill="#818CF8"/>
+    <text x="204" y="12" class="mono-tag" style="fill:#F8FAFC;">LLMs &amp; RAG</text>
 
-    <circle cx="580" cy="4" r="2" fill="#475569"/>
+    <circle cx="310" cy="5" r="2" fill="#334155"/>
 
-    <rect x="600" y="0" width="8" height="8" rx="2" fill="#FBBF24"/>
-    <text x="616" y="8" class="pill-text">MUMBAI, IN (UTC +5:30)</text>
+    <text x="330" y="12" class="mono-dim">DESIGN:</text>
+    <rect x="385" y="0" width="8" height="8" rx="1.5" fill="#34D399"/>
+    <text x="399" y="12" class="mono-tag" style="fill:#F8FAFC;">CLEAN SYSTEMS</text>
+
+    <circle cx="530" cy="5" r="2" fill="#334155"/>
+
+    <text x="550" y="12" class="mono-dim">LOC:</text>
+    <text x="585" y="12" class="mono-tag">MUMBAI, IN (IST)</text>
   </g>
 </svg>

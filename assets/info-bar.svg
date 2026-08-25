@@ -2,11 +2,12 @@
   <defs>
     <style>
       .card-bg   { fill: #0B0F17; }
-      .border    { stroke: #232D3F; stroke-width: 1; }
-      .tag       { font-family: 'JetBrains Mono', 'Fira Code', Consolas, monospace; font-size: 11px; font-weight: 600; letter-spacing: 1.2px; fill: #38BDF8; }
-      .val       { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', sans-serif; font-size: 15px; font-weight: 700; fill: #F8FAFC; }
-      .sub       { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', sans-serif; font-size: 12px; font-weight: 400; fill: #94A3B8; }
-      .live-dot  { fill: #10B981; }
+      .border    { stroke: #232D3F; stroke-width: 1.5; }
+      .tag       { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 700; letter-spacing: 1.2px; fill: #38BDF8; }
+      .val       { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', sans-serif; font-size: 15px; font-weight: 800; fill: #F8FAFC; }
+      .sub       { font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 400; fill: #64748B; }
+      .idx       { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 700; fill: #334155; }
+      .dot       { fill: #10B981; }
     </style>
   </defs>
 
@@ -15,17 +16,19 @@
   <g transform="translate(0, 0)">
     <rect width="216" height="110" rx="10" class="card-bg"/>
     <rect width="216" height="110" rx="10" class="border" fill="none"/>
-    <text x="20" y="32" class="tag">LOCATION</text>
-    <text x="20" y="60" class="val">Mumbai, India</text>
-    <text x="20" y="84" class="sub">Maharashtra, IN</text>
+    <text x="180" y="26" class="idx">/ 01</text>
+    <text x="20" y="26" class="tag">LOCATION</text>
+    <text x="20" y="58" class="val">Mumbai, India</text>
+    <text x="20" y="84" class="sub">MAHARASHTRA, IN</text>
   </g>
 
   <!-- Card 2: TIMEZONE -->
   <g transform="translate(228, 0)">
     <rect width="216" height="110" rx="10" class="card-bg"/>
     <rect width="216" height="110" rx="10" class="border" fill="none"/>
-    <text x="20" y="32" class="tag">TIMEZONE</text>
-    <text x="20" y="60" class="val">Asia / Kolkata</text>
+    <text x="180" y="26" class="idx">/ 02</text>
+    <text x="20" y="26" class="tag">TIMEZONE</text>
+    <text x="20" y="58" class="val">Asia / Kolkata</text>
     <text x="20" y="84" class="sub">IST (UTC +05:30)</text>
   </g>
 
@@ -33,18 +36,20 @@
   <g transform="translate(456, 0)">
     <rect width="216" height="110" rx="10" class="card-bg"/>
     <rect width="216" height="110" rx="10" class="border" fill="none"/>
-    <text x="20" y="32" class="tag">PRIMARY FOCUS</text>
-    <text x="20" y="60" class="val">AI Engineering</text>
-    <text x="20" y="84" class="sub">LLM Agents &amp; MERN</text>
+    <text x="180" y="26" class="idx">/ 03</text>
+    <text x="20" y="26" class="tag" style="fill:#818CF8;">PRIMARY FOCUS</text>
+    <text x="20" y="58" class="val">AI Engineering</text>
+    <text x="20" y="84" class="sub">LLMs &amp; RAG AGENTS</text>
   </g>
 
   <!-- Card 4: STATUS -->
   <g transform="translate(684, 0)">
     <rect width="216" height="110" rx="10" class="card-bg"/>
     <rect width="216" height="110" rx="10" class="border" fill="none"/>
-    <circle cx="186" cy="28" r="4" class="live-dot"/>
-    <text x="20" y="32" class="tag">STATUS</text>
-    <text x="20" y="60" class="val">Building &amp; Scaling</text>
-    <text x="20" y="84" class="sub">Open to Opportunities</text>
+    <circle cx="160" cy="22" r="3.5" class="dot"/>
+    <text x="180" y="26" class="idx">/ 04</text>
+    <text x="20" y="26" class="tag" style="fill:#10B981;">STATUS</text>
+    <text x="20" y="58" class="val">Available to Build</text>
+    <text x="20" y="84" class="sub">ACTIVE FOR ROLES</text>
   </g>
 </svg>

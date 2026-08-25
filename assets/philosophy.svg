@@ -2,11 +2,12 @@
   <defs>
     <style>
       .card-bg   { fill: #0B0F17; }
-      .border    { stroke: #232D3F; stroke-width: 1; }
-      .title     { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', sans-serif; font-size: 15px; font-weight: 700; fill: #F8FAFC; letter-spacing: 0.5px; }
+      .border    { stroke: #232D3F; stroke-width: 1.5; }
+      .title     { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', sans-serif; font-size: 15px; font-weight: 800; fill: #F8FAFC; letter-spacing: 0.5px; }
       .desc      { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', sans-serif; font-size: 13px; font-weight: 400; fill: #94A3B8; }
       .icon-stroke { stroke: #38BDF8; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; fill: none; }
       .icon-box  { fill: #111C2E; stroke: #1E3A5F; stroke-width: 1; }
+      .tag-num   { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 700; fill: #475569; }
     </style>
   </defs>
 
@@ -16,14 +17,15 @@
   <g transform="translate(0, 0)">
     <rect width="292" height="150" rx="10" class="card-bg"/>
     <rect width="292" height="150" rx="10" class="border" fill="none"/>
+    <text x="256" y="32" class="tag-num">/ 01</text>
     
     <!-- Icon Container -->
-    <rect x="24" y="24" width="40" height="40" rx="8" class="icon-box"/>
+    <rect x="24" y="24" width="38" height="38" rx="8" class="icon-box"/>
     <!-- Terminal / Code Icon -->
-    <path d="M36 39L41 44L36 49" class="icon-stroke"/>
-    <line x1="44" y1="49" x2="52" y2="49" class="icon-stroke"/>
+    <path d="M35 38L40 43L35 48" class="icon-stroke"/>
+    <line x1="43" y1="48" x2="51" y2="48" class="icon-stroke"/>
 
-    <text x="76" y="49" class="title">SYSTEM ARCHITECT</text>
+    <text x="74" y="48" class="title">SYSTEM ARCHITECT</text>
     <text x="24" y="96" class="desc">Writes clean, modular, and maintainable</text>
     <text x="24" y="118" class="desc">code engineered for long-term scalability.</text>
   </g>
@@ -32,16 +34,17 @@
   <g transform="translate(304, 0)">
     <rect width="292" height="150" rx="10" class="card-bg"/>
     <rect width="292" height="150" rx="10" class="border" fill="none"/>
+    <text x="256" y="32" class="tag-num">/ 02</text>
 
     <!-- Icon Container -->
-    <rect x="24" y="24" width="40" height="40" rx="8" class="icon-box"/>
+    <rect x="24" y="24" width="38" height="38" rx="8" class="icon-box"/>
     <!-- Nodes / Logic Icon -->
-    <circle cx="38" cy="38" r="4" class="icon-stroke"/>
-    <circle cx="50" cy="50" r="4" class="icon-stroke"/>
-    <circle cx="50" cy="38" r="3" fill="#38BDF8"/>
-    <line x1="41" y1="41" x2="47" y2="47" class="icon-stroke"/>
+    <circle cx="37" cy="37" r="3.5" class="icon-stroke"/>
+    <circle cx="49" cy="49" r="3.5" class="icon-stroke"/>
+    <circle cx="49" cy="37" r="2.5" fill="#38BDF8"/>
+    <line x1="40" y1="40" x2="46" y2="46" class="icon-stroke"/>
 
-    <text x="76" y="49" class="title">PROBLEM SOLVER</text>
+    <text x="74" y="48" class="title">PROBLEM SOLVER</text>
     <text x="24" y="96" class="desc">Deconstructs complex constraints</text>
     <text x="24" y="118" class="desc">into deterministic, elegant solutions.</text>
   </g>
@@ -50,14 +53,15 @@
   <g transform="translate(608, 0)">
     <rect width="292" height="150" rx="10" class="card-bg"/>
     <rect width="292" height="150" rx="10" class="border" fill="none"/>
+    <text x="256" y="32" class="tag-num">/ 03</text>
 
     <!-- Icon Container -->
-    <rect x="24" y="24" width="40" height="40" rx="8" class="icon-box"/>
+    <rect x="24" y="24" width="38" height="38" rx="8" class="icon-box"/>
     <!-- Layers / Box Icon -->
-    <path d="M44 34L54 39L44 44L34 39L44 34Z" class="icon-stroke"/>
-    <path d="M34 45L44 50L54 45" class="icon-stroke"/>
+    <path d="M43 33L53 38L43 43L33 38L43 33Z" class="icon-stroke"/>
+    <path d="M33 44L43 49L53 44" class="icon-stroke"/>
 
-    <text x="76" y="49" class="title">PRODUCT BUILDER</text>
+    <text x="74" y="48" class="title">PRODUCT BUILDER</text>
     <text x="24" y="96" class="desc">Ships end-to-end full-stack &amp; AI</text>
     <text x="24" y="118" class="desc">products with intuitive user experience.</text>
   </g>

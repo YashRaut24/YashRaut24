@@ -1,0 +1,111 @@
+<svg width="900" height="260" viewBox="0 0 900 260" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .card-bg    { fill: #0B0F17; }
+      .border     { stroke: #232D3F; stroke-width: 1.5; }
+      .col-box    { fill: #111726; stroke: #1E293B; stroke-width: 1; }
+      .col-header { font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 700; fill: #38BDF8; letter-spacing: 1.2px; }
+      .tech-item  { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', sans-serif; font-size: 12.5px; font-weight: 600; fill: #E2E8F0; }
+      .tech-sub   { font-family: 'JetBrains Mono', monospace; font-size: 10px; fill: #64748B; }
+      .bullet     { fill: #38BDF8; }
+      .matrix-title { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', sans-serif; font-size: 15px; font-weight: 800; fill: #F8FAFC; letter-spacing: 0.5px; }
+    </style>
+  </defs>
+
+  <!-- Container -->
+  <rect width="900" height="260" rx="12" class="card-bg"/>
+  <rect width="900" height="260" rx="12" class="border" fill="none"/>
+
+  <!-- Top Title Bar -->
+  <g transform="translate(24, 20)">
+    <text x="0" y="16" class="matrix-title">TECHNICAL CAPABILITIES MATRIX</text>
+    <text x="310" y="16" font-family="'JetBrains Mono', monospace" font-size="11px" fill="#64748B">// SYSTEM DEPLOYMENT SPECIFICATIONS</text>
+  </g>
+  <line x1="0" y1="52" x2="900" y2="52" stroke="#1E293B" stroke-width="1"/>
+
+  <!-- 4 Columns: Width 206 each, Gap 10, Total ~854 -->
+  
+  <!-- Col 1: CORE RUNTIME -->
+  <g transform="translate(24, 66)">
+    <rect width="204" height="172" rx="8" class="col-box"/>
+    <text x="16" y="24" class="col-header">01 // LANGUAGES</text>
+    <line x1="16" y1="34" x2="188" y2="34" stroke="#1E293B" stroke-width="1"/>
+
+    <g transform="translate(16, 52)">
+      <circle cx="4" cy="4" r="2.5" class="bullet"/>
+      <text x="14" y="8" class="tech-item">JavaScript / TS</text>
+      <text x="14" y="22" class="tech-sub">ESNext, Strict Typing</text>
+
+      <circle cx="4" cy="38" r="2.5" class="bullet"/>
+      <text x="14" y="42" class="tech-item">Python</text>
+      <text x="14" y="56" class="tech-sub">AI pipelines &amp; Async</text>
+
+      <circle cx="4" cy="72" r="2.5" class="bullet"/>
+      <text x="14" y="76" class="tech-item">C++ &amp; Java</text>
+      <text x="14" y="90" class="tech-sub">Algorithms &amp; OOP</text>
+    </g>
+  </g>
+
+  <!-- Col 2: AI & NEURAL -->
+  <g transform="translate(238, 66)">
+    <rect width="204" height="172" rx="8" class="col-box"/>
+    <text x="16" y="24" class="col-header" style="fill:#818CF8;">02 // AI &amp; AGENTS</text>
+    <line x1="16" y1="34" x2="188" y2="34" stroke="#1E293B" stroke-width="1"/>
+
+    <g transform="translate(16, 52)">
+      <circle cx="4" cy="4" r="2.5" fill="#818CF8"/>
+      <text x="14" y="8" class="tech-item">LangChain</text>
+      <text x="14" y="22" class="tech-sub">Autonomous Workflows</text>
+
+      <circle cx="4" cy="38" r="2.5" fill="#818CF8"/>
+      <text x="14" y="42" class="tech-item">ChromaDB</text>
+      <text x="14" y="56" class="tech-sub">Vector Similarity Search</text>
+
+      <circle cx="4" cy="72" r="2.5" fill="#818CF8"/>
+      <text x="14" y="76" class="tech-item">Groq &amp; OpenAI</text>
+      <text x="14" y="90" class="tech-sub">Sub-second Inference</text>
+    </g>
+  </g>
+
+  <!-- Col 3: API & CLIENT -->
+  <g transform="translate(452, 66)">
+    <rect width="204" height="172" rx="8" class="col-box"/>
+    <text x="16" y="24" class="col-header" style="fill:#34D399;">03 // WEB &amp; APIS</text>
+    <line x1="16" y1="34" x2="188" y2="34" stroke="#1E293B" stroke-width="1"/>
+
+    <g transform="translate(16, 52)">
+      <circle cx="4" cy="4" r="2.5" fill="#34D399"/>
+      <text x="14" y="8" class="tech-item">React &amp; Next.js</text>
+      <text x="14" y="22" class="tech-sub">SSR, App Router</text>
+
+      <circle cx="4" cy="38" r="2.5" fill="#34D399"/>
+      <text x="14" y="42" class="tech-item">Node.js &amp; Express</text>
+      <text x="14" y="56" class="tech-sub">RESTful Architectures</text>
+
+      <circle cx="4" cy="72" r="2.5" fill="#34D399"/>
+      <text x="14" y="76" class="tech-item">FastAPI</text>
+      <text x="14" y="90" class="tech-sub">High-Throughput Async</text>
+    </g>
+  </g>
+
+  <!-- Col 4: INFRA & STORAGE -->
+  <g transform="translate(666, 66)">
+    <rect width="208" height="172" rx="8" class="col-box"/>
+    <text x="16" y="24" class="col-header" style="fill:#FBBF24;">04 // INFRA &amp; DATA</text>
+    <line x1="16" y1="34" x2="192" y2="34" stroke="#1E293B" stroke-width="1"/>
+
+    <g transform="translate(16, 52)">
+      <circle cx="4" cy="4" r="2.5" fill="#FBBF24"/>
+      <text x="14" y="8" class="tech-item">MongoDB &amp; Postgres</text>
+      <text x="14" y="22" class="tech-sub">Data Modeling &amp; ACID</text>
+
+      <circle cx="4" cy="38" r="2.5" fill="#FBBF24"/>
+      <text x="14" y="42" class="tech-item">Docker</text>
+      <text x="14" y="56" class="tech-sub">Containerized Services</text>
+
+      <circle cx="4" cy="72" r="2.5" fill="#FBBF24"/>
+      <text x="14" y="76" class="tech-item">Git &amp; CI/CD</text>
+      <text x="14" y="90" class="tech-sub">Automated Deployments</text>
+    </g>
+  </g>
+</svg>
