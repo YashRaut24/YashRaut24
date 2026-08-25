@@ -1,71 +1,57 @@
-<svg width="900" height="240" viewBox="0 0 900 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg width="900" height="250" viewBox="0 0 900 250" fill="none" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <style>
-      .hero-title   { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', Arial, sans-serif; font-weight: 900; font-size: 64px; letter-spacing: -2px; fill: #F8FAFC; }
-      .hero-sub     { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', sans-serif; font-weight: 500; font-size: 15px; fill: #94A3B8; letter-spacing: 0.5px; }
-      .mono-tag     { font-family: 'JetBrains Mono', 'Fira Code', Consolas, monospace; font-size: 11px; font-weight: 600; fill: #38BDF8; letter-spacing: 1.5px; }
-      .mono-dim     { font-family: 'JetBrains Mono', 'Fira Code', Consolas, monospace; font-size: 11px; font-weight: 500; fill: #64748B; letter-spacing: 1px; }
-      .status-pill  { font-family: 'JetBrains Mono', Consolas, monospace; font-size: 11px; font-weight: 600; fill: #10B981; letter-spacing: 0.8px; }
-      .crosshair    { font-family: 'JetBrains Mono', monospace; font-size: 14px; fill: #38BDF8; font-weight: bold; }
+      .masthead-top  { font-family: 'JetBrains Mono', monospace; font-size: 10.5px; font-weight: 600; fill: #71717A; letter-spacing: 1.5px; }
+      .masthead-acc  { fill: #E06C43; font-weight: 700; }
+      .main-title    { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', Helvetica, Arial, sans-serif; font-weight: 900; font-size: 64px; letter-spacing: -2.5px; fill: #FBFBFC; }
+      .role-tag      { font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 700; fill: #E06C43; letter-spacing: 2px; }
+      .lead-p        { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', sans-serif; font-weight: 400; font-size: 14.5px; fill: #A1A1AA; letter-spacing: 0.2px; }
+      .index-strip   { font-family: 'JetBrains Mono', monospace; font-size: 10.5px; font-weight: 500; fill: #71717A; letter-spacing: 1px; }
+      .status-dot    { fill: #E06C43; }
     </style>
   </defs>
 
-  <!-- Container Frame -->
-  <rect width="900" height="240" rx="14" fill="#0B0F17" stroke="#232D3F" stroke-width="1.5"/>
+  <!-- Container -->
+  <rect width="900" height="250" rx="6" fill="#121316" stroke="#2A2C33" stroke-width="1.5"/>
 
-  <!-- Architectural Crosshairs in Corners -->
-  <text x="20" y="28" class="crosshair">+</text>
-  <text x="868" y="28" class="crosshair">+</text>
-  <text x="20" y="224" class="crosshair">+</text>
-  <text x="868" y="224" class="crosshair">+</text>
-
-  <!-- Technical Grid Guide Lines -->
-  <line x1="44" y1="0" x2="44" y2="240" stroke="#161F30" stroke-width="1" stroke-dasharray="3 3"/>
-  <line x1="856" y1="0" x2="856" y2="240" stroke="#161F30" stroke-width="1" stroke-dasharray="3 3"/>
-  <line x1="0" y1="174" x2="900" y2="174" stroke="#1E293B" stroke-width="1"/>
-
-  <!-- Top Metadata Bar -->
-  <g transform="translate(60, 36)">
-    <rect x="0" y="0" width="160" height="24" rx="4" fill="#111C2E" stroke="#1E3A5F" stroke-width="1"/>
-    <text x="10" y="16" class="mono-tag">SYS_ID // YR-2026</text>
-
-    <text x="180" y="16" class="mono-dim">AI SYSTEMS &amp; FULL-STACK ARCHITECTURE</text>
-
-    <!-- Radar Pulse Status -->
-    <rect x="620" y="0" width="160" height="24" rx="12" fill="#0D2818" stroke="#059669" stroke-width="1"/>
-    <circle cx="634" cy="12" r="4" fill="#10B981">
-      <animate attributeName="opacity" values="1;0.3;1" dur="2s" repeatCount="indefinite"/>
-    </circle>
-    <text x="646" y="16" class="status-pill">OPEN TO INNOVATION</text>
+  <!-- Top Publication Header Bar -->
+  <g transform="translate(32, 28)">
+    <text x="0" y="0" class="masthead-top">
+      DOSSIER <tspan class="masthead-acc">NO. 24</tspan> // VOL. 2026
+    </text>
+    <text x="430" y="0" text-anchor="middle" class="masthead-top">
+      MUMBAI, IN [19.0760° N, 72.8777° E]
+    </text>
+    <circle cx="814" cy="-3" r="3.5" class="status-dot"/>
+    <text x="836" y="0" text-anchor="end" class="masthead-top" style="fill:#FBFBFC;">
+      ACTIVE FOR ROLES
+    </text>
   </g>
 
-  <!-- Main Hero Display Typography -->
-  <g transform="translate(60, 118)">
-    <text x="0" y="0" class="hero-title">YASH RAUT</text>
-    <text x="0" y="32" class="hero-sub">Constructing deterministic AI workflows, neural architectures &amp; robust distributed backends.</text>
-  </g>
+  <!-- Header Rule Line -->
+  <line x1="32" y1="42" x2="868" y2="42" stroke="#2A2C33" stroke-width="1"/>
 
-  <!-- Bottom Technical Blueprint Strip -->
-  <g transform="translate(60, 198)">
-    <text x="0" y="12" class="mono-dim">CORE:</text>
-    <rect x="42" y="0" width="8" height="8" rx="1.5" fill="#38BDF8"/>
-    <text x="56" y="12" class="mono-tag" style="fill:#F8FAFC;">MERN</text>
+  <!-- Main Editorial Title -->
+  <text x="32" y="112" class="main-title">YASH RAUT</text>
+  <text x="32" y="140" class="role-tag">SOFTWARE ENGINEER &amp; AI ARCHITECT</text>
 
-    <circle cx="120" cy="5" r="2" fill="#334155"/>
+  <!-- Lead Abstract Paragraph -->
+  <text x="32" y="174" class="lead-p">
+    Designing deterministic AI workflows, autonomous agent networks, and high-performance full-stack web infrastructure.
+  </text>
 
-    <text x="140" y="12" class="mono-dim">FOCUS:</text>
-    <rect x="190" y="0" width="8" height="8" rx="1.5" fill="#818CF8"/>
-    <text x="204" y="12" class="mono-tag" style="fill:#F8FAFC;">LLMs &amp; RAG</text>
+  <!-- Bottom Divider Line -->
+  <line x1="32" y1="202" x2="868" y2="202" stroke="#2A2C33" stroke-width="1"/>
 
-    <circle cx="310" cy="5" r="2" fill="#334155"/>
-
-    <text x="330" y="12" class="mono-dim">DESIGN:</text>
-    <rect x="385" y="0" width="8" height="8" rx="1.5" fill="#34D399"/>
-    <text x="399" y="12" class="mono-tag" style="fill:#F8FAFC;">CLEAN SYSTEMS</text>
-
-    <circle cx="530" cy="5" r="2" fill="#334155"/>
-
-    <text x="550" y="12" class="mono-dim">LOC:</text>
-    <text x="585" y="12" class="mono-tag">MUMBAI, IN (IST)</text>
+  <!-- Index Strip -->
+  <g transform="translate(32, 226)">
+    <text x="0" y="0" class="index-strip">DISCIPLINES:</text>
+    <text x="96" y="0" class="index-strip" style="fill:#D4D4D8;">[01] LLM ORCHESTRATION</text>
+    <circle cx="280" cy="-3" r="2" fill="#E06C43"/>
+    <text x="296" y="0" class="index-strip" style="fill:#D4D4D8;">[02] RAG ARCHITECTURE</text>
+    <circle cx="475" cy="-3" r="2" fill="#E06C43"/>
+    <text x="490" y="0" class="index-strip" style="fill:#D4D4D8;">[03] DISTRIBUTED SYSTEMS</text>
+    <circle cx="685" cy="-3" r="2" fill="#E06C43"/>
+    <text x="700" y="0" class="index-strip" style="fill:#D4D4D8;">[04] FULL-STACK MERN</text>
   </g>
 </svg>

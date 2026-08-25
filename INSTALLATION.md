@@ -1,4 +1,4 @@
-# Setup Guide // Cyber-Architect Profile
+# Setup Guide // Swiss Editorial Dossier Profile
 
 ## 0. The Repository
 This profile README lives in a repository named **exactly** `YashRaut24/YashRaut24` — the special repository GitHub renders on your profile page.
@@ -6,7 +6,7 @@ This profile README lives in a repository named **exactly** `YashRaut24/YashRaut
 ```bash
 git init
 git add .
-git commit -m "feat: cyber-architect bento profile upgrade"
+git commit -m "feat: minimalist swiss editorial dossier upgrade"
 git branch -M main
 git remote add origin https://github.com/YashRaut24/YashRaut24.git
 git push -u origin main
@@ -15,7 +15,7 @@ git push -u origin main
 ## 1. 3D Isometric Contribution City Graph (`profile-3d.yml`)
 `.github/workflows/profile-3d.yml` uses GitHub's built-in `GITHUB_TOKEN` to generate the 3D isometric city graph of your contributions.
 
-1. Go to the **Actions** tab in your repo.
+1. Go to the **Actions** tab in your repository.
 2. Select **generate-github-profile-3d-contrib** → click **Run workflow**.
 3. It will generate `profile-3d-contrib/profile-night-rainbow.svg` directly in your repo.
 4. It is scheduled to re-run automatically every day at 18:00 UTC.
@@ -41,13 +41,12 @@ git push -u origin main
    - `GH_TOKEN`: Personal Access Token with `repo` scope
 4. Run the workflow once manually. It will update the block between `<!--START_SECTION:waka-->` and `<!--END_SECTION:waka-->`.
 
-## 5. Design System Specifications
-All custom SVGs and remote widgets are calibrated to a zero-gradient, zero-glow flat Cyber-Architect palette:
-- **Base Background**: `#0B0F17` (Deep Obsidian Matte)
-- **Bento Card Surface**: `#111726`
-- **Architectural Border**: `#232D3F` / `#1E293B`
-- **Primary Accent**: `#38BDF8` (Sky Cyan)
-- **Neural/AI Accent**: `#818CF8` (Indigo)
-- **Success/Live Dot**: `#10B981` (Emerald)
-- **Primary Text**: `#F8FAFC`
-- **Muted Text**: `#94A3B8`
+## 5. Swiss Editorial Design System Specifications
+All SVGs and remote stat widgets are calibrated to a zero-gradient, zero-glow Swiss editorial palette:
+- **Base Canvas**: `#121316` (Warm Charcoal Slate)
+- **Article Surfaces**: `#191B1F`
+- **Architectural Rules & Borders**: `#2A2C33` / `#363842`
+- **Primary Accent**: `#E06C43` (Warm Terracotta / Swiss Ochre)
+- **Secondary Accent**: `#F59E0B` (Warm Amber)
+- **Primary Headlines & Numerals**: `#FBFBFC` (Milk White)
+- **Body & Metadata**: `#A1A1AA` & `#71717A`
