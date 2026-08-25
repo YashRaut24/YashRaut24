@@ -9,28 +9,53 @@
       .hud-lbl    { font-family: 'JetBrains Mono', Consolas, monospace; font-size: 10px; font-weight: 700; fill: #64748B; letter-spacing: 1px; }
       .hud-val    { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', sans-serif; font-size: 12px; font-weight: 700; fill: #F1F5F9; }
       .corner-crs { font-family: 'JetBrains Mono', monospace; font-size: 12px; fill: #00F0FF; font-weight: bold; }
+
+      @keyframes radarPing {
+        0% { r: 3.5px; opacity: 1; stroke-width: 1px; }
+        100% { r: 12px; opacity: 0; stroke-width: 2px; }
+      }
+      @keyframes crosshairBlink {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.3; }
+      }
+      @keyframes beamSlide {
+        0% { transform: translateY(0px); opacity: 0; }
+        50% { opacity: 0.8; }
+        100% { transform: translateY(220px); opacity: 0; }
+      }
+
+      .ping-circle { animation: radarPing 2s cubic-bezier(0, 0.2, 0.8, 1) infinite; stroke: #10B981; fill: none; }
+      .cross-anim  { animation: crosshairBlink 2.5s ease-in-out infinite; }
+      .laser-beam  { animation: beamSlide 5s linear infinite; }
     </style>
   </defs>
 
   <!-- Container -->
   <rect width="850" height="220" rx="8" class="bg-panel"/>
 
-  <!-- Corner Crosshairs -->
-  <text x="14" y="22" class="corner-crs">+</text>
-  <text x="826" y="22" class="corner-crs">+</text>
-  <text x="14" y="210" class="corner-crs">+</text>
-  <text x="826" y="210" class="corner-crs">+</text>
+  <!-- Scanning laser line -->
+  <g class="laser-beam">
+    <line x1="0" y1="0" x2="850" y2="0" stroke="#00F0FF" stroke-width="1" stroke-dasharray="8 8" opacity="0.4"/>
+  </g>
+
+  <!-- Corner Crosshairs with subtle animation -->
+  <text x="14" y="22" class="corner-crs cross-anim">+</text>
+  <text x="826" y="22" class="corner-crs cross-anim">+</text>
+  <text x="14" y="210" class="corner-crs cross-anim">+</text>
+  <text x="826" y="210" class="corner-crs cross-anim">+</text>
 
   <!-- Top Metadata Header -->
   <g transform="translate(36, 26)">
     <rect width="210" height="24" rx="4" class="tag-chip"/>
     <text x="12" y="16" class="tag-txt">SYS_ID // YR-AI-2026</text>
 
-    <!-- Radar Live Status -->
+    <!-- Radar Live Status with animated Radar Ping -->
     <g transform="translate(610, 0)">
       <rect width="168" height="24" rx="12" fill="#0C2016" stroke="#059669" stroke-width="1"/>
-      <circle cx="14" cy="12" r="3.5" fill="#10B981"/>
-      <text x="26" y="16" font-family="'JetBrains Mono', monospace" font-size="10.5px" font-weight="700" fill="#10B981" letter-spacing="0.8px">STATUS: OPERATIONAL</text>
+      <!-- Radar ring -->
+      <circle cx="16" cy="12" r="3.5" class="ping-circle"/>
+      <circle cx="16" cy="12" r="3.5" fill="#10B981"/>
+      <text x="28" y="16" font-family="'JetBrains Mono', monospace" font-size="10.5px" font-weight="700" fill="#10B981" letter-spacing="0.8px">STATUS: OPERATIONAL</text>
     </g>
   </g>
 
