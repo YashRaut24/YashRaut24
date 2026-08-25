@@ -1,0 +1,48 @@
+<svg width="900" height="70" viewBox="0 0 900 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .hud-strip  { fill: #0D1117; stroke: #21262D; stroke-width: 1.5; }
+      .hud-lbl    { font-family: 'JetBrains Mono', Consolas, monospace; font-size: 10px; font-weight: 700; fill: #8B949E; letter-spacing: 1px; }
+      .hud-val    { font-family: 'JetBrains Mono', Consolas, monospace; font-size: 11.5px; font-weight: 600; fill: #F0F6FC; }
+      .hud-acc    { fill: #38BDF8; font-weight: 700; }
+      .live-dot   { fill: #10B981; }
+    </style>
+  </defs>
+
+  <rect width="900" height="70" rx="8" class="hud-strip"/>
+
+  <!-- 4 Items in 1 Sleek Row -->
+  <!-- 01. LOCATION -->
+  <g transform="translate(30, 24)">
+    <text x="0" y="0" class="hud-lbl">LOC:</text>
+    <text x="35" y="0" class="hud-val">Mumbai, India</text>
+    <text x="0" y="20" class="hud-lbl" style="color:#6E7681; font-size:9.5px;">MAHARASHTRA</text>
+  </g>
+
+  <line x1="220" y1="14" x2="220" y2="56" stroke="#21262D" stroke-width="1"/>
+
+  <!-- 02. CHRONO -->
+  <g transform="translate(250, 24)">
+    <text x="0" y="0" class="hud-lbl">ZONE:</text>
+    <text x="45" y="0" class="hud-val">Asia/Kolkata</text>
+    <text x="0" y="20" class="hud-lbl" style="font-size:9.5px;">IST (UTC +5:30)</text>
+  </g>
+
+  <line x1="440" y1="14" x2="440" y2="56" stroke="#21262D" stroke-width="1"/>
+
+  <!-- 03. DOMAIN -->
+  <g transform="translate(470, 24)">
+    <text x="0" y="0" class="hud-lbl">FOCUS:</text>
+    <text x="52" y="0" class="hud-val"><tspan class="hud-acc">AI Systems</tspan> &amp; MERN</text>
+    <text x="0" y="20" class="hud-lbl" style="font-size:9.5px;">AGENTS &amp; RAG</text>
+  </g>
+
+  <line x1="680" y1="14" x2="680" y2="56" stroke="#21262D" stroke-width="1"/>
+
+  <!-- 04. STATUS -->
+  <g transform="translate(710, 24)">
+    <circle cx="4" cy="-4" r="3.5" class="live-dot"/>
+    <text x="14" y="0" class="hud-lbl" style="fill:#10B981;">STATUS: ONLINE</text>
+    <text x="0" y="20" class="hud-val" style="font-size:10.5px;">Ready to Build</text>
+  </g>
+</svg>

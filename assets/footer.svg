@@ -1,17 +1,18 @@
-<svg width="900" height="70" viewBox="0 0 900 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg width="900" height="50" viewBox="0 0 900 50" fill="none" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <style>
-      .colophon-txt { font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 500; fill: #71717A; letter-spacing: 1.5px; }
-      .colophon-acc { fill: #E06C43; font-weight: 700; }
-      .colophon-sub { fill: #D4D4D8; }
+      .term-foot { font-family: 'JetBrains Mono', Consolas, monospace; font-size: 11.5px; fill: #8B949E; letter-spacing: 0.5px; }
+      .foot-prm  { fill: #38BDF8; font-weight: 700; }
+      .foot-acc  { fill: #10B981; font-weight: 700; }
+      .border    { stroke: #21262D; stroke-width: 1; }
     </style>
   </defs>
 
-  <line x1="0" y1="35" x2="240" y2="35" stroke="#2A2C33" stroke-width="1"/>
-  <line x1="660" y1="35" x2="900" y2="35" stroke="#2A2C33" stroke-width="1"/>
+  <line x1="0" y1="25" x2="260" y2="25" class="border"/>
+  <line x1="640" y1="25" x2="900" y2="25" class="border"/>
 
-  <rect x="250" y="16" width="400" height="38" rx="4" fill="#121316" stroke="#2A2C33" stroke-width="1.5"/>
-  <text x="450" y="39" text-anchor="middle" class="colophon-txt">
-    COLOPHON // <tspan class="colophon-acc">YASH RAUT</tspan> • <tspan class="colophon-sub">MUMBAI, IN</tspan> • 2026
+  <rect x="270" y="8" width="360" height="34" rx="4" fill="#0D1117" stroke="#21262D" stroke-width="1"/>
+  <text x="450" y="30" text-anchor="middle" class="term-foot">
+    <tspan class="foot-prm">yr@cyber-lab:~$</tspan> exit 0 <tspan class="foot-acc">[OK • 2026]</tspan>
   </text>
 </svg>

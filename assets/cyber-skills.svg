@@ -1,0 +1,97 @@
+<svg width="900" height="230" viewBox="0 0 900 230" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .hud-bg      { fill: #0D1117; stroke: #21262D; stroke-width: 1.5; }
+      .col-box     { fill: #161B22; stroke: #30363D; stroke-width: 1; }
+      .hud-title   { font-family: 'JetBrains Mono', Consolas, monospace; font-size: 11px; font-weight: 700; fill: #38BDF8; letter-spacing: 1.5px; }
+      .hud-sub     { font-family: 'JetBrains Mono', Consolas, monospace; font-size: 10px; fill: #8B949E; letter-spacing: 1px; }
+      .skill-tag   { font-family: 'JetBrains Mono', Consolas, monospace; font-size: 12px; font-weight: 600; fill: #F0F6FC; }
+      .skill-sub   { font-family: 'JetBrains Mono', Consolas, monospace; font-size: 10px; fill: #8B949E; }
+      .bracket     { fill: #38BDF8; font-weight: bold; }
+    </style>
+  </defs>
+
+  <!-- Container -->
+  <rect width="900" height="230" rx="8" class="hud-bg"/>
+
+  <!-- Top Title -->
+  <g transform="translate(24, 20)">
+    <text x="0" y="12" class="hud-title">&gt; SYS.CAPABILITIES_MATRIX // CYBER LAB HUD</text>
+    <text x="540" y="12" class="hud-sub">[STATUS: VERIFIED &amp; PRODUCTION READY]</text>
+  </g>
+  <line x1="0" y1="42" x2="900" y2="42" stroke="#21262D" stroke-width="1"/>
+
+  <!-- 4 Columns: Width 206 each, Gap 10 -->
+  
+  <!-- Col 1: RUNTIMES -->
+  <g transform="translate(24, 54)">
+    <rect width="204" height="156" rx="4" class="col-box"/>
+    <text x="14" y="22" class="hud-title" style="font-size:10px;">[01] RUNTIMES</text>
+    <line x1="14" y1="30" x2="190" y2="30" stroke="#21262D" stroke-width="1"/>
+
+    <g transform="translate(14, 46)">
+      <text x="0" y="6" class="skill-tag"><tspan class="bracket">&gt; </tspan>TypeScript / JS</text>
+      <text x="16" y="18" class="skill-sub">ESNext • Strict Types</text>
+
+      <text x="0" y="38" class="skill-tag"><tspan class="bracket">&gt; </tspan>Python</text>
+      <text x="16" y="50" class="skill-sub">Async IO • AI Core</text>
+
+      <text x="0" y="70" class="skill-tag"><tspan class="bracket">&gt; </tspan>C++ &amp; Java</text>
+      <text x="16" y="82" class="skill-sub">OOP • Data Structures</text>
+    </g>
+  </g>
+
+  <!-- Col 2: AI & NEURAL -->
+  <g transform="translate(238, 54)">
+    <rect width="204" height="156" rx="4" class="col-box"/>
+    <text x="14" y="22" class="hud-title" style="font-size:10px; fill:#10B981;">[02] AI / NEURAL</text>
+    <line x1="14" y1="30" x2="190" y2="30" stroke="#21262D" stroke-width="1"/>
+
+    <g transform="translate(14, 46)">
+      <text x="0" y="6" class="skill-tag"><tspan style="fill:#10B981;" class="bracket">&gt; </tspan>LangChain</text>
+      <text x="16" y="18" class="skill-sub">Autonomous Agents</text>
+
+      <text x="0" y="38" class="skill-tag"><tspan style="fill:#10B981;" class="bracket">&gt; </tspan>ChromaDB</text>
+      <text x="16" y="50" class="skill-sub">Vector Similarity RAG</text>
+
+      <text x="0" y="70" class="skill-tag"><tspan style="fill:#10B981;" class="bracket">&gt; </tspan>Groq &amp; OpenAI</text>
+      <text x="16" y="82" class="skill-sub">Sub-50ms Inference</text>
+    </g>
+  </g>
+
+  <!-- Col 3: WEB & ENGINE -->
+  <g transform="translate(452, 54)">
+    <rect width="204" height="156" rx="4" class="col-box"/>
+    <text x="14" y="22" class="hud-title" style="font-size:10px; fill:#F59E0B;">[03] WEB &amp; ENGINE</text>
+    <line x1="14" y1="30" x2="190" y2="30" stroke="#21262D" stroke-width="1"/>
+
+    <g transform="translate(14, 46)">
+      <text x="0" y="6" class="skill-tag"><tspan style="fill:#F59E0B;" class="bracket">&gt; </tspan>React &amp; Next.js</text>
+      <text x="16" y="18" class="skill-sub">SSR • App Router</text>
+
+      <text x="0" y="38" class="skill-tag"><tspan style="fill:#F59E0B;" class="bracket">&gt; </tspan>FastAPI</text>
+      <text x="16" y="50" class="skill-sub">High-Throughput APIs</text>
+
+      <text x="0" y="70" class="skill-tag"><tspan style="fill:#F59E0B;" class="bracket">&gt; </tspan>Node &amp; Express</text>
+      <text x="16" y="82" class="skill-sub">RESTful Architectures</text>
+    </g>
+  </g>
+
+  <!-- Col 4: INFRA & DB -->
+  <g transform="translate(666, 54)">
+    <rect width="208" height="156" rx="4" class="col-box"/>
+    <text x="14" y="22" class="hud-title" style="font-size:10px; fill:#8B949E;">[04] INFRA &amp; DB</text>
+    <line x1="14" y1="30" x2="194" y2="30" stroke="#21262D" stroke-width="1"/>
+
+    <g transform="translate(14, 46)">
+      <text x="0" y="6" class="skill-tag"><tspan style="fill:#8B949E;" class="bracket">&gt; </tspan>PostgreSQL &amp; Mongo</text>
+      <text x="16" y="18" class="skill-sub">ACID • Data Pipelines</text>
+
+      <text x="0" y="38" class="skill-tag"><tspan style="fill:#8B949E;" class="bracket">&gt; </tspan>Docker</text>
+      <text x="16" y="50" class="skill-sub">Container Deployments</text>
+
+      <text x="0" y="70" class="skill-tag"><tspan style="fill:#8B949E;" class="bracket">&gt; </tspan>Git &amp; Vercel</text>
+      <text x="16" y="82" class="skill-sub">CI/CD Production</text>
+    </g>
+  </g>
+</svg>
