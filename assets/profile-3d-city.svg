@@ -1,0 +1,181 @@
+<svg width="850" height="300" viewBox="0 0 850 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .city-bg    { fill: #08090C; stroke: #1E2638; stroke-width: 1.5; }
+      .city-tag   { font-family: 'JetBrains Mono', Consolas, monospace; font-size: 11px; font-weight: 700; fill: #00F0FF; letter-spacing: 1.5px; }
+      .city-sub   { font-family: 'JetBrains Mono', Consolas, monospace; font-size: 10px; fill: #64748B; letter-spacing: 1px; }
+      .axis-lbl   { font-family: 'JetBrains Mono', Consolas, monospace; font-size: 9.5px; fill: #475569; }
+      .stat-badge { font-family: 'JetBrains Mono', Consolas, monospace; font-size: 10.5px; font-weight: 700; fill: #A855F7; }
+    </style>
+  </defs>
+
+  <!-- Container -->
+  <rect width="850" height="300" rx="8" class="city-bg"/>
+
+  <!-- Top Title Bar -->
+  <g transform="translate(24, 22)">
+    <text x="0" y="10" class="city-tag">&gt; // 3D ISOMETRIC CONTRIBUTION CITY MATRIX</text>
+    <text x="520" y="10" class="city-sub">[VIEW: ISOMETRIC 30° // REALTIME CODE SKYLINE]</text>
+  </g>
+  <line x1="0" y1="42" x2="850" y2="42" stroke="#1E2638" stroke-width="1"/>
+
+  <!-- 3D Isometric Grid & Buildings Container -->
+  <g transform="translate(24, 52)">
+    
+    <!-- Background Isometric Floor Grid Lines -->
+    <path d="M40 180 L400 40 L760 180 L400 240 Z" fill="#0C0F17" stroke="#171E2D" stroke-width="1"/>
+    
+    <!-- Guide axes -->
+    <line x1="40" y1="180" x2="400" y2="40" stroke="#1E2638" stroke-width="1" stroke-dasharray="3 3"/>
+    <line x1="400" y1="40" x2="760" y2="180" stroke="#1E2638" stroke-width="1" stroke-dasharray="3 3"/>
+
+    <!-- Dynamic 3D Isometric Blocks representing Contribution Heatmap -->
+    <!-- Helper macro for 3D isometric block:
+         Base at (X, Y), Height H, Width 14, Depth 14
+         Left face, Right face, Top face -->
+
+    <!-- Low intensity ground clusters (Dark Teal / Slate) -->
+    <!-- Cluster 1: Jan-Feb -->
+    <!-- Block (140, 150) h=16 -->
+    <g transform="translate(140, 150)">
+      <path d="M0 0 L-10 6 L-10 -10 L0 -16 Z" fill="#0D2E38"/>
+      <path d="M0 0 L10 6 L10 -10 L0 -16 Z" fill="#082029"/>
+      <path d="M0 -16 L-10 -10 L0 -4 L10 -10 Z" fill="#0E4E5E"/>
+    </g>
+    <!-- Block (165, 140) h=28 -->
+    <g transform="translate(165, 140)">
+      <path d="M0 0 L-10 6 L-10 -22 L0 -28 Z" fill="#0E5E73"/>
+      <path d="M0 0 L10 6 L10 -22 L0 -28 Z" fill="#094354"/>
+      <path d="M0 -28 L-10 -22 L0 -16 L10 -22 Z" fill="#14829E"/>
+    </g>
+    <!-- Block (190, 130) h=44 -->
+    <g transform="translate(190, 130)">
+      <path d="M0 0 L-10 6 L-10 -38 L0 -44 Z" fill="#0891B2"/>
+      <path d="M0 0 L10 6 L10 -38 L0 -44 Z" fill="#0E7490"/>
+      <path d="M0 -44 L-10 -38 L0 -32 L10 -38 Z" fill="#00F0FF"/>
+    </g>
+
+    <!-- Cluster 2: Mar-Apr Mid rise -->
+    <!-- Block (230, 145) h=35 -->
+    <g transform="translate(230, 145)">
+      <path d="M0 0 L-10 6 L-10 -29 L0 -35 Z" fill="#0891B2"/>
+      <path d="M0 0 L10 6 L10 -29 L0 -35 Z" fill="#0E7490"/>
+      <path d="M0 -35 L-10 -29 L0 -23 L10 -29 Z" fill="#00F0FF"/>
+    </g>
+    <!-- Block (255, 135) h=55 -->
+    <g transform="translate(255, 135)">
+      <path d="M0 0 L-10 6 L-10 -49 L0 -55 Z" fill="#06B6D4"/>
+      <path d="M0 0 L10 6 L10 -49 L0 -55 Z" fill="#0891B2"/>
+      <path d="M0 -55 L-10 -49 L0 -43 L10 -49 Z" fill="#38BDF8"/>
+    </g>
+    <!-- Block (280, 125) h=70 - TALL SKYSCRAPER -->
+    <g transform="translate(280, 125)">
+      <path d="M0 0 L-10 6 L-10 -64 L0 -70 Z" fill="#7C3AED"/>
+      <path d="M0 0 L10 6 L10 -64 L0 -70 Z" fill="#5B21B6"/>
+      <path d="M0 -70 L-10 -64 L0 -58 L10 -64 Z" fill="#A855F7"/>
+    </g>
+    <!-- Block (305, 115) h=85 - MEGA TOWER (Peak Commit Day) -->
+    <g transform="translate(305, 115)">
+      <path d="M0 0 L-12 7 L-12 -78 L0 -85 Z" fill="#9333EA"/>
+      <path d="M0 0 L12 7 L12 -78 L0 -85 Z" fill="#6B21A8"/>
+      <path d="M0 -85 L-12 -78 L0 -71 L12 -78 Z" fill="#C084FC"/>
+    </g>
+
+    <!-- Cluster 3: May-Jun Consistent Blocks -->
+    <!-- Block (345, 135) h=50 -->
+    <g transform="translate(345, 135)">
+      <path d="M0 0 L-10 6 L-10 -44 L0 -50 Z" fill="#0891B2"/>
+      <path d="M0 0 L10 6 L10 -44 L0 -50 Z" fill="#0E7490"/>
+      <path d="M0 -50 L-10 -44 L0 -38 L10 -44 Z" fill="#00F0FF"/>
+    </g>
+    <!-- Block (370, 125) h=65 -->
+    <g transform="translate(370, 125)">
+      <path d="M0 0 L-10 6 L-10 -59 L0 -65 Z" fill="#7C3AED"/>
+      <path d="M0 0 L10 6 L10 -59 L0 -65 Z" fill="#5B21B6"/>
+      <path d="M0 -65 L-10 -59 L0 -53 L10 -59 Z" fill="#A855F7"/>
+    </g>
+    <!-- Block (395, 115) h=90 - HIGH SPIRE -->
+    <g transform="translate(395, 115)">
+      <path d="M0 0 L-12 7 L-12 -83 L0 -90 Z" fill="#9333EA"/>
+      <path d="M0 0 L12 7 L12 -83 L0 -90 Z" fill="#6B21A8"/>
+      <path d="M0 -90 L-12 -83 L0 -76 L12 -83 Z" fill="#C084FC"/>
+    </g>
+    <!-- Block (420, 105) h=60 -->
+    <g transform="translate(420, 105)">
+      <path d="M0 0 L-10 6 L-10 -54 L0 -60 Z" fill="#0891B2"/>
+      <path d="M0 0 L10 6 L10 -54 L0 -60 Z" fill="#0E7490"/>
+      <path d="M0 -60 L-10 -54 L0 -48 L10 -54 Z" fill="#00F0FF"/>
+    </g>
+
+    <!-- Cluster 4: Jul-Aug High Density Grid -->
+    <!-- Block (460, 130) h=75 -->
+    <g transform="translate(460, 130)">
+      <path d="M0 0 L-10 6 L-10 -69 L0 -75 Z" fill="#7C3AED"/>
+      <path d="M0 0 L10 6 L10 -69 L0 -75 Z" fill="#5B21B6"/>
+      <path d="M0 -75 L-10 -69 L0 -63 L10 -69 Z" fill="#A855F7"/>
+    </g>
+    <!-- Block (485, 140) h=60 -->
+    <g transform="translate(485, 140)">
+      <path d="M0 0 L-10 6 L-10 -54 L0 -60 Z" fill="#0891B2"/>
+      <path d="M0 0 L10 6 L10 -54 L0 -60 Z" fill="#0E7490"/>
+      <path d="M0 -60 L-10 -54 L0 -48 L10 -54 Z" fill="#00F0FF"/>
+    </g>
+    <!-- Block (510, 150) h=80 -->
+    <g transform="translate(510, 150)">
+      <path d="M0 0 L-12 7 L-12 -73 L0 -80 Z" fill="#9333EA"/>
+      <path d="M0 0 L12 7 L12 -73 L0 -80 Z" fill="#6B21A8"/>
+      <path d="M0 -80 L-12 -73 L0 -66 L12 -73 Z" fill="#C084FC"/>
+    </g>
+    <!-- Block (535, 160) h=45 -->
+    <g transform="translate(535, 160)">
+      <path d="M0 0 L-10 6 L-10 -39 L0 -45 Z" fill="#0891B2"/>
+      <path d="M0 0 L10 6 L10 -39 L0 -45 Z" fill="#0E7490"/>
+      <path d="M0 -45 L-10 -39 L0 -33 L10 -39 Z" fill="#00F0FF"/>
+    </g>
+
+    <!-- Cluster 5: Sep-Dec Front Blocks -->
+    <!-- Block (570, 150) h=40 -->
+    <g transform="translate(570, 150)">
+      <path d="M0 0 L-10 6 L-10 -34 L0 -40 Z" fill="#0E5E73"/>
+      <path d="M0 0 L10 6 L10 -34 L0 -40 Z" fill="#094354"/>
+      <path d="M0 -40 L-10 -34 L0 -28 L10 -34 Z" fill="#14829E"/>
+    </g>
+    <!-- Block (595, 160) h=55 -->
+    <g transform="translate(595, 160)">
+      <path d="M0 0 L-10 6 L-10 -49 L0 -55 Z" fill="#0891B2"/>
+      <path d="M0 0 L10 6 L10 -49 L0 -55 Z" fill="#0E7490"/>
+      <path d="M0 -55 L-10 -49 L0 -43 L10 -49 Z" fill="#00F0FF"/>
+    </g>
+    <!-- Block (620, 170) h=30 -->
+    <g transform="translate(620, 170)">
+      <path d="M0 0 L-10 6 L-10 -24 L0 -30 Z" fill="#0D2E38"/>
+      <path d="M0 0 L10 6 L10 -24 L0 -30 Z" fill="#082029"/>
+      <path d="M0 -30 L-10 -24 L0 -18 L10 -24 Z" fill="#0E4E5E"/>
+    </g>
+    <!-- Block (645, 180) h=20 -->
+    <g transform="translate(645, 180)">
+      <path d="M0 0 L-10 6 L-10 -14 L0 -20 Z" fill="#0D2E38"/>
+      <path d="M0 0 L10 6 L10 -14 L0 -20 Z" fill="#082029"/>
+      <path d="M0 -20 L-10 -14 L0 -8 L10 -14 Z" fill="#0E4E5E"/>
+    </g>
+
+    <!-- Legend & Telemetry Readout on bottom left / right -->
+    <g transform="translate(10, 200)">
+      <rect x="0" y="0" width="8" height="8" fill="#0D2E38"/>
+      <text x="14" y="8" class="axis-lbl">LOW</text>
+
+      <rect x="50" y="0" width="8" height="8" fill="#0E5E73"/>
+      <text x="64" y="8" class="axis-lbl">MED</text>
+
+      <rect x="95" y="0" width="8" height="8" fill="#00F0FF"/>
+      <text x="109" y="8" class="axis-lbl">HIGH</text>
+
+      <rect x="145" y="0" width="8" height="8" fill="#A855F7"/>
+      <text x="159" y="8" class="axis-lbl" style="fill:#A855F7; font-weight:bold;">PEAK VELOCITY</text>
+    </g>
+
+    <g transform="translate(560, 200)">
+      <text x="0" y="8" class="stat-badge">SKYLINE TOTAL: 1,500+ COMMITS</text>
+    </g>
+  </g>
+</svg>

@@ -1,7 +1,7 @@
 <div align="center">
 
-<!-- Architectural Developer Identity -->
-<img src="./assets/hero-identity.svg" alt="Yash Raut" width="100%" />
+<!-- Architectural Developer Identity Board -->
+<img src="./assets/hero-identity.svg" alt="Yash Raut Identity" width="100%" />
 
 <br/><br/>
 
@@ -10,6 +10,12 @@
 [![Email](https://img.shields.io/badge/Email-yashdr2405%40gmail.com-08090C?style=flat-square&logo=gmail&logoColor=00F0FF)](mailto:yashdr2405@gmail.com)
 
 </div>
+
+<br/>
+
+### `> // 3D ISOMETRIC CONTRIBUTION SKYLINE`
+
+<img src="./assets/profile-3d-city.svg" alt="3D Isometric Contribution City Matrix" width="100%" />
 
 <br/>
 
