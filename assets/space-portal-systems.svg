@@ -21,7 +21,7 @@
   <!-- Top System Header Bar -->
   <g transform="translate(26, 24)">
     <circle cx="0" cy="5" r="4" fill="#2563EB" class="beacon"/>
-    <text x="14" y="9" class="tag-lbl">PORTAL GATEWAY // SECTOR 02: SPACECRAFT AVIONICS &amp; SUBSYSTEMS</text>
+    <text x="14" y="9" class="tag-lbl">PORTAL GATEWAY // SECTOR 02: TECHNICAL STACK &amp; CAPABILITIES</text>
     <text x="610" y="9" class="sub-lbl">[3x CORE FLIGHT DECKS OPERATIONAL]</text>
   </g>
   <line x1="0" y1="44" x2="850" y2="44" stroke="#1F2430" stroke-width="1.2"/>
@@ -29,89 +29,89 @@
   <!-- 3 Spacecraft Subsystems Flight Matrix -->
   <g transform="translate(26, 62)">
     
-    <!-- COLUMN 01: AI & Autonomous Avionics -->
+    <!-- COLUMN 01: MERN Full Stack -->
     <g transform="translate(0, 0)">
       <rect width="252" height="174" rx="4" class="col-box"/>
       <rect x="0" y="0" width="252" height="3" fill="#00F0FF"/>
       
       <g transform="translate(14, 20)">
         <text x="0" y="0" class="col-role">AVIONICS BAY 01</text>
-        <text x="0" y="16" class="col-head">AI &amp; AUTONOMOUS SYSTEMS</text>
+        <text x="0" y="16" class="col-head">MERN FULL STACK</text>
         <line x1="0" y1="26" x2="224" y2="26" stroke="#1F2430" stroke-width="1"/>
 
         <!-- Capability Items -->
         <g transform="translate(0, 42)">
           <rect x="0" y="-8" width="6" height="6" fill="#00F0FF"/>
-          <text x="14" y="-2" class="tech-tag">Agentic AI Workflows</text>
-          <text x="14" y="10" class="tech-desc">Multi-agent planners &amp; tools</text>
+          <text x="14" y="-2" class="tech-tag">React.js &amp; Frontend</text>
+          <text x="14" y="10" class="tech-desc">Tailwind CSS, HTML5, Dynamic UI</text>
         </g>
         <g transform="translate(0, 72)">
           <rect x="0" y="-8" width="6" height="6" fill="#00F0FF"/>
-          <text x="14" y="-2" class="tech-tag">LLM &amp; Neural Pipelines</text>
-          <text x="14" y="10" class="tech-desc">PyTorch, LangChain, RAG</text>
+          <text x="14" y="-2" class="tech-tag">Node.js &amp; Express.js</text>
+          <text x="14" y="10" class="tech-desc">20+ REST APIs, JWT, RBAC auth</text>
         </g>
         <g transform="translate(0, 102)">
           <rect x="0" y="-8" width="6" height="6" fill="#00F0FF"/>
-          <text x="14" y="-2" class="tech-tag">Vector Memory Stores</text>
-          <text x="14" y="10" class="tech-desc">Low-latency semantic retrieval</text>
+          <text x="14" y="-2" class="tech-tag">Socket.IO &amp; Cloudinary</text>
+          <text x="14" y="10" class="tech-desc">Real-time feeds &amp; media storage</text>
         </g>
       </g>
     </g>
 
-    <!-- COLUMN 02: Core Propulsion & Full-Stack -->
+    <!-- COLUMN 02: AI, ML & NLP -->
     <g transform="translate(272, 0)">
       <rect width="252" height="174" rx="4" class="col-box"/>
       <rect x="0" y="0" width="252" height="3" fill="#2563EB"/>
 
       <g transform="translate(14, 20)">
         <text x="0" y="0" class="col-role">PROPULSION BAY 02</text>
-        <text x="0" y="16" class="col-head">CORE ENGINES &amp; APIS</text>
+        <text x="0" y="16" class="col-head">AI, ML &amp; NLP SYSTEMS</text>
         <line x1="0" y1="26" x2="224" y2="26" stroke="#1F2430" stroke-width="1"/>
 
         <!-- Capability Items -->
         <g transform="translate(0, 42)">
           <rect x="0" y="-8" width="6" height="6" fill="#2563EB"/>
-          <text x="14" y="-2" class="tech-tag">Distributed Microservices</text>
-          <text x="14" y="10" class="tech-desc">FastAPI, Node.js, Go Services</text>
+          <text x="14" y="-2" class="tech-tag">Machine Learning &amp; NLP</text>
+          <text x="14" y="10" class="tech-desc">Scikit-learn, Pandas, Semantic similarity</text>
         </g>
         <g transform="translate(0, 72)">
           <rect x="0" y="-8" width="6" height="6" fill="#2563EB"/>
-          <text x="14" y="-2" class="tech-tag">Mission Flight Consoles</text>
-          <text x="14" y="10" class="tech-desc">React, Next.js, TypeScript</text>
+          <text x="14" y="-2" class="tech-tag">LLM Integration &amp; APIs</text>
+          <text x="14" y="10" class="tech-desc">Prompt engineering, Groq API</text>
         </g>
         <g transform="translate(0, 102)">
           <rect x="0" y="-8" width="6" height="6" fill="#2563EB"/>
-          <text x="14" y="-2" class="tech-tag">High-Throughput Databases</text>
-          <text x="14" y="10" class="tech-desc">PostgreSQL, Redis, MongoDB</text>
+          <text x="14" y="-2" class="tech-tag">Predictive Model Tuning</text>
+          <text x="14" y="10" class="tech-desc">Feature analysis &amp; optimization</text>
         </g>
       </g>
     </g>
 
-    <!-- COLUMN 03: Orbital Infra & DevOps -->
+    <!-- COLUMN 03: Databases & DevOps -->
     <g transform="translate(544, 0)">
       <rect width="252" height="174" rx="4" class="col-box"/>
       <rect x="0" y="0" width="252" height="3" fill="#E11D48"/>
 
       <g transform="translate(14, 20)">
         <text x="0" y="0" class="col-role">INFRASTRUCTURE BAY 03</text>
-        <text x="0" y="16" class="col-head">ORBITAL CLOUD &amp; DEVOPS</text>
+        <text x="0" y="16" class="col-head">DATABASES &amp; CLOUD TOOLS</text>
         <line x1="0" y1="26" x2="224" y2="26" stroke="#1F2430" stroke-width="1"/>
 
         <!-- Capability Items -->
         <g transform="translate(0, 42)">
           <rect x="0" y="-8" width="6" height="6" fill="#E11D48"/>
-          <text x="14" y="-2" class="tech-tag">Container Orchestration</text>
-          <text x="14" y="10" class="tech-desc">Docker, Kubernetes clusters</text>
+          <text x="14" y="-2" class="tech-tag">MongoDB &amp; PostgreSQL</text>
+          <text x="14" y="10" class="tech-desc">MySQL, Firebase data architecture</text>
         </g>
         <g transform="translate(0, 72)">
           <rect x="0" y="-8" width="6" height="6" fill="#E11D48"/>
-          <text x="14" y="-2" class="tech-tag">Automated Launch Pipelines</text>
-          <text x="14" y="10" class="tech-desc">GitHub Actions CI/CD workflows</text>
+          <text x="14" y="-2" class="tech-tag">Docker &amp; Containerization</text>
+          <text x="14" y="10" class="tech-desc">Git, GitHub Actions CI/CD</text>
         </g>
         <g transform="translate(0, 102)">
           <rect x="0" y="-8" width="6" height="6" fill="#E11D48"/>
-          <text x="14" y="-2" class="tech-tag">Telemetry &amp; Observability</text>
-          <text x="14" y="10" class="tech-desc">Prometheus, Grafana, Tracing</text>
+          <text x="14" y="-2" class="tech-tag">Deployment &amp; Testing</text>
+          <text x="14" y="10" class="tech-desc">Vercel, Render, Postman APIs</text>
         </g>
       </g>
     </g>

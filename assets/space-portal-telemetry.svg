@@ -6,7 +6,7 @@
       .sub-lbl         { font-family: 'JetBrains Mono', Consolas, monospace; font-size: 9.5px; fill: #71737E; letter-spacing: 1.5px; }
       .stat-card       { fill: #111216; stroke: #1F2430; stroke-width: 1.2; }
       .card-title      { font-family: 'JetBrains Mono', Consolas, monospace; font-size: 9.5px; font-weight: 700; fill: #71737E; letter-spacing: 1.5px; }
-      .metric-val      { font-family: 'Space Grotesk', sans-serif; font-size: 19px; font-weight: 900; fill: #FDFBF7; }
+      .metric-val      { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 18px; font-weight: 900; fill: #FDFBF7; }
       .metric-sub      { font-family: 'JetBrains Mono', Consolas, monospace; font-size: 9px; fill: #A0A5B5; }
       .tech-pill       { fill: #16171D; stroke: #2C303B; stroke-width: 1; }
       .pill-txt        { font-family: 'JetBrains Mono', Consolas, monospace; font-size: 9px; font-weight: 700; fill: #FDFBF7; }
@@ -33,7 +33,7 @@
   <!-- Top System Header Bar -->
   <g transform="translate(26, 24)">
     <circle cx="0" cy="5" r="4" fill="#39D353" class="beacon"/>
-    <text x="14" y="9" class="tag-lbl">PORTAL GATEWAY // SECTOR 04: FLIGHT LOGS &amp; TELEMETRY</text>
+    <text x="14" y="9" class="tag-lbl">PORTAL GATEWAY // SECTOR 04: ACADEMIC &amp; MISSION TELEMETRY</text>
     <text x="590" y="9" class="sub-lbl">[LIVE TELEMETRY STREAM CONNECTED]</text>
   </g>
   <line x1="0" y1="44" x2="850" y2="44" stroke="#1F2430" stroke-width="1.2"/>
@@ -41,79 +41,84 @@
   <!-- Left Content: Flight Metrics & Stack -->
   <g transform="translate(26, 62)">
     
-    <!-- Row 1: 3 Live Spacecraft Metric Cards -->
+    <!-- Row 1: 3 Real Metric Cards -->
     <g>
-      <!-- Metric 1 -->
+      <!-- Metric 1: GitHub Commits -->
       <g transform="translate(0, 0)">
         <rect width="195" height="66" rx="4" class="stat-card"/>
         <rect x="0" y="0" width="3" height="66" fill="#39D353"/>
-        <text x="14" y="18" class="card-title">COMMIT VELOCITY</text>
-        <text x="14" y="42" class="metric-val">1,480+ LOGS</text>
-        <text x="14" y="56" class="metric-sub">&gt; Continuous orbital cadence</text>
+        <text x="14" y="18" class="card-title">GIT TELEMETRY</text>
+        <text x="14" y="42" class="metric-val">1,483 COMMITS</text>
+        <text x="14" y="56" class="metric-sub">&gt; Live GitHub contributions</text>
       </g>
 
-      <!-- Metric 2 -->
+      <!-- Metric 2: Academic CGPA -->
       <g transform="translate(210, 0)">
         <rect width="195" height="66" rx="4" class="stat-card"/>
         <rect x="0" y="0" width="3" height="66" fill="#00F0FF"/>
-        <text x="14" y="18" class="card-title">CORE RELIABILITY</text>
-        <text x="14" y="42" class="metric-val">99.98% SLA</text>
-        <text x="14" y="56" class="metric-sub">&gt; Zero-downtime microservices</text>
+        <text x="14" y="18" class="card-title">ACADEMIC RECORD</text>
+        <text x="14" y="42" class="metric-val">CGPA: 8.47 / 10</text>
+        <text x="14" y="56" class="metric-sub">&gt; B.E. Computer Engineering</text>
       </g>
 
-      <!-- Metric 3 -->
+      <!-- Metric 3: Recognition -->
       <g transform="translate(420, 0)">
         <rect width="195" height="66" rx="4" class="stat-card"/>
         <rect x="0" y="0" width="3" height="66" fill="#2563EB"/>
-        <text x="14" y="18" class="card-title">MISSION STACK</text>
-        <text x="14" y="42" class="metric-val">FULL AVIONICS</text>
-        <text x="14" y="56" class="metric-sub">&gt; Python · TS · Go · PyTorch</text>
+        <text x="14" y="18" class="card-title">ACCOLADES</text>
+        <text x="14" y="42" class="metric-val">1ST PRIZE AI ART</text>
+        <text x="14" y="56" class="metric-sub">&gt; Watumull Tech Competition</text>
       </g>
     </g>
 
-    <!-- Row 2: Spacecraft Propulsion Tech Badges -->
+    <!-- Row 2: Real Tech Stack Badges from Resume -->
     <g transform="translate(0, 78)">
       <g transform="translate(0, 0)">
         <rect width="78" height="24" rx="3" class="tech-pill"/>
         <circle cx="10" cy="12" r="3" fill="#00F0FF"/>
-        <text x="20" y="15.5" class="pill-txt">Python</text>
+        <text x="20" y="15.5" class="pill-txt">React.js</text>
       </g>
       <g transform="translate(86, 0)">
-        <rect width="98" height="24" rx="3" class="tech-pill"/>
-        <circle cx="10" cy="12" r="3" fill="#2563EB"/>
-        <text x="20" y="15.5" class="pill-txt">TypeScript</text>
-      </g>
-      <g transform="translate(192, 0)">
-        <rect width="76" height="24" rx="3" class="tech-pill"/>
-        <circle cx="10" cy="12" r="3" fill="#00F0FF"/>
-        <text x="20" y="15.5" class="pill-txt">Golang</text>
-      </g>
-      <g transform="translate(276, 0)">
         <rect width="80" height="24" rx="3" class="tech-pill"/>
-        <circle cx="10" cy="12" r="3" fill="#E11D48"/>
-        <text x="20" y="15.5" class="pill-txt">PyTorch</text>
+        <circle cx="10" cy="12" r="3" fill="#2563EB"/>
+        <text x="20" y="15.5" class="pill-txt">Node.js</text>
       </g>
-      <g transform="translate(364, 0)">
-        <rect width="76" height="24" rx="3" class="tech-pill"/>
-        <circle cx="10" cy="12" r="3" fill="#F59E0B"/>
+      <g transform="translate(174, 0)">
+        <rect width="72" height="24" rx="3" class="tech-pill"/>
+        <circle cx="10" cy="12" r="3" fill="#00F0FF"/>
+        <text x="20" y="15.5" class="pill-txt">Python</text>
+      </g>
+      <g transform="translate(254, 0)">
+        <rect width="86" height="24" rx="3" class="tech-pill"/>
+        <circle cx="10" cy="12" r="3" fill="#39D353"/>
+        <text x="20" y="15.5" class="pill-txt">MongoDB</text>
+      </g>
+      <g transform="translate(348, 0)">
+        <rect width="72" height="24" rx="3" class="tech-pill"/>
+        <circle cx="10" cy="12" r="3" fill="#2563EB"/>
         <text x="20" y="15.5" class="pill-txt">Docker</text>
       </g>
-      <g transform="translate(448, 0)">
-        <rect width="82" height="24" rx="3" class="tech-pill"/>
-        <circle cx="10" cy="12" r="3" fill="#39D353"/>
-        <text x="20" y="15.5" class="pill-txt">FastAPI</text>
+      <g transform="translate(428, 0)">
+        <rect width="96" height="24" rx="3" class="tech-pill"/>
+        <circle cx="10" cy="12" r="3" fill="#F59E0B"/>
+        <text x="20" y="15.5" class="pill-txt">JavaScript</text>
       </g>
-      <g transform="translate(538, 0)">
-        <rect width="77" height="24" rx="3" class="tech-pill"/>
-        <circle cx="10" cy="12" r="3" fill="#FDFBF7"/>
-        <text x="20" y="15.5" class="pill-txt">Next.js</text>
+      <g transform="translate(532, 0)">
+        <rect width="60" height="24" rx="3" class="tech-pill"/>
+        <circle cx="10" cy="12" r="3" fill="#E11D48"/>
+        <text x="20" y="15.5" class="pill-txt">Java</text>
+      </g>
+      <g transform="translate(600, 0)">
+        <rect width="70" height="24" rx="3" class="tech-pill"/>
+        <circle cx="10" cy="12" r="3" fill="#00F0FF"/>
+        <text x="20" y="15.5" class="pill-txt">MySQL</text>
       </g>
     </g>
   </g>
 
-  <!-- Right Side: Kinetic Deep-Space Telemetry Compass Gyroscope -->
+  <!-- Right Side: Kinetic Deep-Space Gyro-Compass -->
   <g>
-    <!-- Rotating Outer Nav Scale -->
+    <!-- Rotating Outer Scale -->
     <circle cx="745" cy="125" r="70" fill="none" stroke="#1F2430" stroke-width="1.2" stroke-dasharray="10 8" class="compass-cw"/>
     <!-- Rotating Intermediate Gyro Ring -->
     <circle cx="745" cy="125" r="54" fill="none" stroke="#2563EB" stroke-width="1.5" stroke-dasharray="24 12" class="compass-ccw"/>
