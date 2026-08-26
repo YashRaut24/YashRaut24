@@ -11,7 +11,7 @@
       .ship-patrol { animation: shipPatrolRoute 16.38s cubic-bezier(0.25, 0, 0.15, 1) infinite; }
       .live-beacon { animation: beaconBlink 0.8s steps(2, start) infinite; }
       .counter-frame { fill: #16171C; stroke: #2563EB; stroke-width: 1.2; }
-      .counter-txt { font-family: 'JetBrains Mono', Consolas, monospace; font-size: 10.5px; font-weight: 700; fill: #39D353; letter-spacing: 1px; }
+      .counter-txt { font-family: 'JetBrains Mono', Consolas, monospace; font-size: 10px; font-weight: 700; fill: #39D353; letter-spacing: 0.8px; }
       .laser-bolt-1   { animation: laserShot1 16.38s linear infinite; }
       .spark-burst-1  { animation: sparkHit1 16.38s ease-out infinite; transform-origin: 65px 18px; }
       .commit-target-1 { animation: commitDamage1 16.38s ease-in-out infinite; }
@@ -314,18 +314,18 @@
     <circle cx="0" cy="5" r="3.5" fill="#39D353" class="live-beacon"/>
     <text x="14" y="9" class="tag-txt">PLATE 03 // RETRO SPACE INVADERS: COMMIT BLAST ARCADE</text>
     
-    <!-- Live Counter HUD Badge -->
-    <g transform="translate(565, -8)">
-      <rect width="245" height="26" rx="3" class="counter-frame"/>
-      <text x="12" y="17" class="counter-txt hud-val-0">DESTROYED: [ 0 / 8 ] TARGETS</text>
-      <text x="12" y="17" class="counter-txt hud-val-1">DESTROYED: [ 1 / 8 ] TARGETS</text>
-      <text x="12" y="17" class="counter-txt hud-val-2">DESTROYED: [ 2 / 8 ] TARGETS</text>
-      <text x="12" y="17" class="counter-txt hud-val-3">DESTROYED: [ 3 / 8 ] TARGETS</text>
-      <text x="12" y="17" class="counter-txt hud-val-4">DESTROYED: [ 4 / 8 ] TARGETS</text>
-      <text x="12" y="17" class="counter-txt hud-val-5">DESTROYED: [ 5 / 8 ] TARGETS</text>
-      <text x="12" y="17" class="counter-txt hud-val-6">DESTROYED: [ 6 / 8 ] TARGETS</text>
-      <text x="12" y="17" class="counter-txt hud-val-7">DESTROYED: [ 7 / 8 ] TARGETS</text>
-      <text x="12" y="17" class="counter-txt hud-val-8">DESTROYED: [ 8 / 8 ] TARGETS</text>
+    <!-- Live Counter HUD Badge displaying total commits -->
+    <g transform="translate(560, -8)">
+      <rect width="250" height="26" rx="3" class="counter-frame"/>
+      <text x="12" y="17" class="counter-txt hud-val-0">BLASTED: [ 0 / 1,483 COMMITS ]</text>
+      <text x="12" y="17" class="counter-txt hud-val-1">BLASTED: [ 1 / 1,483 COMMITS ]</text>
+      <text x="12" y="17" class="counter-txt hud-val-2">BLASTED: [ 2 / 1,483 COMMITS ]</text>
+      <text x="12" y="17" class="counter-txt hud-val-3">BLASTED: [ 3 / 1,483 COMMITS ]</text>
+      <text x="12" y="17" class="counter-txt hud-val-4">BLASTED: [ 4 / 1,483 COMMITS ]</text>
+      <text x="12" y="17" class="counter-txt hud-val-5">BLASTED: [ 5 / 1,483 COMMITS ]</text>
+      <text x="12" y="17" class="counter-txt hud-val-6">BLASTED: [ 6 / 1,483 COMMITS ]</text>
+      <text x="12" y="17" class="counter-txt hud-val-7">BLASTED: [ 7 / 1,483 COMMITS ]</text>
+      <text x="12" y="17" class="counter-txt hud-val-8">BLASTED: [ 8 / 1,483 COMMITS ]</text>
     </g>
   </g>
   <line x1="0" y1="42" x2="850" y2="42" stroke="#2C303B" stroke-width="1"/>
@@ -857,6 +857,6 @@
     <rect x="450" y="0" width="9" height="9" rx="2" fill="#39D353"/>
     <text x="464" y="8" class="score-lbl" style="fill:#39D353; font-weight:bold;">LEVEL 4 (FULL LIGHT)</text>
 
-    <text x="630" y="8" font-family="'JetBrains Mono', monospace" font-size="10.5px" font-weight="700" fill="#2563EB">1,500+ COMMITS LOGGED</text>
+    <text x="630" y="8" font-family="'JetBrains Mono', monospace" font-size="10.5px" font-weight="700" fill="#2563EB">1,483 TOTAL COMMITS</text>
   </g>
 </svg>

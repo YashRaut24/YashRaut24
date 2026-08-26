@@ -9,8 +9,9 @@ GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN", os.environ.get("METRICS_TOKEN", ""
 
 def fetch_contributions(username, token=""):
     """
-    Fetch real GitHub contributions calendar for user.
+    Fetch real GitHub contributions calendar and total contributions for user.
     """
+    total_contribs = 1483
     if token:
         try:
             graphql_query = """
@@ -44,14 +45,15 @@ def fetch_contributions(username, token=""):
             with urllib.request.urlopen(req) as resp:
                 res = json.loads(resp.read().decode('utf-8'))
                 calendar = res["data"]["user"]["contributionsCollection"]["contributionCalendar"]
+                total_contribs = calendar["totalContributions"]
                 date_dict = {}
                 level_map = {"NONE": 0, "FIRST_QUARTILE": 1, "SECOND_QUARTILE": 2, "THIRD_QUARTILE": 3, "FOURTH_QUARTILE": 4}
                 for week in calendar["weeks"]:
                     for day in week["contributionDays"]:
                         lvl = level_map.get(day["contributionLevel"], 0)
                         date_dict[day["date"]] = lvl
-                print(f"Fetched {len(date_dict)} days via GitHub GraphQL API.")
-                return date_dict
+                print(f"Fetched {len(date_dict)} days via GitHub GraphQL API. Total: {total_contribs}")
+                return date_dict, total_contribs
         except Exception as e:
             print(f"GraphQL fetch failed: {e}. Falling back to calendar endpoint...")
 
@@ -62,19 +64,23 @@ def fetch_contributions(username, token=""):
         with urllib.request.urlopen(req) as resp:
             html = resp.read().decode('utf-8')
         
+        m = re.search(r'([0-9,]+)\s+contributions\s+in', html)
+        if m:
+            total_contribs = int(m.group(1).replace(",", ""))
+        
         matches = re.findall(r'data-date="([^"]+)"(?:\s+[^>]*?)?data-level="([^"]+)"', html)
         if not matches:
             matches = re.findall(r'data-level="([^"]+)"(?:\s+[^>]*?)?data-date="([^"]+)"', html)
             matches = [(d, l) for l, d in matches]
         
         date_dict = {d: int(l) for d, l in matches}
-        print(f"Fetched {len(date_dict)} real contribution dates from GitHub.")
-        return date_dict
+        print(f"Fetched {len(date_dict)} real dates from GitHub. Total contributions: {total_contribs}")
+        return date_dict, total_contribs
     except Exception as e:
         print(f"Calendar fetch failed: {e}")
-        return {}
+        return {}, 1483
 
-def generate_svg(date_dict, output_path="assets/space-invaders-commits.svg"):
+def generate_svg(date_dict, total_contribs=1483, output_path="assets/space-invaders-commits.svg"):
     if not date_dict:
         raise ValueError("No contribution dates provided")
 
@@ -167,19 +173,11 @@ def generate_svg(date_dict, output_path="assets/space-invaders-commits.svg"):
     for i, t in enumerate(chosen):
         print(f"  Target {i+1}: Col {t['col']}, Row {t['row']}, Level {t['level']}, Date {t['date']}")
 
-    # PROMINENT SHIFT DOWN:
-    # Row 6 is at y = 78-88.
-    # We place the rocket body at y = 126 (Cannon Tip at y = 116).
-    # This leaves 28px of crisp dark space between bottom commit and rocket tip!
+    # Lowered rocket position with breathing space
     CANNON_Y = 116
     ROCKET_Y = 126
 
-    # TIMING:
-    # dt_pause = 1.20s (Solid, prominent pause after hit!)
-    # dt_move = 0.35s to 0.60s
-    # dt_aim = 0.10s
-    # dt_laser = 0.16s
-    # dt_hit = 0.14s
+    # TIMING (1.2s post-hit pause)
     targets_data = []
     for i, c in enumerate(chosen):
         init_lvl = c["level"]
@@ -206,7 +204,7 @@ def generate_svg(date_dict, output_path="assets/space-invaders-commits.svg"):
             "dt_aim": 0.10,
             "dt_laser": 0.16,
             "dt_hit": 0.14,
-            "dt_pause": 1.20  # Unambiguous 1.2s pause after hit!
+            "dt_pause": 1.20  # 1.20s pause after hit!
         })
 
     # Compute timeline
@@ -356,10 +354,12 @@ def generate_svg(date_dict, output_path="assets/space-invaders-commits.svg"):
     </g>''')
     sparks_content = "\n".join(spark_elements)
 
-    # Counter Text Display Elements (Dedicated text elements with absolute positioning inside badge)
+    formatted_total = f"{total_contribs:,}"
+
+    # Counter Text Display Elements (Total Commits Counted!)
     counter_elements = []
     for c_val in range(9):
-        counter_elements.append(f'      <text x="12" y="17" class="counter-txt hud-val-{c_val}">DESTROYED: [ {c_val} / 8 ] TARGETS</text>')
+        counter_elements.append(f'      <text x="12" y="17" class="counter-txt hud-val-{c_val}">BLASTED: [ {c_val} / {formatted_total} COMMITS ]</text>')
     counter_texts = "\n".join(counter_elements)
 
     # CSS Rules
@@ -367,7 +367,7 @@ def generate_svg(date_dict, output_path="assets/space-invaders-commits.svg"):
         f".ship-patrol {{ animation: shipPatrolRoute {TOTAL_DURATION:.2f}s cubic-bezier(0.25, 0, 0.15, 1) infinite; }}",
         ".live-beacon { animation: beaconBlink 0.8s steps(2, start) infinite; }",
         ".counter-frame { fill: #16171C; stroke: #2563EB; stroke-width: 1.2; }",
-        ".counter-txt { font-family: 'JetBrains Mono', Consolas, monospace; font-size: 10.5px; font-weight: 700; fill: #39D353; letter-spacing: 1px; }"
+        ".counter-txt { font-family: 'JetBrains Mono', Consolas, monospace; font-size: 10px; font-weight: 700; fill: #39D353; letter-spacing: 0.8px; }"
     ]
     for t in targets_data:
         tid = t["id"]
@@ -404,9 +404,9 @@ def generate_svg(date_dict, output_path="assets/space-invaders-commits.svg"):
     <circle cx="0" cy="5" r="3.5" fill="#39D353" class="live-beacon"/>
     <text x="14" y="9" class="tag-txt">PLATE 03 // RETRO SPACE INVADERS: COMMIT BLAST ARCADE</text>
     
-    <!-- Live Counter HUD Badge -->
-    <g transform="translate(565, -8)">
-      <rect width="245" height="26" rx="3" class="counter-frame"/>
+    <!-- Live Counter HUD Badge displaying total commits -->
+    <g transform="translate(560, -8)">
+      <rect width="250" height="26" rx="3" class="counter-frame"/>
 {counter_texts}
     </g>
   </g>
@@ -474,7 +474,7 @@ def generate_svg(date_dict, output_path="assets/space-invaders-commits.svg"):
     <rect x="450" y="0" width="9" height="9" rx="2" fill="#39D353"/>
     <text x="464" y="8" class="score-lbl" style="fill:#39D353; font-weight:bold;">LEVEL 4 (FULL LIGHT)</text>
 
-    <text x="630" y="8" font-family="'JetBrains Mono', monospace" font-size="10.5px" font-weight="700" fill="#2563EB">1,500+ COMMITS LOGGED</text>
+    <text x="630" y="8" font-family="'JetBrains Mono', monospace" font-size="10.5px" font-weight="700" fill="#2563EB">{formatted_total} TOTAL COMMITS</text>
   </g>
 </svg>
 '''
@@ -484,8 +484,8 @@ def generate_svg(date_dict, output_path="assets/space-invaders-commits.svg"):
     print(f"Successfully wrote {output_path}")
 
 if __name__ == "__main__":
-    date_dict = fetch_contributions(USERNAME, GITHUB_TOKEN)
+    date_dict, total_contribs = fetch_contributions(USERNAME, GITHUB_TOKEN)
     if date_dict:
-        generate_svg(date_dict)
+        generate_svg(date_dict, total_contribs)
     else:
         print("Error: Could not retrieve contribution dates.")
