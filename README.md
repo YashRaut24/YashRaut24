@@ -19,9 +19,9 @@
 
 <br/>
 
-### `//` PLATE 03: KINETIC GEOMETRIC COMMIT MATRIX
+### `//` PLATE 03: LIVE CONTRIBUTION SNAKE RUNNER
 
-<img src="./assets/bauhaus-commit-matrix.svg" alt="Kinetic Geometric Commit Matrix" width="100%" />
+<img src="./assets/github-contribution-grid-snake-dark.svg" alt="Live Contribution Snake Runner" width="100%" />
 
 <br/>
 
