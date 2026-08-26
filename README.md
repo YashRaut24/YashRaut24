@@ -5,23 +5,23 @@
 
 <br/><br/>
 
-<!-- 2-COLUMN x 2-ROW CLICKABLE MISSION CONTROL LINKS -->
+<!-- 2-COLUMN x 2-ROW CLEAN MISSION CONTROL LINKS -->
 <a href="https://yash-raut-portfolio.vercel.app/" target="_blank">
-  <img src="https://img.shields.io/badge/🚀_LIVE_PORTFOLIO-yash--raut--portfolio.vercel.app-0B0C10?style=for-the-badge&logo=vercel&logoColor=00F0FF" alt="Live Portfolio" />
+  <img src="https://img.shields.io/badge/PORTFOLIO-yash--raut--portfolio.vercel.app-0B0C10?style=for-the-badge&logo=vercel&logoColor=00F0FF" alt="Portfolio" />
 </a>
-&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;
 <a href="https://drive.google.com/file/d/1wxB0VFUBAfz9cwoHMvBYegOlju8308Sa/view?usp=sharing" target="_blank">
-  <img src="https://img.shields.io/badge/📄_OFFICIAL_RESUME-Google_Drive_Doc-0B0C10?style=for-the-badge&logo=googledrive&logoColor=39D353" alt="Official Resume" />
+  <img src="https://img.shields.io/badge/RESUME-Google_Drive-0B0C10?style=for-the-badge&logo=googledrive&logoColor=39D353" alt="Resume" />
 </a>
 
 <br/><br/>
 
 <a href="https://www.linkedin.com/in/yash-raut-240505-yr30/" target="_blank">
-  <img src="https://img.shields.io/badge/💼_LINKEDIN-yash--raut--240505--yr30-0B0C10?style=for-the-badge&logo=linkedin&logoColor=2563EB" alt="LinkedIn Profile" />
+  <img src="https://img.shields.io/badge/LINKEDIN-yash--raut--240505--yr30-0B0C10?style=for-the-badge&logo=linkedin&logoColor=2563EB" alt="LinkedIn" />
 </a>
-&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;
 <a href="mailto:yashdr2405@gmail.com">
-  <img src="https://img.shields.io/badge/📫_SUBSPACE_COMM-yashdr2405%40gmail.com-0B0C10?style=for-the-badge&logo=gmail&logoColor=F59E0B" alt="Email" />
+  <img src="https://img.shields.io/badge/EMAIL-yashdr2405%40gmail.com-0B0C10?style=for-the-badge&logo=gmail&logoColor=F59E0B" alt="Email" />
 </a>
 
 <br/><br/>
@@ -32,7 +32,7 @@
 <br/><br/>
 
 <!-- SECTOR 03: RETRO LASER CANNON COMMIT BLAST ARCADE -->
-<img src="./assets/space-invaders-commits.svg?v=portal4" alt="Space Invaders Commit Blast Arcade" width="100%" />
+<img src="./assets/space-invaders-commits.svg?v=portal5" alt="Space Invaders Commit Blast Arcade" width="100%" />
 
 <br/><br/>
 
@@ -41,7 +41,7 @@
 
 <br/><br/>
 
-<!-- RESET ORBITAL VISITOR COUNTER -->
+<!-- ORBITAL VISITOR COUNTER -->
 <a href="https://komarev.com/ghpvc/?username=YashRaut24_spaceport">
   <img src="https://komarev.com/ghpvc/?username=YashRaut24_spaceport&style=flat-square&color=00F0FF&labelColor=0B0C10&label=ORBITAL+TRAFFIC" alt="Visitor Counter" />
 </a>
