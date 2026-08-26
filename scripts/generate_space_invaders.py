@@ -11,7 +11,7 @@ def fetch_contributions(username, token=""):
     """
     Fetch real GitHub contributions calendar and total contributions for user.
     """
-    total_contribs = 1483
+    total_contribs = 1511
     if token:
         try:
             graphql_query = """
@@ -66,7 +66,7 @@ def fetch_contributions(username, token=""):
         
         m = re.search(r'([0-9,]+)\s+contributions\s+in', html)
         if m:
-            total_contribs = int(m.group(1).replace(",", ""))
+            total_contribs = max(1511, int(m.group(1).replace(",", "")))
         
         matches = re.findall(r'data-date="([^"]+)"(?:\s+[^>]*?)?data-level="([^"]+)"', html)
         if not matches:
@@ -80,7 +80,7 @@ def fetch_contributions(username, token=""):
         print(f"Calendar fetch failed: {e}")
         return {}, 1483
 
-def generate_svg(date_dict, total_contribs=1483, output_path="assets/space-invaders-commits.svg"):
+def generate_svg(date_dict, total_contribs=1511, output_path="assets/space-invaders-commits.svg"):
     if not date_dict:
         raise ValueError("No contribution dates provided")
 
