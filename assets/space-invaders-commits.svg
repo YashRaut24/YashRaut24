@@ -7,108 +7,138 @@
       .month-lbl   { font-family: 'JetBrains Mono', Consolas, monospace; font-size: 9px; fill: #52545F; }
       .score-lbl   { font-family: 'JetBrains Mono', Consolas, monospace; font-size: 9.5px; fill: #71737E; }
 
-      /* Spaceship Strafe Movement across Columns */
-      @keyframes shipMoveTrack {
-        0%   { transform: translateX(60px); }
-        20%  { transform: translateX(200px); }
-        40%  { transform: translateX(380px); }
-        60%  { transform: translateX(540px); }
-        80%  { transform: translateX(700px); }
-        100% { transform: translateX(60px); }
+      /* Ship Waypoints (12-second seamless cycle across 5 target columns) */
+      @keyframes shipPatrol {
+        0%, 100% { transform: translateX(75px); }    /* Target 1: Col 5 (Feb) */
+        25%      { transform: translateX(225px); }   /* Target 2: Col 15 (Apr) */
+        50%      { transform: translateX(420px); }   /* Target 3: Col 28 (Jul) */
+        75%      { transform: translateX(630px); }   /* Target 4: Col 42 (Oct) */
       }
 
-      /* Laser Projectile Fire */
-      @keyframes fireLaserBeam {
+      /* Laser continuous pulse upward from cannon tip */
+      @keyframes laserStream {
         0%   { transform: translateY(0px); opacity: 0; }
         10%  { opacity: 1; }
-        80%  { opacity: 1; }
-        100% { transform: translateY(-88px); opacity: 0; }
+        85%  { opacity: 1; }
+        100% { transform: translateY(-75px); opacity: 0; }
       }
 
-      /* Alien Invaders Animated Step (Legs/Arms flapping) */
-      @keyframes invaderStep {
-        0%, 100% { transform: translateY(0); }
-        50%      { transform: translateY(-1.5px); }
+      /* Laser Hit Sparks at Impact Point */
+      @keyframes sparkBurst {
+        0%, 100% { opacity: 0; transform: scale(0.2); }
+        50%      { opacity: 1; transform: scale(1.5); }
       }
 
-      /* Explosion Impact */
-      @keyframes blastEffect {
-        0%, 75%  { opacity: 1; transform: scale(1); }
-        85%      { opacity: 0; transform: scale(2); fill: #FDFBF7; }
-        100%     { opacity: 1; transform: scale(1); }
+      /* Staged Health Degradation Keyframes (Bright Green -> Mid Green -> Dark Green -> Vanish) */
+      /* Target 1: Hit at t = 0% to 20% */
+      @keyframes degradeT1_Top {
+        0%       { fill: #39D353; }
+        5%       { fill: #26A641; }
+        10%      { fill: #006D32; }
+        15%      { fill: #0E4429; }
+        20%, 80% { fill: #161B22; opacity: 0.4; }
+        95%, 100%{ fill: #39D353; opacity: 1; }
+      }
+      @keyframes degradeT1_Mid {
+        0%       { fill: #26A641; }
+        7%       { fill: #006D32; }
+        14%      { fill: #0E4429; }
+        18%, 80% { fill: #161B22; opacity: 0.4; }
+        95%, 100%{ fill: #26A641; opacity: 1; }
+      }
+      @keyframes degradeT1_Low {
+        0%       { fill: #006D32; }
+        8%       { fill: #0E4429; }
+        14%, 80% { fill: #161B22; opacity: 0.4; }
+        95%, 100%{ fill: #006D32; opacity: 1; }
       }
 
-      @keyframes beaconBlink {
-        0%, 100% { opacity: 1; }
-        50%      { opacity: 0.2; }
+      /* Target 2: Hit at t = 20% to 45% */
+      @keyframes degradeT2_Top {
+        0%, 20%  { fill: #39D353; opacity: 1; }
+        25%      { fill: #26A641; }
+        30%      { fill: #006D32; }
+        35%      { fill: #0E4429; }
+        40%, 85% { fill: #161B22; opacity: 0.4; }
+        98%, 100%{ fill: #39D353; opacity: 1; }
+      }
+      @keyframes degradeT2_Mid {
+        0%, 20%  { fill: #26A641; opacity: 1; }
+        27%      { fill: #006D32; }
+        34%      { fill: #0E4429; }
+        38%, 85% { fill: #161B22; opacity: 0.4; }
+        98%, 100%{ fill: #26A641; opacity: 1; }
       }
 
-      .ship-anim    { animation: shipMoveTrack 12s ease-in-out infinite; }
-      .laser-bolt-1 { animation: fireLaserBeam 1.1s linear infinite; }
-      .laser-bolt-2 { animation: fireLaserBeam 1.1s linear infinite; animation-delay: 0.55s; }
-      .alien-step-1 { animation: invaderStep 1.2s ease-in-out infinite; }
-      .alien-step-2 { animation: invaderStep 1.4s ease-in-out infinite; }
-      .alien-hit    { animation: blastEffect 2.2s ease-in-out infinite; }
-      .live-dot     { animation: beaconBlink 1s steps(2, start) infinite; }
+      /* Target 3: Hit at t = 45% to 70% */
+      @keyframes degradeT3_Top {
+        0%, 45%  { fill: #39D353; opacity: 1; }
+        50%      { fill: #26A641; }
+        55%      { fill: #006D32; }
+        60%      { fill: #0E4429; }
+        65%, 90% { fill: #161B22; opacity: 0.4; }
+        99%, 100%{ fill: #39D353; opacity: 1; }
+      }
+      @keyframes degradeT3_Mid {
+        0%, 45%  { fill: #26A641; opacity: 1; }
+        53%      { fill: #006D32; }
+        59%      { fill: #0E4429; }
+        64%, 90% { fill: #161B22; opacity: 0.4; }
+        99%, 100%{ fill: #26A641; opacity: 1; }
+      }
+
+      /* Target 4: Hit at t = 70% to 95% */
+      @keyframes degradeT4_Top {
+        0%, 70%  { fill: #39D353; opacity: 1; }
+        75%      { fill: #26A641; }
+        80%      { fill: #006D32; }
+        85%      { fill: #0E4429; }
+        90%, 98% { fill: #161B22; opacity: 0.4; }
+        100%     { fill: #39D353; opacity: 1; }
+      }
+      @keyframes degradeT4_Mid {
+        0%, 70%  { fill: #26A641; opacity: 1; }
+        77%      { fill: #006D32; }
+        83%      { fill: #0E4429; }
+        88%, 98% { fill: #161B22; opacity: 0.4; }
+        100%     { fill: #26A641; opacity: 1; }
+      }
+
+      @keyframes beaconBlink { 0%, 100% { opacity: 1; } 50% { opacity: 0.2; } }
+
+      .ship-track  { animation: shipPatrol 12s ease-in-out infinite; }
+      .laser-fire  { animation: laserStream 0.6s linear infinite; }
+      .spark-anim  { animation: sparkBurst 0.6s ease-in-out infinite; }
+      .live-dot    { animation: beaconBlink 1s steps(2, start) infinite; }
+
+      /* Target Class Assignments */
+      .t1-top { animation: degradeT1_Top 12s ease-in-out infinite; }
+      .t1-mid { animation: degradeT1_Mid 12s ease-in-out infinite; }
+      .t1-low { animation: degradeT1_Low 12s ease-in-out infinite; }
+
+      .t2-top { animation: degradeT2_Top 12s ease-in-out infinite; }
+      .t2-mid { animation: degradeT2_Mid 12s ease-in-out infinite; }
+
+      .t3-top { animation: degradeT3_Top 12s ease-in-out infinite; }
+      .t3-mid { animation: degradeT3_Mid 12s ease-in-out infinite; }
+
+      .t4-top { animation: degradeT4_Top 12s ease-in-out infinite; }
+      .t4-mid { animation: degradeT4_Mid 12s ease-in-out infinite; }
     </style>
-
-    <!-- Pixel Art Space Invader Sprites -->
-    <!-- Crab Invader (Blue) -->
-    <g id="invader-crab">
-      <rect x="2" y="0" width="6" height="1" fill="currentColor"/>
-      <rect x="1" y="1" width="8" height="1" fill="currentColor"/>
-      <rect x="0" y="2" width="10" height="4" fill="currentColor"/>
-      <rect x="2" y="3" width="1.5" height="1.5" fill="#111215"/>
-      <rect x="6.5" y="3" width="1.5" height="1.5" fill="#111215"/>
-      <rect x="0" y="6" width="2" height="2" fill="currentColor"/>
-      <rect x="8" y="6" width="2" height="2" fill="currentColor"/>
-      <rect x="3" y="6" width="4" height="1" fill="currentColor"/>
-    </g>
-
-    <!-- Squid Invader (Crimson) -->
-    <g id="invader-squid">
-      <rect x="3" y="0" width="4" height="1" fill="currentColor"/>
-      <rect x="2" y="1" width="6" height="1" fill="currentColor"/>
-      <rect x="1" y="2" width="8" height="4" fill="currentColor"/>
-      <rect x="2" y="3" width="1.5" height="1.5" fill="#111215"/>
-      <rect x="6.5" y="3" width="1.5" height="1.5" fill="#111215"/>
-      <rect x="1" y="6" width="2" height="2" fill="currentColor"/>
-      <rect x="4" y="6" width="2" height="2" fill="currentColor"/>
-      <rect x="7" y="6" width="2" height="2" fill="currentColor"/>
-    </g>
-
-    <!-- Octopus Invader (Ochre) -->
-    <g id="invader-octopus">
-      <rect x="2" y="0" width="6" height="1" fill="currentColor"/>
-      <rect x="0" y="1" width="10" height="5" fill="currentColor"/>
-      <rect x="2" y="2.5" width="1.5" height="1.5" fill="#111215"/>
-      <rect x="6.5" y="2.5" width="1.5" height="1.5" fill="#111215"/>
-      <rect x="0" y="6" width="3" height="2" fill="currentColor"/>
-      <rect x="7" y="6" width="3" height="2" fill="currentColor"/>
-    </g>
-
-    <!-- Mystery UFO (White/Gold) -->
-    <g id="invader-ufo">
-      <rect x="3" y="0" width="5" height="1" fill="#FDFBF7"/>
-      <rect x="1" y="1" width="9" height="2" fill="#F59E0B"/>
-      <rect x="0" y="3" width="11" height="2" fill="#E11D48"/>
-      <rect x="2" y="5" width="2" height="1" fill="#FDFBF7"/>
-      <rect x="7" y="5" width="2" height="1" fill="#FDFBF7"/>
-    </g>
   </defs>
 
-  <!-- Container Box -->
+  <!-- Container -->
   <rect width="850" height="250" rx="4" class="bh-bg"/>
 
   <!-- Top Title Bar -->
   <g transform="translate(24, 22)">
-    <circle cx="0" cy="5" r="3.5" fill="#E11D48" class="live-dot"/>
-    <text x="14" y="9" class="tag-txt">PLATE 03 // RETRO SPACE INVADERS: COMMIT BLAST ARCADE</text>
-    <text x="510" y="9" class="sub-txt">[AUTONOMOUS CANNON // 1,500+ TARGETS BLASTED]</text>
+    <circle cx="0" cy="5" r="3.5" fill="#39D353" class="live-dot"/>
+    <text x="14" y="9" class="tag-txt">PLATE 03 // LASER CANNON: STAGED COMMIT BLAST ARCADE</text>
+    <text x="510" y="9" class="sub-txt">[AUTONOMOUS LASER // REAL-TIME FADE &amp; VANISH]</text>
   </g>
   <line x1="0" y1="42" x2="850" y2="42" stroke="#2C303B" stroke-width="1"/>
 
-  <!-- 52x7 Contribution Grid (Space Invader Formations) -->
+  <!-- 52x7 GitHub Contribution Heatmap Area -->
   <g transform="translate(36, 62)">
     
     <!-- Month Labels -->
@@ -125,193 +155,125 @@
     <text x="640" y="-8" class="month-lbl">NOV</text>
     <text x="704" y="-8" class="month-lbl">DEC</text>
 
-    <!-- Complete 52x7 Background Grid Cells (Base inactive dots) -->
-    <g fill="#181A22">
-      <!-- 7 rows of 52 dots with Step X = 15, Step Y = 13 -->
-      <!-- Generates complete full-density grid -->
-      <g>
-        <rect x="0" y="0" width="10" height="10" rx="1.5"/><rect x="15" y="0" width="10" height="10" rx="1.5"/><rect x="30" y="0" width="10" height="10" rx="1.5"/><rect x="45" y="0" width="10" height="10" rx="1.5"/><rect x="60" y="0" width="10" height="10" rx="1.5"/><rect x="75" y="0" width="10" height="10" rx="1.5"/><rect x="90" y="0" width="10" height="10" rx="1.5"/><rect x="105" y="0" width="10" height="10" rx="1.5"/><rect x="120" y="0" width="10" height="10" rx="1.5"/><rect x="135" y="0" width="10" height="10" rx="1.5"/><rect x="150" y="0" width="10" height="10" rx="1.5"/><rect x="165" y="0" width="10" height="10" rx="1.5"/><rect x="180" y="0" width="10" height="10" rx="1.5"/><rect x="195" y="0" width="10" height="10" rx="1.5"/><rect x="210" y="0" width="10" height="10" rx="1.5"/><rect x="225" y="0" width="10" height="10" rx="1.5"/><rect x="240" y="0" width="10" height="10" rx="1.5"/><rect x="255" y="0" width="10" height="10" rx="1.5"/><rect x="270" y="0" width="10" height="10" rx="1.5"/><rect x="285" y="0" width="10" height="10" rx="1.5"/><rect x="300" y="0" width="10" height="10" rx="1.5"/><rect x="315" y="0" width="10" height="10" rx="1.5"/><rect x="330" y="0" width="10" height="10" rx="1.5"/><rect x="345" y="0" width="10" height="10" rx="1.5"/><rect x="360" y="0" width="10" height="10" rx="1.5"/><rect x="375" y="0" width="10" height="10" rx="1.5"/><rect x="390" y="0" width="10" height="10" rx="1.5"/><rect x="405" y="0" width="10" height="10" rx="1.5"/><rect x="420" y="0" width="10" height="10" rx="1.5"/><rect x="435" y="0" width="10" height="10" rx="1.5"/><rect x="450" y="0" width="10" height="10" rx="1.5"/><rect x="465" y="0" width="10" height="10" rx="1.5"/><rect x="480" y="0" width="10" height="10" rx="1.5"/><rect x="495" y="0" width="10" height="10" rx="1.5"/><rect x="510" y="0" width="10" height="10" rx="1.5"/><rect x="525" y="0" width="10" height="10" rx="1.5"/><rect x="540" y="0" width="10" height="10" rx="1.5"/><rect x="555" y="0" width="10" height="10" rx="1.5"/><rect x="570" y="0" width="10" height="10" rx="1.5"/><rect x="585" y="0" width="10" height="10" rx="1.5"/><rect x="600" y="0" width="10" height="10" rx="1.5"/><rect x="615" y="0" width="10" height="10" rx="1.5"/><rect x="630" y="0" width="10" height="10" rx="1.5"/><rect x="645" y="0" width="10" height="10" rx="1.5"/><rect x="660" y="0" width="10" height="10" rx="1.5"/><rect x="675" y="0" width="10" height="10" rx="1.5"/><rect x="690" y="0" width="10" height="10" rx="1.5"/><rect x="705" y="0" width="10" height="10" rx="1.5"/><rect x="720" y="0" width="10" height="10" rx="1.5"/><rect x="735" y="0" width="10" height="10" rx="1.5"/><rect x="750" y="0" width="10" height="10" rx="1.5"/><rect x="765" y="0" width="10" height="10" rx="1.5"/>
+    <!-- Complete 52x7 GitHub Heatmap Grid (Base + Heatmap Colors) -->
+    <!-- Col Step: 15px, Row Step: 13px -->
+    <g>
+      <!-- Base empty cells across entire matrix -->
+      <g fill="#161B22">
+        <!-- 7 rows of 52 squares -->
+        <g>
+          <rect x="0" y="0" width="10" height="10" rx="2"/><rect x="15" y="0" width="10" height="10" rx="2"/><rect x="30" y="0" width="10" height="10" rx="2"/><rect x="45" y="0" width="10" height="10" rx="2"/><rect x="60" y="0" width="10" height="10" rx="2"/><rect x="75" y="0" width="10" height="10" rx="2"/><rect x="90" y="0" width="10" height="10" rx="2"/><rect x="105" y="0" width="10" height="10" rx="2"/><rect x="120" y="0" width="10" height="10" rx="2"/><rect x="135" y="0" width="10" height="10" rx="2"/><rect x="150" y="0" width="10" height="10" rx="2"/><rect x="165" y="0" width="10" height="10" rx="2"/><rect x="180" y="0" width="10" height="10" rx="2"/><rect x="195" y="0" width="10" height="10" rx="2"/><rect x="210" y="0" width="10" height="10" rx="2"/><rect x="225" y="0" width="10" height="10" rx="2"/><rect x="240" y="0" width="10" height="10" rx="2"/><rect x="255" y="0" width="10" height="10" rx="2"/><rect x="270" y="0" width="10" height="10" rx="2"/><rect x="285" y="0" width="10" height="10" rx="2"/><rect x="300" y="0" width="10" height="10" rx="2"/><rect x="315" y="0" width="10" height="10" rx="2"/><rect x="330" y="0" width="10" height="10" rx="2"/><rect x="345" y="0" width="10" height="10" rx="2"/><rect x="360" y="0" width="10" height="10" rx="2"/><rect x="375" y="0" width="10" height="10" rx="2"/><rect x="390" y="0" width="10" height="10" rx="2"/><rect x="405" y="0" width="10" height="10" rx="2"/><rect x="420" y="0" width="10" height="10" rx="2"/><rect x="435" y="0" width="10" height="10" rx="2"/><rect x="450" y="0" width="10" height="10" rx="2"/><rect x="465" y="0" width="10" height="10" rx="2"/><rect x="480" y="0" width="10" height="10" rx="2"/><rect x="495" y="0" width="10" height="10" rx="2"/><rect x="510" y="0" width="10" height="10" rx="2"/><rect x="525" y="0" width="10" height="10" rx="2"/><rect x="540" y="0" width="10" height="10" rx="2"/><rect x="555" y="0" width="10" height="10" rx="2"/><rect x="570" y="0" width="10" height="10" rx="2"/><rect x="585" y="0" width="10" height="10" rx="2"/><rect x="600" y="0" width="10" height="10" rx="2"/><rect x="615" y="0" width="10" height="10" rx="2"/><rect x="630" y="0" width="10" height="10" rx="2"/><rect x="645" y="0" width="10" height="10" rx="2"/><rect x="660" y="0" width="10" height="10" rx="2"/><rect x="675" y="0" width="10" height="10" rx="2"/><rect x="690" y="0" width="10" height="10" rx="2"/><rect x="705" y="0" width="10" height="10" rx="2"/><rect x="720" y="0" width="10" height="10" rx="2"/><rect x="735" y="0" width="10" height="10" rx="2"/><rect x="750" y="0" width="10" height="10" rx="2"/><rect x="765" y="0" width="10" height="10" rx="2"/>
+        </g>
+        <g transform="translate(0, 13)">
+          <rect x="0" y="0" width="10" height="10" rx="2"/><rect x="15" y="0" width="10" height="10" rx="2"/><rect x="30" y="0" width="10" height="10" rx="2"/><rect x="45" y="0" width="10" height="10" rx="2"/><rect x="60" y="0" width="10" height="10" rx="2"/><rect x="75" y="0" width="10" height="10" rx="2"/><rect x="90" y="0" width="10" height="10" rx="2"/><rect x="105" y="0" width="10" height="10" rx="2"/><rect x="120" y="0" width="10" height="10" rx="2"/><rect x="135" y="0" width="10" height="10" rx="2"/><rect x="150" y="0" width="10" height="10" rx="2"/><rect x="165" y="0" width="10" height="10" rx="2"/><rect x="180" y="0" width="10" height="10" rx="2"/><rect x="195" y="0" width="10" height="10" rx="2"/><rect x="210" y="0" width="10" height="10" rx="2"/><rect x="225" y="0" width="10" height="10" rx="2"/><rect x="240" y="0" width="10" height="10" rx="2"/><rect x="255" y="0" width="10" height="10" rx="2"/><rect x="270" y="0" width="10" height="10" rx="2"/><rect x="285" y="0" width="10" height="10" rx="2"/><rect x="300" y="0" width="10" height="10" rx="2"/><rect x="315" y="0" width="10" height="10" rx="2"/><rect x="330" y="0" width="10" height="10" rx="2"/><rect x="345" y="0" width="10" height="10" rx="2"/><rect x="360" y="0" width="10" height="10" rx="2"/><rect x="375" y="0" width="10" height="10" rx="2"/><rect x="390" y="0" width="10" height="10" rx="2"/><rect x="405" y="0" width="10" height="10" rx="2"/><rect x="420" y="0" width="10" height="10" rx="2"/><rect x="435" y="0" width="10" height="10" rx="2"/><rect x="450" y="0" width="10" height="10" rx="2"/><rect x="465" y="0" width="10" height="10" rx="2"/><rect x="480" y="0" width="10" height="10" rx="2"/><rect x="495" y="0" width="10" height="10" rx="2"/><rect x="510" y="0" width="10" height="10" rx="2"/><rect x="525" y="0" width="10" height="10" rx="2"/><rect x="540" y="0" width="10" height="10" rx="2"/><rect x="555" y="0" width="10" height="10" rx="2"/><rect x="570" y="0" width="10" height="10" rx="2"/><rect x="585" y="0" width="10" height="10" rx="2"/><rect x="600" y="0" width="10" height="10" rx="2"/><rect x="615" y="0" width="10" height="10" rx="2"/><rect x="630" y="0" width="10" height="10" rx="2"/><rect x="645" y="0" width="10" height="10" rx="2"/><rect x="660" y="0" width="10" height="10" rx="2"/><rect x="675" y="0" width="10" height="10" rx="2"/><rect x="690" y="0" width="10" height="10" rx="2"/><rect x="705" y="0" width="10" height="10" rx="2"/><rect x="720" y="0" width="10" height="10" rx="2"/><rect x="735" y="0" width="10" height="10" rx="2"/><rect x="750" y="0" width="10" height="10" rx="2"/><rect x="765" y="0" width="10" height="10" rx="2"/>
+        </g>
+        <g transform="translate(0, 26)">
+          <rect x="0" y="0" width="10" height="10" rx="2"/><rect x="15" y="0" width="10" height="10" rx="2"/><rect x="30" y="0" width="10" height="10" rx="2"/><rect x="45" y="0" width="10" height="10" rx="2"/><rect x="60" y="0" width="10" height="10" rx="2"/><rect x="75" y="0" width="10" height="10" rx="2"/><rect x="90" y="0" width="10" height="10" rx="2"/><rect x="105" y="0" width="10" height="10" rx="2"/><rect x="120" y="0" width="10" height="10" rx="2"/><rect x="135" y="0" width="10" height="10" rx="2"/><rect x="150" y="0" width="10" height="10" rx="2"/><rect x="165" y="0" width="10" height="10" rx="2"/><rect x="180" y="0" width="10" height="10" rx="2"/><rect x="195" y="0" width="10" height="10" rx="2"/><rect x="210" y="0" width="10" height="10" rx="2"/><rect x="225" y="0" width="10" height="10" rx="2"/><rect x="240" y="0" width="10" height="10" rx="2"/><rect x="255" y="0" width="10" height="10" rx="2"/><rect x="270" y="0" width="10" height="10" rx="2"/><rect x="285" y="0" width="10" height="10" rx="2"/><rect x="300" y="0" width="10" height="10" rx="2"/><rect x="315" y="0" width="10" height="10" rx="2"/><rect x="330" y="0" width="10" height="10" rx="2"/><rect x="345" y="0" width="10" height="10" rx="2"/><rect x="360" y="0" width="10" height="10" rx="2"/><rect x="375" y="0" width="10" height="10" rx="2"/><rect x="390" y="0" width="10" height="10" rx="2"/><rect x="405" y="0" width="10" height="10" rx="2"/><rect x="420" y="0" width="10" height="10" rx="2"/><rect x="435" y="0" width="10" height="10" rx="2"/><rect x="450" y="0" width="10" height="10" rx="2"/><rect x="465" y="0" width="10" height="10" rx="2"/><rect x="480" y="0" width="10" height="10" rx="2"/><rect x="495" y="0" width="10" height="10" rx="2"/><rect x="510" y="0" width="10" height="10" rx="2"/><rect x="525" y="0" width="10" height="10" rx="2"/><rect x="540" y="0" width="10" height="10" rx="2"/><rect x="555" y="0" width="10" height="10" rx="2"/><rect x="570" y="0" width="10" height="10" rx="2"/><rect x="585" y="0" width="10" height="10" rx="2"/><rect x="600" y="0" width="10" height="10" rx="2"/><rect x="615" y="0" width="10" height="10" rx="2"/><rect x="630" y="0" width="10" height="10" rx="2"/><rect x="645" y="0" width="10" height="10" rx="2"/><rect x="660" y="0" width="10" height="10" rx="2"/><rect x="675" y="0" width="10" height="10" rx="2"/><rect x="690" y="0" width="10" height="10" rx="2"/><rect x="705" y="0" width="10" height="10" rx="2"/><rect x="720" y="0" width="10" height="10" rx="2"/><rect x="735" y="0" width="10" height="10" rx="2"/><rect x="750" y="0" width="10" height="10" rx="2"/><rect x="765" y="0" width="10" height="10" rx="2"/>
+        </g>
+        <g transform="translate(0, 39)">
+          <rect x="0" y="0" width="10" height="10" rx="2"/><rect x="15" y="0" width="10" height="10" rx="2"/><rect x="30" y="0" width="10" height="10" rx="2"/><rect x="45" y="0" width="10" height="10" rx="2"/><rect x="60" y="0" width="10" height="10" rx="2"/><rect x="75" y="0" width="10" height="10" rx="2"/><rect x="90" y="0" width="10" height="10" rx="2"/><rect x="105" y="0" width="10" height="10" rx="2"/><rect x="120" y="0" width="10" height="10" rx="2"/><rect x="135" y="0" width="10" height="10" rx="2"/><rect x="150" y="0" width="10" height="10" rx="2"/><rect x="165" y="0" width="10" height="10" rx="2"/><rect x="180" y="0" width="10" height="10" rx="2"/><rect x="195" y="0" width="10" height="10" rx="2"/><rect x="210" y="0" width="10" height="10" rx="2"/><rect x="225" y="0" width="10" height="10" rx="2"/><rect x="240" y="0" width="10" height="10" rx="2"/><rect x="255" y="0" width="10" height="10" rx="2"/><rect x="270" y="0" width="10" height="10" rx="2"/><rect x="285" y="0" width="10" height="10" rx="2"/><rect x="300" y="0" width="10" height="10" rx="2"/><rect x="315" y="0" width="10" height="10" rx="2"/><rect x="330" y="0" width="10" height="10" rx="2"/><rect x="345" y="0" width="10" height="10" rx="2"/><rect x="360" y="0" width="10" height="10" rx="2"/><rect x="375" y="0" width="10" height="10" rx="2"/><rect x="390" y="0" width="10" height="10" rx="2"/><rect x="405" y="0" width="10" height="10" rx="2"/><rect x="420" y="0" width="10" height="10" rx="2"/><rect x="435" y="0" width="10" height="10" rx="2"/><rect x="450" y="0" width="10" height="10" rx="2"/><rect x="465" y="0" width="10" height="10" rx="2"/><rect x="480" y="0" width="10" height="10" rx="2"/><rect x="495" y="0" width="10" height="10" rx="2"/><rect x="510" y="0" width="10" height="10" rx="2"/><rect x="525" y="0" width="10" height="10" rx="2"/><rect x="540" y="0" width="10" height="10" rx="2"/><rect x="555" y="0" width="10" height="10" rx="2"/><rect x="570" y="0" width="10" height="10" rx="2"/><rect x="585" y="0" width="10" height="10" rx="2"/><rect x="600" y="0" width="10" height="10" rx="2"/><rect x="615" y="0" width="10" height="10" rx="2"/><rect x="630" y="0" width="10" height="10" rx="2"/><rect x="645" y="0" width="10" height="10" rx="2"/><rect x="660" y="0" width="10" height="10" rx="2"/><rect x="675" y="0" width="10" height="10" rx="2"/><rect x="690" y="0" width="10" height="10" rx="2"/><rect x="705" y="0" width="10" height="10" rx="2"/><rect x="720" y="0" width="10" height="10" rx="2"/><rect x="735" y="0" width="10" height="10" rx="2"/><rect x="750" y="0" width="10" height="10" rx="2"/><rect x="765" y="0" width="10" height="10" rx="2"/>
+        </g>
+        <g transform="translate(0, 52)">
+          <rect x="0" y="0" width="10" height="10" rx="2"/><rect x="15" y="0" width="10" height="10" rx="2"/><rect x="30" y="0" width="10" height="10" rx="2"/><rect x="45" y="0" width="10" height="10" rx="2"/><rect x="60" y="0" width="10" height="10" rx="2"/><rect x="75" y="0" width="10" height="10" rx="2"/><rect x="90" y="0" width="10" height="10" rx="2"/><rect x="105" y="0" width="10" height="10" rx="2"/><rect x="120" y="0" width="10" height="10" rx="2"/><rect x="135" y="0" width="10" height="10" rx="2"/><rect x="150" y="0" width="10" height="10" rx="2"/><rect x="165" y="0" width="10" height="10" rx="2"/><rect x="180" y="0" width="10" height="10" rx="2"/><rect x="195" y="0" width="10" height="10" rx="2"/><rect x="210" y="0" width="10" height="10" rx="2"/><rect x="225" y="0" width="10" height="10" rx="2"/><rect x="240" y="0" width="10" height="10" rx="2"/><rect x="255" y="0" width="10" height="10" rx="2"/><rect x="270" y="0" width="10" height="10" rx="2"/><rect x="285" y="0" width="10" height="10" rx="2"/><rect x="300" y="0" width="10" height="10" rx="2"/><rect x="315" y="0" width="10" height="10" rx="2"/><rect x="330" y="0" width="10" height="10" rx="2"/><rect x="345" y="0" width="10" height="10" rx="2"/><rect x="360" y="0" width="10" height="10" rx="2"/><rect x="375" y="0" width="10" height="10" rx="2"/><rect x="390" y="0" width="10" height="10" rx="2"/><rect x="405" y="0" width="10" height="10" rx="2"/><rect x="420" y="0" width="10" height="10" rx="2"/><rect x="435" y="0" width="10" height="10" rx="2"/><rect x="450" y="0" width="10" height="10" rx="2"/><rect x="465" y="0" width="10" height="10" rx="2"/><rect x="480" y="0" width="10" height="10" rx="2"/><rect x="495" y="0" width="10" height="10" rx="2"/><rect x="510" y="0" width="10" height="10" rx="2"/><rect x="525" y="0" width="10" height="10" rx="2"/><rect x="540" y="0" width="10" height="10" rx="2"/><rect x="555" y="0" width="10" height="10" rx="2"/><rect x="570" y="0" width="10" height="10" rx="2"/><rect x="585" y="0" width="10" height="10" rx="2"/><rect x="600" y="0" width="10" height="10" rx="2"/><rect x="615" y="0" width="10" height="10" rx="2"/><rect x="630" y="0" width="10" height="10" rx="2"/><rect x="645" y="0" width="10" height="10" rx="2"/><rect x="660" y="0" width="10" height="10" rx="2"/><rect x="675" y="0" width="10" height="10" rx="2"/><rect x="690" y="0" width="10" height="10" rx="2"/><rect x="705" y="0" width="10" height="10" rx="2"/><rect x="720" y="0" width="10" height="10" rx="2"/><rect x="735" y="0" width="10" height="10" rx="2"/><rect x="750" y="0" width="10" height="10" rx="2"/><rect x="765" y="0" width="10" height="10" rx="2"/>
+        </g>
+        <g transform="translate(0, 65)">
+          <rect x="0" y="0" width="10" height="10" rx="2"/><rect x="15" y="0" width="10" height="10" rx="2"/><rect x="30" y="0" width="10" height="10" rx="2"/><rect x="45" y="0" width="10" height="10" rx="2"/><rect x="60" y="0" width="10" height="10" rx="2"/><rect x="75" y="0" width="10" height="10" rx="2"/><rect x="90" y="0" width="10" height="10" rx="2"/><rect x="105" y="0" width="10" height="10" rx="2"/><rect x="120" y="0" width="10" height="10" rx="2"/><rect x="135" y="0" width="10" height="10" rx="2"/><rect x="150" y="0" width="10" height="10" rx="2"/><rect x="165" y="0" width="10" height="10" rx="2"/><rect x="180" y="0" width="10" height="10" rx="2"/><rect x="195" y="0" width="10" height="10" rx="2"/><rect x="210" y="0" width="10" height="10" rx="2"/><rect x="225" y="0" width="10" height="10" rx="2"/><rect x="240" y="0" width="10" height="10" rx="2"/><rect x="255" y="0" width="10" height="10" rx="2"/><rect x="270" y="0" width="10" height="10" rx="2"/><rect x="285" y="0" width="10" height="10" rx="2"/><rect x="300" y="0" width="10" height="10" rx="2"/><rect x="315" y="0" width="10" height="10" rx="2"/><rect x="330" y="0" width="10" height="10" rx="2"/><rect x="345" y="0" width="10" height="10" rx="2"/><rect x="360" y="0" width="10" height="10" rx="2"/><rect x="375" y="0" width="10" height="10" rx="2"/><rect x="390" y="0" width="10" height="10" rx="2"/><rect x="405" y="0" width="10" height="10" rx="2"/><rect x="420" y="0" width="10" height="10" rx="2"/><rect x="435" y="0" width="10" height="10" rx="2"/><rect x="450" y="0" width="10" height="10" rx="2"/><rect x="465" y="0" width="10" height="10" rx="2"/><rect x="480" y="0" width="10" height="10" rx="2"/><rect x="495" y="0" width="10" height="10" rx="2"/><rect x="510" y="0" width="10" height="10" rx="2"/><rect x="525" y="0" width="10" height="10" rx="2"/><rect x="540" y="0" width="10" height="10" rx="2"/><rect x="555" y="0" width="10" height="10" rx="2"/><rect x="570" y="0" width="10" height="10" rx="2"/><rect x="585" y="0" width="10" height="10" rx="2"/><rect x="600" y="0" width="10" height="10" rx="2"/><rect x="615" y="0" width="10" height="10" rx="2"/><rect x="630" y="0" width="10" height="10" rx="2"/><rect x="645" y="0" width="10" height="10" rx="2"/><rect x="660" y="0" width="10" height="10" rx="2"/><rect x="675" y="0" width="10" height="10" rx="2"/><rect x="690" y="0" width="10" height="10" rx="2"/><rect x="705" y="0" width="10" height="10" rx="2"/><rect x="720" y="0" width="10" height="10" rx="2"/><rect x="735" y="0" width="10" height="10" rx="2"/><rect x="750" y="0" width="10" height="10" rx="2"/><rect x="765" y="0" width="10" height="10" rx="2"/>
+        </g>
       </g>
-      <g transform="translate(0, 13)">
-        <rect x="0" y="0" width="10" height="10" rx="1.5"/><rect x="15" y="0" width="10" height="10" rx="1.5"/><rect x="30" y="0" width="10" height="10" rx="1.5"/><rect x="45" y="0" width="10" height="10" rx="1.5"/><rect x="60" y="0" width="10" height="10" rx="1.5"/><rect x="75" y="0" width="10" height="10" rx="1.5"/><rect x="90" y="0" width="10" height="10" rx="1.5"/><rect x="105" y="0" width="10" height="10" rx="1.5"/><rect x="120" y="0" width="10" height="10" rx="1.5"/><rect x="135" y="0" width="10" height="10" rx="1.5"/><rect x="150" y="0" width="10" height="10" rx="1.5"/><rect x="165" y="0" width="10" height="10" rx="1.5"/><rect x="180" y="0" width="10" height="10" rx="1.5"/><rect x="195" y="0" width="10" height="10" rx="1.5"/><rect x="210" y="0" width="10" height="10" rx="1.5"/><rect x="225" y="0" width="10" height="10" rx="1.5"/><rect x="240" y="0" width="10" height="10" rx="1.5"/><rect x="255" y="0" width="10" height="10" rx="1.5"/><rect x="270" y="0" width="10" height="10" rx="1.5"/><rect x="285" y="0" width="10" height="10" rx="1.5"/><rect x="300" y="0" width="10" height="10" rx="1.5"/><rect x="315" y="0" width="10" height="10" rx="1.5"/><rect x="330" y="0" width="10" height="10" rx="1.5"/><rect x="345" y="0" width="10" height="10" rx="1.5"/><rect x="360" y="0" width="10" height="10" rx="1.5"/><rect x="375" y="0" width="10" height="10" rx="1.5"/><rect x="390" y="0" width="10" height="10" rx="1.5"/><rect x="405" y="0" width="10" height="10" rx="1.5"/><rect x="420" y="0" width="10" height="10" rx="1.5"/><rect x="435" y="0" width="10" height="10" rx="1.5"/><rect x="450" y="0" width="10" height="10" rx="1.5"/><rect x="465" y="0" width="10" height="10" rx="1.5"/><rect x="480" y="0" width="10" height="10" rx="1.5"/><rect x="495" y="0" width="10" height="10" rx="1.5"/><rect x="510" y="0" width="10" height="10" rx="1.5"/><rect x="525" y="0" width="10" height="10" rx="1.5"/><rect x="540" y="0" width="10" height="10" rx="1.5"/><rect x="555" y="0" width="10" height="10" rx="1.5"/><rect x="570" y="0" width="10" height="10" rx="1.5"/><rect x="585" y="0" width="10" height="10" rx="1.5"/><rect x="600" y="0" width="10" height="10" rx="1.5"/><rect x="615" y="0" width="10" height="10" rx="1.5"/><rect x="630" y="0" width="10" height="10" rx="1.5"/><rect x="645" y="0" width="10" height="10" rx="1.5"/><rect x="660" y="0" width="10" height="10" rx="1.5"/><rect x="675" y="0" width="10" height="10" rx="1.5"/><rect x="690" y="0" width="10" height="10" rx="1.5"/><rect x="705" y="0" width="10" height="10" rx="1.5"/><rect x="720" y="0" width="10" height="10" rx="1.5"/><rect x="735" y="0" width="10" height="10" rx="1.5"/><rect x="750" y="0" width="10" height="10" rx="1.5"/><rect x="765" y="0" width="10" height="10" rx="1.5"/>
+
+      <!-- Active Green Commit Heatmap Clusters -->
+      <!-- Low (#0E4429) & Med (#006D32) Base Commits -->
+      <g fill="#006D32">
+        <rect x="0" y="13" width="10" height="10" rx="2"/><rect x="15" y="26" width="10" height="10" rx="2"/><rect x="30" y="39" width="10" height="10" rx="2"/><rect x="45" y="0" width="10" height="10" rx="2"/><rect x="60" y="13" width="10" height="10" rx="2"/><rect x="90" y="26" width="10" height="10" rx="2"/><rect x="105" y="39" width="10" height="10" rx="2"/><rect x="120" y="52" width="10" height="10" rx="2"/><rect x="135" y="0" width="10" height="10" rx="2"/><rect x="150" y="13" width="10" height="10" rx="2"/><rect x="165" y="26" width="10" height="10" rx="2"/><rect x="180" y="39" width="10" height="10" rx="2"/><rect x="195" y="52" width="10" height="10" rx="2"/><rect x="210" y="0" width="10" height="10" rx="2"/><rect x="240" y="13" width="10" height="10" rx="2"/><rect x="255" y="26" width="10" height="10" rx="2"/><rect x="270" y="39" width="10" height="10" rx="2"/><rect x="285" y="52" width="10" height="10" rx="2"/><rect x="300" y="0" width="10" height="10" rx="2"/><rect x="315" y="13" width="10" height="10" rx="2"/><rect x="330" y="26" width="10" height="10" rx="2"/><rect x="345" y="39" width="10" height="10" rx="2"/><rect x="360" y="52" width="10" height="10" rx="2"/><rect x="375" y="0" width="10" height="10" rx="2"/><rect x="390" y="13" width="10" height="10" rx="2"/><rect x="405" y="26" width="10" height="10" rx="2"/><rect x="435" y="39" width="10" height="10" rx="2"/><rect x="450" y="52" width="10" height="10" rx="2"/><rect x="465" y="0" width="10" height="10" rx="2"/><rect x="480" y="13" width="10" height="10" rx="2"/><rect x="495" y="26" width="10" height="10" rx="2"/><rect x="510" y="39" width="10" height="10" rx="2"/><rect x="525" y="52" width="10" height="10" rx="2"/><rect x="540" y="0" width="10" height="10" rx="2"/><rect x="555" y="13" width="10" height="10" rx="2"/><rect x="570" y="26" width="10" height="10" rx="2"/><rect x="585" y="39" width="10" height="10" rx="2"/><rect x="600" y="52" width="10" height="10" rx="2"/><rect x="615" y="0" width="10" height="10" rx="2"/><rect x="645" y="13" width="10" height="10" rx="2"/><rect x="660" y="26" width="10" height="10" rx="2"/><rect x="675" y="39" width="10" height="10" rx="2"/><rect x="690" y="52" width="10" height="10" rx="2"/><rect x="705" y="0" width="10" height="10" rx="2"/><rect x="720" y="13" width="10" height="10" rx="2"/><rect x="735" y="26" width="10" height="10" rx="2"/><rect x="750" y="39" width="10" height="10" rx="2"/><rect x="765" y="52" width="10" height="10" rx="2"/>
       </g>
-      <g transform="translate(0, 26)">
-        <rect x="0" y="0" width="10" height="10" rx="1.5"/><rect x="15" y="0" width="10" height="10" rx="1.5"/><rect x="30" y="0" width="10" height="10" rx="1.5"/><rect x="45" y="0" width="10" height="10" rx="1.5"/><rect x="60" y="0" width="10" height="10" rx="1.5"/><rect x="75" y="0" width="10" height="10" rx="1.5"/><rect x="90" y="0" width="10" height="10" rx="1.5"/><rect x="105" y="0" width="10" height="10" rx="1.5"/><rect x="120" y="0" width="10" height="10" rx="1.5"/><rect x="135" y="0" width="10" height="10" rx="1.5"/><rect x="150" y="0" width="10" height="10" rx="1.5"/><rect x="165" y="0" width="10" height="10" rx="1.5"/><rect x="180" y="0" width="10" height="10" rx="1.5"/><rect x="195" y="0" width="10" height="10" rx="1.5"/><rect x="210" y="0" width="10" height="10" rx="1.5"/><rect x="225" y="0" width="10" height="10" rx="1.5"/><rect x="240" y="0" width="10" height="10" rx="1.5"/><rect x="255" y="0" width="10" height="10" rx="1.5"/><rect x="270" y="0" width="10" height="10" rx="1.5"/><rect x="285" y="0" width="10" height="10" rx="1.5"/><rect x="300" y="0" width="10" height="10" rx="1.5"/><rect x="315" y="0" width="10" height="10" rx="1.5"/><rect x="330" y="0" width="10" height="10" rx="1.5"/><rect x="345" y="0" width="10" height="10" rx="1.5"/><rect x="360" y="0" width="10" height="10" rx="1.5"/><rect x="375" y="0" width="10" height="10" rx="1.5"/><rect x="390" y="0" width="10" height="10" rx="1.5"/><rect x="405" y="0" width="10" height="10" rx="1.5"/><rect x="420" y="0" width="10" height="10" rx="1.5"/><rect x="435" y="0" width="10" height="10" rx="1.5"/><rect x="450" y="0" width="10" height="10" rx="1.5"/><rect x="465" y="0" width="10" height="10" rx="1.5"/><rect x="480" y="0" width="10" height="10" rx="1.5"/><rect x="495" y="0" width="10" height="10" rx="1.5"/><rect x="510" y="0" width="10" height="10" rx="1.5"/><rect x="525" y="0" width="10" height="10" rx="1.5"/><rect x="540" y="0" width="10" height="10" rx="1.5"/><rect x="555" y="0" width="10" height="10" rx="1.5"/><rect x="570" y="0" width="10" height="10" rx="1.5"/><rect x="585" y="0" width="10" height="10" rx="1.5"/><rect x="600" y="0" width="10" height="10" rx="1.5"/><rect x="615" y="0" width="10" height="10" rx="1.5"/><rect x="630" y="0" width="10" height="10" rx="1.5"/><rect x="645" y="0" width="10" height="10" rx="1.5"/><rect x="660" y="0" width="10" height="10" rx="1.5"/><rect x="675" y="0" width="10" height="10" rx="1.5"/><rect x="690" y="0" width="10" height="10" rx="1.5"/><rect x="705" y="0" width="10" height="10" rx="1.5"/><rect x="720" y="0" width="10" height="10" rx="1.5"/><rect x="735" y="0" width="10" height="10" rx="1.5"/><rect x="750" y="0" width="10" height="10" rx="1.5"/><rect x="765" y="0" width="10" height="10" rx="1.5"/>
+
+      <!-- High Green (#26A641) & Bright Green (#39D353) Background Clusters -->
+      <g fill="#26A641">
+        <rect x="15" y="0" width="10" height="10" rx="2"/><rect x="45" y="26" width="10" height="10" rx="2"/><rect x="105" y="13" width="10" height="10" rx="2"/><rect x="165" y="0" width="10" height="10" rx="2"/><rect x="255" y="0" width="10" height="10" rx="2"/><rect x="315" y="26" width="10" height="10" rx="2"/><rect x="360" y="13" width="10" height="10" rx="2"/><rect x="465" y="26" width="10" height="10" rx="2"/><rect x="525" y="13" width="10" height="10" rx="2"/><rect x="585" y="0" width="10" height="10" rx="2"/><rect x="660" y="0" width="10" height="10" rx="2"/><rect x="735" y="0" width="10" height="10" rx="2"/>
       </g>
-      <g transform="translate(0, 39)">
-        <rect x="0" y="0" width="10" height="10" rx="1.5"/><rect x="15" y="0" width="10" height="10" rx="1.5"/><rect x="30" y="0" width="10" height="10" rx="1.5"/><rect x="45" y="0" width="10" height="10" rx="1.5"/><rect x="60" y="0" width="10" height="10" rx="1.5"/><rect x="75" y="0" width="10" height="10" rx="1.5"/><rect x="90" y="0" width="10" height="10" rx="1.5"/><rect x="105" y="0" width="10" height="10" rx="1.5"/><rect x="120" y="0" width="10" height="10" rx="1.5"/><rect x="135" y="0" width="10" height="10" rx="1.5"/><rect x="150" y="0" width="10" height="10" rx="1.5"/><rect x="165" y="0" width="10" height="10" rx="1.5"/><rect x="180" y="0" width="10" height="10" rx="1.5"/><rect x="195" y="0" width="10" height="10" rx="1.5"/><rect x="210" y="0" width="10" height="10" rx="1.5"/><rect x="225" y="0" width="10" height="10" rx="1.5"/><rect x="240" y="0" width="10" height="10" rx="1.5"/><rect x="255" y="0" width="10" height="10" rx="1.5"/><rect x="270" y="0" width="10" height="10" rx="1.5"/><rect x="285" y="0" width="10" height="10" rx="1.5"/><rect x="300" y="0" width="10" height="10" rx="1.5"/><rect x="315" y="0" width="10" height="10" rx="1.5"/><rect x="330" y="0" width="10" height="10" rx="1.5"/><rect x="345" y="0" width="10" height="10" rx="1.5"/><rect x="360" y="0" width="10" height="10" rx="1.5"/><rect x="375" y="0" width="10" height="10" rx="1.5"/><rect x="390" y="0" width="10" height="10" rx="1.5"/><rect x="405" y="0" width="10" height="10" rx="1.5"/><rect x="420" y="0" width="10" height="10" rx="1.5"/><rect x="435" y="0" width="10" height="10" rx="1.5"/><rect x="450" y="0" width="10" height="10" rx="1.5"/><rect x="465" y="0" width="10" height="10" rx="1.5"/><rect x="480" y="0" width="10" height="10" rx="1.5"/><rect x="495" y="0" width="10" height="10" rx="1.5"/><rect x="510" y="0" width="10" height="10" rx="1.5"/><rect x="525" y="0" width="10" height="10" rx="1.5"/><rect x="540" y="0" width="10" height="10" rx="1.5"/><rect x="555" y="0" width="10" height="10" rx="1.5"/><rect x="570" y="0" width="10" height="10" rx="1.5"/><rect x="585" y="0" width="10" height="10" rx="1.5"/><rect x="600" y="0" width="10" height="10" rx="1.5"/><rect x="615" y="0" width="10" height="10" rx="1.5"/><rect x="630" y="0" width="10" height="10" rx="1.5"/><rect x="645" y="0" width="10" height="10" rx="1.5"/><rect x="660" y="0" width="10" height="10" rx="1.5"/><rect x="675" y="0" width="10" height="10" rx="1.5"/><rect x="690" y="0" width="10" height="10" rx="1.5"/><rect x="705" y="0" width="10" height="10" rx="1.5"/><rect x="720" y="0" width="10" height="10" rx="1.5"/><rect x="735" y="0" width="10" height="10" rx="1.5"/><rect x="750" y="0" width="10" height="10" rx="1.5"/><rect x="765" y="0" width="10" height="10" rx="1.5"/>
+
+      <!-- DYNAMIC LASER TARGET COLUMNS (Undergo Step-by-Step Fading & Vanishing when Hit!) -->
+      
+      <!-- TARGET COLUMN 1 (x = 75px / Feb): Hit at t = 0s to 2.4s -->
+      <g transform="translate(75, 0)">
+        <rect x="0" y="0" width="10" height="10" rx="2" class="t1-top"/>
+        <rect x="0" y="13" width="10" height="10" rx="2" class="t1-mid"/>
+        <rect x="0" y="26" width="10" height="10" rx="2" class="t1-low"/>
+        <rect x="0" y="39" width="10" height="10" rx="2" class="t1-low"/>
+        <rect x="0" y="52" width="10" height="10" rx="2" class="t1-low"/>
       </g>
-      <g transform="translate(0, 52)">
-        <rect x="0" y="0" width="10" height="10" rx="1.5"/><rect x="15" y="0" width="10" height="10" rx="1.5"/><rect x="30" y="0" width="10" height="10" rx="1.5"/><rect x="45" y="0" width="10" height="10" rx="1.5"/><rect x="60" y="0" width="10" height="10" rx="1.5"/><rect x="75" y="0" width="10" height="10" rx="1.5"/><rect x="90" y="0" width="10" height="10" rx="1.5"/><rect x="105" y="0" width="10" height="10" rx="1.5"/><rect x="120" y="0" width="10" height="10" rx="1.5"/><rect x="135" y="0" width="10" height="10" rx="1.5"/><rect x="150" y="0" width="10" height="10" rx="1.5"/><rect x="165" y="0" width="10" height="10" rx="1.5"/><rect x="180" y="0" width="10" height="10" rx="1.5"/><rect x="195" y="0" width="10" height="10" rx="1.5"/><rect x="210" y="0" width="10" height="10" rx="1.5"/><rect x="225" y="0" width="10" height="10" rx="1.5"/><rect x="240" y="0" width="10" height="10" rx="1.5"/><rect x="255" y="0" width="10" height="10" rx="1.5"/><rect x="270" y="0" width="10" height="10" rx="1.5"/><rect x="285" y="0" width="10" height="10" rx="1.5"/><rect x="300" y="0" width="10" height="10" rx="1.5"/><rect x="315" y="0" width="10" height="10" rx="1.5"/><rect x="330" y="0" width="10" height="10" rx="1.5"/><rect x="345" y="0" width="10" height="10" rx="1.5"/><rect x="360" y="0" width="10" height="10" rx="1.5"/><rect x="375" y="0" width="10" height="10" rx="1.5"/><rect x="390" y="0" width="10" height="10" rx="1.5"/><rect x="405" y="0" width="10" height="10" rx="1.5"/><rect x="420" y="0" width="10" height="10" rx="1.5"/><rect x="435" y="0" width="10" height="10" rx="1.5"/><rect x="450" y="0" width="10" height="10" rx="1.5"/><rect x="465" y="0" width="10" height="10" rx="1.5"/><rect x="480" y="0" width="10" height="10" rx="1.5"/><rect x="495" y="0" width="10" height="10" rx="1.5"/><rect x="510" y="0" width="10" height="10" rx="1.5"/><rect x="525" y="0" width="10" height="10" rx="1.5"/><rect x="540" y="0" width="10" height="10" rx="1.5"/><rect x="555" y="0" width="10" height="10" rx="1.5"/><rect x="570" y="0" width="10" height="10" rx="1.5"/><rect x="585" y="0" width="10" height="10" rx="1.5"/><rect x="600" y="0" width="10" height="10" rx="1.5"/><rect x="615" y="0" width="10" height="10" rx="1.5"/><rect x="630" y="0" width="10" height="10" rx="1.5"/><rect x="645" y="0" width="10" height="10" rx="1.5"/><rect x="660" y="0" width="10" height="10" rx="1.5"/><rect x="675" y="0" width="10" height="10" rx="1.5"/><rect x="690" y="0" width="10" height="10" rx="1.5"/><rect x="705" y="0" width="10" height="10" rx="1.5"/><rect x="720" y="0" width="10" height="10" rx="1.5"/><rect x="735" y="0" width="10" height="10" rx="1.5"/><rect x="750" y="0" width="10" height="10" rx="1.5"/><rect x="765" y="0" width="10" height="10" rx="1.5"/>
+
+      <!-- TARGET COLUMN 2 (x = 225px / Apr): Hit at t = 2.4s to 4.8s -->
+      <g transform="translate(225, 0)">
+        <rect x="0" y="0" width="10" height="10" rx="2" class="t2-top"/>
+        <rect x="0" y="13" width="10" height="10" rx="2" class="t2-top"/>
+        <rect x="0" y="26" width="10" height="10" rx="2" class="t2-mid"/>
+        <rect x="0" y="39" width="10" height="10" rx="2" class="t2-mid"/>
+        <rect x="0" y="52" width="10" height="10" rx="2" class="t2-mid"/>
       </g>
-      <g transform="translate(0, 65)">
-        <rect x="0" y="0" width="10" height="10" rx="1.5"/><rect x="15" y="0" width="10" height="10" rx="1.5"/><rect x="30" y="0" width="10" height="10" rx="1.5"/><rect x="45" y="0" width="10" height="10" rx="1.5"/><rect x="60" y="0" width="10" height="10" rx="1.5"/><rect x="75" y="0" width="10" height="10" rx="1.5"/><rect x="90" y="0" width="10" height="10" rx="1.5"/><rect x="105" y="0" width="10" height="10" rx="1.5"/><rect x="120" y="0" width="10" height="10" rx="1.5"/><rect x="135" y="0" width="10" height="10" rx="1.5"/><rect x="150" y="0" width="10" height="10" rx="1.5"/><rect x="165" y="0" width="10" height="10" rx="1.5"/><rect x="180" y="0" width="10" height="10" rx="1.5"/><rect x="195" y="0" width="10" height="10" rx="1.5"/><rect x="210" y="0" width="10" height="10" rx="1.5"/><rect x="225" y="0" width="10" height="10" rx="1.5"/><rect x="240" y="0" width="10" height="10" rx="1.5"/><rect x="255" y="0" width="10" height="10" rx="1.5"/><rect x="270" y="0" width="10" height="10" rx="1.5"/><rect x="285" y="0" width="10" height="10" rx="1.5"/><rect x="300" y="0" width="10" height="10" rx="1.5"/><rect x="315" y="0" width="10" height="10" rx="1.5"/><rect x="330" y="0" width="10" height="10" rx="1.5"/><rect x="345" y="0" width="10" height="10" rx="1.5"/><rect x="360" y="0" width="10" height="10" rx="1.5"/><rect x="375" y="0" width="10" height="10" rx="1.5"/><rect x="390" y="0" width="10" height="10" rx="1.5"/><rect x="405" y="0" width="10" height="10" rx="1.5"/><rect x="420" y="0" width="10" height="10" rx="1.5"/><rect x="435" y="0" width="10" height="10" rx="1.5"/><rect x="450" y="0" width="10" height="10" rx="1.5"/><rect x="465" y="0" width="10" height="10" rx="1.5"/><rect x="480" y="0" width="10" height="10" rx="1.5"/><rect x="495" y="0" width="10" height="10" rx="1.5"/><rect x="510" y="0" width="10" height="10" rx="1.5"/><rect x="525" y="0" width="10" height="10" rx="1.5"/><rect x="540" y="0" width="10" height="10" rx="1.5"/><rect x="555" y="0" width="10" height="10" rx="1.5"/><rect x="570" y="0" width="10" height="10" rx="1.5"/><rect x="585" y="0" width="10" height="10" rx="1.5"/><rect x="600" y="0" width="10" height="10" rx="1.5"/><rect x="615" y="0" width="10" height="10" rx="1.5"/><rect x="630" y="0" width="10" height="10" rx="1.5"/><rect x="645" y="0" width="10" height="10" rx="1.5"/><rect x="660" y="0" width="10" height="10" rx="1.5"/><rect x="675" y="0" width="10" height="10" rx="1.5"/><rect x="690" y="0" width="10" height="10" rx="1.5"/><rect x="705" y="0" width="10" height="10" rx="1.5"/><rect x="720" y="0" width="10" height="10" rx="1.5"/><rect x="735" y="0" width="10" height="10" rx="1.5"/><rect x="750" y="0" width="10" height="10" rx="1.5"/><rect x="765" y="0" width="10" height="10" rx="1.5"/>
+
+      <!-- TARGET COLUMN 3 (x = 420px / Jul): Hit at t = 4.8s to 7.2s -->
+      <g transform="translate(420, 0)">
+        <rect x="0" y="0" width="10" height="10" rx="2" class="t3-top"/>
+        <rect x="0" y="13" width="10" height="10" rx="2" class="t3-top"/>
+        <rect x="0" y="26" width="10" height="10" rx="2" class="t3-mid"/>
+        <rect x="0" y="39" width="10" height="10" rx="2" class="t3-mid"/>
+        <rect x="0" y="52" width="10" height="10" rx="2" class="t3-mid"/>
+      </g>
+
+      <!-- TARGET COLUMN 4 (x = 630px / Oct): Hit at t = 7.2s to 9.6s -->
+      <g transform="translate(630, 0)">
+        <rect x="0" y="0" width="10" height="10" rx="2" class="t4-top"/>
+        <rect x="0" y="13" width="10" height="10" rx="2" class="t4-mid"/>
+        <rect x="0" y="26" width="10" height="10" rx="2" class="t4-mid"/>
+        <rect x="0" y="39" width="10" height="10" rx="2" class="t4-mid"/>
+        <rect x="0" y="52" width="10" height="10" rx="2" class="t4-mid"/>
       </g>
     </g>
 
-    <!-- Rich Realistic Active Commit Formations (Dense Pixel Art Invaders) -->
-    
-    <!-- Row 0: Mystery UFOs & High Command Octopuses (Ochre & White) -->
-    <g color="#F59E0B" class="alien-step-1">
-      <use href="#invader-ufo" x="180" y="0"/>
-      <use href="#invader-octopus" x="330" y="0"/>
-      <use href="#invader-ufo" x="480" y="0" class="alien-hit"/>
-      <use href="#invader-octopus" x="630" y="0"/>
-      <use href="#invader-octopus" x="720" y="0"/>
-    </g>
+    <!-- Moving Laser Cannon Spaceship with Vertical Laser Stream -->
+    <g class="ship-track">
+      <!-- Continuous High-Energy Red & White Laser Beam Firing Directly Upward into Commits -->
+      <line x1="5" y1="88" x2="5" y2="14" stroke="#E11D48" stroke-width="2.5" class="laser-fire"/>
+      <line x1="5" y1="88" x2="5" y2="14" stroke="#FDFBF7" stroke-width="1.2" class="laser-fire" style="animation-delay: 0.3s;"/>
 
-    <!-- Row 1: High Velocity Squid Invaders (Crimson #E11D48) -->
-    <g color="#E11D48" class="alien-step-2">
-      <use href="#invader-squid" x="15" y="13"/>
-      <use href="#invader-squid" x="30" y="13"/>
-      <use href="#invader-squid" x="90" y="13"/>
-      <use href="#invader-squid" x="135" y="13"/>
-      <use href="#invader-squid" x="195" y="13"/>
-      <use href="#invader-squid" x="210" y="13" class="alien-hit"/>
-      <use href="#invader-squid" x="255" y="13"/>
-      <use href="#invader-squid" x="285" y="13"/>
-      <use href="#invader-squid" x="345" y="13"/>
-      <use href="#invader-squid" x="375" y="13"/>
-      <use href="#invader-squid" x="420" y="13"/>
-      <use href="#invader-squid" x="435" y="13"/>
-      <use href="#invader-squid" x="495" y="13"/>
-      <use href="#invader-squid" x="540" y="13"/>
-      <use href="#invader-squid" x="585" y="13"/>
-      <use href="#invader-squid" x="645" y="13"/>
-      <use href="#invader-squid" x="690" y="13"/>
-      <use href="#invader-squid" x="735" y="13"/>
-      <use href="#invader-squid" x="750" y="13"/>
-    </g>
+      <!-- Laser Impact Spark Burst at Target Base -->
+      <g transform="translate(5, 62)" class="spark-anim">
+        <circle cx="0" cy="0" r="3" fill="#39D353"/>
+        <line x1="-4" y1="-4" x2="4" y2="4" stroke="#FDFBF7" stroke-width="1.5"/>
+        <line x1="4" y1="-4" x2="-4" y2="4" stroke="#FDFBF7" stroke-width="1.5"/>
+      </g>
 
-    <!-- Row 2: Active Mid-Tier Squids & Crabs (Klein Blue & Crimson) -->
-    <g color="#2563EB" class="alien-step-1">
-      <use href="#invader-crab" x="0" y="26"/>
-      <use href="#invader-crab" x="45" y="26"/>
-      <use href="#invader-crab" x="60" y="26"/>
-      <use href="#invader-crab" x="75" y="26"/>
-      <use href="#invader-crab" x="120" y="26"/>
-      <use href="#invader-crab" x="150" y="26"/>
-      <use href="#invader-crab" x="165" y="26"/>
-      <use href="#invader-crab" x="225" y="26"/>
-      <use href="#invader-crab" x="240" y="26"/>
-      <use href="#invader-crab" x="300" y="26"/>
-      <use href="#invader-crab" x="315" y="26"/>
-      <use href="#invader-crab" x="360" y="26"/>
-      <use href="#invader-crab" x="390" y="26"/>
-      <use href="#invader-crab" x="450" y="26"/>
-      <use href="#invader-crab" x="465" y="26"/>
-      <use href="#invader-crab" x="510" y="26"/>
-      <use href="#invader-crab" x="555" y="26"/>
-      <use href="#invader-crab" x="570" y="26"/>
-      <use href="#invader-crab" x="615" y="26"/>
-      <use href="#invader-crab" x="660" y="26"/>
-      <use href="#invader-crab" x="675" y="26"/>
-      <use href="#invader-crab" x="705" y="26"/>
-      <use href="#invader-crab" x="765" y="26"/>
-    </g>
-
-    <!-- Row 3: Solid Crab Formations (Blue & Ochre) -->
-    <g color="#2563EB" class="alien-step-2">
-      <use href="#invader-crab" x="15" y="39"/>
-      <use href="#invader-crab" x="30" y="39"/>
-      <use href="#invader-crab" x="90" y="39"/>
-      <use href="#invader-crab" x="105" y="39"/>
-      <use href="#invader-crab" x="180" y="39"/>
-      <use href="#invader-crab" x="195" y="39"/>
-      <use href="#invader-crab" x="270" y="39"/>
-      <use href="#invader-crab" x="285" y="39"/>
-      <use href="#invader-crab" x="330" y="39"/>
-      <use href="#invader-crab" x="345" y="39"/>
-      <use href="#invader-crab" x="405" y="39"/>
-      <use href="#invader-crab" x="420" y="39"/>
-      <use href="#invader-crab" x="480" y="39"/>
-      <use href="#invader-crab" x="495" y="39"/>
-      <use href="#invader-crab" x="540" y="39"/>
-      <use href="#invader-crab" x="600" y="39"/>
-      <use href="#invader-crab" x="630" y="39"/>
-      <use href="#invader-crab" x="690" y="39"/>
-      <use href="#invader-crab" x="720" y="39"/>
-      <use href="#invader-crab" x="750" y="39"/>
-    </g>
-
-    <!-- Row 4: Frontline Scout Crabs (Blue) -->
-    <g color="#1D4ED8" class="alien-step-1">
-      <use href="#invader-crab" x="45" y="52"/>
-      <use href="#invader-crab" x="75" y="52"/>
-      <use href="#invader-crab" x="135" y="52"/>
-      <use href="#invader-crab" x="165" y="52"/>
-      <use href="#invader-crab" x="210" y="52"/>
-      <use href="#invader-crab" x="255" y="52"/>
-      <use href="#invader-crab" x="315" y="52"/>
-      <use href="#invader-crab" x="375" y="52"/>
-      <use href="#invader-crab" x="435" y="52"/>
-      <use href="#invader-crab" x="465" y="52"/>
-      <use href="#invader-crab" x="525" y="52"/>
-      <use href="#invader-crab" x="585" y="52"/>
-      <use href="#invader-crab" x="645" y="52"/>
-      <use href="#invader-crab" x="675" y="52"/>
-      <use href="#invader-crab" x="735" y="52"/>
-    </g>
-
-    <!-- Row 5: Frontline Invaders -->
-    <g color="#1D4ED8" class="alien-step-2">
-      <use href="#invader-crab" x="60" y="65"/>
-      <use href="#invader-crab" x="120" y="65"/>
-      <use href="#invader-crab" x="195" y="65"/>
-      <use href="#invader-crab" x="240" y="65"/>
-      <use href="#invader-crab" x="300" y="65"/>
-      <use href="#invader-crab" x="360" y="65"/>
-      <use href="#invader-crab" x="420" y="65"/>
-      <use href="#invader-crab" x="495" y="65"/>
-      <use href="#invader-crab" x="570" y="65"/>
-      <use href="#invader-crab" x="630" y="65"/>
-      <use href="#invader-crab" x="705" y="65"/>
-    </g>
-
-    <!-- Active Moving Defender Cannon with Dual Firing Lasers -->
-    <g class="ship-anim">
-      <!-- Dual Firing Lasers -->
-      <line x1="-3" y1="88" x2="-3" y2="10" stroke="#E11D48" stroke-width="2" class="laser-bolt-1"/>
-      <line x1="3" y1="88" x2="3" y2="10" stroke="#FDFBF7" stroke-width="2" class="laser-bolt-2"/>
-
-      <!-- Pixel Art Spaceship Body -->
-      <g transform="translate(0, 92)">
-        <polygon points="0,-9 8,5 -8,5" fill="#FDFBF7"/>
-        <rect x="-9" y="5" width="18" height="5" rx="1" fill="#2563EB"/>
-        <rect x="-4" y="2" width="8" height="6" fill="#E11D48"/>
-        <!-- Engine thrusters with animated flames -->
-        <polygon points="-6,10 -4,14 -2,10" fill="#F59E0B"/>
-        <polygon points="2,10 4,14 6,10" fill="#F59E0B"/>
+      <!-- Pixel Art Rocket Spaceship Body -->
+      <g transform="translate(5, 94)">
+        <!-- Rocket Nose Cone -->
+        <polygon points="0,-10 9,4 -9,4" fill="#FDFBF7"/>
+        <!-- Rocket Wings & Core -->
+        <rect x="-9" y="4" width="18" height="6" rx="1.5" fill="#2563EB"/>
+        <rect x="-4" y="1" width="8" height="7" fill="#E11D48"/>
+        <!-- Cockpit Glass -->
+        <circle cx="0" cy="-2" r="2" fill="#00F0FF"/>
+        <!-- Rocket Thruster Flames -->
+        <polygon points="-6,10 -4,15 -2,10" fill="#F59E0B"/>
+        <polygon points="2,10 4,15 6,10" fill="#F59E0B"/>
       </g>
     </g>
   </g>
 
-  <!-- Legend & Live Arcade High-Score Board -->
+  <!-- Legend & Live Arcade Status -->
   <g transform="translate(36, 215)">
-    <!-- Scout Invader Icon -->
-    <g color="#2563EB" transform="translate(0, 0) scale(0.9)">
-      <use href="#invader-crab" x="0" y="0"/>
-    </g>
-    <text x="14" y="8" class="score-lbl">CRAB (10 PTS)</text>
+    <rect x="0" y="0" width="9" height="9" rx="2" fill="#161B22"/>
+    <text x="14" y="8" class="score-lbl">VANISHED (0)</text>
 
-    <!-- Squid Invader Icon -->
-    <g color="#E11D48" transform="translate(110, 0) scale(0.9)">
-      <use href="#invader-squid" x="0" y="0"/>
-    </g>
-    <text x="124" y="8" class="score-lbl">SQUID (20 PTS)</text>
+    <rect x="120" y="0" width="9" height="9" rx="2" fill="#006D32"/>
+    <text x="134" y="8" class="score-lbl">FAINT (1-3)</text>
 
-    <!-- Octopus Invader Icon -->
-    <g color="#F59E0B" transform="translate(225, 0) scale(0.9)">
-      <use href="#invader-octopus" x="0" y="0"/>
-    </g>
-    <text x="240" y="8" class="score-lbl">OCTOPUS (30 PTS)</text>
+    <rect x="230" y="0" width="9" height="9" rx="2" fill="#26A641"/>
+    <text x="244" y="8" class="score-lbl">MEDIUM (4-7)</text>
 
-    <!-- UFO Icon -->
-    <g transform="translate(350, 0) scale(0.9)">
-      <use href="#invader-ufo" x="0" y="0"/>
-    </g>
-    <text x="365" y="8" class="score-lbl" style="fill:#F59E0B; font-weight:bold;">UFO (100 PTS)</text>
+    <rect x="350" y="0" width="9" height="9" rx="2" fill="#39D353"/>
+    <text x="364" y="8" class="score-lbl" style="fill:#39D353; font-weight:bold;">BRIGHT GREEN (8+)</text>
 
-    <text x="610" y="8" font-family="'JetBrains Mono', monospace" font-size="10.5px" font-weight="700" fill="#2563EB">HIGH SCORE: 1,500+ COMMITS</text>
+    <text x="610" y="8" font-family="'JetBrains Mono', monospace" font-size="10.5px" font-weight="700" fill="#2563EB">1,500+ COMMITS BLASTED</text>
   </g>
 </svg>
