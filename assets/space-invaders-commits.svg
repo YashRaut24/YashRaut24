@@ -9,289 +9,289 @@
 
       @keyframes beaconBlink { 0%, 100% { opacity: 1; } 50% { opacity: 0.2; } }
 
-      .ship-patrol { animation: shipPatrolRoute 14.49s cubic-bezier(0.35, 0, 0.25, 1) infinite; }
-      .live-beacon { animation: beaconBlink 1s steps(2, start) infinite; }
-      .laser-bolt-1   { animation: laserShot1 14.49s linear infinite; }
-      .spark-burst-1  { animation: sparkHit1 14.49s ease-out infinite; transform-origin: 95px 18px; }
-      .commit-target-1 { animation: commitDamage1 14.49s ease-in-out infinite; }
-      .laser-bolt-2   { animation: laserShot2 14.49s linear infinite; }
-      .spark-burst-2  { animation: sparkHit2 14.49s ease-out infinite; transform-origin: 125px 18px; }
-      .commit-target-2 { animation: commitDamage2 14.49s ease-in-out infinite; }
-      .laser-bolt-3   { animation: laserShot3 14.49s linear infinite; }
-      .spark-burst-3  { animation: sparkHit3 14.49s ease-out infinite; transform-origin: 215px 18px; }
-      .commit-target-3 { animation: commitDamage3 14.49s ease-in-out infinite; }
-      .laser-bolt-4   { animation: laserShot4 14.49s linear infinite; }
-      .spark-burst-4  { animation: sparkHit4 14.49s ease-out infinite; transform-origin: 425px 57px; }
-      .commit-target-4 { animation: commitDamage4 14.49s ease-in-out infinite; }
-      .laser-bolt-5   { animation: laserShot5 14.49s linear infinite; }
-      .spark-burst-5  { animation: sparkHit5 14.49s ease-out infinite; transform-origin: 545px 57px; }
-      .commit-target-5 { animation: commitDamage5 14.49s ease-in-out infinite; }
-      .laser-bolt-6   { animation: laserShot6 14.49s linear infinite; }
-      .spark-burst-6  { animation: sparkHit6 14.49s ease-out infinite; transform-origin: 680px 57px; }
-      .commit-target-6 { animation: commitDamage6 14.49s ease-in-out infinite; }
-      .laser-bolt-7   { animation: laserShot7 14.49s linear infinite; }
-      .spark-burst-7  { animation: sparkHit7 14.49s ease-out infinite; transform-origin: 200px 44px; }
-      .commit-target-7 { animation: commitDamage7 14.49s ease-in-out infinite; }
-      .laser-bolt-8   { animation: laserShot8 14.49s linear infinite; }
-      .spark-burst-8  { animation: sparkHit8 14.49s ease-out infinite; transform-origin: 320px 44px; }
-      .commit-target-8 { animation: commitDamage8 14.49s ease-in-out infinite; }
-      .laser-bolt-9   { animation: laserShot9 14.49s linear infinite; }
-      .spark-burst-9  { animation: sparkHit9 14.49s ease-out infinite; transform-origin: 650px 44px; }
-      .commit-target-9 { animation: commitDamage9 14.49s ease-in-out infinite; }
-      .laser-bolt-10   { animation: laserShot10 14.49s linear infinite; }
-      .spark-burst-10  { animation: sparkHit10 14.49s ease-out infinite; transform-origin: 440px 5px; }
-      .commit-target-10 { animation: commitDamage10 14.49s ease-in-out infinite; }
+      .ship-patrol { animation: shipPatrolRoute 7.47s cubic-bezier(0.2, 0, 0.1, 1) infinite; }
+      .live-beacon { animation: beaconBlink 0.8s steps(2, start) infinite; }
+      .laser-bolt-1   { animation: laserShot1 7.47s linear infinite; }
+      .spark-burst-1  { animation: sparkHit1 7.47s ease-out infinite; transform-origin: 95px 18px; }
+      .commit-target-1 { animation: commitDamage1 7.47s ease-in-out infinite; }
+      .laser-bolt-2   { animation: laserShot2 7.47s linear infinite; }
+      .spark-burst-2  { animation: sparkHit2 7.47s ease-out infinite; transform-origin: 125px 18px; }
+      .commit-target-2 { animation: commitDamage2 7.47s ease-in-out infinite; }
+      .laser-bolt-3   { animation: laserShot3 7.47s linear infinite; }
+      .spark-burst-3  { animation: sparkHit3 7.47s ease-out infinite; transform-origin: 215px 18px; }
+      .commit-target-3 { animation: commitDamage3 7.47s ease-in-out infinite; }
+      .laser-bolt-4   { animation: laserShot4 7.47s linear infinite; }
+      .spark-burst-4  { animation: sparkHit4 7.47s ease-out infinite; transform-origin: 425px 57px; }
+      .commit-target-4 { animation: commitDamage4 7.47s ease-in-out infinite; }
+      .laser-bolt-5   { animation: laserShot5 7.47s linear infinite; }
+      .spark-burst-5  { animation: sparkHit5 7.47s ease-out infinite; transform-origin: 545px 57px; }
+      .commit-target-5 { animation: commitDamage5 7.47s ease-in-out infinite; }
+      .laser-bolt-6   { animation: laserShot6 7.47s linear infinite; }
+      .spark-burst-6  { animation: sparkHit6 7.47s ease-out infinite; transform-origin: 680px 57px; }
+      .commit-target-6 { animation: commitDamage6 7.47s ease-in-out infinite; }
+      .laser-bolt-7   { animation: laserShot7 7.47s linear infinite; }
+      .spark-burst-7  { animation: sparkHit7 7.47s ease-out infinite; transform-origin: 200px 44px; }
+      .commit-target-7 { animation: commitDamage7 7.47s ease-in-out infinite; }
+      .laser-bolt-8   { animation: laserShot8 7.47s linear infinite; }
+      .spark-burst-8  { animation: sparkHit8 7.47s ease-out infinite; transform-origin: 320px 44px; }
+      .commit-target-8 { animation: commitDamage8 7.47s ease-in-out infinite; }
+      .laser-bolt-9   { animation: laserShot9 7.47s linear infinite; }
+      .spark-burst-9  { animation: sparkHit9 7.47s ease-out infinite; transform-origin: 650px 44px; }
+      .commit-target-9 { animation: commitDamage9 7.47s ease-in-out infinite; }
+      .laser-bolt-10   { animation: laserShot10 7.47s linear infinite; }
+      .spark-burst-10  { animation: sparkHit10 7.47s ease-out infinite; transform-origin: 440px 5px; }
+      .commit-target-10 { animation: commitDamage10 7.47s ease-in-out infinite; }
 
       @keyframes shipPatrolRoute {
   0.00% { transform: translateX(90px); }
-  4.14% { transform: translateX(90px); }
-  9.11% { transform: translateX(90px); }
-  9.11% { transform: translateX(120px); }
-  12.22% { transform: translateX(120px); }
-  17.18% { transform: translateX(120px); }
-  17.18% { transform: translateX(210px); }
-  20.98% { transform: translateX(210px); }
-  26.09% { transform: translateX(210px); }
-  26.09% { transform: translateX(420px); }
-  31.95% { transform: translateX(420px); }
-  37.54% { transform: translateX(420px); }
-  37.54% { transform: translateX(540px); }
-  41.68% { transform: translateX(540px); }
-  46.86% { transform: translateX(540px); }
-  46.86% { transform: translateX(675px); }
-  51.35% { transform: translateX(675px); }
-  56.66% { transform: translateX(675px); }
-  56.66% { transform: translateX(195px); }
-  63.22% { transform: translateX(195px); }
-  68.74% { transform: translateX(195px); }
-  68.74% { transform: translateX(315px); }
-  72.88% { transform: translateX(315px); }
-  77.98% { transform: translateX(315px); }
-  77.98% { transform: translateX(645px); }
-  83.85% { transform: translateX(645px); }
-  89.37% { transform: translateX(645px); }
-  89.37% { transform: translateX(435px); }
-  94.55% { transform: translateX(435px); }
+  4.69% { transform: translateX(90px); }
+  9.50% { transform: translateX(90px); }
+  9.50% { transform: translateX(120px); }
+  12.85% { transform: translateX(120px); }
+  17.67% { transform: translateX(120px); }
+  17.67% { transform: translateX(210px); }
+  21.95% { transform: translateX(210px); }
+  26.77% { transform: translateX(210px); }
+  26.77% { transform: translateX(420px); }
+  32.80% { transform: translateX(420px); }
+  38.15% { transform: translateX(420px); }
+  38.15% { transform: translateX(540px); }
+  42.44% { transform: translateX(540px); }
+  47.39% { transform: translateX(540px); }
+  47.39% { transform: translateX(675px); }
+  52.07% { transform: translateX(675px); }
+  57.03% { transform: translateX(675px); }
+  57.03% { transform: translateX(195px); }
+  63.72% { transform: translateX(195px); }
+  69.08% { transform: translateX(195px); }
+  69.08% { transform: translateX(315px); }
+  73.36% { transform: translateX(315px); }
+  78.31% { transform: translateX(315px); }
+  78.31% { transform: translateX(645px); }
+  84.34% { transform: translateX(645px); }
+  89.69% { transform: translateX(645px); }
+  89.69% { transform: translateX(435px); }
+  94.78% { transform: translateX(435px); }
   100.00% { transform: translateX(435px); }
   100% { transform: translateX(90px); }
 }
 
       @keyframes laserShot1 {
-  0%, 4.96% { opacity: 0; transform: translateY(0px); }
-  4.97% { opacity: 1; transform: translateY(0px); }
-  6.45% { opacity: 1; transform: translateY(-68px); }
-  6.49%, 100% { opacity: 0; transform: translateY(-68px); }
+  0%, 5.48% { opacity: 0; transform: translateY(0px); }
+  5.49% { opacity: 1; transform: translateY(0px); }
+  7.08% { opacity: 1; transform: translateY(-68px); }
+  7.10%, 100% { opacity: 0; transform: translateY(-68px); }
 }
 
       @keyframes laserShot2 {
-  0%, 13.03% { opacity: 0; transform: translateY(0px); }
-  13.04% { opacity: 1; transform: translateY(0px); }
-  14.52% { opacity: 1; transform: translateY(-68px); }
-  14.56%, 100% { opacity: 0; transform: translateY(-68px); }
+  0%, 13.64% { opacity: 0; transform: translateY(0px); }
+  13.65% { opacity: 1; transform: translateY(0px); }
+  15.24% { opacity: 1; transform: translateY(-68px); }
+  15.26%, 100% { opacity: 0; transform: translateY(-68px); }
 }
 
       @keyframes laserShot3 {
-  0%, 21.80% { opacity: 0; transform: translateY(0px); }
-  21.81% { opacity: 1; transform: translateY(0px); }
-  23.29% { opacity: 1; transform: translateY(-68px); }
-  23.33%, 100% { opacity: 0; transform: translateY(-68px); }
+  0%, 22.75% { opacity: 0; transform: translateY(0px); }
+  22.76% { opacity: 1; transform: translateY(0px); }
+  24.34% { opacity: 1; transform: translateY(-68px); }
+  24.36%, 100% { opacity: 0; transform: translateY(-68px); }
 }
 
       @keyframes laserShot4 {
-  0%, 32.91% { opacity: 0; transform: translateY(0px); }
-  32.92% { opacity: 1; transform: translateY(0px); }
-  34.60% { opacity: 1; transform: translateY(-29px); }
-  34.64%, 100% { opacity: 0; transform: translateY(-29px); }
+  0%, 33.72% { opacity: 0; transform: translateY(0px); }
+  33.73% { opacity: 1; transform: translateY(0px); }
+  35.46% { opacity: 1; transform: translateY(-29px); }
+  35.48%, 100% { opacity: 0; transform: translateY(-29px); }
 }
 
       @keyframes laserShot5 {
-  0%, 42.50% { opacity: 0; transform: translateY(0px); }
-  42.51% { opacity: 1; transform: translateY(0px); }
-  44.20% { opacity: 1; transform: translateY(-29px); }
-  44.24%, 100% { opacity: 0; transform: translateY(-29px); }
+  0%, 43.23% { opacity: 0; transform: translateY(0px); }
+  43.24% { opacity: 1; transform: translateY(0px); }
+  44.96% { opacity: 1; transform: translateY(-29px); }
+  44.98%, 100% { opacity: 0; transform: translateY(-29px); }
 }
 
       @keyframes laserShot6 {
-  0%, 52.16% { opacity: 0; transform: translateY(0px); }
-  52.17% { opacity: 1; transform: translateY(0px); }
-  53.86% { opacity: 1; transform: translateY(-29px); }
-  53.90%, 100% { opacity: 0; transform: translateY(-29px); }
+  0%, 52.87% { opacity: 0; transform: translateY(0px); }
+  52.88% { opacity: 1; transform: translateY(0px); }
+  54.60% { opacity: 1; transform: translateY(-29px); }
+  54.62%, 100% { opacity: 0; transform: translateY(-29px); }
 }
 
       @keyframes laserShot7 {
-  0%, 64.17% { opacity: 0; transform: translateY(0px); }
-  64.18% { opacity: 1; transform: translateY(0px); }
-  65.80% { opacity: 1; transform: translateY(-42px); }
-  65.84%, 100% { opacity: 0; transform: translateY(-42px); }
+  0%, 64.65% { opacity: 0; transform: translateY(0px); }
+  64.66% { opacity: 1; transform: translateY(0px); }
+  66.38% { opacity: 1; transform: translateY(-42px); }
+  66.40%, 100% { opacity: 0; transform: translateY(-42px); }
 }
 
       @keyframes laserShot8 {
-  0%, 73.70% { opacity: 0; transform: translateY(0px); }
-  73.71% { opacity: 1; transform: translateY(0px); }
-  75.32% { opacity: 1; transform: translateY(-42px); }
-  75.36%, 100% { opacity: 0; transform: translateY(-42px); }
+  0%, 74.15% { opacity: 0; transform: translateY(0px); }
+  74.16% { opacity: 1; transform: translateY(0px); }
+  75.88% { opacity: 1; transform: translateY(-42px); }
+  75.90%, 100% { opacity: 0; transform: translateY(-42px); }
 }
 
       @keyframes laserShot9 {
-  0%, 84.81% { opacity: 0; transform: translateY(0px); }
-  84.82% { opacity: 1; transform: translateY(0px); }
-  86.43% { opacity: 1; transform: translateY(-42px); }
-  86.47%, 100% { opacity: 0; transform: translateY(-42px); }
+  0%, 85.26% { opacity: 0; transform: translateY(0px); }
+  85.27% { opacity: 1; transform: translateY(0px); }
+  86.99% { opacity: 1; transform: translateY(-42px); }
+  87.01%, 100% { opacity: 0; transform: translateY(-42px); }
 }
 
       @keyframes laserShot10 {
-  0%, 95.50% { opacity: 0; transform: translateY(0px); }
-  95.51% { opacity: 1; transform: translateY(0px); }
-  96.85% { opacity: 1; transform: translateY(-81px); }
-  96.89%, 100% { opacity: 0; transform: translateY(-81px); }
+  0%, 95.71% { opacity: 0; transform: translateY(0px); }
+  95.72% { opacity: 1; transform: translateY(0px); }
+  97.17% { opacity: 1; transform: translateY(-81px); }
+  97.19%, 100% { opacity: 0; transform: translateY(-81px); }
 }
 
       @keyframes sparkHit1 {
-  0%, 6.48% { opacity: 0; transform: scale(0.2); }
-  6.49% { opacity: 1; transform: scale(0.6); }
-  7.11% { opacity: 1; transform: scale(1.6); }
-  7.73%, 100% { opacity: 0; transform: scale(0.2); }
+  0%, 7.09% { opacity: 0; transform: scale(0.2); }
+  7.10% { opacity: 1; transform: scale(0.6); }
+  7.76% { opacity: 1; transform: scale(1.6); }
+  8.43%, 100% { opacity: 0; transform: scale(0.2); }
 }
 
       @keyframes sparkHit2 {
-  0%, 14.55% { opacity: 0; transform: scale(0.2); }
-  14.56% { opacity: 1; transform: scale(0.6); }
-  15.18% { opacity: 1; transform: scale(1.6); }
-  15.80%, 100% { opacity: 0; transform: scale(0.2); }
+  0%, 15.25% { opacity: 0; transform: scale(0.2); }
+  15.26% { opacity: 1; transform: scale(0.6); }
+  15.93% { opacity: 1; transform: scale(1.6); }
+  16.60%, 100% { opacity: 0; transform: scale(0.2); }
 }
 
       @keyframes sparkHit3 {
-  0%, 23.32% { opacity: 0; transform: scale(0.2); }
-  23.33% { opacity: 1; transform: scale(0.6); }
-  23.95% { opacity: 1; transform: scale(1.6); }
-  24.57%, 100% { opacity: 0; transform: scale(0.2); }
+  0%, 24.35% { opacity: 0; transform: scale(0.2); }
+  24.36% { opacity: 1; transform: scale(0.6); }
+  25.03% { opacity: 1; transform: scale(1.6); }
+  25.70%, 100% { opacity: 0; transform: scale(0.2); }
 }
 
       @keyframes sparkHit4 {
-  0%, 34.63% { opacity: 0; transform: scale(0.2); }
-  34.64% { opacity: 1; transform: scale(0.6); }
-  35.33% { opacity: 1; transform: scale(1.6); }
-  36.02%, 100% { opacity: 0; transform: scale(0.2); }
+  0%, 35.47% { opacity: 0; transform: scale(0.2); }
+  35.48% { opacity: 1; transform: scale(0.6); }
+  36.21% { opacity: 1; transform: scale(1.6); }
+  36.95%, 100% { opacity: 0; transform: scale(0.2); }
 }
 
       @keyframes sparkHit5 {
-  0%, 44.23% { opacity: 0; transform: scale(0.2); }
-  44.24% { opacity: 1; transform: scale(0.6); }
-  44.86% { opacity: 1; transform: scale(1.6); }
-  45.48%, 100% { opacity: 0; transform: scale(0.2); }
+  0%, 44.97% { opacity: 0; transform: scale(0.2); }
+  44.98% { opacity: 1; transform: scale(0.6); }
+  45.65% { opacity: 1; transform: scale(1.6); }
+  46.32%, 100% { opacity: 0; transform: scale(0.2); }
 }
 
       @keyframes sparkHit6 {
-  0%, 53.89% { opacity: 0; transform: scale(0.2); }
-  53.90% { opacity: 1; transform: scale(0.6); }
-  54.52% { opacity: 1; transform: scale(1.6); }
-  55.14%, 100% { opacity: 0; transform: scale(0.2); }
+  0%, 54.61% { opacity: 0; transform: scale(0.2); }
+  54.62% { opacity: 1; transform: scale(0.6); }
+  55.29% { opacity: 1; transform: scale(1.6); }
+  55.96%, 100% { opacity: 0; transform: scale(0.2); }
 }
 
       @keyframes sparkHit7 {
-  0%, 65.83% { opacity: 0; transform: scale(0.2); }
-  65.84% { opacity: 1; transform: scale(0.6); }
-  66.53% { opacity: 1; transform: scale(1.6); }
-  67.22%, 100% { opacity: 0; transform: scale(0.2); }
+  0%, 66.39% { opacity: 0; transform: scale(0.2); }
+  66.40% { opacity: 1; transform: scale(0.6); }
+  67.14% { opacity: 1; transform: scale(1.6); }
+  67.87%, 100% { opacity: 0; transform: scale(0.2); }
 }
 
       @keyframes sparkHit8 {
-  0%, 75.35% { opacity: 0; transform: scale(0.2); }
-  75.36% { opacity: 1; transform: scale(0.6); }
-  75.98% { opacity: 1; transform: scale(1.6); }
-  76.60%, 100% { opacity: 0; transform: scale(0.2); }
+  0%, 75.89% { opacity: 0; transform: scale(0.2); }
+  75.90% { opacity: 1; transform: scale(0.6); }
+  76.57% { opacity: 1; transform: scale(1.6); }
+  77.24%, 100% { opacity: 0; transform: scale(0.2); }
 }
 
       @keyframes sparkHit9 {
-  0%, 86.46% { opacity: 0; transform: scale(0.2); }
-  86.47% { opacity: 1; transform: scale(0.6); }
-  87.16% { opacity: 1; transform: scale(1.6); }
-  87.85%, 100% { opacity: 0; transform: scale(0.2); }
+  0%, 87.00% { opacity: 0; transform: scale(0.2); }
+  87.01% { opacity: 1; transform: scale(0.6); }
+  87.75% { opacity: 1; transform: scale(1.6); }
+  88.49%, 100% { opacity: 0; transform: scale(0.2); }
 }
 
       @keyframes sparkHit10 {
-  0%, 96.88% { opacity: 0; transform: scale(0.2); }
-  96.89% { opacity: 1; transform: scale(0.6); }
-  97.58% { opacity: 1; transform: scale(1.6); }
-  98.27%, 100% { opacity: 0; transform: scale(0.2); }
+  0%, 97.18% { opacity: 0; transform: scale(0.2); }
+  97.19% { opacity: 1; transform: scale(0.6); }
+  97.93% { opacity: 1; transform: scale(1.6); }
+  98.66%, 100% { opacity: 0; transform: scale(0.2); }
 }
 
       @keyframes commitDamage1 {
-  0%, 6.48% { fill: #26A641; stroke: none; }
-  6.49% { fill: #FDFBF7; stroke: #F59E0B; stroke-width: 1.5; }
-  7.73% { fill: #006D32; stroke: none; }
+  0%, 7.09% { fill: #26A641; stroke: none; }
+  7.10% { fill: #FDFBF7; stroke: #F59E0B; stroke-width: 1.5; }
+  8.43% { fill: #006D32; stroke: none; }
   98.8% { fill: #006D32; stroke: none; }
   100% { fill: #26A641; stroke: none; }
 }
 
       @keyframes commitDamage2 {
-  0%, 14.55% { fill: #26A641; stroke: none; }
-  14.56% { fill: #FDFBF7; stroke: #F59E0B; stroke-width: 1.5; }
-  15.80% { fill: #006D32; stroke: none; }
+  0%, 15.25% { fill: #26A641; stroke: none; }
+  15.26% { fill: #FDFBF7; stroke: #F59E0B; stroke-width: 1.5; }
+  16.60% { fill: #006D32; stroke: none; }
   98.8% { fill: #006D32; stroke: none; }
   100% { fill: #26A641; stroke: none; }
 }
 
       @keyframes commitDamage3 {
-  0%, 23.32% { fill: #0E4429; stroke: none; }
-  23.33% { fill: #FDFBF7; stroke: #F59E0B; stroke-width: 1.5; }
-  24.57% { fill: #161B22; stroke: none; }
+  0%, 24.35% { fill: #0E4429; stroke: none; }
+  24.36% { fill: #FDFBF7; stroke: #F59E0B; stroke-width: 1.5; }
+  25.70% { fill: #161B22; stroke: none; }
   98.8% { fill: #161B22; stroke: none; }
   100% { fill: #0E4429; stroke: none; }
 }
 
       @keyframes commitDamage4 {
-  0%, 34.63% { fill: #39D353; stroke: none; }
-  34.64% { fill: #FDFBF7; stroke: #F59E0B; stroke-width: 1.5; }
-  36.02% { fill: #26A641; stroke: none; }
+  0%, 35.47% { fill: #39D353; stroke: none; }
+  35.48% { fill: #FDFBF7; stroke: #F59E0B; stroke-width: 1.5; }
+  36.95% { fill: #26A641; stroke: none; }
   98.8% { fill: #26A641; stroke: none; }
   100% { fill: #39D353; stroke: none; }
 }
 
       @keyframes commitDamage5 {
-  0%, 44.23% { fill: #26A641; stroke: none; }
-  44.24% { fill: #FDFBF7; stroke: #F59E0B; stroke-width: 1.5; }
-  45.48% { fill: #006D32; stroke: none; }
+  0%, 44.97% { fill: #26A641; stroke: none; }
+  44.98% { fill: #FDFBF7; stroke: #F59E0B; stroke-width: 1.5; }
+  46.32% { fill: #006D32; stroke: none; }
   98.8% { fill: #006D32; stroke: none; }
   100% { fill: #26A641; stroke: none; }
 }
 
       @keyframes commitDamage6 {
-  0%, 53.89% { fill: #26A641; stroke: none; }
-  53.90% { fill: #FDFBF7; stroke: #F59E0B; stroke-width: 1.5; }
-  55.14% { fill: #006D32; stroke: none; }
+  0%, 54.61% { fill: #26A641; stroke: none; }
+  54.62% { fill: #FDFBF7; stroke: #F59E0B; stroke-width: 1.5; }
+  55.96% { fill: #006D32; stroke: none; }
   98.8% { fill: #006D32; stroke: none; }
   100% { fill: #26A641; stroke: none; }
 }
 
       @keyframes commitDamage7 {
-  0%, 65.83% { fill: #39D353; stroke: none; }
-  65.84% { fill: #FDFBF7; stroke: #F59E0B; stroke-width: 1.5; }
-  67.22% { fill: #26A641; stroke: none; }
+  0%, 66.39% { fill: #39D353; stroke: none; }
+  66.40% { fill: #FDFBF7; stroke: #F59E0B; stroke-width: 1.5; }
+  67.87% { fill: #26A641; stroke: none; }
   98.8% { fill: #26A641; stroke: none; }
   100% { fill: #39D353; stroke: none; }
 }
 
       @keyframes commitDamage8 {
-  0%, 75.35% { fill: #0E4429; stroke: none; }
-  75.36% { fill: #FDFBF7; stroke: #F59E0B; stroke-width: 1.5; }
-  76.60% { fill: #161B22; stroke: none; }
+  0%, 75.89% { fill: #0E4429; stroke: none; }
+  75.90% { fill: #FDFBF7; stroke: #F59E0B; stroke-width: 1.5; }
+  77.24% { fill: #161B22; stroke: none; }
   98.8% { fill: #161B22; stroke: none; }
   100% { fill: #0E4429; stroke: none; }
 }
 
       @keyframes commitDamage9 {
-  0%, 86.46% { fill: #39D353; stroke: none; }
-  86.47% { fill: #FDFBF7; stroke: #F59E0B; stroke-width: 1.5; }
-  87.85% { fill: #26A641; stroke: none; }
+  0%, 87.00% { fill: #39D353; stroke: none; }
+  87.01% { fill: #FDFBF7; stroke: #F59E0B; stroke-width: 1.5; }
+  88.49% { fill: #26A641; stroke: none; }
   98.8% { fill: #26A641; stroke: none; }
   100% { fill: #39D353; stroke: none; }
 }
 
       @keyframes commitDamage10 {
-  0%, 96.88% { fill: #39D353; stroke: none; }
-  96.89% { fill: #FDFBF7; stroke: #F59E0B; stroke-width: 1.5; }
-  98.27% { fill: #26A641; stroke: none; }
+  0%, 97.18% { fill: #39D353; stroke: none; }
+  97.19% { fill: #FDFBF7; stroke: #F59E0B; stroke-width: 1.5; }
+  98.66% { fill: #26A641; stroke: none; }
   98.8% { fill: #26A641; stroke: none; }
   100% { fill: #39D353; stroke: none; }
 }
@@ -305,7 +305,7 @@
   <g transform="translate(24, 22)">
     <circle cx="0" cy="5" r="3.5" fill="#39D353" class="live-beacon"/>
     <text x="14" y="9" class="tag-txt">PLATE 03 // RETRO SPACE INVADERS: COMMIT BLAST ARCADE</text>
-    <text x="500" y="9" class="sub-txt">[AUTONOMOUS CANNON // LIVE TARGET STRIKES]</text>
+    <text x="500" y="9" class="sub-txt">[RAPID CANNON // LIVE TARGET STRIKES]</text>
   </g>
   <line x1="0" y1="42" x2="850" y2="42" stroke="#2C303B" stroke-width="1"/>
 
@@ -694,7 +694,7 @@
       <rect x="765" y="78" width="10" height="10" rx="2" fill="#0E4429"/>
     </g>
 
-    <!-- Fired Laser Projectile Bolts (Only one active per attack, traveling directly to target commit) -->
+    <!-- Fired Laser Projectile Bolts (Rapid-fire, one at a time directly to target commit) -->
     <!-- Laser 1 targeting Col 6, Row 1 -->
     <g class="laser-bolt-1">
       <line x1="95" y1="86" x2="95" y2="72" stroke="#E11D48" stroke-width="2.5" stroke-linecap="round"/>
@@ -828,7 +828,7 @@
       <line x1="0" y1="-6" x2="0" y2="6" stroke="#E11D48" stroke-width="1.2"/>
     </g>
 
-    <!-- Autonomous Rocket Spaceship patrolling beneath targeted commits -->
+    <!-- Autonomous Rocket Spaceship rapidly patrolling beneath targeted commits -->
     <g class="ship-patrol">
       <g transform="translate(5, 96)">
         <!-- Rocket Nose Cone (Cannon Tip at y = 86 relative to grid) -->
