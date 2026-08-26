@@ -1,0 +1,160 @@
+<svg width="850" height="330" viewBox="0 0 850 330" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .portal-bg       { fill: #0B0C10; stroke: #1F2430; stroke-width: 1.5; }
+      .tag-lbl         { font-family: 'JetBrains Mono', Consolas, monospace; font-size: 11px; font-weight: 700; fill: #00F0FF; letter-spacing: 2px; }
+      .sub-lbl         { font-family: 'JetBrains Mono', Consolas, monospace; font-size: 9.5px; fill: #71737E; letter-spacing: 1.5px; }
+      .name-txt        { font-family: 'Space Grotesk', 'Inter', sans-serif; font-size: 34px; font-weight: 900; fill: #FDFBF7; letter-spacing: -0.5px; }
+      .role-txt        { font-family: 'JetBrains Mono', Consolas, monospace; font-size: 13.5px; font-weight: 700; fill: #2563EB; letter-spacing: 1px; }
+      .bio-txt         { font-family: 'JetBrains Mono', Consolas, monospace; font-size: 11px; fill: #A0A5B5; line-height: 18px; }
+      .stat-val        { font-family: 'Space Grotesk', sans-serif; font-size: 16px; font-weight: 800; fill: #FDFBF7; }
+      .stat-lbl        { font-family: 'JetBrains Mono', Consolas, monospace; font-size: 9px; font-weight: 700; fill: #71737E; letter-spacing: 1px; }
+
+      /* Portal Ring Rotations (Clockwise and Counter-Clockwise) */
+      @keyframes portalSpinCW {
+        from { transform: rotate(0deg); }
+        to   { transform: rotate(360deg); }
+      }
+      @keyframes portalSpinCCW {
+        from { transform: rotate(360deg); }
+        to   { transform: rotate(0deg); }
+      }
+      @keyframes pulseGlow {
+        0%, 100% { opacity: 0.9; transform: scale(1); }
+        50%      { opacity: 0.4; transform: scale(0.96); }
+      }
+      @keyframes rocketAscent {
+        0%   { transform: translateY(18px) scale(0.92); opacity: 0.85; }
+        50%  { transform: translateY(-8px) scale(1.04); opacity: 1; }
+        100% { transform: translateY(18px) scale(0.92); opacity: 0.85; }
+      }
+      @keyframes beaconBlink {
+        0%, 100% { opacity: 1; }
+        50%      { opacity: 0.2; }
+      }
+      @keyframes particleFloat {
+        0%   { transform: translateY(0px) scale(0.8); opacity: 0; }
+        50%  { opacity: 1; }
+        100% { transform: translateY(-35px) scale(1.2); opacity: 0; }
+      }
+
+      .spin-cw     { animation: portalSpinCW 20s linear infinite; transform-origin: 670px 165px; }
+      .spin-ccw    { animation: portalSpinCCW 14s linear infinite; transform-origin: 670px 165px; }
+      .spin-slow   { animation: portalSpinCW 36s linear infinite; transform-origin: 670px 165px; }
+      .pulse-ring  { animation: pulseGlow 4s ease-in-out infinite; transform-origin: 670px 165px; }
+      .rocket-anim { animation: rocketAscent 3.5s ease-in-out infinite; transform-origin: 670px 165px; }
+      .beacon      { animation: beaconBlink 1.2s steps(2, start) infinite; }
+      .p1          { animation: particleFloat 2.5s ease-in infinite; }
+      .p2          { animation: particleFloat 3.2s ease-in 0.8s infinite; }
+      .p3          { animation: particleFloat 2.8s ease-in 1.4s infinite; }
+    </style>
+  </defs>
+
+  <!-- Command Portal Box Frame -->
+  <rect width="850" height="330" rx="6" class="portal-bg"/>
+
+  <!-- Background Space Grid Hatching -->
+  <g opacity="0.12" stroke="#2C303B" stroke-width="0.8">
+    <line x1="0" y1="55" x2="850" y2="55"/>
+    <line x1="0" y1="110" x2="850" y2="110"/>
+    <line x1="0" y1="165" x2="850" y2="165"/>
+    <line x1="0" y1="220" x2="850" y2="220"/>
+    <line x1="0" y1="275" x2="850" y2="275"/>
+    <line x1="120" y1="0" x2="120" y2="330"/>
+    <line x1="240" y1="0" x2="240" y2="330"/>
+    <line x1="360" y1="0" x2="360" y2="330"/>
+    <line x1="480" y1="0" x2="480" y2="330"/>
+  </g>
+
+  <!-- Top System Header Bar -->
+  <g transform="translate(26, 24)">
+    <circle cx="0" cy="5" r="4" fill="#00F0FF" class="beacon"/>
+    <text x="14" y="9" class="tag-lbl">PORTAL GATEWAY // MISSION COMMAND PROTOCOL 01</text>
+    <text x="560" y="9" class="sub-lbl">[WARP VECTOR: ACTIVE // ORBIT: EARTH DEPLOYED]</text>
+  </g>
+  <line x1="0" y1="44" x2="850" y2="44" stroke="#1F2430" stroke-width="1.2"/>
+
+  <!-- Left Mission Deck Content -->
+  <g transform="translate(36, 82)">
+    <!-- Callout Badge -->
+    <rect x="0" y="0" width="185" height="20" rx="3" fill="#16171D" stroke="#2563EB" stroke-width="1"/>
+    <text x="8" y="14" font-family="'JetBrains Mono', monospace" font-size="9px" font-weight="700" fill="#00F0FF" letter-spacing="1px">SYS_OP // LEVEL 4 AUTHORIZED</text>
+
+    <!-- Name & Commander Title -->
+    <text x="0" y="52" class="name-txt">YASH RAUT</text>
+    <text x="0" y="74" class="role-txt">&gt; FULL-STACK PILOT // AI &amp; AUTONOMOUS SYSTEMS</text>
+
+    <!-- Bio / Mission Objective -->
+    <text x="0" y="104" class="bio-txt">Engineering mission-critical web applications, high-concurrency</text>
+    <text x="0" y="122" class="bio-txt">distributed APIs, and autonomous AI agents designed for deep-space</text>
+    <text x="0" y="140" class="bio-txt">scale, low-latency execution, and continuous orbital uptime.</text>
+
+    <!-- Flight Telemetry Badges -->
+    <g transform="translate(0, 168)">
+      <!-- Badge 1 -->
+      <rect x="0" y="0" width="135" height="42" rx="3" fill="#111216" stroke="#1F2430" stroke-width="1"/>
+      <text x="12" y="20" class="stat-val">1,500+</text>
+      <text x="12" y="34" class="stat-lbl">COMMITS BLASTED</text>
+
+      <!-- Badge 2 -->
+      <rect x="148" y="0" width="135" height="42" rx="3" fill="#111216" stroke="#1F2430" stroke-width="1"/>
+      <text x="12" y="20" class="stat-val">99.98%</text>
+      <text x="12" y="34" class="stat-lbl">MISSION UPTIME</text>
+
+      <!-- Badge 3 -->
+      <rect x="296" y="0" width="135" height="42" rx="3" fill="#111216" stroke="#1F2430" stroke-width="1"/>
+      <text x="12" y="20" class="stat-val">ORBITAL</text>
+      <text x="12" y="34" class="stat-lbl">SCALE ARCHITECTURE</text>
+    </g>
+  </g>
+
+  <!-- Right Side: Kinetic Space Portal Stargate with Ascending Rocket -->
+  <g>
+    <!-- Background Stargate Outer Hexagon Ring -->
+    <polygon points="670,55 765,110 765,220 670,275 575,220 575,110" fill="none" stroke="#1F2430" stroke-width="1.5" stroke-dasharray="8 4" class="spin-slow"/>
+    
+    <!-- Outer Stargate Compass Reticle -->
+    <circle cx="670" cy="165" r="105" fill="none" stroke="#2563EB" stroke-width="1.2" stroke-dasharray="14 10" class="spin-cw"/>
+    <circle cx="670" cy="165" r="92" fill="none" stroke="#1F2430" stroke-width="1"/>
+    
+    <!-- Intermediate Rotating Stargate Ring -->
+    <circle cx="670" cy="165" r="80" fill="none" stroke="#00F0FF" stroke-width="1.5" stroke-dasharray="28 14 6 14" class="spin-ccw"/>
+    
+    <!-- Inner Portal Throat Ring with Pulse -->
+    <circle cx="670" cy="165" r="62" fill="#111216" stroke="#E11D48" stroke-width="2" class="pulse-ring"/>
+    <circle cx="670" cy="165" r="50" fill="#0B0C10" stroke="#00F0FF" stroke-width="1.2" stroke-dasharray="6 4" class="spin-cw"/>
+
+    <!-- Orbital Coordinates crosshairs -->
+    <line x1="550" y1="165" x2="790" y2="165" stroke="#1F2430" stroke-width="1"/>
+    <line x1="670" y1="45" x2="670" y2="285" stroke="#1F2430" stroke-width="1"/>
+    <circle cx="670" cy="165" r="3" fill="#00F0FF"/>
+
+    <!-- Space Warp Particle Bursts -->
+    <circle cx="660" cy="175" r="1.5" fill="#00F0FF" class="p1"/>
+    <circle cx="682" cy="155" r="2" fill="#F59E0B" class="p2"/>
+    <circle cx="668" cy="140" r="1.5" fill="#E11D48" class="p3"/>
+
+    <!-- Ascending Vector Space Rocket Traveling Through Portal -->
+    <g class="rocket-anim">
+      <g transform="translate(670, 165)">
+        <!-- Rocket Nose Cone & Fuselage -->
+        <polygon points="0,-24 12,-2 0,-8 -12,-2" fill="#FDFBF7"/>
+        <polygon points="0,-8 12,-2 12,12 0,6 -12,12 -12,-2" fill="#2563EB"/>
+        <rect x="-5" y="-2" width="10" height="12" fill="#E11D48"/>
+        <!-- Cockpit Glass Window -->
+        <circle cx="0" cy="-6" r="3" fill="#00F0FF"/>
+        <!-- Left & Right Wing Stabilizers -->
+        <polygon points="-12,6 -20,16 -12,14" fill="#00F0FF"/>
+        <polygon points="12,6 20,16 12,14" fill="#00F0FF"/>
+        <!-- Plasma Rocket Thruster Exhaust Flames -->
+        <polygon points="-8,14 -4,28 0,14" fill="#F59E0B"/>
+        <polygon points="0,14 4,28 8,14" fill="#F59E0B"/>
+        <polygon points="-3,14 0,34 3,14" fill="#E11D48"/>
+      </g>
+    </g>
+
+    <!-- Portal Sector Coordinates Text -->
+    <text x="585" y="70" font-family="'JetBrains Mono', monospace" font-size="8.5px" fill="#71737E">WARP_VEC::77.4</text>
+    <text x="715" y="270" font-family="'JetBrains Mono', monospace" font-size="8.5px" fill="#71737E">GRID_LOC::ORBIT_9</text>
+  </g>
+</svg>

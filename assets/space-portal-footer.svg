@@ -1,0 +1,20 @@
+<svg width="850" height="65" viewBox="0 0 850 65" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .portal-bg   { fill: #0B0C10; stroke: #1F2430; stroke-width: 1.5; }
+      .foot-tag    { font-family: 'JetBrains Mono', Consolas, monospace; font-size: 10px; font-weight: 700; fill: #00F0FF; letter-spacing: 1.5px; }
+      .foot-sub    { font-family: 'JetBrains Mono', Consolas, monospace; font-size: 9.5px; fill: #71737E; letter-spacing: 1px; }
+
+      @keyframes beaconBlink { 0%, 100% { opacity: 1; } 50% { opacity: 0.2; } }
+      .beacon { animation: beaconBlink 1.2s steps(2, start) infinite; }
+    </style>
+  </defs>
+
+  <rect width="850" height="65" rx="6" class="portal-bg"/>
+
+  <g transform="translate(26, 26)">
+    <circle cx="0" cy="5" r="3.5" fill="#39D353" class="beacon"/>
+    <text x="14" y="9" class="foot-tag">SPACEPORT MISSION CONTROL // PORTAL COMM-LINK ESTABLISHED</text>
+    <text x="590" y="9" class="foot-sub">YASH RAUT © 2026 // END TRANSMISSION</text>
+  </g>
+</svg>

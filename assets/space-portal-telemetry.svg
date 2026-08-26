@@ -1,0 +1,135 @@
+<svg width="850" height="230" viewBox="0 0 850 230" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .portal-bg       { fill: #0B0C10; stroke: #1F2430; stroke-width: 1.5; }
+      .tag-lbl         { font-family: 'JetBrains Mono', Consolas, monospace; font-size: 11px; font-weight: 700; fill: #00F0FF; letter-spacing: 2px; }
+      .sub-lbl         { font-family: 'JetBrains Mono', Consolas, monospace; font-size: 9.5px; fill: #71737E; letter-spacing: 1.5px; }
+      .stat-card       { fill: #111216; stroke: #1F2430; stroke-width: 1.2; }
+      .card-title      { font-family: 'JetBrains Mono', Consolas, monospace; font-size: 9.5px; font-weight: 700; fill: #71737E; letter-spacing: 1.5px; }
+      .metric-val      { font-family: 'Space Grotesk', sans-serif; font-size: 19px; font-weight: 900; fill: #FDFBF7; }
+      .metric-sub      { font-family: 'JetBrains Mono', Consolas, monospace; font-size: 9px; fill: #A0A5B5; }
+      .tech-pill       { fill: #16171D; stroke: #2C303B; stroke-width: 1; }
+      .pill-txt        { font-family: 'JetBrains Mono', Consolas, monospace; font-size: 9px; font-weight: 700; fill: #FDFBF7; }
+
+      @keyframes compassSpinCW {
+        from { transform: rotate(0deg); }
+        to   { transform: rotate(360deg); }
+      }
+      @keyframes compassSpinCCW {
+        from { transform: rotate(360deg); }
+        to   { transform: rotate(0deg); }
+      }
+      @keyframes beaconBlink { 0%, 100% { opacity: 1; } 50% { opacity: 0.2; } }
+
+      .compass-cw  { animation: compassSpinCW 24s linear infinite; transform-origin: 745px 125px; }
+      .compass-ccw { animation: compassSpinCCW 16s linear infinite; transform-origin: 745px 125px; }
+      .beacon      { animation: beaconBlink 1.2s steps(2, start) infinite; }
+    </style>
+  </defs>
+
+  <!-- Portal Container Box -->
+  <rect width="850" height="230" rx="6" class="portal-bg"/>
+
+  <!-- Top System Header Bar -->
+  <g transform="translate(26, 24)">
+    <circle cx="0" cy="5" r="4" fill="#39D353" class="beacon"/>
+    <text x="14" y="9" class="tag-lbl">PORTAL GATEWAY // SECTOR 04: FLIGHT LOGS &amp; TELEMETRY</text>
+    <text x="590" y="9" class="sub-lbl">[LIVE TELEMETRY STREAM CONNECTED]</text>
+  </g>
+  <line x1="0" y1="44" x2="850" y2="44" stroke="#1F2430" stroke-width="1.2"/>
+
+  <!-- Left Content: Flight Metrics & Stack -->
+  <g transform="translate(26, 62)">
+    
+    <!-- Row 1: 3 Live Spacecraft Metric Cards -->
+    <g>
+      <!-- Metric 1 -->
+      <g transform="translate(0, 0)">
+        <rect width="195" height="66" rx="4" class="stat-card"/>
+        <rect x="0" y="0" width="3" height="66" fill="#39D353"/>
+        <text x="14" y="18" class="card-title">COMMIT VELOCITY</text>
+        <text x="14" y="42" class="metric-val">1,480+ LOGS</text>
+        <text x="14" y="56" class="metric-sub">&gt; Continuous orbital cadence</text>
+      </g>
+
+      <!-- Metric 2 -->
+      <g transform="translate(210, 0)">
+        <rect width="195" height="66" rx="4" class="stat-card"/>
+        <rect x="0" y="0" width="3" height="66" fill="#00F0FF"/>
+        <text x="14" y="18" class="card-title">CORE RELIABILITY</text>
+        <text x="14" y="42" class="metric-val">99.98% SLA</text>
+        <text x="14" y="56" class="metric-sub">&gt; Zero-downtime microservices</text>
+      </g>
+
+      <!-- Metric 3 -->
+      <g transform="translate(420, 0)">
+        <rect width="195" height="66" rx="4" class="stat-card"/>
+        <rect x="0" y="0" width="3" height="66" fill="#2563EB"/>
+        <text x="14" y="18" class="card-title">MISSION STACK</text>
+        <text x="14" y="42" class="metric-val">FULL AVIONICS</text>
+        <text x="14" y="56" class="metric-sub">&gt; Python · TS · Go · PyTorch</text>
+      </g>
+    </g>
+
+    <!-- Row 2: Spacecraft Propulsion Tech Badges -->
+    <g transform="translate(0, 78)">
+      <g transform="translate(0, 0)">
+        <rect width="78" height="24" rx="3" class="tech-pill"/>
+        <circle cx="10" cy="12" r="3" fill="#00F0FF"/>
+        <text x="20" y="15.5" class="pill-txt">Python</text>
+      </g>
+      <g transform="translate(86, 0)">
+        <rect width="98" height="24" rx="3" class="tech-pill"/>
+        <circle cx="10" cy="12" r="3" fill="#2563EB"/>
+        <text x="20" y="15.5" class="pill-txt">TypeScript</text>
+      </g>
+      <g transform="translate(192, 0)">
+        <rect width="76" height="24" rx="3" class="tech-pill"/>
+        <circle cx="10" cy="12" r="3" fill="#00F0FF"/>
+        <text x="20" y="15.5" class="pill-txt">Golang</text>
+      </g>
+      <g transform="translate(276, 0)">
+        <rect width="80" height="24" rx="3" class="tech-pill"/>
+        <circle cx="10" cy="12" r="3" fill="#E11D48"/>
+        <text x="20" y="15.5" class="pill-txt">PyTorch</text>
+      </g>
+      <g transform="translate(364, 0)">
+        <rect width="76" height="24" rx="3" class="tech-pill"/>
+        <circle cx="10" cy="12" r="3" fill="#F59E0B"/>
+        <text x="20" y="15.5" class="pill-txt">Docker</text>
+      </g>
+      <g transform="translate(448, 0)">
+        <rect width="82" height="24" rx="3" class="tech-pill"/>
+        <circle cx="10" cy="12" r="3" fill="#39D353"/>
+        <text x="20" y="15.5" class="pill-txt">FastAPI</text>
+      </g>
+      <g transform="translate(538, 0)">
+        <rect width="77" height="24" rx="3" class="tech-pill"/>
+        <circle cx="10" cy="12" r="3" fill="#FDFBF7"/>
+        <text x="20" y="15.5" class="pill-txt">Next.js</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- Right Side: Kinetic Deep-Space Telemetry Compass Gyroscope -->
+  <g>
+    <!-- Rotating Outer Nav Scale -->
+    <circle cx="745" cy="125" r="70" fill="none" stroke="#1F2430" stroke-width="1.2" stroke-dasharray="10 8" class="compass-cw"/>
+    <!-- Rotating Intermediate Gyro Ring -->
+    <circle cx="745" cy="125" r="54" fill="none" stroke="#2563EB" stroke-width="1.5" stroke-dasharray="24 12" class="compass-ccw"/>
+    <!-- Inner Telemetry Core -->
+    <circle cx="745" cy="125" r="38" fill="#111216" stroke="#00F0FF" stroke-width="1.5"/>
+    <circle cx="745" cy="125" r="24" fill="#0B0C10" stroke="#E11D48" stroke-width="1" stroke-dasharray="4 4" class="compass-cw"/>
+    <circle cx="745" cy="125" r="3" fill="#39D353"/>
+
+    <!-- Crosshairs & Cardinal Ticks -->
+    <line x1="660" y1="125" x2="830" y2="125" stroke="#1F2430" stroke-width="1"/>
+    <line x1="745" y1="40" x2="745" y2="210" stroke="#1F2430" stroke-width="1"/>
+
+    <!-- Telemetry Compass Labels -->
+    <text x="740" y="52" font-family="'JetBrains Mono', monospace" font-size="8px" font-weight="700" fill="#00F0FF">N</text>
+    <text x="822" y="128" font-family="'JetBrains Mono', monospace" font-size="8px" font-weight="700" fill="#71737E">E</text>
+    <text x="741" y="205" font-family="'JetBrains Mono', monospace" font-size="8px" font-weight="700" fill="#71737E">S</text>
+    <text x="664" y="128" font-family="'JetBrains Mono', monospace" font-size="8px" font-weight="700" fill="#71737E">W</text>
+  </g>
+</svg>
