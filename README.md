@@ -5,23 +5,23 @@
 
 <br/><br/>
 
-<!-- 2-COLUMN x 2-ROW CLEAN MISSION CONTROL LINKS -->
+<!-- ORBITAL FLIGHT DECK // DIRECT COMM-LINKS -->
 <a href="https://yash-raut-portfolio.vercel.app/" target="_blank">
-  <img src="https://img.shields.io/badge/PORTFOLIO-yash--raut--portfolio.vercel.app-0B0C10?style=for-the-badge&logo=vercel&logoColor=00F0FF" alt="Portfolio" />
+  <img src="https://img.shields.io/badge/ORBITAL_PORTFOLIO-yash--raut--portfolio.vercel.app-0B0C10?style=for-the-badge&logo=vercel&logoColor=00F0FF" alt="Orbital Portfolio" />
 </a>
-&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;
 <a href="https://drive.google.com/file/d/1wxB0VFUBAfz9cwoHMvBYegOlju8308Sa/view?usp=sharing" target="_blank">
-  <img src="https://img.shields.io/badge/RESUME-Google_Drive-0B0C10?style=for-the-badge&logo=googledrive&logoColor=39D353" alt="Resume" />
+  <img src="https://img.shields.io/badge/FLIGHT_RESUME_CV-Google_Drive_Doc-0B0C10?style=for-the-badge&logo=googledrive&logoColor=39D353" alt="Flight Resume" />
 </a>
 
 <br/><br/>
 
 <a href="https://www.linkedin.com/in/yash-raut-240505-yr30/" target="_blank">
-  <img src="https://img.shields.io/badge/LINKEDIN-yash--raut--240505--yr30-0B0C10?style=for-the-badge&logo=linkedin&logoColor=2563EB" alt="LinkedIn" />
+  <img src="https://img.shields.io/badge/COMM_NETWORK-LinkedIn_Yash_Raut-0B0C10?style=for-the-badge&logo=linkedin&logoColor=2563EB" alt="LinkedIn Network" />
 </a>
-&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;
 <a href="mailto:yashdr2405@gmail.com">
-  <img src="https://img.shields.io/badge/EMAIL-yashdr2405%40gmail.com-0B0C10?style=for-the-badge&logo=gmail&logoColor=F59E0B" alt="Email" />
+  <img src="https://img.shields.io/badge/SUBSPACE_RELAY-yashdr2405%40gmail.com-0B0C10?style=for-the-badge&logo=gmail&logoColor=F59E0B" alt="Subspace Relay Email" />
 </a>
 
 <br/><br/>
@@ -41,7 +41,12 @@
 
 <br/><br/>
 
-<!-- SECTOR 05: ACADEMIC & MISSION TELEMETRY -->
+<!-- SECTOR 05: MISSION FLIGHT LOGS & INDUSTRY EXPERIENCE -->
+<img src="./assets/space-portal-timeline.svg" alt="Mission Flight Logs and Industry Experience" width="100%" />
+
+<br/><br/>
+
+<!-- SECTOR 06: ACADEMIC & MISSION TELEMETRY -->
 <img src="./assets/space-portal-telemetry.svg" alt="Academic and Mission Telemetry" width="100%" />
 
 <br/><br/>

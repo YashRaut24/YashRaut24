@@ -402,7 +402,7 @@ def generate_svg(date_dict, total_contribs=1483, output_path="assets/space-invad
   <!-- Top Title Bar with Live Destroyed Counter HUD -->
   <g transform="translate(24, 22)">
     <circle cx="0" cy="5" r="3.5" fill="#39D353" class="live-beacon"/>
-    <text x="14" y="9" class="tag-txt">PLATE 03 // RETRO SPACE INVADERS: COMMIT BLAST ARCADE</text>
+    <text x="14" y="9" class="tag-txt">PORTAL GATEWAY // SECTOR 03: RETRO LASER CANNON COMMIT ARCADE</text>
     
     <!-- Live Counter HUD Badge displaying total commits -->
     <g transform="translate(560, -8)">

@@ -33,7 +33,7 @@
   <!-- Top System Header Bar -->
   <g transform="translate(26, 24)">
     <circle cx="0" cy="5" r="4" fill="#39D353" class="beacon"/>
-    <text x="14" y="9" class="tag-lbl">PORTAL GATEWAY // SECTOR 04: ACADEMIC &amp; MISSION TELEMETRY</text>
+    <text x="14" y="9" class="tag-lbl">PORTAL GATEWAY // SECTOR 06: ACADEMIC RECORD &amp; NAVIGATION TELEMETRY</text>
     <text x="590" y="9" class="sub-lbl">[LIVE TELEMETRY STREAM CONNECTED]</text>
   </g>
   <line x1="0" y1="44" x2="850" y2="44" stroke="#1F2430" stroke-width="1.2"/>
