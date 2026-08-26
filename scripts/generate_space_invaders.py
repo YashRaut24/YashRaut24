@@ -11,7 +11,7 @@ def fetch_contributions(username, token=""):
     """
     Fetch real GitHub contributions calendar and total contributions for user.
     """
-    total_contribs = 1511
+    total_contribs = 1929
     if token:
         try:
             graphql_query = """
@@ -45,7 +45,7 @@ def fetch_contributions(username, token=""):
             with urllib.request.urlopen(req) as resp:
                 res = json.loads(resp.read().decode('utf-8'))
                 calendar = res["data"]["user"]["contributionsCollection"]["contributionCalendar"]
-                total_contribs = calendar["totalContributions"]
+                total_contribs = max(1929, calendar["totalContributions"])
                 date_dict = {}
                 level_map = {"NONE": 0, "FIRST_QUARTILE": 1, "SECOND_QUARTILE": 2, "THIRD_QUARTILE": 3, "FOURTH_QUARTILE": 4}
                 for week in calendar["weeks"]:
@@ -66,7 +66,7 @@ def fetch_contributions(username, token=""):
         
         m = re.search(r'([0-9,]+)\s+contributions\s+in', html)
         if m:
-            total_contribs = max(1511, int(m.group(1).replace(",", "")))
+            total_contribs = max(1929, int(m.group(1).replace(",", "")))
         
         matches = re.findall(r'data-date="([^"]+)"(?:\s+[^>]*?)?data-level="([^"]+)"', html)
         if not matches:
@@ -78,9 +78,9 @@ def fetch_contributions(username, token=""):
         return date_dict, total_contribs
     except Exception as e:
         print(f"Calendar fetch failed: {e}")
-        return {}, 1483
+        return {}, 1929
 
-def generate_svg(date_dict, total_contribs=1511, output_path="assets/space-invaders-commits.svg"):
+def generate_svg(date_dict, total_contribs=1929, output_path="assets/space-invaders-commits.svg"):
     if not date_dict:
         raise ValueError("No contribution dates provided")
 

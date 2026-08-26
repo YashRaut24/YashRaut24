@@ -1,4 +1,4 @@
-<svg width="850" height="150" viewBox="0 0 850 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg width="850" height="155" viewBox="0 0 850 155" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <defs>
     <style>
       .portal-bg       { fill: #0B0C10; stroke: #1F2430; stroke-width: 1.5; }
@@ -29,15 +29,15 @@
         50%      { opacity: 0.2; }
       }
 
-      .sweep-beam { animation: radarSweep 4s linear infinite; transform-origin: 735px 75px; }
-      .blip1      { animation: blipPing1 4s ease-out infinite; transform-origin: 755px 60px; }
-      .blip2      { animation: blipPing2 4s ease-out infinite; transform-origin: 715px 95px; }
+      .sweep-beam { animation: radarSweep 4s linear infinite; transform-origin: 735px 85px; }
+      .blip1      { animation: blipPing1 4s ease-out infinite; transform-origin: 755px 70px; }
+      .blip2      { animation: blipPing2 4s ease-out infinite; transform-origin: 715px 105px; }
       .beacon     { animation: beaconBlink 1.2s steps(2, start) infinite; }
     </style>
   </defs>
 
   <!-- Container Box Frame -->
-  <rect width="850" height="150" rx="6" class="portal-bg"/>
+  <rect width="850" height="155" rx="6" class="portal-bg"/>
 
   <!-- Top System Header Bar -->
   <g transform="translate(26, 20)">
@@ -47,17 +47,25 @@
   </g>
   <line x1="0" y1="38" x2="850" y2="38" stroke="#1F2430" stroke-width="1.2"/>
 
-  <!-- Left Content: Radar Telemetry & Status -->
-  <g transform="translate(36, 56)">
-    <!-- Radar Status Pill -->
-    <g transform="translate(0, 0)">
-      <rect width="210" height="22" rx="3" class="status-pill"/>
-      <circle cx="10" cy="11" r="3.5" fill="#39D353"/>
-      <text x="20" y="15" class="status-txt">ORBITAL TRAFFIC: MONITORING</text>
+  <!-- Left Content: Radar Telemetry with Integrated Visitor Badge -->
+  <g transform="translate(36, 54)">
+    <!-- Row 1: Radar Status Pill + Integrated Live Traffic Badge -->
+    <g>
+      <!-- Radar Status Pill -->
+      <g transform="translate(0, 0)">
+        <rect width="200" height="24" rx="3" class="status-pill"/>
+        <circle cx="10" cy="12" r="3.5" fill="#39D353"/>
+        <text x="20" y="16" class="status-txt">ORBITAL TRAFFIC: LIVE</text>
+      </g>
+
+      <!-- Integrated Live Traffic Counter Badge (Embedded directly in console) -->
+      <g transform="translate(212, 0)">
+        <image xlink:href="https://komarev.com/ghpvc/?username=YashRaut24-spaceport&amp;style=flat-square&amp;color=00F0FF&amp;labelColor=111216&amp;label=ORBITAL+TRAFFIC" width="135" height="24"/>
+      </g>
     </g>
 
-    <!-- Radar Description -->
-    <g transform="translate(0, 34)">
+    <!-- Row 2: Radar Description -->
+    <g transform="translate(0, 36)">
       <text x="0" y="14" class="radar-title">Deep-Space Subspace Sensor Array</text>
       <text x="0" y="32" class="radar-sub">Real-time incoming spacecraft telemetry &amp; visitor proximity tracking.</text>
       <text x="0" y="46" class="radar-sub">Scanning celestial quadrant: Mumbai Cosmodrome / Earth Orbit.</text>
@@ -67,36 +75,36 @@
   <!-- Right Side: Kinetic Animated Radar Screen -->
   <g>
     <!-- Radar Rings -->
-    <circle cx="735" cy="85" r="48" fill="#111216" stroke="#1F2430" stroke-width="1.2"/>
-    <circle cx="735" cy="85" r="36" fill="none" stroke="#2563EB" stroke-width="1" stroke-dasharray="4 4"/>
-    <circle cx="735" cy="85" r="24" fill="none" stroke="#1F2430" stroke-width="1"/>
-    <circle cx="735" cy="85" r="12" fill="none" stroke="#1F2430" stroke-width="1"/>
-    <circle cx="735" cy="85" r="2.5" fill="#00F0FF"/>
+    <circle cx="735" cy="90" r="48" fill="#111216" stroke="#1F2430" stroke-width="1.2"/>
+    <circle cx="735" cy="90" r="36" fill="none" stroke="#2563EB" stroke-width="1" stroke-dasharray="4 4"/>
+    <circle cx="735" cy="90" r="24" fill="none" stroke="#1F2430" stroke-width="1"/>
+    <circle cx="735" cy="90" r="12" fill="none" stroke="#1F2430" stroke-width="1"/>
+    <circle cx="735" cy="90" r="2.5" fill="#00F0FF"/>
 
     <!-- Crosshairs -->
-    <line x1="680" y1="85" x2="790" y2="85" stroke="#1F2430" stroke-width="1"/>
-    <line x1="735" y1="30" x2="735" y2="140" stroke="#1F2430" stroke-width="1"/>
+    <line x1="680" y1="90" x2="790" y2="90" stroke="#1F2430" stroke-width="1"/>
+    <line x1="735" y1="35" x2="735" y2="145" stroke="#1F2430" stroke-width="1"/>
 
     <!-- Rotating Radar Sweep Beam -->
     <g class="sweep-beam">
-      <line x1="735" y1="85" x2="735" y2="37" stroke="#00F0FF" stroke-width="2" stroke-linecap="round"/>
-      <polygon points="735,85 730,37 735,37" fill="#00F0FF" opacity="0.3"/>
+      <line x1="735" y1="90" x2="735" y2="42" stroke="#00F0FF" stroke-width="2" stroke-linecap="round"/>
+      <polygon points="735,90 730,42 735,42" fill="#00F0FF" opacity="0.3"/>
     </g>
 
     <!-- Radar Blip Pings (Pinging Spacecraft) -->
     <g class="blip1">
-      <circle cx="755" cy="60" r="3" fill="#39D353"/>
-      <circle cx="755" cy="60" r="6" fill="none" stroke="#39D353" stroke-width="1"/>
+      <circle cx="755" cy="70" r="3" fill="#39D353"/>
+      <circle cx="755" cy="70" r="6" fill="none" stroke="#39D353" stroke-width="1"/>
     </g>
     <g class="blip2">
-      <circle cx="715" cy="95" r="3" fill="#00F0FF"/>
-      <circle cx="715" cy="95" r="6" fill="none" stroke="#00F0FF" stroke-width="1"/>
+      <circle cx="715" cy="105" r="3" fill="#00F0FF"/>
+      <circle cx="715" cy="105" r="6" fill="none" stroke="#00F0FF" stroke-width="1"/>
     </g>
 
     <!-- Coordinates Ticks -->
-    <text x="731" y="42" font-family="'JetBrains Mono', monospace" font-size="7.5px" fill="#71737E">0°</text>
-    <text x="778" y="88" font-family="'JetBrains Mono', monospace" font-size="7.5px" fill="#71737E">90°</text>
-    <text x="726" y="132" font-family="'JetBrains Mono', monospace" font-size="7.5px" fill="#71737E">180°</text>
-    <text x="682" y="88" font-family="'JetBrains Mono', monospace" font-size="7.5px" fill="#71737E">270°</text>
+    <text x="731" y="47" font-family="'JetBrains Mono', monospace" font-size="7.5px" fill="#71737E">0°</text>
+    <text x="778" y="93" font-family="'JetBrains Mono', monospace" font-size="7.5px" fill="#71737E">90°</text>
+    <text x="726" y="137" font-family="'JetBrains Mono', monospace" font-size="7.5px" fill="#71737E">180°</text>
+    <text x="682" y="93" font-family="'JetBrains Mono', monospace" font-size="7.5px" fill="#71737E">270°</text>
   </g>
 </svg>
