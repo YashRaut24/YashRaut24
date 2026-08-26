@@ -7,114 +7,191 @@
       .month-lbl   { font-family: 'JetBrains Mono', Consolas, monospace; font-size: 9px; fill: #52545F; }
       .score-lbl   { font-family: 'JetBrains Mono', Consolas, monospace; font-size: 9.5px; fill: #71737E; }
 
-      /* Ship Waypoints targeting the 4 exact single commit coordinates */
-      @keyframes shipTargetRoute {
-        0%, 20%   { transform: translateX(195px); }
-        25%, 45%  { transform: translateX(300px); }
-        50%, 70%  { transform: translateX(435px); }
-        75%, 95%  { transform: translateX(585px); }
-        100%      { transform: translateX(195px); }
-      }
-
-      /* Staged light reduction keyframes for each specific struck single commit */
-      /* Target 1: struck at t = 0% to 20% */
-      @keyframes lightDeplete1 {
-        0%        { fill: #39D353; }
-        4%        { fill: #26A641; }
-        8%        { fill: #006D32; }
-        12%       { fill: #0E4429; }
-        16%, 85%  { fill: #161B22; }
-        96%, 100% { fill: #39D353; }
-      }
-
-      /* Target 2: struck at t = 25% to 45% */
-      @keyframes lightDeplete2 {
-        0%, 25%   { fill: #39D353; }
-        29%       { fill: #26A641; }
-        33%       { fill: #006D32; }
-        37%       { fill: #0E4429; }
-        41%, 88%  { fill: #161B22; }
-        98%, 100% { fill: #39D353; }
-      }
-
-      /* Target 3: struck at t = 50% to 70% */
-      @keyframes lightDeplete3 {
-        0%, 50%   { fill: #39D353; }
-        54%       { fill: #26A641; }
-        58%       { fill: #006D32; }
-        62%       { fill: #0E4429; }
-        66%, 92%  { fill: #161B22; }
-        99%, 100% { fill: #39D353; }
-      }
-
-      /* Target 4: struck at t = 75% to 95% */
-      @keyframes lightDeplete4 {
-        0%, 75%   { fill: #39D353; }
-        79%       { fill: #26A641; }
-        83%       { fill: #006D32; }
-        87%       { fill: #0E4429; }
-        91%, 98%  { fill: #161B22; }
-        100%      { fill: #39D353; }
-      }
-
-      /* Precision Laser Beam firing exactly to target height */
-      @keyframes laserPulseBeam {
-        0%   { opacity: 0; transform: scaleY(0.1); }
-        20%  { opacity: 1; transform: scaleY(1); }
-        80%  { opacity: 1; transform: scaleY(1); }
-        100% { opacity: 0; transform: scaleY(0.1); }
-      }
-
-      /* Hit Sparks triggering directly on top of the target commit */
-      @keyframes hitSparksT1 {
-        0%, 18%   { opacity: 0; transform: scale(0.2); }
-        3%, 9%    { opacity: 1; transform: scale(1.6); }
-        20%, 100% { opacity: 0; transform: scale(0.2); }
-      }
-      @keyframes hitSparksT2 {
-        0%, 24%   { opacity: 0; transform: scale(0.2); }
-        28%, 34%  { opacity: 1; transform: scale(1.6); }
-        46%, 100% { opacity: 0; transform: scale(0.2); }
-      }
-      @keyframes hitSparksT3 {
-        0%, 49%   { opacity: 0; transform: scale(0.2); }
-        53%, 59%  { opacity: 1; transform: scale(1.6); }
-        71%, 100% { opacity: 0; transform: scale(0.2); }
-      }
-      @keyframes hitSparksT4 {
-        0%, 74%   { opacity: 0; transform: scale(0.2); }
-        78%, 84%  { opacity: 1; transform: scale(1.6); }
-        96%, 100% { opacity: 0; transform: scale(0.2); }
-      }
-
       @keyframes beaconBlink { 0%, 100% { opacity: 1; } 50% { opacity: 0.2; } }
 
-      .ship-track    { animation: shipTargetRoute 14s ease-in-out infinite; }
-      .laser-active  { animation: laserPulseBeam 0.5s linear infinite; transform-origin: bottom; }
-      .target-hit-1  { animation: lightDeplete1 14s ease-in-out infinite; }
-      .target-hit-2  { animation: lightDeplete2 14s ease-in-out infinite; }
-      .target-hit-3  { animation: lightDeplete3 14s ease-in-out infinite; }
-      .target-hit-4  { animation: lightDeplete4 14s ease-in-out infinite; }
-      .spark-hit-1   { animation: hitSparksT1 14s ease-in-out infinite; transform-origin: 200px 10px; }
-      .spark-hit-2   { animation: hitSparksT2 14s ease-in-out infinite; transform-origin: 305px 88px; }
-      .spark-hit-3   { animation: hitSparksT3 14s ease-in-out infinite; transform-origin: 440px 10px; }
-      .spark-hit-4   { animation: hitSparksT4 14s ease-in-out infinite; transform-origin: 590px 88px; }
-      .live-dot      { animation: beaconBlink 1s steps(2, start) infinite; }
+      .ship-patrol { animation: shipPatrolRoute 24s cubic-bezier(0.4, 0, 0.2, 1) infinite; }
+      .live-beacon { animation: beaconBlink 1s steps(2, start) infinite; }
+      .laser-bolt-1   { animation: laserShot1 24s linear infinite; }
+      .spark-burst-1  { animation: sparkHit1 24s ease-out infinite; transform-origin: 95px 70px; }
+      .commit-target-1 { animation: commitDamage1 24s ease-in-out infinite; }
+      .laser-bolt-2   { animation: laserShot2 24s linear infinite; }
+      .spark-burst-2  { animation: sparkHit2 24s ease-out infinite; transform-origin: 425px 44px; }
+      .commit-target-2 { animation: commitDamage2 24s ease-in-out infinite; }
+      .laser-bolt-3   { animation: laserShot3 24s linear infinite; }
+      .spark-burst-3  { animation: sparkHit3 24s ease-out infinite; transform-origin: 200px 70px; }
+      .commit-target-3 { animation: commitDamage3 24s ease-in-out infinite; }
+      .laser-bolt-4   { animation: laserShot4 24s linear infinite; }
+      .spark-burst-4  { animation: sparkHit4 24s ease-out infinite; transform-origin: 680px 57px; }
+      .commit-target-4 { animation: commitDamage4 24s ease-in-out infinite; }
+      .laser-bolt-5   { animation: laserShot5 24s linear infinite; }
+      .spark-burst-5  { animation: sparkHit5 24s ease-out infinite; transform-origin: 320px 83px; }
+      .commit-target-5 { animation: commitDamage5 24s ease-in-out infinite; }
+      .laser-bolt-6   { animation: laserShot6 24s linear infinite; }
+      .spark-burst-6  { animation: sparkHit6 24s ease-out infinite; transform-origin: 545px 31px; }
+      .commit-target-6 { animation: commitDamage6 24s ease-in-out infinite; }
+
+      @keyframes shipPatrolRoute {
+  0% { transform: translateX(90px); }
+  5.00% { transform: translateX(90px); }
+  16.67% { transform: translateX(90px); }
+  22.92% { transform: translateX(420px); }
+  33.33% { transform: translateX(420px); }
+  38.33% { transform: translateX(195px); }
+  50.00% { transform: translateX(195px); }
+  56.67% { transform: translateX(675px); }
+  66.67% { transform: translateX(675px); }
+  72.08% { transform: translateX(315px); }
+  83.33% { transform: translateX(315px); }
+  88.33% { transform: translateX(540px); }
+  100% { transform: translateX(90px); }
+}
+
+      @keyframes laserShot1 {
+  0%, 6.24% { opacity: 0; transform: translateY(0px); }
+  6.25% { opacity: 1; transform: translateY(0px); }
+  7.87% { opacity: 1; transform: translateY(-16px); }
+  7.92%, 100% { opacity: 0; transform: translateY(-16px); }
+}
+
+      @keyframes laserShot2 {
+  0%, 23.95% { opacity: 0; transform: translateY(0px); }
+  23.96% { opacity: 1; transform: translateY(0px); }
+  25.57% { opacity: 1; transform: translateY(-42px); }
+  25.62%, 100% { opacity: 0; transform: translateY(-42px); }
+}
+
+      @keyframes laserShot3 {
+  0%, 39.37% { opacity: 0; transform: translateY(0px); }
+  39.38% { opacity: 1; transform: translateY(0px); }
+  40.99% { opacity: 1; transform: translateY(-16px); }
+  41.04%, 100% { opacity: 0; transform: translateY(-16px); }
+}
+
+      @keyframes laserShot4 {
+  0%, 57.70% { opacity: 0; transform: translateY(0px); }
+  57.71% { opacity: 1; transform: translateY(0px); }
+  59.33% { opacity: 1; transform: translateY(-29px); }
+  59.38%, 100% { opacity: 0; transform: translateY(-29px); }
+}
+
+      @keyframes laserShot5 {
+  0%, 73.11% { opacity: 0; transform: translateY(0px); }
+  73.12% { opacity: 1; transform: translateY(0px); }
+  74.74% { opacity: 1; transform: translateY(-3px); }
+  74.79%, 100% { opacity: 0; transform: translateY(-3px); }
+}
+
+      @keyframes laserShot6 {
+  0%, 89.36% { opacity: 0; transform: translateY(0px); }
+  89.38% { opacity: 1; transform: translateY(0px); }
+  90.99% { opacity: 1; transform: translateY(-55px); }
+  91.04%, 100% { opacity: 0; transform: translateY(-55px); }
+}
+
+      @keyframes sparkHit1 {
+  0%, 7.91% { opacity: 0; transform: scale(0.2); }
+  7.92% { opacity: 1; transform: scale(0.5); }
+  8.54% { opacity: 1; transform: scale(1.6); }
+  9.17%, 100% { opacity: 0; transform: scale(0.2); }
+}
+
+      @keyframes sparkHit2 {
+  0%, 25.61% { opacity: 0; transform: scale(0.2); }
+  25.62% { opacity: 1; transform: scale(0.5); }
+  26.25% { opacity: 1; transform: scale(1.6); }
+  26.88%, 100% { opacity: 0; transform: scale(0.2); }
+}
+
+      @keyframes sparkHit3 {
+  0%, 41.03% { opacity: 0; transform: scale(0.2); }
+  41.04% { opacity: 1; transform: scale(0.5); }
+  41.67% { opacity: 1; transform: scale(1.6); }
+  42.29%, 100% { opacity: 0; transform: scale(0.2); }
+}
+
+      @keyframes sparkHit4 {
+  0%, 59.37% { opacity: 0; transform: scale(0.2); }
+  59.38% { opacity: 1; transform: scale(0.5); }
+  60.00% { opacity: 1; transform: scale(1.6); }
+  60.62%, 100% { opacity: 0; transform: scale(0.2); }
+}
+
+      @keyframes sparkHit5 {
+  0%, 74.78% { opacity: 0; transform: scale(0.2); }
+  74.79% { opacity: 1; transform: scale(0.5); }
+  75.42% { opacity: 1; transform: scale(1.6); }
+  76.04%, 100% { opacity: 0; transform: scale(0.2); }
+}
+
+      @keyframes sparkHit6 {
+  0%, 91.03% { opacity: 0; transform: scale(0.2); }
+  91.04% { opacity: 1; transform: scale(0.5); }
+  91.67% { opacity: 1; transform: scale(1.6); }
+  92.29%, 100% { opacity: 0; transform: scale(0.2); }
+}
+
+      @keyframes commitDamage1 {
+  0%, 7.91% { fill: #39D353; stroke: none; }
+  7.92% { fill: #FDFBF7; stroke: #F59E0B; stroke-width: 1.5; }
+  9.17% { fill: #26A641; stroke: none; }
+  98.5% { fill: #26A641; stroke: none; }
+  100% { fill: #39D353; stroke: none; }
+}
+
+      @keyframes commitDamage2 {
+  0%, 25.61% { fill: #39D353; stroke: none; }
+  25.62% { fill: #FDFBF7; stroke: #F59E0B; stroke-width: 1.5; }
+  26.88% { fill: #26A641; stroke: none; }
+  98.5% { fill: #26A641; stroke: none; }
+  100% { fill: #39D353; stroke: none; }
+}
+
+      @keyframes commitDamage3 {
+  0%, 41.03% { fill: #26A641; stroke: none; }
+  41.04% { fill: #FDFBF7; stroke: #F59E0B; stroke-width: 1.5; }
+  42.29% { fill: #006D32; stroke: none; }
+  98.5% { fill: #006D32; stroke: none; }
+  100% { fill: #26A641; stroke: none; }
+}
+
+      @keyframes commitDamage4 {
+  0%, 59.37% { fill: #26A641; stroke: none; }
+  59.38% { fill: #FDFBF7; stroke: #F59E0B; stroke-width: 1.5; }
+  60.62% { fill: #006D32; stroke: none; }
+  98.5% { fill: #006D32; stroke: none; }
+  100% { fill: #26A641; stroke: none; }
+}
+
+      @keyframes commitDamage5 {
+  0%, 74.78% { fill: #006D32; stroke: none; }
+  74.79% { fill: #FDFBF7; stroke: #F59E0B; stroke-width: 1.5; }
+  76.04% { fill: #0E4429; stroke: none; }
+  98.5% { fill: #0E4429; stroke: none; }
+  100% { fill: #006D32; stroke: none; }
+}
+
+      @keyframes commitDamage6 {
+  0%, 91.03% { fill: #39D353; stroke: none; }
+  91.04% { fill: #FDFBF7; stroke: #F59E0B; stroke-width: 1.5; }
+  92.29% { fill: #26A641; stroke: none; }
+  98.5% { fill: #26A641; stroke: none; }
+  100% { fill: #39D353; stroke: none; }
+}
     </style>
   </defs>
 
-  <!-- Container -->
+  <!-- Container Box -->
   <rect width="850" height="250" rx="4" class="bh-bg"/>
 
   <!-- Top Title Bar -->
   <g transform="translate(24, 22)">
-    <circle cx="0" cy="5" r="3.5" fill="#39D353" class="live-dot"/>
-    <text x="14" y="9" class="tag-txt">PLATE 03 // LASER CANNON: COMMIT LIGHT DEPLETION ARCADE</text>
-    <text x="500" y="9" class="sub-txt">[LIVE REPO HISTORY // SINGLE-COMMIT LASER STRIKE]</text>
+    <circle cx="0" cy="5" r="3.5" fill="#39D353" class="live-beacon"/>
+    <text x="14" y="9" class="tag-txt">PLATE 03 // RETRO SPACE INVADERS: COMMIT BLAST ARCADE</text>
+    <text x="500" y="9" class="sub-txt">[AUTONOMOUS CANNON // LIVE TARGET STRIKES]</text>
   </g>
   <line x1="0" y1="42" x2="850" y2="42" stroke="#2C303B" stroke-width="1"/>
 
-  <!-- 52x7 Real GitHub Contribution Heatmap Area -->
+  <!-- 52x7 Real GitHub Contribution Matrix -->
   <g transform="translate(36, 62)">
     
     <!-- Month Labels -->
@@ -180,7 +257,7 @@
       <rect x="90" y="26" width="10" height="10" rx="2" fill="#0E4429"/>
       <rect x="90" y="39" width="10" height="10" rx="2" fill="#006D32"/>
       <rect x="90" y="52" width="10" height="10" rx="2" fill="#0E4429"/>
-      <rect x="90" y="65" width="10" height="10" rx="2" fill="#39D353"/>
+      <rect x="90" y="65" width="10" height="10" rx="2" class="commit-target-1"/>
       <rect x="90" y="78" width="10" height="10" rx="2" fill="#0E4429"/>
       <rect x="105" y="0" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="105" y="13" width="10" height="10" rx="2" fill="#161B22"/>
@@ -224,12 +301,12 @@
       <rect x="180" y="52" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="180" y="65" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="180" y="78" width="10" height="10" rx="2" fill="#161B22"/>
-      <rect x="195" y="0" width="10" height="10" rx="2" class="target-hit-1"/>
+      <rect x="195" y="0" width="10" height="10" rx="2" fill="#006D32"/>
       <rect x="195" y="13" width="10" height="10" rx="2" fill="#0E4429"/>
       <rect x="195" y="26" width="10" height="10" rx="2" fill="#006D32"/>
       <rect x="195" y="39" width="10" height="10" rx="2" fill="#39D353"/>
       <rect x="195" y="52" width="10" height="10" rx="2" fill="#0E4429"/>
-      <rect x="195" y="65" width="10" height="10" rx="2" fill="#26A641"/>
+      <rect x="195" y="65" width="10" height="10" rx="2" class="commit-target-3"/>
       <rect x="195" y="78" width="10" height="10" rx="2" fill="#006D32"/>
       <rect x="210" y="0" width="10" height="10" rx="2" fill="#0E4429"/>
       <rect x="210" y="13" width="10" height="10" rx="2" fill="#0E4429"/>
@@ -279,14 +356,14 @@
       <rect x="300" y="39" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="300" y="52" width="10" height="10" rx="2" fill="#0E4429"/>
       <rect x="300" y="65" width="10" height="10" rx="2" fill="#006D32"/>
-      <rect x="300" y="78" width="10" height="10" rx="2" class="target-hit-2"/>
+      <rect x="300" y="78" width="10" height="10" rx="2" fill="#26A641"/>
       <rect x="315" y="0" width="10" height="10" rx="2" fill="#0E4429"/>
       <rect x="315" y="13" width="10" height="10" rx="2" fill="#0E4429"/>
       <rect x="315" y="26" width="10" height="10" rx="2" fill="#0E4429"/>
       <rect x="315" y="39" width="10" height="10" rx="2" fill="#0E4429"/>
       <rect x="315" y="52" width="10" height="10" rx="2" fill="#39D353"/>
       <rect x="315" y="65" width="10" height="10" rx="2" fill="#0E4429"/>
-      <rect x="315" y="78" width="10" height="10" rx="2" fill="#006D32"/>
+      <rect x="315" y="78" width="10" height="10" rx="2" class="commit-target-5"/>
       <rect x="330" y="0" width="10" height="10" rx="2" fill="#006D32"/>
       <rect x="330" y="13" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="330" y="26" width="10" height="10" rx="2" fill="#161B22"/>
@@ -332,11 +409,11 @@
       <rect x="420" y="0" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="420" y="13" width="10" height="10" rx="2" fill="#0E4429"/>
       <rect x="420" y="26" width="10" height="10" rx="2" fill="#006D32"/>
-      <rect x="420" y="39" width="10" height="10" rx="2" fill="#39D353"/>
+      <rect x="420" y="39" width="10" height="10" rx="2" class="commit-target-2"/>
       <rect x="420" y="52" width="10" height="10" rx="2" fill="#39D353"/>
       <rect x="420" y="65" width="10" height="10" rx="2" fill="#0E4429"/>
       <rect x="420" y="78" width="10" height="10" rx="2" fill="#006D32"/>
-      <rect x="435" y="0" width="10" height="10" rx="2" class="target-hit-3"/>
+      <rect x="435" y="0" width="10" height="10" rx="2" fill="#39D353"/>
       <rect x="435" y="13" width="10" height="10" rx="2" fill="#0E4429"/>
       <rect x="435" y="26" width="10" height="10" rx="2" fill="#0E4429"/>
       <rect x="435" y="39" width="10" height="10" rx="2" fill="#0E4429"/>
@@ -387,7 +464,7 @@
       <rect x="525" y="78" width="10" height="10" rx="2" fill="#0E4429"/>
       <rect x="540" y="0" width="10" height="10" rx="2" fill="#26A641"/>
       <rect x="540" y="13" width="10" height="10" rx="2" fill="#26A641"/>
-      <rect x="540" y="26" width="10" height="10" rx="2" fill="#39D353"/>
+      <rect x="540" y="26" width="10" height="10" rx="2" class="commit-target-6"/>
       <rect x="540" y="39" width="10" height="10" rx="2" fill="#0E4429"/>
       <rect x="540" y="52" width="10" height="10" rx="2" fill="#26A641"/>
       <rect x="540" y="65" width="10" height="10" rx="2" fill="#0E4429"/>
@@ -412,7 +489,7 @@
       <rect x="585" y="39" width="10" height="10" rx="2" fill="#26A641"/>
       <rect x="585" y="52" width="10" height="10" rx="2" fill="#0E4429"/>
       <rect x="585" y="65" width="10" height="10" rx="2" fill="#006D32"/>
-      <rect x="585" y="78" width="10" height="10" rx="2" class="target-hit-4"/>
+      <rect x="585" y="78" width="10" height="10" rx="2" fill="#26A641"/>
       <rect x="600" y="0" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="600" y="13" width="10" height="10" rx="2" fill="#0E4429"/>
       <rect x="600" y="26" width="10" height="10" rx="2" fill="#161B22"/>
@@ -452,7 +529,7 @@
       <rect x="675" y="13" width="10" height="10" rx="2" fill="#39D353"/>
       <rect x="675" y="26" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="675" y="39" width="10" height="10" rx="2" fill="#0E4429"/>
-      <rect x="675" y="52" width="10" height="10" rx="2" fill="#26A641"/>
+      <rect x="675" y="52" width="10" height="10" rx="2" class="commit-target-4"/>
       <rect x="675" y="65" width="10" height="10" rx="2" fill="#0E4429"/>
       <rect x="675" y="78" width="10" height="10" rx="2" fill="#006D32"/>
       <rect x="690" y="0" width="10" height="10" rx="2" fill="#0E4429"/>
@@ -499,40 +576,99 @@
       <rect x="765" y="78" width="10" height="10" rx="2" fill="#0E4429"/>
     </g>
 
-    <!-- Precise Impact Spark Bursts on the 4 Target Single Commits -->
-    <g transform="translate(200, 10)" class="spark-hit-1">
-      <circle cx="0" cy="0" r="3" fill="#39D353"/>
-      <line x1="-5" y1="-5" x2="5" y2="5" stroke="#FDFBF7" stroke-width="1.5"/>
-      <line x1="5" y1="-5" x2="-5" y2="5" stroke="#FDFBF7" stroke-width="1.5"/>
+    <!-- Fired Laser Projectile Bolts (Only one active per attack, traveling directly to target commit) -->
+    <!-- Laser 1 targeting Col 6, Row 5 -->
+    <g class="laser-bolt-1">
+      <line x1="95" y1="86" x2="95" y2="72" stroke="#E11D48" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="95" y1="86" x2="95" y2="72" stroke="#FDFBF7" stroke-width="1.2" stroke-linecap="round"/>
     </g>
-    <g transform="translate(305, 88)" class="spark-hit-2">
-      <circle cx="0" cy="0" r="3" fill="#39D353"/>
-      <line x1="-5" y1="-5" x2="5" y2="5" stroke="#FDFBF7" stroke-width="1.5"/>
-      <line x1="5" y1="-5" x2="-5" y2="5" stroke="#FDFBF7" stroke-width="1.5"/>
+    <!-- Laser 2 targeting Col 28, Row 3 -->
+    <g class="laser-bolt-2">
+      <line x1="425" y1="86" x2="425" y2="72" stroke="#E11D48" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="425" y1="86" x2="425" y2="72" stroke="#FDFBF7" stroke-width="1.2" stroke-linecap="round"/>
     </g>
-    <g transform="translate(440, 10)" class="spark-hit-3">
-      <circle cx="0" cy="0" r="3" fill="#39D353"/>
-      <line x1="-5" y1="-5" x2="5" y2="5" stroke="#FDFBF7" stroke-width="1.5"/>
-      <line x1="5" y1="-5" x2="-5" y2="5" stroke="#FDFBF7" stroke-width="1.5"/>
+    <!-- Laser 3 targeting Col 13, Row 5 -->
+    <g class="laser-bolt-3">
+      <line x1="200" y1="86" x2="200" y2="72" stroke="#E11D48" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="200" y1="86" x2="200" y2="72" stroke="#FDFBF7" stroke-width="1.2" stroke-linecap="round"/>
     </g>
-    <g transform="translate(590, 88)" class="spark-hit-4">
-      <circle cx="0" cy="0" r="3" fill="#39D353"/>
-      <line x1="-5" y1="-5" x2="5" y2="5" stroke="#FDFBF7" stroke-width="1.5"/>
-      <line x1="5" y1="-5" x2="-5" y2="5" stroke="#FDFBF7" stroke-width="1.5"/>
+    <!-- Laser 4 targeting Col 45, Row 4 -->
+    <g class="laser-bolt-4">
+      <line x1="680" y1="86" x2="680" y2="72" stroke="#E11D48" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="680" y1="86" x2="680" y2="72" stroke="#FDFBF7" stroke-width="1.2" stroke-linecap="round"/>
+    </g>
+    <!-- Laser 5 targeting Col 21, Row 6 -->
+    <g class="laser-bolt-5">
+      <line x1="320" y1="86" x2="320" y2="72" stroke="#E11D48" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="320" y1="86" x2="320" y2="72" stroke="#FDFBF7" stroke-width="1.2" stroke-linecap="round"/>
+    </g>
+    <!-- Laser 6 targeting Col 36, Row 2 -->
+    <g class="laser-bolt-6">
+      <line x1="545" y1="86" x2="545" y2="72" stroke="#E11D48" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="545" y1="86" x2="545" y2="72" stroke="#FDFBF7" stroke-width="1.2" stroke-linecap="round"/>
     </g>
 
-    <!-- Rocket Spaceship patrolling beneath the targeted single commits -->
-    <g class="ship-track">
-      <!-- Laser Beam extending upward to target -->
-      <line x1="5" y1="92" x2="5" y2="20" stroke="#E11D48" stroke-width="2.5" class="laser-active"/>
-      <line x1="5" y1="92" x2="5" y2="20" stroke="#FDFBF7" stroke-width="1.2" class="laser-active"/>
+    <!-- Impact Spark Bursts on Targeted Commits -->
+    <!-- Impact Burst 1 at (95, 70) -->
+    <g transform="translate(95, 70)" class="spark-burst-1">
+      <circle cx="0" cy="0" r="4" fill="#FDFBF7"/>
+      <line x1="-5" y1="-5" x2="5" y2="5" stroke="#F59E0B" stroke-width="1.5"/>
+      <line x1="5" y1="-5" x2="-5" y2="5" stroke="#F59E0B" stroke-width="1.5"/>
+      <line x1="-6" y1="0" x2="6" y2="0" stroke="#E11D48" stroke-width="1.2"/>
+      <line x1="0" y1="-6" x2="0" y2="6" stroke="#E11D48" stroke-width="1.2"/>
+    </g>
+    <!-- Impact Burst 2 at (425, 44) -->
+    <g transform="translate(425, 44)" class="spark-burst-2">
+      <circle cx="0" cy="0" r="4" fill="#FDFBF7"/>
+      <line x1="-5" y1="-5" x2="5" y2="5" stroke="#F59E0B" stroke-width="1.5"/>
+      <line x1="5" y1="-5" x2="-5" y2="5" stroke="#F59E0B" stroke-width="1.5"/>
+      <line x1="-6" y1="0" x2="6" y2="0" stroke="#E11D48" stroke-width="1.2"/>
+      <line x1="0" y1="-6" x2="0" y2="6" stroke="#E11D48" stroke-width="1.2"/>
+    </g>
+    <!-- Impact Burst 3 at (200, 70) -->
+    <g transform="translate(200, 70)" class="spark-burst-3">
+      <circle cx="0" cy="0" r="4" fill="#FDFBF7"/>
+      <line x1="-5" y1="-5" x2="5" y2="5" stroke="#F59E0B" stroke-width="1.5"/>
+      <line x1="5" y1="-5" x2="-5" y2="5" stroke="#F59E0B" stroke-width="1.5"/>
+      <line x1="-6" y1="0" x2="6" y2="0" stroke="#E11D48" stroke-width="1.2"/>
+      <line x1="0" y1="-6" x2="0" y2="6" stroke="#E11D48" stroke-width="1.2"/>
+    </g>
+    <!-- Impact Burst 4 at (680, 57) -->
+    <g transform="translate(680, 57)" class="spark-burst-4">
+      <circle cx="0" cy="0" r="4" fill="#FDFBF7"/>
+      <line x1="-5" y1="-5" x2="5" y2="5" stroke="#F59E0B" stroke-width="1.5"/>
+      <line x1="5" y1="-5" x2="-5" y2="5" stroke="#F59E0B" stroke-width="1.5"/>
+      <line x1="-6" y1="0" x2="6" y2="0" stroke="#E11D48" stroke-width="1.2"/>
+      <line x1="0" y1="-6" x2="0" y2="6" stroke="#E11D48" stroke-width="1.2"/>
+    </g>
+    <!-- Impact Burst 5 at (320, 83) -->
+    <g transform="translate(320, 83)" class="spark-burst-5">
+      <circle cx="0" cy="0" r="4" fill="#FDFBF7"/>
+      <line x1="-5" y1="-5" x2="5" y2="5" stroke="#F59E0B" stroke-width="1.5"/>
+      <line x1="5" y1="-5" x2="-5" y2="5" stroke="#F59E0B" stroke-width="1.5"/>
+      <line x1="-6" y1="0" x2="6" y2="0" stroke="#E11D48" stroke-width="1.2"/>
+      <line x1="0" y1="-6" x2="0" y2="6" stroke="#E11D48" stroke-width="1.2"/>
+    </g>
+    <!-- Impact Burst 6 at (545, 31) -->
+    <g transform="translate(545, 31)" class="spark-burst-6">
+      <circle cx="0" cy="0" r="4" fill="#FDFBF7"/>
+      <line x1="-5" y1="-5" x2="5" y2="5" stroke="#F59E0B" stroke-width="1.5"/>
+      <line x1="5" y1="-5" x2="-5" y2="5" stroke="#F59E0B" stroke-width="1.5"/>
+      <line x1="-6" y1="0" x2="6" y2="0" stroke="#E11D48" stroke-width="1.2"/>
+      <line x1="0" y1="-6" x2="0" y2="6" stroke="#E11D48" stroke-width="1.2"/>
+    </g>
 
-      <!-- Rocket Body -->
+    <!-- Autonomous Rocket Spaceship patrolling beneath targeted commits -->
+    <g class="ship-patrol">
       <g transform="translate(5, 96)">
+        <!-- Rocket Nose Cone (Cannon Tip at y = 86 relative to grid) -->
         <polygon points="0,-10 9,4 -9,4" fill="#FDFBF7"/>
+        <!-- Rocket Body & Wings -->
         <rect x="-9" y="4" width="18" height="6" rx="1.5" fill="#2563EB"/>
         <rect x="-4" y="1" width="8" height="7" fill="#E11D48"/>
+        <!-- Cockpit Window -->
         <circle cx="0" cy="-2" r="2" fill="#00F0FF"/>
+        <!-- Rocket Thruster Flames -->
         <polygon points="-6,10 -4,15 -2,10" fill="#F59E0B"/>
         <polygon points="2,10 4,15 6,10" fill="#F59E0B"/>
       </g>
