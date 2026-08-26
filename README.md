@@ -51,8 +51,15 @@
 
 <br/><br/>
 
-<!-- SECTOR 07: SENSOR ARRAY ACTIVE ORBITAL RADAR (SINGLE UNIFIED BLOCK) -->
-<img src="./assets/space-portal-traffic.svg?v=portal-1929" alt="Active Orbital Radar Sensor Array" width="100%" />
+<!-- SECTOR 07: SENSOR ARRAY ACTIVE ORBITAL RADAR -->
+<img src="./assets/space-portal-traffic.svg?v=orbit-radar-v2" alt="Active Orbital Radar Sensor Array" width="100%" />
+
+<br/>
+
+<!-- LIVE ORBITAL TRAFFIC COUNTER -->
+<a href="https://komarev.com/ghpvc/?username=YashRaut24-spaceport">
+  <img src="https://komarev.com/ghpvc/?username=YashRaut24-spaceport&style=for-the-badge&color=00F0FF&labelColor=0B0C10&label=ORBITAL+TRAFFIC+DETECTED" alt="Live Orbital Traffic Counter" />
+</a>
 
 <br/><br/>
 

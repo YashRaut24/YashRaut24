@@ -1,13 +1,13 @@
-<svg width="850" height="155" viewBox="0 0 850 155" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="850" height="135" viewBox="0 0 850 135" fill="none" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <style>
       .portal-bg       { fill: #0B0C10; stroke: #1F2430; stroke-width: 1.5; }
       .tag-lbl         { font-family: 'JetBrains Mono', Consolas, monospace; font-size: 10.5px; font-weight: 700; fill: #00F0FF; letter-spacing: 2px; }
       .sub-lbl         { font-family: 'JetBrains Mono', Consolas, monospace; font-size: 9px; fill: #71737E; letter-spacing: 1.5px; }
-      .radar-title     { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 15px; font-weight: 800; fill: #FDFBF7; }
+      .radar-title     { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 14.5px; font-weight: 800; fill: #FDFBF7; }
       .radar-sub       { font-family: 'JetBrains Mono', Consolas, monospace; font-size: 9.5px; fill: #A0A5B5; line-height: 15px; }
       .status-pill     { fill: #111216; stroke: #00F0FF; stroke-width: 1; }
-      .status-txt      { font-family: 'JetBrains Mono', Consolas, monospace; font-size: 9.5px; font-weight: 700; fill: #00F0FF; letter-spacing: 1px; }
+      .status-txt      { font-family: 'JetBrains Mono', Consolas, monospace; font-size: 9px; font-weight: 700; fill: #00F0FF; letter-spacing: 1px; }
 
       /* Radar Sweep Animation */
       @keyframes radarSweep {
@@ -29,43 +29,35 @@
         50%      { opacity: 0.2; }
       }
 
-      .sweep-beam { animation: radarSweep 4s linear infinite; transform-origin: 735px 85px; }
-      .blip1      { animation: blipPing1 4s ease-out infinite; transform-origin: 755px 70px; }
-      .blip2      { animation: blipPing2 4s ease-out infinite; transform-origin: 715px 105px; }
+      .sweep-beam { animation: radarSweep 4s linear infinite; transform-origin: 745px 75px; }
+      .blip1      { animation: blipPing1 4s ease-out infinite; transform-origin: 765px 58px; }
+      .blip2      { animation: blipPing2 4s ease-out infinite; transform-origin: 725px 90px; }
       .beacon     { animation: beaconBlink 1.2s steps(2, start) infinite; }
     </style>
   </defs>
 
   <!-- Container Box Frame -->
-  <rect width="850" height="155" rx="6" class="portal-bg"/>
+  <rect width="850" height="135" rx="6" class="portal-bg"/>
 
   <!-- Top System Header Bar -->
   <g transform="translate(26, 20)">
     <circle cx="0" cy="5" r="3.5" fill="#00F0FF" class="beacon"/>
-    <text x="14" y="9" class="tag-lbl">PORTAL GATEWAY // SENSOR ARRAY: ACTIVE ORBITAL RADAR</text>
+    <text x="14" y="9" class="tag-lbl">PORTAL GATEWAY // SECTOR 07: SENSOR ARRAY &amp; ORBITAL RADAR</text>
     <text x="590" y="9" class="sub-lbl">[360° DEEP-SPACE SCANNER ACTIVE]</text>
   </g>
-  <line x1="0" y1="38" x2="850" y2="38" stroke="#1F2430" stroke-width="1.2"/>
+  <line x1="0" y1="36" x2="850" y2="36" stroke="#1F2430" stroke-width="1.2"/>
 
-  <!-- Left Content: Radar Telemetry with Integrated Visitor Badge -->
-  <g transform="translate(36, 54)">
-    <!-- Row 1: Radar Status Pill + Integrated Live Traffic Badge -->
-    <g>
-      <!-- Radar Status Pill -->
-      <g transform="translate(0, 0)">
-        <rect width="200" height="24" rx="3" class="status-pill"/>
-        <circle cx="10" cy="12" r="3.5" fill="#39D353"/>
-        <text x="20" y="16" class="status-txt">ORBITAL TRAFFIC: LIVE</text>
-      </g>
-
-      <!-- Integrated Live Traffic Counter Badge (Embedded directly in console) -->
-      <g transform="translate(212, 0)">
-        <image xlink:href="https://komarev.com/ghpvc/?username=YashRaut24-spaceport&amp;style=flat-square&amp;color=00F0FF&amp;labelColor=111216&amp;label=ORBITAL+TRAFFIC" width="135" height="24"/>
-      </g>
+  <!-- Left Content: Radar Telemetry -->
+  <g transform="translate(36, 50)">
+    <!-- Status Pill -->
+    <g transform="translate(0, 0)">
+      <rect width="210" height="20" rx="3" class="status-pill"/>
+      <circle cx="10" cy="10" r="3.5" fill="#39D353"/>
+      <text x="20" y="13.5" class="status-txt">ORBITAL TRAFFIC: MONITORING</text>
     </g>
 
-    <!-- Row 2: Radar Description -->
-    <g transform="translate(0, 36)">
+    <!-- Description -->
+    <g transform="translate(0, 28)">
       <text x="0" y="14" class="radar-title">Deep-Space Subspace Sensor Array</text>
       <text x="0" y="32" class="radar-sub">Real-time incoming spacecraft telemetry &amp; visitor proximity tracking.</text>
       <text x="0" y="46" class="radar-sub">Scanning celestial quadrant: Mumbai Cosmodrome / Earth Orbit.</text>
@@ -75,36 +67,35 @@
   <!-- Right Side: Kinetic Animated Radar Screen -->
   <g>
     <!-- Radar Rings -->
-    <circle cx="735" cy="90" r="48" fill="#111216" stroke="#1F2430" stroke-width="1.2"/>
-    <circle cx="735" cy="90" r="36" fill="none" stroke="#2563EB" stroke-width="1" stroke-dasharray="4 4"/>
-    <circle cx="735" cy="90" r="24" fill="none" stroke="#1F2430" stroke-width="1"/>
-    <circle cx="735" cy="90" r="12" fill="none" stroke="#1F2430" stroke-width="1"/>
-    <circle cx="735" cy="90" r="2.5" fill="#00F0FF"/>
+    <circle cx="745" cy="78" r="42" fill="#111216" stroke="#1F2430" stroke-width="1.2"/>
+    <circle cx="745" cy="78" r="30" fill="none" stroke="#2563EB" stroke-width="1" stroke-dasharray="4 4"/>
+    <circle cx="745" cy="78" r="18" fill="none" stroke="#1F2430" stroke-width="1"/>
+    <circle cx="745" cy="78" r="2.5" fill="#00F0FF"/>
 
     <!-- Crosshairs -->
-    <line x1="680" y1="90" x2="790" y2="90" stroke="#1F2430" stroke-width="1"/>
-    <line x1="735" y1="35" x2="735" y2="145" stroke="#1F2430" stroke-width="1"/>
+    <line x1="695" y1="78" x2="795" y2="78" stroke="#1F2430" stroke-width="1"/>
+    <line x1="745" y1="28" x2="745" y2="128" stroke="#1F2430" stroke-width="1"/>
 
     <!-- Rotating Radar Sweep Beam -->
     <g class="sweep-beam">
-      <line x1="735" y1="90" x2="735" y2="42" stroke="#00F0FF" stroke-width="2" stroke-linecap="round"/>
-      <polygon points="735,90 730,42 735,42" fill="#00F0FF" opacity="0.3"/>
+      <line x1="745" y1="78" x2="745" y2="36" stroke="#00F0FF" stroke-width="2" stroke-linecap="round"/>
+      <polygon points="745,78 740,36 745,36" fill="#00F0FF" opacity="0.3"/>
     </g>
 
-    <!-- Radar Blip Pings (Pinging Spacecraft) -->
+    <!-- Radar Blip Pings -->
     <g class="blip1">
-      <circle cx="755" cy="70" r="3" fill="#39D353"/>
-      <circle cx="755" cy="70" r="6" fill="none" stroke="#39D353" stroke-width="1"/>
+      <circle cx="765" cy="58" r="2.5" fill="#39D353"/>
+      <circle cx="765" cy="58" r="5" fill="none" stroke="#39D353" stroke-width="1"/>
     </g>
     <g class="blip2">
-      <circle cx="715" cy="105" r="3" fill="#00F0FF"/>
-      <circle cx="715" cy="105" r="6" fill="none" stroke="#00F0FF" stroke-width="1"/>
+      <circle cx="725" cy="90" r="2.5" fill="#00F0FF"/>
+      <circle cx="725" cy="90" r="5" fill="none" stroke="#00F0FF" stroke-width="1"/>
     </g>
 
     <!-- Coordinates Ticks -->
-    <text x="731" y="47" font-family="'JetBrains Mono', monospace" font-size="7.5px" fill="#71737E">0°</text>
-    <text x="778" y="93" font-family="'JetBrains Mono', monospace" font-size="7.5px" fill="#71737E">90°</text>
-    <text x="726" y="137" font-family="'JetBrains Mono', monospace" font-size="7.5px" fill="#71737E">180°</text>
-    <text x="682" y="93" font-family="'JetBrains Mono', monospace" font-size="7.5px" fill="#71737E">270°</text>
+    <text x="741" y="42" font-family="'JetBrains Mono', monospace" font-size="7px" fill="#71737E">0°</text>
+    <text x="782" y="81" font-family="'JetBrains Mono', monospace" font-size="7px" fill="#71737E">90°</text>
+    <text x="736" y="120" font-family="'JetBrains Mono', monospace" font-size="7px" fill="#71737E">180°</text>
+    <text x="702" y="81" font-family="'JetBrains Mono', monospace" font-size="7px" fill="#71737E">270°</text>
   </g>
 </svg>
