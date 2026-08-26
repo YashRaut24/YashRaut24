@@ -21,7 +21,7 @@
 
 ### `//` PLATE 03: RETRO SPACE INVADERS: COMMIT BLAST ARCADE
 
-<img src="./assets/space-invaders-commits.svg" alt="Space Invaders Commit Blast Arcade" width="100%" />
+<img src="./assets/space-invaders-commits.svg?v=arcade2" alt="Space Invaders Commit Blast Arcade" width="100%" />
 
 <br/>
 

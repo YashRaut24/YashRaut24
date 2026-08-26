@@ -359,7 +359,7 @@ def generate_svg(date_dict, total_contribs=1483, output_path="assets/space-invad
     # Counter Text Display Elements (Total Commits Counted!)
     counter_elements = []
     for c_val in range(9):
-        counter_elements.append(f'      <text x="12" y="17" class="counter-txt hud-val-{c_val}">BLASTED: [ {c_val} / {formatted_total} COMMITS ]</text>')
+        counter_elements.append(f'      <text x="12" y="17" class="counter-txt hud-val-{c_val}">DESTROYED: [ {c_val} / {formatted_total} COMMITS ]</text>')
     counter_texts = "\n".join(counter_elements)
 
     # CSS Rules
