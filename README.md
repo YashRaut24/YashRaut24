@@ -19,9 +19,9 @@
 
 <br/>
 
-### `//` PLATE 03: LIVE CONTRIBUTION SNAKE RUNNER
+### `//` PLATE 03: RETRO SPACE INVADERS: COMMIT BLAST ARCADE
 
-<img src="./assets/github-contribution-grid-snake-dark.svg" alt="Live Contribution Snake Runner" width="100%" />
+<img src="./assets/space-invaders-commits.svg" alt="Space Invaders Commit Blast Arcade" width="100%" />
 
 <br/>
 

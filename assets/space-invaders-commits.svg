@@ -1,0 +1,154 @@
+<svg width="850" height="240" viewBox="0 0 850 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .bh-bg       { fill: #111215; stroke: #2C303B; stroke-width: 1.5; }
+      .tag-txt     { font-family: 'JetBrains Mono', Consolas, monospace; font-size: 11px; font-weight: 700; fill: #FDFBF7; letter-spacing: 1.5px; }
+      .sub-txt     { font-family: 'JetBrains Mono', Consolas, monospace; font-size: 10px; fill: #71737E; letter-spacing: 1px; }
+      .month-lbl   { font-family: 'JetBrains Mono', Consolas, monospace; font-size: 9px; fill: #52545F; }
+      .score-lbl   { font-family: 'JetBrains Mono', Consolas, monospace; font-size: 9.5px; fill: #71737E; }
+
+      /* Spaceship Strafe Movement */
+      @keyframes shipMove {
+        0%   { transform: translateX(40px); }
+        25%  { transform: translateX(240px); }
+        50%  { transform: translateX(460px); }
+        75%  { transform: translateX(680px); }
+        100% { transform: translateX(40px); }
+      }
+
+      /* Laser Projectile Fire */
+      @keyframes fireLaser1 {
+        0%   { transform: translateY(0px); opacity: 0; }
+        10%  { opacity: 1; }
+        90%  { opacity: 1; }
+        100% { transform: translateY(-90px); opacity: 0; }
+      }
+
+      /* Target Alien Blast / Explosion */
+      @keyframes targetExplode {
+        0%, 80%  { opacity: 1; transform: scale(1); }
+        90%      { opacity: 0.2; transform: scale(1.6); }
+        100%     { opacity: 1; transform: scale(1); }
+      }
+
+      @keyframes beaconBlink {
+        0%, 100% { opacity: 1; }
+        50%      { opacity: 0.2; }
+      }
+
+      .ship-anim    { animation: shipMove 10s ease-in-out infinite; }
+      .laser-bolt   { animation: fireLaser1 1.2s linear infinite; }
+      .alien-target { animation: targetExplode 2.4s ease-in-out infinite; }
+      .live-dot     { animation: beaconBlink 1s steps(2, start) infinite; }
+    </style>
+  </defs>
+
+  <!-- Container -->
+  <rect width="850" height="240" rx="4" class="bh-bg"/>
+
+  <!-- Top Title Bar -->
+  <g transform="translate(24, 22)">
+    <circle cx="0" cy="5" r="3.5" fill="#E11D48" class="live-dot"/>
+    <text x="14" y="9" class="tag-txt">PLATE 03 // RETRO SPACE INVADERS: COMMIT BLAST ARCADE</text>
+    <text x="500" y="9" class="sub-txt">[AUTONOMOUS CANNON // 1,500+ TARGETS BLASTED]</text>
+  </g>
+  <line x1="0" y1="42" x2="850" y2="42" stroke="#2C303B" stroke-width="1"/>
+
+  <!-- 52x7 Contribution Grid (Space Invader Formations) -->
+  <g transform="translate(36, 62)">
+    
+    <!-- Month Labels -->
+    <text x="0" y="-8" class="month-lbl">JAN</text>
+    <text x="64" y="-8" class="month-lbl">FEB</text>
+    <text x="128" y="-8" class="month-lbl">MAR</text>
+    <text x="192" y="-8" class="month-lbl">APR</text>
+    <text x="256" y="-8" class="month-lbl">MAY</text>
+    <text x="320" y="-8" class="month-lbl">JUN</text>
+    <text x="384" y="-8" class="month-lbl">JUL</text>
+    <text x="448" y="-8" class="month-lbl">AUG</text>
+    <text x="512" y="-8" class="month-lbl">SEP</text>
+    <text x="576" y="-8" class="month-lbl">OCT</text>
+    <text x="640" y="-8" class="month-lbl">NOV</text>
+    <text x="704" y="-8" class="month-lbl">DEC</text>
+
+    <!-- 52x7 Background Alien Grid Dots -->
+    <g fill="#181A22">
+      <!-- 7 rows of 52 dots -->
+      <!-- Row 0 -->
+      <rect x="0" y="0" width="9" height="9" rx="1.5"/><rect x="15" y="0" width="9" height="9" rx="1.5"/><rect x="30" y="0" width="9" height="9" rx="1.5"/><rect x="45" y="0" width="9" height="9" rx="1.5"/><rect x="60" y="0" width="9" height="9" rx="1.5"/><rect x="75" y="0" width="9" height="9" rx="1.5"/><rect x="90" y="0" width="9" height="9" rx="1.5"/><rect x="105" y="0" width="9" height="9" rx="1.5"/><rect x="120" y="0" width="9" height="9" rx="1.5"/><rect x="135" y="0" width="9" height="9" rx="1.5"/><rect x="150" y="0" width="9" height="9" rx="1.5"/><rect x="165" y="0" width="9" height="9" rx="1.5"/><rect x="180" y="0" width="9" height="9" rx="1.5"/><rect x="195" y="0" width="9" height="9" rx="1.5"/><rect x="210" y="0" width="9" height="9" rx="1.5"/><rect x="225" y="0" width="9" height="9" rx="1.5"/><rect x="240" y="0" width="9" height="9" rx="1.5"/><rect x="255" y="0" width="9" height="9" rx="1.5"/><rect x="270" y="0" width="9" height="9" rx="1.5"/><rect x="285" y="0" width="9" height="9" rx="1.5"/><rect x="300" y="0" width="9" height="9" rx="1.5"/><rect x="315" y="0" width="9" height="9" rx="1.5"/><rect x="330" y="0" width="9" height="9" rx="1.5"/><rect x="345" y="0" width="9" height="9" rx="1.5"/><rect x="360" y="0" width="9" height="9" rx="1.5"/><rect x="375" y="0" width="9" height="9" rx="1.5"/><rect x="390" y="0" width="9" height="9" rx="1.5"/><rect x="405" y="0" width="9" height="9" rx="1.5"/><rect x="420" y="0" width="9" height="9" rx="1.5"/><rect x="435" y="0" width="9" height="9" rx="1.5"/><rect x="450" y="0" width="9" height="9" rx="1.5"/><rect x="465" y="0" width="9" height="9" rx="1.5"/><rect x="480" y="0" width="9" height="9" rx="1.5"/><rect x="495" y="0" width="9" height="9" rx="1.5"/><rect x="510" y="0" width="9" height="9" rx="1.5"/><rect x="525" y="0" width="9" height="9" rx="1.5"/><rect x="540" y="0" width="9" height="9" rx="1.5"/><rect x="555" y="0" width="9" height="9" rx="1.5"/><rect x="570" y="0" width="9" height="9" rx="1.5"/><rect x="585" y="0" width="9" height="9" rx="1.5"/><rect x="600" y="0" width="9" height="9" rx="1.5"/><rect x="615" y="0" width="9" height="9" rx="1.5"/><rect x="630" y="0" width="9" height="9" rx="1.5"/><rect x="645" y="0" width="9" height="9" rx="1.5"/><rect x="660" y="0" width="9" height="9" rx="1.5"/><rect x="675" y="0" width="9" height="9" rx="1.5"/><rect x="690" y="0" width="9" height="9" rx="1.5"/><rect x="705" y="0" width="9" height="9" rx="1.5"/><rect x="720" y="0" width="9" height="9" rx="1.5"/><rect x="735" y="0" width="9" height="9" rx="1.5"/><rect x="750" y="0" width="9" height="9" rx="1.5"/><rect x="765" y="0" width="9" height="9" rx="1.5"/>
+
+      <!-- Row 1 -->
+      <rect x="0" y="13" width="9" height="9" rx="1.5"/><rect x="15" y="13" width="9" height="9" rx="1.5"/><rect x="30" y="13" width="9" height="9" rx="1.5"/><rect x="45" y="13" width="9" height="9" rx="1.5"/><rect x="60" y="13" width="9" height="9" rx="1.5"/><rect x="75" y="13" width="9" height="9" rx="1.5"/><rect x="90" y="13" width="9" height="9" rx="1.5"/><rect x="105" y="13" width="9" height="9" rx="1.5"/><rect x="120" y="13" width="9" height="9" rx="1.5"/><rect x="135" y="13" width="9" height="9" rx="1.5"/><rect x="150" y="13" width="9" height="9" rx="1.5"/><rect x="165" y="13" width="9" height="9" rx="1.5"/><rect x="180" y="13" width="9" height="9" rx="1.5"/><rect x="195" y="13" width="9" height="9" rx="1.5"/><rect x="210" y="13" width="9" height="9" rx="1.5"/><rect x="225" y="13" width="9" height="9" rx="1.5"/><rect x="240" y="13" width="9" height="9" rx="1.5"/><rect x="255" y="13" width="9" height="9" rx="1.5"/><rect x="270" y="13" width="9" height="9" rx="1.5"/><rect x="285" y="13" width="9" height="9" rx="1.5"/><rect x="300" y="13" width="9" height="9" rx="1.5"/><rect x="315" y="13" width="9" height="9" rx="1.5"/><rect x="330" y="13" width="9" height="9" rx="1.5"/><rect x="345" y="13" width="9" height="9" rx="1.5"/><rect x="360" y="13" width="9" height="9" rx="1.5"/><rect x="375" y="13" width="9" height="9" rx="1.5"/><rect x="390" y="13" width="9" height="9" rx="1.5"/><rect x="405" y="13" width="9" height="9" rx="1.5"/><rect x="420" y="13" width="9" height="9" rx="1.5"/><rect x="435" y="13" width="9" height="9" rx="1.5"/><rect x="450" y="13" width="9" height="9" rx="1.5"/><rect x="465" y="13" width="9" height="9" rx="1.5"/><rect x="480" y="13" width="9" height="9" rx="1.5"/><rect x="495" y="13" width="9" height="9" rx="1.5"/><rect x="510" y="13" width="9" height="9" rx="1.5"/><rect x="525" y="13" width="9" height="9" rx="1.5"/><rect x="540" y="13" width="9" height="9" rx="1.5"/><rect x="555" y="13" width="9" height="9" rx="1.5"/><rect x="570" y="13" width="9" height="9" rx="1.5"/><rect x="585" y="13" width="9" height="9" rx="1.5"/><rect x="600" y="13" width="9" height="9" rx="1.5"/><rect x="615" y="13" width="9" height="9" rx="1.5"/><rect x="630" y="13" width="9" height="9" rx="1.5"/><rect x="645" y="13" width="9" height="9" rx="1.5"/><rect x="660" y="13" width="9" height="9" rx="1.5"/><rect x="675" y="13" width="9" height="9" rx="1.5"/><rect x="690" y="13" width="9" height="9" rx="1.5"/><rect x="705" y="13" width="9" height="9" rx="1.5"/><rect x="720" y="13" width="9" height="9" rx="1.5"/><rect x="735" y="13" width="9" height="9" rx="1.5"/><rect x="750" y="13" width="9" height="9" rx="1.5"/><rect x="765" y="13" width="9" height="9" rx="1.5"/>
+
+      <!-- Row 2 to 6 -->
+      <rect x="0" y="26" width="9" height="9" rx="1.5"/><rect x="15" y="26" width="9" height="9" rx="1.5"/><rect x="30" y="26" width="9" height="9" rx="1.5"/><rect x="45" y="26" width="9" height="9" rx="1.5"/><rect x="60" y="26" width="9" height="9" rx="1.5"/><rect x="75" y="26" width="9" height="9" rx="1.5"/><rect x="90" y="26" width="9" height="9" rx="1.5"/><rect x="105" y="26" width="9" height="9" rx="1.5"/><rect x="120" y="26" width="9" height="9" rx="1.5"/><rect x="135" y="26" width="9" height="9" rx="1.5"/><rect x="150" y="26" width="9" height="9" rx="1.5"/><rect x="165" y="26" width="9" height="9" rx="1.5"/><rect x="180" y="26" width="9" height="9" rx="1.5"/><rect x="195" y="26" width="9" height="9" rx="1.5"/><rect x="210" y="26" width="9" height="9" rx="1.5"/><rect x="225" y="26" width="9" height="9" rx="1.5"/><rect x="240" y="26" width="9" height="9" rx="1.5"/><rect x="255" y="26" width="9" height="9" rx="1.5"/><rect x="270" y="26" width="9" height="9" rx="1.5"/><rect x="285" y="26" width="9" height="9" rx="1.5"/><rect x="300" y="26" width="9" height="9" rx="1.5"/><rect x="315" y="26" width="9" height="9" rx="1.5"/><rect x="330" y="26" width="9" height="9" rx="1.5"/><rect x="345" y="26" width="9" height="9" rx="1.5"/><rect x="360" y="26" width="9" height="9" rx="1.5"/><rect x="375" y="26" width="9" height="9" rx="1.5"/><rect x="390" y="26" width="9" height="9" rx="1.5"/><rect x="405" y="26" width="9" height="9" rx="1.5"/><rect x="420" y="26" width="9" height="9" rx="1.5"/><rect x="435" y="26" width="9" height="9" rx="1.5"/><rect x="450" y="26" width="9" height="9" rx="1.5"/><rect x="465" y="26" width="9" height="9" rx="1.5"/><rect x="480" y="26" width="9" height="9" rx="1.5"/><rect x="495" y="26" width="9" height="9" rx="1.5"/><rect x="510" y="26" width="9" height="9" rx="1.5"/><rect x="525" y="26" width="9" height="9" rx="1.5"/><rect x="540" y="26" width="9" height="9" rx="1.5"/><rect x="555" y="26" width="9" height="9" rx="1.5"/><rect x="570" y="26" width="9" height="9" rx="1.5"/><rect x="585" y="26" width="9" height="9" rx="1.5"/><rect x="600" y="26" width="9" height="9" rx="1.5"/><rect x="615" y="26" width="9" height="9" rx="1.5"/><rect x="630" y="26" width="9" height="9" rx="1.5"/><rect x="645" y="26" width="9" height="9" rx="1.5"/><rect x="660" y="26" width="9" height="9" rx="1.5"/><rect x="675" y="26" width="9" height="9" rx="1.5"/><rect x="690" y="26" width="9" height="9" rx="1.5"/><rect x="705" y="26" width="9" height="9" rx="1.5"/><rect x="720" y="26" width="9" height="9" rx="1.5"/><rect x="735" y="26" width="9" height="9" rx="1.5"/><rect x="750" y="26" width="9" height="9" rx="1.5"/><rect x="765" y="26" width="9" height="9" rx="1.5"/>
+
+      <rect x="0" y="39" width="9" height="9" rx="1.5"/><rect x="15" y="39" width="9" height="9" rx="1.5"/><rect x="30" y="39" width="9" height="9" rx="1.5"/><rect x="45" y="39" width="9" height="9" rx="1.5"/><rect x="60" y="39" width="9" height="9" rx="1.5"/><rect x="75" y="39" width="9" height="9" rx="1.5"/><rect x="90" y="39" width="9" height="9" rx="1.5"/><rect x="105" y="39" width="9" height="9" rx="1.5"/><rect x="120" y="39" width="9" height="9" rx="1.5"/><rect x="135" y="39" width="9" height="9" rx="1.5"/><rect x="150" y="39" width="9" height="9" rx="1.5"/><rect x="165" y="39" width="9" height="9" rx="1.5"/><rect x="180" y="39" width="9" height="9" rx="1.5"/><rect x="195" y="39" width="9" height="9" rx="1.5"/><rect x="210" y="39" width="9" height="9" rx="1.5"/><rect x="225" y="39" width="9" height="9" rx="1.5"/><rect x="240" y="39" width="9" height="9" rx="1.5"/><rect x="255" y="39" width="9" height="9" rx="1.5"/><rect x="270" y="39" width="9" height="9" rx="1.5"/><rect x="285" y="39" width="9" height="9" rx="1.5"/><rect x="300" y="39" width="9" height="9" rx="1.5"/><rect x="315" y="39" width="9" height="9" rx="1.5"/><rect x="330" y="39" width="9" height="9" rx="1.5"/><rect x="345" y="39" width="9" height="9" rx="1.5"/><rect x="360" y="39" width="9" height="9" rx="1.5"/><rect x="375" y="39" width="9" height="9" rx="1.5"/><rect x="390" y="39" width="9" height="9" rx="1.5"/><rect x="405" y="39" width="9" height="9" rx="1.5"/><rect x="420" y="39" width="9" height="9" rx="1.5"/><rect x="435" y="39" width="9" height="9" rx="1.5"/><rect x="450" y="39" width="9" height="9" rx="1.5"/><rect x="465" y="39" width="9" height="9" rx="1.5"/><rect x="480" y="39" width="9" height="9" rx="1.5"/><rect x="495" y="39" width="9" height="9" rx="1.5"/><rect x="510" y="39" width="9" height="9" rx="1.5"/><rect x="525" y="39" width="9" height="9" rx="1.5"/><rect x="540" y="39" width="9" height="9" rx="1.5"/><rect x="555" y="39" width="9" height="9" rx="1.5"/><rect x="570" y="39" width="9" height="9" rx="1.5"/><rect x="585" y="39" width="9" height="9" rx="1.5"/><rect x="600" y="39" width="9" height="9" rx="1.5"/><rect x="615" y="39" width="9" height="9" rx="1.5"/><rect x="630" y="39" width="9" height="9" rx="1.5"/><rect x="645" y="39" width="9" height="9" rx="1.5"/><rect x="660" y="39" width="9" height="9" rx="1.5"/><rect x="675" y="39" width="9" height="9" rx="1.5"/><rect x="690" y="39" width="9" height="9" rx="1.5"/><rect x="705" y="39" width="9" height="9" rx="1.5"/><rect x="720" y="39" width="9" height="9" rx="1.5"/><rect x="735" y="39" width="9" height="9" rx="1.5"/><rect x="750" y="39" width="9" height="9" rx="1.5"/><rect x="765" y="39" width="9" height="9" rx="1.5"/>
+
+      <rect x="0" y="52" width="9" height="9" rx="1.5"/><rect x="15" y="52" width="9" height="9" rx="1.5"/><rect x="30" y="52" width="9" height="9" rx="1.5"/><rect x="45" y="52" width="9" height="9" rx="1.5"/><rect x="60" y="52" width="9" height="9" rx="1.5"/><rect x="75" y="52" width="9" height="9" rx="1.5"/><rect x="90" y="52" width="9" height="9" rx="1.5"/><rect x="105" y="52" width="9" height="9" rx="1.5"/><rect x="120" y="52" width="9" height="9" rx="1.5"/><rect x="135" y="52" width="9" height="9" rx="1.5"/><rect x="150" y="52" width="9" height="9" rx="1.5"/><rect x="165" y="52" width="9" height="9" rx="1.5"/><rect x="180" y="52" width="9" height="9" rx="1.5"/><rect x="195" y="52" width="9" height="9" rx="1.5"/><rect x="210" y="52" width="9" height="9" rx="1.5"/><rect x="225" y="52" width="9" height="9" rx="1.5"/><rect x="240" y="52" width="9" height="9" rx="1.5"/><rect x="255" y="52" width="9" height="9" rx="1.5"/><rect x="270" y="52" width="9" height="9" rx="1.5"/><rect x="285" y="52" width="9" height="9" rx="1.5"/><rect x="300" y="52" width="9" height="9" rx="1.5"/><rect x="315" y="52" width="9" height="9" rx="1.5"/><rect x="330" y="52" width="9" height="9" rx="1.5"/><rect x="345" y="52" width="9" height="9" rx="1.5"/><rect x="360" y="52" width="9" height="9" rx="1.5"/><rect x="375" y="52" width="9" height="9" rx="1.5"/><rect x="390" y="52" width="9" height="9" rx="1.5"/><rect x="405" y="52" width="9" height="9" rx="1.5"/><rect x="420" y="52" width="9" height="9" rx="1.5"/><rect x="435" y="52" width="9" height="9" rx="1.5"/><rect x="450" y="52" width="9" height="9" rx="1.5"/><rect x="465" y="52" width="9" height="9" rx="1.5"/><rect x="480" y="52" width="9" height="9" rx="1.5"/><rect x="495" y="52" width="9" height="9" rx="1.5"/><rect x="510" y="52" width="9" height="9" rx="1.5"/><rect x="525" y="52" width="9" height="9" rx="1.5"/><rect x="540" y="52" width="9" height="9" rx="1.5"/><rect x="555" y="52" width="9" height="9" rx="1.5"/><rect x="570" y="52" width="9" height="9" rx="1.5"/><rect x="585" y="52" width="9" height="9" rx="1.5"/><rect x="600" y="52" width="9" height="9" rx="1.5"/><rect x="615" y="52" width="9" height="9" rx="1.5"/><rect x="630" y="52" width="9" height="9" rx="1.5"/><rect x="645" y="52" width="9" height="9" rx="1.5"/><rect x="660" y="52" width="9" height="9" rx="1.5"/><rect x="675" y="52" width="9" height="9" rx="1.5"/><rect x="690" y="52" width="9" height="9" rx="1.5"/><rect x="705" y="52" width="9" height="9" rx="1.5"/><rect x="720" y="52" width="9" height="9" rx="1.5"/><rect x="735" y="52" width="9" height="9" rx="1.5"/><rect x="750" y="52" width="9" height="9" rx="1.5"/><rect x="765" y="52" width="9" height="9" rx="1.5"/>
+
+      <rect x="0" y="65" width="9" height="9" rx="1.5"/><rect x="15" y="65" width="9" height="9" rx="1.5"/><rect x="30" y="65" width="9" height="9" rx="1.5"/><rect x="45" y="65" width="9" height="9" rx="1.5"/><rect x="60" y="65" width="9" height="9" rx="1.5"/><rect x="75" y="65" width="9" height="9" rx="1.5"/><rect x="90" y="65" width="9" height="9" rx="1.5"/><rect x="105" y="65" width="9" height="9" rx="1.5"/><rect x="120" y="65" width="9" height="9" rx="1.5"/><rect x="135" y="65" width="9" height="9" rx="1.5"/><rect x="150" y="65" width="9" height="9" rx="1.5"/><rect x="165" y="65" width="9" height="9" rx="1.5"/><rect x="180" y="65" width="9" height="9" rx="1.5"/><rect x="195" y="65" width="9" height="9" rx="1.5"/><rect x="210" y="65" width="9" height="9" rx="1.5"/><rect x="225" y="65" width="9" height="9" rx="1.5"/><rect x="240" y="65" width="9" height="9" rx="1.5"/><rect x="255" y="65" width="9" height="9" rx="1.5"/><rect x="270" y="65" width="9" height="9" rx="1.5"/><rect x="285" y="65" width="9" height="9" rx="1.5"/><rect x="300" y="65" width="9" height="9" rx="1.5"/><rect x="315" y="65" width="9" height="9" rx="1.5"/><rect x="330" y="65" width="9" height="9" rx="1.5"/><rect x="345" y="65" width="9" height="9" rx="1.5"/><rect x="360" y="65" width="9" height="9" rx="1.5"/><rect x="375" y="65" width="9" height="9" rx="1.5"/><rect x="390" y="65" width="9" height="9" rx="1.5"/><rect x="405" y="65" width="9" height="9" rx="1.5"/><rect x="420" y="65" width="9" height="9" rx="1.5"/><rect x="435" y="65" width="9" height="9" rx="1.5"/><rect x="450" y="65" width="9" height="9" rx="1.5"/><rect x="465" y="65" width="9" height="9" rx="1.5"/><rect x="480" y="65" width="9" height="9" rx="1.5"/><rect x="495" y="65" width="9" height="9" rx="1.5"/><rect x="510" y="65" width="9" height="9" rx="1.5"/><rect x="525" y="65" width="9" height="9" rx="1.5"/><rect x="540" y="65" width="9" height="9" rx="1.5"/><rect x="555" y="65" width="9" height="9" rx="1.5"/><rect x="570" y="65" width="9" height="9" rx="1.5"/><rect x="585" y="65" width="9" height="9" rx="1.5"/><rect x="600" y="65" width="9" height="9" rx="1.5"/><rect x="615" y="65" width="9" height="9" rx="1.5"/><rect x="630" y="65" width="9" height="9" rx="1.5"/><rect x="645" y="65" width="9" height="9" rx="1.5"/><rect x="660" y="65" width="9" height="9" rx="1.5"/><rect x="675" y="65" width="9" height="9" rx="1.5"/><rect x="690" y="65" width="9" height="9" rx="1.5"/><rect x="705" y="65" width="9" height="9" rx="1.5"/><rect x="720" y="65" width="9" height="9" rx="1.5"/><rect x="735" y="65" width="9" height="9" rx="1.5"/><rect x="750" y="65" width="9" height="9" rx="1.5"/><rect x="765" y="65" width="9" height="9" rx="1.5"/>
+
+      <rect x="0" y="78" width="9" height="9" rx="1.5"/><rect x="15" y="78" width="9" height="9" rx="1.5"/><rect x="30" y="78" width="9" height="9" rx="1.5"/><rect x="45" y="78" width="9" height="9" rx="1.5"/><rect x="60" y="78" width="9" height="9" rx="1.5"/><rect x="75" y="78" width="9" height="9" rx="1.5"/><rect x="90" y="78" width="9" height="9" rx="1.5"/><rect x="105" y="78" width="9" height="9" rx="1.5"/><rect x="120" y="78" width="9" height="9" rx="1.5"/><rect x="135" y="78" width="9" height="9" rx="1.5"/><rect x="150" y="78" width="9" height="9" rx="1.5"/><rect x="165" y="78" width="9" height="9" rx="1.5"/><rect x="180" y="78" width="9" height="9" rx="1.5"/><rect x="195" y="78" width="9" height="9" rx="1.5"/><rect x="210" y="78" width="9" height="9" rx="1.5"/><rect x="225" y="78" width="9" height="9" rx="1.5"/><rect x="240" y="78" width="9" height="9" rx="1.5"/><rect x="255" y="78" width="9" height="9" rx="1.5"/><rect x="270" y="78" width="9" height="9" rx="1.5"/><rect x="285" y="78" width="9" height="9" rx="1.5"/><rect x="300" y="78" width="9" height="9" rx="1.5"/><rect x="315" y="78" width="9" height="9" rx="1.5"/><rect x="330" y="78" width="9" height="9" rx="1.5"/><rect x="345" y="78" width="9" height="9" rx="1.5"/><rect x="360" y="78" width="9" height="9" rx="1.5"/><rect x="375" y="78" width="9" height="9" rx="1.5"/><rect x="390" y="78" width="9" height="9" rx="1.5"/><rect x="405" y="78" width="9" height="9" rx="1.5"/><rect x="420" y="78" width="9" height="9" rx="1.5"/><rect x="435" y="78" width="9" height="9" rx="1.5"/><rect x="450" y="78" width="9" height="9" rx="1.5"/><rect x="465" y="78" width="9" height="9" rx="1.5"/><rect x="480" y="78" width="9" height="9" rx="1.5"/><rect x="495" y="78" width="9" height="9" rx="1.5"/><rect x="510" y="78" width="9" height="9" rx="1.5"/><rect x="525" y="78" width="9" height="9" rx="1.5"/><rect x="540" y="78" width="9" height="9" rx="1.5"/><rect x="555" y="78" width="9" height="9" rx="1.5"/><rect x="570" y="78" width="9" height="9" rx="1.5"/><rect x="585" y="78" width="9" height="9" rx="1.5"/><rect x="600" y="78" width="9" height="9" rx="1.5"/><rect x="615" y="78" width="9" height="9" rx="1.5"/><rect x="630" y="78" width="9" height="9" rx="1.5"/><rect x="645" y="78" width="9" height="9" rx="1.5"/><rect x="660" y="78" width="9" height="9" rx="1.5"/><rect x="675" y="78" width="9" height="9" rx="1.5"/><rect x="690" y="78" width="9" height="9" rx="1.5"/><rect x="705" y="78" width="9" height="9" rx="1.5"/><rect x="720" y="78" width="9" height="9" rx="1.5"/><rect x="735" y="78" width="9" height="9" rx="1.5"/><rect x="750" y="78" width="9" height="9" rx="1.5"/><rect x="765" y="78" width="9" height="9" rx="1.5"/>
+    </g>
+
+    <!-- Active Commit Targets (Space Invaders) -->
+    <g>
+      <!-- Klein Blue Alien Targets -->
+      <rect x="45" y="13" width="9" height="9" rx="1.5" fill="#2563EB"/>
+      <rect x="120" y="26" width="9" height="9" rx="1.5" fill="#2563EB"/>
+      <rect x="180" y="39" width="9" height="9" rx="1.5" fill="#2563EB"/>
+      <rect x="330" y="26" width="9" height="9" rx="1.5" fill="#2563EB"/>
+      <rect x="540" y="39" width="9" height="9" rx="1.5" fill="#2563EB"/>
+      <rect x="615" y="26" width="9" height="9" rx="1.5" fill="#2563EB"/>
+
+      <!-- Crimson Alien Targets -->
+      <rect x="90" y="13" width="9" height="9" rx="1.5" fill="#E11D48"/>
+      <rect x="255" y="26" width="9" height="9" rx="1.5" fill="#E11D48" class="alien-target"/>
+      <rect x="405" y="13" width="9" height="9" rx="1.5" fill="#E11D48"/>
+      <rect x="480" y="26" width="9" height="9" rx="1.5" fill="#E11D48" class="alien-target"/>
+      <rect x="690" y="13" width="9" height="9" rx="1.5" fill="#E11D48"/>
+
+      <!-- Warm Ochre Command Alien Targets -->
+      <polygon points="150,22 154,13 158,22" fill="#F59E0B"/>
+      <polygon points="300,35 304,26 308,35" fill="#F59E0B"/>
+      <polygon points="450,22 454,13 458,22" fill="#F59E0B" class="alien-target"/>
+      <polygon points="585,35 589,26 593,35" fill="#F59E0B"/>
+      <polygon points="720,22 724,13 728,22" fill="#F59E0B"/>
+    </g>
+
+    <!-- Moving Defender Spaceship Cannon with Laser Fire -->
+    <g class="ship-anim">
+      <!-- Firing Laser Beam upward -->
+      <line x1="0" y1="92" x2="0" y2="20" stroke="#E11D48" stroke-width="2" class="laser-bolt"/>
+      <line x1="0" y1="92" x2="0" y2="20" stroke="#FDFBF7" stroke-width="1" class="laser-bolt" style="animation-delay: 0.6s;"/>
+
+      <!-- Spaceship Body -->
+      <g transform="translate(0, 96)">
+        <polygon points="0,-8 7,4 -7,4" fill="#FDFBF7"/>
+        <rect x="-8" y="4" width="16" height="5" rx="1" fill="#2563EB"/>
+        <rect x="-3" y="1" width="6" height="6" fill="#E11D48"/>
+        <!-- Engine thrusters -->
+        <polygon points="-5,9 -3,13 -1,9" fill="#F59E0B"/>
+        <polygon points="1,9 3,13 5,9" fill="#F59E0B"/>
+      </g>
+    </g>
+  </g>
+
+  <!-- Legend & Live Arcade Score -->
+  <g transform="translate(36, 205)">
+    <rect x="0" y="0" width="8" height="8" rx="1.5" fill="#2563EB"/>
+    <text x="14" y="8" class="score-lbl">SCOUT (10 PTS)</text>
+
+    <rect x="110" y="0" width="8" height="8" rx="1.5" fill="#E11D48"/>
+    <text x="124" y="8" class="score-lbl">CRUISER (20 PTS)</text>
+
+    <polygon points="230,8 234,0 238,8" fill="#F59E0B"/>
+    <text x="244" y="8" class="score-lbl">FLAGSHIP (50 PTS)</text>
+
+    <polygon points="365,-2 370,6 360,6" fill="#FDFBF7"/>
+    <text x="376" y="8" class="score-lbl" style="fill:#FDFBF7; font-weight:bold;">DEFENDER CANNON</text>
+
+    <text x="610" y="8" font-family="'JetBrains Mono', monospace" font-size="10.5px" font-weight="700" fill="#2563EB">HIGH SCORE: 1,500+ COMMITS</text>
+  </g>
+</svg>
