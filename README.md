@@ -36,14 +36,19 @@
 
 <br/><br/>
 
-<!-- SECTOR 04: ACADEMIC & MISSION TELEMETRY -->
+<!-- SECTOR 04: GITHUB CONTRIBUTIONS & STREAK CONSOLE -->
+<img src="./assets/space-portal-stats.svg" alt="GitHub Contributions and Streak Console" width="100%" />
+
+<br/><br/>
+
+<!-- SECTOR 05: ACADEMIC & MISSION TELEMETRY -->
 <img src="./assets/space-portal-telemetry.svg" alt="Academic and Mission Telemetry" width="100%" />
 
 <br/><br/>
 
 <!-- ORBITAL VISITOR COUNTER -->
-<a href="https://komarev.com/ghpvc/?username=YashRaut24_spaceport">
-  <img src="https://komarev.com/ghpvc/?username=YashRaut24_spaceport&style=flat-square&color=00F0FF&labelColor=0B0C10&label=ORBITAL+TRAFFIC" alt="Visitor Counter" />
+<a href="https://komarev.com/ghpvc/?username=YashRaut24-spaceport">
+  <img src="https://komarev.com/ghpvc/?username=YashRaut24-spaceport&style=flat-square&color=00F0FF&labelColor=0B0C10&label=ORBITAL+TRAFFIC" alt="Visitor Counter" />
 </a>
 
 <br/><br/>
