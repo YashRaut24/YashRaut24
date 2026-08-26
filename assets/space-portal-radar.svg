@@ -1,4 +1,4 @@
-<svg width="130" height="130" viewBox="0 0 130 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg width="180" height="180" viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <style>
       @keyframes radarSweep {
@@ -16,42 +16,42 @@
         90%, 100% { opacity: 0; transform: scale(0.3); }
       }
 
-      .sweep-beam { animation: radarSweep 4s linear infinite; transform-origin: 65px 65px; }
-      .blip1      { animation: blipPing1 4s ease-out infinite; transform-origin: 85px 45px; }
-      .blip2      { animation: blipPing2 4s ease-out infinite; transform-origin: 45px 80px; }
+      .sweep-beam { animation: radarSweep 4s linear infinite; transform-origin: 90px 90px; }
+      .blip1      { animation: blipPing1 4s ease-out infinite; transform-origin: 115px 65px; }
+      .blip2      { animation: blipPing2 4s ease-out infinite; transform-origin: 65px 110px; }
     </style>
   </defs>
 
   <!-- Radar Rings -->
-  <circle cx="65" cy="65" r="58" fill="#111216" stroke="#1F2430" stroke-width="1.5"/>
-  <circle cx="65" cy="65" r="42" fill="none" stroke="#2563EB" stroke-width="1" stroke-dasharray="4 4"/>
-  <circle cx="65" cy="65" r="26" fill="none" stroke="#1F2430" stroke-width="1"/>
-  <circle cx="65" cy="65" r="10" fill="none" stroke="#1F2430" stroke-width="1"/>
-  <circle cx="65" cy="65" r="3" fill="#00F0FF"/>
+  <circle cx="90" cy="90" r="80" fill="#111216" stroke="#1F2430" stroke-width="1.5"/>
+  <circle cx="90" cy="90" r="60" fill="none" stroke="#2563EB" stroke-width="1.2" stroke-dasharray="6 4"/>
+  <circle cx="90" cy="90" r="40" fill="none" stroke="#1F2430" stroke-width="1"/>
+  <circle cx="90" cy="90" r="20" fill="none" stroke="#1F2430" stroke-width="1"/>
+  <circle cx="90" cy="90" r="3" fill="#00F0FF"/>
 
   <!-- Crosshairs -->
-  <line x1="7" y1="65" x2="123" y2="65" stroke="#1F2430" stroke-width="1"/>
-  <line x1="65" y1="7" x2="65" y2="123" stroke="#1F2430" stroke-width="1"/>
+  <line x1="10" y1="90" x2="170" y2="90" stroke="#1F2430" stroke-width="1"/>
+  <line x1="90" y1="10" x2="90" y2="170" stroke="#1F2430" stroke-width="1"/>
 
   <!-- Rotating Radar Sweep Beam -->
   <g class="sweep-beam">
-    <line x1="65" y1="65" x2="65" y2="7" stroke="#00F0FF" stroke-width="2" stroke-linecap="round"/>
-    <polygon points="65,65 58,7 65,7" fill="#00F0FF" opacity="0.3"/>
+    <line x1="90" y1="90" x2="90" y2="10" stroke="#00F0FF" stroke-width="2" stroke-linecap="round"/>
+    <polygon points="90,90 80,10 90,10" fill="#00F0FF" opacity="0.3"/>
   </g>
 
   <!-- Radar Blip Pings -->
   <g class="blip1">
-    <circle cx="85" cy="45" r="3" fill="#39D353"/>
-    <circle cx="85" cy="45" r="6" fill="none" stroke="#39D353" stroke-width="1"/>
+    <circle cx="115" cy="65" r="3.5" fill="#39D353"/>
+    <circle cx="115" cy="65" r="7" fill="none" stroke="#39D353" stroke-width="1"/>
   </g>
   <g class="blip2">
-    <circle cx="45" cy="80" r="3" fill="#00F0FF"/>
-    <circle cx="45" cy="80" r="6" fill="none" stroke="#00F0FF" stroke-width="1"/>
+    <circle cx="65" cy="110" r="3.5" fill="#00F0FF"/>
+    <circle cx="65" cy="110" r="7" fill="none" stroke="#00F0FF" stroke-width="1"/>
   </g>
 
   <!-- Cardinal Coordinates -->
-  <text x="61" y="20" font-family="'JetBrains Mono', monospace" font-size="8px" font-weight="700" fill="#00F0FF">0°</text>
-  <text x="110" y="68" font-family="'JetBrains Mono', monospace" font-size="8px" font-weight="700" fill="#71737E">90°</text>
-  <text x="56" y="118" font-family="'JetBrains Mono', monospace" font-size="8px" font-weight="700" fill="#71737E">180°</text>
-  <text x="12" y="68" font-family="'JetBrains Mono', monospace" font-size="8px" font-weight="700" fill="#71737E">270°</text>
+  <text x="86" y="24" font-family="'JetBrains Mono', monospace" font-size="8px" font-weight="700" fill="#00F0FF">0°</text>
+  <text x="156" y="93" font-family="'JetBrains Mono', monospace" font-size="8px" font-weight="700" fill="#71737E">90°</text>
+  <text x="82" y="162" font-family="'JetBrains Mono', monospace" font-size="8px" font-weight="700" fill="#71737E">180°</text>
+  <text x="14" y="93" font-family="'JetBrains Mono', monospace" font-size="8px" font-weight="700" fill="#71737E">270°</text>
 </svg>

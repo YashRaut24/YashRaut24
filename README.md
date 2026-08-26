@@ -51,14 +51,34 @@
 
 <br/><br/>
 
-<!-- SECTOR 07: SENSOR ARRAY ACTIVE ORBITAL RADAR (FULL GATEWAY SIZE) -->
-<img src="./assets/space-portal-traffic.svg?v=orbit-full" alt="Active Orbital Radar Sensor Array" width="100%" />
-
-<br/>
-
-<a href="https://komarev.com/ghpvc/?username=YashRaut24-spaceport">
-  <img src="https://komarev.com/ghpvc/?username=YashRaut24-spaceport&style=for-the-badge&color=00F0FF&labelColor=0B0C10&label=ORBITAL+TRAFFIC+DETECTED" alt="Live Orbital Traffic Counter" />
-</a>
+<!-- SECTOR 07: SENSOR ARRAY ACTIVE ORBITAL RADAR (CONTAINED 100% INSIDE BLOCK) -->
+<table width="100%">
+  <thead>
+    <tr>
+      <th align="left" colspan="2">
+        <code>PORTAL GATEWAY // SECTOR 07: SENSOR ARRAY &amp; ORBITAL RADAR</code>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td align="left" valign="middle">
+        <br/>
+        <b>📡 Deep-Space Subspace Sensor Array</b><br/>
+        <sub>Real-time incoming spacecraft telemetry &amp; visitor proximity tracking.</sub><br/>
+        <sub>Scanning celestial quadrant: Mumbai Cosmodrome / Earth Orbit.</sub>
+        <br/><br/>
+        <a href="https://komarev.com/ghpvc/?username=YashRaut24-spaceport">
+          <img src="https://komarev.com/ghpvc/?username=YashRaut24-spaceport&style=for-the-badge&color=00F0FF&labelColor=0B0C10&label=ORBITAL+TRAFFIC+DETECTED" alt="Live Orbital Traffic Counter" />
+        </a>
+        <br/><br/>
+      </td>
+      <td align="center" width="220" valign="middle">
+        <img src="./assets/space-portal-radar.svg?v=orbit-radar-lg" width="160" height="160" alt="Active Orbital Radar" />
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 <br/><br/>
 
