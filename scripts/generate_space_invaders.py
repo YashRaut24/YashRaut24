@@ -50,7 +50,7 @@ def fetch_contributions(username, token=""):
                     for day in week["contributionDays"]:
                         lvl = level_map.get(day["contributionLevel"], 0)
                         date_dict[day["date"]] = lvl
-                print(f"Fetched {len(date_dict)} days via GitHub GraphQL API. Total contributions: {calendar['totalContributions']}")
+                print(f"Fetched {len(date_dict)} days via GitHub GraphQL API.")
                 return date_dict
         except Exception as e:
             print(f"GraphQL fetch failed: {e}. Falling back to calendar endpoint...")
@@ -63,6 +63,8 @@ def fetch_contributions(username, token=""):
             html = resp.read().decode('utf-8')
         
         matches = re.findall(r'data-date="([^"]+)"(?:\s+[^>]*?)?data-level="([^"]+)"', html)
+        if not items if 'items' in locals() else False:
+            pass
         if not matches:
             matches = re.findall(r'data-level="([^"]+)"(?:\s+[^>]*?)?data-date="([^"]+)"', html)
             matches = [(d, l) for l, d in matches]
@@ -118,7 +120,6 @@ def generate_svg(date_dict, output_path="assets/space-invaders-commits.svg"):
     print(f"Found {len(active_cells)} active contribution cells in authentic layout.")
 
     # Select 8 hybrid arcade targets from actual active cells
-    # Group by rows to perform row sweeps and occasional jumps
     rows_active = {}
     for c in active_cells:
         rows_active.setdefault(c["row"], []).append(c)
@@ -168,12 +169,16 @@ def generate_svg(date_dict, output_path="assets/space-invaders-commits.svg"):
     for i, t in enumerate(chosen):
         print(f"  Target {i+1}: Col {t['col']}, Row {t['row']}, Level {t['level']}, Date {t['date']}")
 
-    # Build timing with fast post-hit delay:
-    # dt_pause = 0.15s (150ms, starts moving well within 0.5s)
-    # dt_move = 0.22s to 0.40s
-    # dt_aim = 0.05s
-    # dt_laser = 0.12s
-    # dt_hit = 0.10s
+    # Build timing:
+    # dt_pause = 1.0s (1 second post-hit delay as requested!)
+    # dt_move = 0.28s to 0.50s
+    # dt_aim = 0.08s
+    # dt_laser = 0.14s
+    # dt_hit = 0.12s
+    # Rocket is shifted down: Cannon tip at y = 98 (Rocket body at y = 108)
+    CANNON_Y = 98
+    ROCKET_Y = 108
+
     targets_data = []
     for i, c in enumerate(chosen):
         init_lvl = c["level"]
@@ -186,7 +191,7 @@ def generate_svg(date_dict, output_path="assets/space-invaders-commits.svg"):
         else:
             prev_col = chosen[i-1]["col"]
         col_dist = abs(c["col"] - prev_col)
-        dt_move = 0.22 + min(0.18, (col_dist / 52.0) * 0.30) # 0.22s to 0.40s
+        dt_move = 0.28 + min(0.22, (col_dist / 52.0) * 0.35) # 0.28s to 0.50s
         
         targets_data.append({
             "id": i + 1,
@@ -197,10 +202,10 @@ def generate_svg(date_dict, output_path="assets/space-invaders-commits.svg"):
             "init_color": init_color,
             "new_color": new_color,
             "dt_move": dt_move,
-            "dt_aim": 0.05,
-            "dt_laser": 0.12,
-            "dt_hit": 0.10,
-            "dt_pause": 0.15  # starts moving within 150ms after hit!
+            "dt_aim": 0.08,
+            "dt_laser": 0.14,
+            "dt_hit": 0.12,
+            "dt_pause": 1.00  # Exactly 1.0 second post-hit delay as requested!
         })
 
     # Compute timeline
@@ -210,7 +215,7 @@ def generate_svg(date_dict, output_path="assets/space-invaders-commits.svg"):
         t["y"] = t["row"] * 13
         t["cx"] = t["x"] + 5
         t["cy"] = t["y"] + 5
-        t["laser_dist"] = 86 - t["cy"]
+        t["laser_dist"] = CANNON_Y - t["cy"]
         
         t["t_start"] = cur_t
         t["t_arrive"] = cur_t + t["dt_move"]
@@ -287,6 +292,26 @@ def generate_svg(date_dict, output_path="assets/space-invaders-commits.svg"):
         ]
         keyframes_css.append(f"@keyframes commitDamage{tid} {{\n" + "\n".join(damage_kf) + "\n}")
 
+    # Counter Animations (0 to 8 tally)
+    for c_val in range(9):
+        # Determine active percentage range
+        if c_val == 0:
+            p_on = 0.0
+            p_off = targets_data[0]["p_hit"]
+        elif c_val < 8:
+            p_on = targets_data[c_val - 1]["p_hit"]
+            p_off = targets_data[c_val]["p_hit"]
+        else: # 8
+            p_on = targets_data[7]["p_hit"]
+            p_off = 99.0
+
+        cnt_kf = [
+            f"  0%, {max(0, p_on - 0.01):.2f}% {{ opacity: 0; }}",
+            f"  {p_on:.2f}%, {p_off - 0.01:.2f}% {{ opacity: 1; }}",
+            f"  {p_off:.2f}%, 100% {{ opacity: 0; }}"
+        ]
+        keyframes_css.append(f"@keyframes countShow{c_val} {{\n" + "\n".join(cnt_kf) + "\n}")
+
     # Grid Rects
     target_map = {(t["col"], t["row"]): t for t in targets_data}
     grid_rects = []
@@ -303,15 +328,15 @@ def generate_svg(date_dict, output_path="assets/space-invaders-commits.svg"):
             grid_rects.append(f'      <rect x="{x}" y="{y}" width="10" height="10" rx="2" fill="{color}"/>')
     grid_content = "\n".join(grid_rects)
 
-    # Laser elements
+    # Laser elements (from CANNON_Y = 98)
     laser_elements = []
     for t in targets_data:
         tid = t["id"]
         cx = t["cx"]
         laser_elements.append(f'''    <!-- Laser {tid} targeting Col {t["col"]}, Row {t["row"]} -->
     <g class="laser-bolt-{tid}">
-      <line x1="{cx}" y1="86" x2="{cx}" y2="72" stroke="#E11D48" stroke-width="2.5" stroke-linecap="round"/>
-      <line x1="{cx}" y1="86" x2="{cx}" y2="72" stroke="#FDFBF7" stroke-width="1.2" stroke-linecap="round"/>
+      <line x1="{cx}" y1="{CANNON_Y}" x2="{cx}" y2="{CANNON_Y - 14}" stroke="#E11D48" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="{cx}" y1="{CANNON_Y}" x2="{cx}" y2="{CANNON_Y - 14}" stroke="#FDFBF7" stroke-width="1.2" stroke-linecap="round"/>
     </g>''')
     lasers_content = "\n".join(laser_elements)
 
@@ -331,10 +356,18 @@ def generate_svg(date_dict, output_path="assets/space-invaders-commits.svg"):
     </g>''')
     sparks_content = "\n".join(spark_elements)
 
+    # Counter Text Display Elements
+    counter_elements = []
+    for c_val in range(9):
+        counter_elements.append(f'      <tspan class="cnt-{c_val}">{c_val}</tspan>')
+    counter_spans = "".join(counter_elements)
+
     # CSS Rules
     css_class_rules = [
         f".ship-patrol {{ animation: shipPatrolRoute {TOTAL_DURATION:.2f}s cubic-bezier(0.25, 0, 0.15, 1) infinite; }}",
-        ".live-beacon { animation: beaconBlink 0.8s steps(2, start) infinite; }"
+        ".live-beacon { animation: beaconBlink 0.8s steps(2, start) infinite; }",
+        ".counter-frame { fill: #16171C; stroke: #2C303B; stroke-width: 1; }",
+        ".counter-txt { font-family: 'JetBrains Mono', Consolas, monospace; font-size: 10.5px; font-weight: 700; fill: #39D353; letter-spacing: 1px; }"
     ]
     for t in targets_data:
         tid = t["id"]
@@ -344,9 +377,12 @@ def generate_svg(date_dict, output_path="assets/space-invaders-commits.svg"):
         css_class_rules.append(f".spark-burst-{tid}  {{ animation: sparkHit{tid} {TOTAL_DURATION:.2f}s ease-out infinite; transform-origin: {cx}px {cy}px; }}")
         css_class_rules.append(f".commit-target-{tid} {{ animation: commitDamage{tid} {TOTAL_DURATION:.2f}s ease-in-out infinite; }}")
 
+    for c_val in range(9):
+        css_class_rules.append(f".cnt-{c_val} {{ animation: countShow{c_val} {TOTAL_DURATION:.2f}s steps(1) infinite; }}")
+
     full_css = "\n      ".join(css_class_rules) + "\n\n      " + "\n\n      ".join(keyframes_css)
 
-    svg_output = f'''<svg width="850" height="250" viewBox="0 0 850 250" fill="none" xmlns="http://www.w3.org/2000/svg">
+    svg_output = f'''<svg width="850" height="260" viewBox="0 0 850 260" fill="none" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <style>
       .bh-bg       {{ fill: #111215; stroke: #2C303B; stroke-width: 1.5; }}
@@ -362,13 +398,18 @@ def generate_svg(date_dict, output_path="assets/space-invaders-commits.svg"):
   </defs>
 
   <!-- Container Box -->
-  <rect width="850" height="250" rx="4" class="bh-bg"/>
+  <rect width="850" height="260" rx="4" class="bh-bg"/>
 
-  <!-- Top Title Bar -->
+  <!-- Top Title Bar with Live Destroyed Counter HUD -->
   <g transform="translate(24, 22)">
     <circle cx="0" cy="5" r="3.5" fill="#39D353" class="live-beacon"/>
     <text x="14" y="9" class="tag-txt">PLATE 03 // RETRO SPACE INVADERS: COMMIT BLAST ARCADE</text>
-    <text x="500" y="9" class="sub-txt">[AUTONOMOUS CANNON // LIVE TARGET STRIKES]</text>
+    
+    <!-- Live Counter HUD Badge -->
+    <g transform="translate(565, -8)">
+      <rect width="235" height="26" rx="3" class="counter-frame"/>
+      <text x="12" y="17" class="counter-txt">DESTROYED: [ {counter_spans} / 8 ] TARGETS</text>
+    </g>
   </g>
   <line x1="0" y1="42" x2="850" y2="42" stroke="#2C303B" stroke-width="1"/>
 
@@ -394,16 +435,16 @@ def generate_svg(date_dict, output_path="assets/space-invaders-commits.svg"):
 {grid_content}
     </g>
 
-    <!-- Fired Laser Projectile Bolts (One active per attack, traveling directly to target commit) -->
+    <!-- Fired Laser Projectile Bolts (One active per attack, launching from shifted cannon) -->
 {lasers_content}
 
     <!-- Impact Spark Bursts on Targeted Commits -->
 {sparks_content}
 
-    <!-- Autonomous Rocket Spaceship patrolling beneath targeted commits -->
+    <!-- Autonomous Rocket Spaceship shifted down with breathing room -->
     <g class="ship-patrol">
-      <g transform="translate(5, 96)">
-        <!-- Rocket Nose Cone (Cannon Tip at y = 86 relative to grid) -->
+      <g transform="translate(5, {ROCKET_Y})">
+        <!-- Rocket Nose Cone (Cannon Tip at y = 98 relative to grid) -->
         <polygon points="0,-10 9,4 -9,4" fill="#FDFBF7"/>
         <!-- Rocket Body & Wings -->
         <rect x="-9" y="4" width="18" height="6" rx="1.5" fill="#2563EB"/>
@@ -418,7 +459,7 @@ def generate_svg(date_dict, output_path="assets/space-invaders-commits.svg"):
   </g>
 
   <!-- Legend & Live Arcade Status -->
-  <g transform="translate(36, 215)">
+  <g transform="translate(36, 225)">
     <rect x="0" y="0" width="9" height="9" rx="2" fill="#161B22"/>
     <text x="14" y="8" class="score-lbl">LEVEL 0 (DEPLETED)</text>
 
