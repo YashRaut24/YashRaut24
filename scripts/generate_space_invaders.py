@@ -2,14 +2,14 @@ import urllib.request
 import json
 import os
 import re
+from datetime import datetime, timedelta
 
 USERNAME = "YashRaut24"
 GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN", os.environ.get("METRICS_TOKEN", ""))
 
 def fetch_contributions(username, token=""):
     """
-    Fetch real GitHub contributions for user.
-    Attempts GraphQL API first if token is available, otherwise uses GitHub contributions calendar API.
+    Fetch real GitHub contributions calendar for user.
     """
     if token:
         try:
@@ -44,16 +44,14 @@ def fetch_contributions(username, token=""):
             with urllib.request.urlopen(req) as resp:
                 res = json.loads(resp.read().decode('utf-8'))
                 calendar = res["data"]["user"]["contributionsCollection"]["contributionCalendar"]
-                days = []
+                date_dict = {}
+                level_map = {"NONE": 0, "FIRST_QUARTILE": 1, "SECOND_QUARTILE": 2, "THIRD_QUARTILE": 3, "FOURTH_QUARTILE": 4}
                 for week in calendar["weeks"]:
                     for day in week["contributionDays"]:
-                        days.append({
-                            "date": day["date"],
-                            "count": day["contributionCount"],
-                            "level": day["contributionLevel"]
-                        })
-                print(f"Fetched {len(days)} days via GitHub GraphQL API. Total contributions: {calendar['totalContributions']}")
-                return days
+                        lvl = level_map.get(day["contributionLevel"], 0)
+                        date_dict[day["date"]] = lvl
+                print(f"Fetched {len(date_dict)} days via GitHub GraphQL API. Total contributions: {calendar['totalContributions']}")
+                return date_dict
         except Exception as e:
             print(f"GraphQL fetch failed: {e}. Falling back to calendar endpoint...")
 
@@ -64,47 +62,22 @@ def fetch_contributions(username, token=""):
         with urllib.request.urlopen(req) as resp:
             html = resp.read().decode('utf-8')
         
-        # Match data-date and data-level / count
-        # In modern GitHub HTML: <td ... data-date="2025-08-26" ... data-level="2" ...>
-        # Or tooltips with count
-        items = re.findall(r'data-date="([^"]+)"(?:\s+[^>]*?)?data-level="([^"]+)"', html)
-        if not items:
-            items = re.findall(r'data-level="([^"]+)"(?:\s+[^>]*?)?data-date="([^"]+)"', html)
-            items = [(d, l) for l, d in items]
+        matches = re.findall(r'data-date="([^"]+)"(?:\s+[^>]*?)?data-level="([^"]+)"', html)
+        if not matches:
+            matches = re.findall(r'data-level="([^"]+)"(?:\s+[^>]*?)?data-date="([^"]+)"', html)
+            matches = [(d, l) for l, d in matches]
         
-        days = []
-        for date_str, lvl_str in items:
-            lvl = int(lvl_str)
-            # Estimate count based on level if exact count tooltip is omitted
-            count_map = {0: 0, 1: 2, 2: 5, 3: 10, 4: 16}
-            days.append({
-                "date": date_str,
-                "count": count_map.get(lvl, 0),
-                "level": lvl
-            })
-        print(f"Fetched {len(days)} days via GitHub contributions calendar.")
-        return days
+        date_dict = {d: int(l) for d, l in matches}
+        print(f"Fetched {len(date_dict)} real contribution dates from GitHub.")
+        return date_dict
     except Exception as e:
         print(f"Calendar fetch failed: {e}")
-        return []
+        return {}
 
-def generate_svg(days, output_path="assets/space-invaders-commits.svg"):
-    # Ensure exactly 52 weeks (364 days, 52 * 7)
-    if len(days) >= 364:
-        days = days[-364:]
-    elif len(days) > 0:
-        # Pad with 0s if shorter
-        padding = [{"date": "pad", "count": 0, "level": 0}] * (364 - len(days))
-        days = padding + days
-    else:
-        raise ValueError("No contribution days loaded")
+def generate_svg(date_dict, output_path="assets/space-invaders-commits.svg"):
+    if not date_dict:
+        raise ValueError("No contribution dates provided")
 
-    # Map levels to colors
-    # Level 0 (0): #161B22
-    # Level 1 (1-3): #0E4429
-    # Level 2 (4-7): #006D32
-    # Level 3 (8-12): #26A641
-    # Level 4 (13+): #39D353
     LEVEL_COLORS = {
         0: "#161B22",
         1: "#0E4429",
@@ -113,103 +86,94 @@ def generate_svg(days, output_path="assets/space-invaders-commits.svg"):
         4: "#39D353"
     }
 
-    LEVEL_MAP_STR = {
-        "NONE": 0, "FIRST_QUARTILE": 1, "SECOND_QUARTILE": 2, "THIRD_QUARTILE": 3, "FOURTH_QUARTILE": 4
-    }
+    # Construct the exact 52-week calendar (Sunday = row 0, Saturday = row 6)
+    sorted_dates = sorted(date_dict.keys())
+    end_date = datetime.strptime(sorted_dates[-1], "%Y-%m-%d")
+    
+    # Get last Sunday
+    days_since_sunday = (end_date.weekday() + 1) % 7
+    last_sunday = end_date - timedelta(days=days_since_sunday)
+    first_sunday = last_sunday - timedelta(weeks=51)
 
-    # Normalize integer levels
     grid_matrix = [] # 52 cols x 7 rows
-    for i, d in enumerate(days):
-        col = i // 7
-        row = i % 7
-        lvl = d["level"]
-        if isinstance(lvl, str):
-            if lvl in LEVEL_MAP_STR:
-                lvl = LEVEL_MAP_STR[lvl]
-            else:
-                try:
-                    lvl = int(lvl)
-                except:
-                    lvl = 0
-        grid_matrix.append({
-            "col": col,
-            "row": row,
-            "count": d["count"],
-            "level": lvl,
-            "date": d["date"]
-        })
+    active_cells = []
 
-    # Identify real active cells (level >= 1)
-    active_cells = [c for c in grid_matrix if c["level"] >= 1 and 2 <= c["col"] <= 50]
-    print(f"Found {len(active_cells)} active contribution cells in real matrix")
+    for col in range(52):
+        week_start = first_sunday + timedelta(weeks=col)
+        for row in range(7): # 0 = Sunday ... 6 = Saturday
+            day_date = week_start + timedelta(days=row)
+            day_str = day_date.strftime("%Y-%m-%d")
+            lvl = date_dict.get(day_str, 0)
+            cell = {
+                "col": col,
+                "row": row,
+                "level": lvl,
+                "date": day_str
+            }
+            grid_matrix.append(cell)
+            if lvl >= 1 and 2 <= col <= 50:
+                active_cells.append(cell)
 
-    # Select 8 hybrid arcade targets (Row-Sweeps + Occasional Random Jumps)
-    # Target structure: mostly row sweeps (2-3 in same row), then random jump, then another sweep
-    # Let's search active cells by rows to build realistic sweeps:
+    print(f"Generated 52x7 grid spanning {first_sunday.strftime('%Y-%m-%d')} to {end_date.strftime('%Y-%m-%d')}.")
+    print(f"Found {len(active_cells)} active contribution cells in authentic layout.")
+
+    # Select 8 hybrid arcade targets from actual active cells
+    # Group by rows to perform row sweeps and occasional jumps
     rows_active = {}
     for c in active_cells:
         rows_active.setdefault(c["row"], []).append(c)
     for r in rows_active:
         rows_active[r].sort(key=lambda x: x["col"])
 
-    # Build 8 coordinated targets from real data
     chosen = []
-    
-    # Sweep 1: Row with good distribution
-    sweep_row_1 = 1 if 1 in rows_active and len(rows_active[1]) >= 2 else (list(rows_active.keys())[0] if rows_active else 1)
-    if sweep_row_1 in rows_active:
-        row_candidates = [c for c in rows_active[sweep_row_1] if c["col"] < 20]
-        if len(row_candidates) >= 2:
-            chosen.extend(row_candidates[:2])
-        elif len(rows_active[sweep_row_1]) >= 2:
-            chosen.extend(rows_active[sweep_row_1][:2])
+    # Row Sweep 1
+    if 1 in rows_active and len(rows_active[1]) >= 2:
+        chosen.extend(rows_active[1][:2])
+    elif active_cells:
+        chosen.append(active_cells[0])
 
     # Random Jump 1
-    jump_1 = [c for c in active_cells if c["col"] >= 25 and c["row"] != sweep_row_1]
+    jump_1 = [c for c in active_cells if c["col"] >= 25 and c["row"] != 1]
     if jump_1:
         chosen.append(jump_1[len(jump_1)//2])
 
-    # Sweep 2: Another row
-    sweep_row_2 = 4 if 4 in rows_active and len(rows_active[4]) >= 2 else 3
-    if sweep_row_2 in rows_active:
-        row_candidates = [c for c in rows_active[sweep_row_2] if 25 <= c["col"] <= 48]
-        if len(row_candidates) >= 2:
-            chosen.extend(row_candidates[:2])
-        elif len(rows_active[sweep_row_2]) >= 2:
-            chosen.extend(rows_active[sweep_row_2][:2])
+    # Row Sweep 2
+    if 4 in rows_active and len(rows_active[4]) >= 2:
+        cands = [c for c in rows_active[4] if 20 <= c["col"] <= 48]
+        if len(cands) >= 2:
+            chosen.extend(cands[:2])
+        elif len(rows_active[4]) >= 2:
+            chosen.extend(rows_active[4][:2])
 
     # Random Jump 2
-    jump_2 = [c for c in active_cells if 10 <= c["col"] <= 24 and c["row"] not in [sweep_row_1, sweep_row_2]]
+    jump_2 = [c for c in active_cells if 10 <= c["col"] <= 25 and c["row"] not in [1, 4]]
     if jump_2:
         chosen.append(jump_2[0])
 
-    # Sweep 3: Another row
-    sweep_row_3 = 3 if 3 in rows_active and len(rows_active[3]) >= 2 else 2
-    if sweep_row_3 in rows_active:
-        row_candidates = [c for c in rows_active[sweep_row_3] if c["col"] >= 20]
-        if len(row_candidates) >= 2:
-            chosen.extend(row_candidates[:2])
+    # Row Sweep 3
+    if 2 in rows_active and len(rows_active[2]) >= 2:
+        cands = [c for c in rows_active[2] if c["col"] >= 20]
+        if len(cands) >= 2:
+            chosen.extend(cands[:2])
 
-    # If we need more to reach 8, add from active
-    idx = 0
-    while len(chosen) < 8 and idx < len(active_cells):
-        cand = active_cells[idx]
-        if cand not in chosen:
-            chosen.append(cand)
-        idx += 1
+    # Fill up to 8 targets if needed
+    for c in active_cells:
+        if len(chosen) >= 8:
+            break
+        if c not in chosen:
+            chosen.append(c)
 
-    # Keep at 8 targets for tight, rapid-fire pacing
     chosen = chosen[:8]
-    print(f"Selected {len(chosen)} real target cells for attack loop:")
+    print(f"Selected {len(chosen)} real targets:")
     for i, t in enumerate(chosen):
         print(f"  Target {i+1}: Col {t['col']}, Row {t['row']}, Level {t['level']}, Date {t['date']}")
 
-    # Build timing with requested constraint:
-    # Post-hit pause = ~400ms (within requested 300-500ms max)
-    # Move: 250-450ms
-    # Aim: 60ms
-    # Laser: 120ms
-    # Impact: 110ms
+    # Build timing with fast post-hit delay:
+    # dt_pause = 0.15s (150ms, starts moving well within 0.5s)
+    # dt_move = 0.22s to 0.40s
+    # dt_aim = 0.05s
+    # dt_laser = 0.12s
+    # dt_hit = 0.10s
     targets_data = []
     for i, c in enumerate(chosen):
         init_lvl = c["level"]
@@ -217,13 +181,12 @@ def generate_svg(days, output_path="assets/space-invaders-commits.svg"):
         init_color = LEVEL_COLORS[init_lvl]
         new_color = LEVEL_COLORS[new_lvl]
         
-        # Calculate move duration based on distance from previous target
         if i == 0:
             prev_col = chosen[-1]["col"]
         else:
             prev_col = chosen[i-1]["col"]
         col_dist = abs(c["col"] - prev_col)
-        dt_move = 0.25 + min(0.20, (col_dist / 52.0) * 0.35) # between 0.25s and 0.45s
+        dt_move = 0.22 + min(0.18, (col_dist / 52.0) * 0.30) # 0.22s to 0.40s
         
         targets_data.append({
             "id": i + 1,
@@ -234,10 +197,10 @@ def generate_svg(days, output_path="assets/space-invaders-commits.svg"):
             "init_color": init_color,
             "new_color": new_color,
             "dt_move": dt_move,
-            "dt_aim": 0.06,
+            "dt_aim": 0.05,
             "dt_laser": 0.12,
-            "dt_hit": 0.11,
-            "dt_pause": 0.40  # exactly in the 300-500ms target window
+            "dt_hit": 0.10,
+            "dt_pause": 0.15  # starts moving within 150ms after hit!
         })
 
     # Compute timeline
@@ -258,7 +221,7 @@ def generate_svg(days, output_path="assets/space-invaders-commits.svg"):
         cur_t = t["t_end"]
 
     TOTAL_DURATION = cur_t
-    print(f"Total loop duration: {TOTAL_DURATION:.2f}s for {len(targets_data)} strikes (~{TOTAL_DURATION/len(targets_data):.2f}s per attack)")
+    print(f"Total loop duration: {TOTAL_DURATION:.2f}s (~{TOTAL_DURATION/len(targets_data):.2f}s per attack)")
 
     # Percentages
     for t in targets_data:
@@ -481,8 +444,8 @@ def generate_svg(days, output_path="assets/space-invaders-commits.svg"):
     print(f"Successfully wrote {output_path}")
 
 if __name__ == "__main__":
-    days = fetch_contributions(USERNAME, GITHUB_TOKEN)
-    if days:
-        generate_svg(days)
+    date_dict = fetch_contributions(USERNAME, GITHUB_TOKEN)
+    if date_dict:
+        generate_svg(date_dict)
     else:
-        print("Error: Could not retrieve contribution days.")
+        print("Error: Could not retrieve contribution dates.")
