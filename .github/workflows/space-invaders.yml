@@ -1,0 +1,36 @@
+name: generate space invaders commit arcade
+
+on:
+  schedule:
+    - cron: "0 */12 * * *" # twice a day
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+
+      - name: Generate Space Invaders SVG from Live GitHub Data
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python scripts/generate_space_invaders.py
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add assets/space-invaders-commits.svg || true
+          git commit -m "chore: update live space invaders contribution arcade" || exit 0
+          git push

@@ -1,0 +1,488 @@
+import urllib.request
+import json
+import os
+import re
+
+USERNAME = "YashRaut24"
+GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN", os.environ.get("METRICS_TOKEN", ""))
+
+def fetch_contributions(username, token=""):
+    """
+    Fetch real GitHub contributions for user.
+    Attempts GraphQL API first if token is available, otherwise uses GitHub contributions calendar API.
+    """
+    if token:
+        try:
+            graphql_query = """
+            query($username: String!) {
+              user(login: $username) {
+                contributionsCollection {
+                  contributionCalendar {
+                    totalContributions
+                    weeks {
+                      contributionDays {
+                        date
+                        contributionCount
+                        contributionLevel
+                      }
+                    }
+                  }
+                }
+              }
+            }
+            """
+            req_data = json.dumps({"query": graphql_query, "variables": {"username": username}}).encode('utf-8')
+            req = urllib.request.Request(
+                "https://api.github.com/graphql",
+                data=req_data,
+                headers={
+                    "Authorization": f"Bearer {token}",
+                    "User-Agent": "Space-Invaders-Generator",
+                    "Content-Type": "application/json"
+                }
+            )
+            with urllib.request.urlopen(req) as resp:
+                res = json.loads(resp.read().decode('utf-8'))
+                calendar = res["data"]["user"]["contributionsCollection"]["contributionCalendar"]
+                days = []
+                for week in calendar["weeks"]:
+                    for day in week["contributionDays"]:
+                        days.append({
+                            "date": day["date"],
+                            "count": day["contributionCount"],
+                            "level": day["contributionLevel"]
+                        })
+                print(f"Fetched {len(days)} days via GitHub GraphQL API. Total contributions: {calendar['totalContributions']}")
+                return days
+        except Exception as e:
+            print(f"GraphQL fetch failed: {e}. Falling back to calendar endpoint...")
+
+    # Fallback to contributions calendar endpoint
+    try:
+        url = f"https://github.com/users/{username}/contributions"
+        req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"})
+        with urllib.request.urlopen(req) as resp:
+            html = resp.read().decode('utf-8')
+        
+        # Match data-date and data-level / count
+        # In modern GitHub HTML: <td ... data-date="2025-08-26" ... data-level="2" ...>
+        # Or tooltips with count
+        items = re.findall(r'data-date="([^"]+)"(?:\s+[^>]*?)?data-level="([^"]+)"', html)
+        if not items:
+            items = re.findall(r'data-level="([^"]+)"(?:\s+[^>]*?)?data-date="([^"]+)"', html)
+            items = [(d, l) for l, d in items]
+        
+        days = []
+        for date_str, lvl_str in items:
+            lvl = int(lvl_str)
+            # Estimate count based on level if exact count tooltip is omitted
+            count_map = {0: 0, 1: 2, 2: 5, 3: 10, 4: 16}
+            days.append({
+                "date": date_str,
+                "count": count_map.get(lvl, 0),
+                "level": lvl
+            })
+        print(f"Fetched {len(days)} days via GitHub contributions calendar.")
+        return days
+    except Exception as e:
+        print(f"Calendar fetch failed: {e}")
+        return []
+
+def generate_svg(days, output_path="assets/space-invaders-commits.svg"):
+    # Ensure exactly 52 weeks (364 days, 52 * 7)
+    if len(days) >= 364:
+        days = days[-364:]
+    elif len(days) > 0:
+        # Pad with 0s if shorter
+        padding = [{"date": "pad", "count": 0, "level": 0}] * (364 - len(days))
+        days = padding + days
+    else:
+        raise ValueError("No contribution days loaded")
+
+    # Map levels to colors
+    # Level 0 (0): #161B22
+    # Level 1 (1-3): #0E4429
+    # Level 2 (4-7): #006D32
+    # Level 3 (8-12): #26A641
+    # Level 4 (13+): #39D353
+    LEVEL_COLORS = {
+        0: "#161B22",
+        1: "#0E4429",
+        2: "#006D32",
+        3: "#26A641",
+        4: "#39D353"
+    }
+
+    LEVEL_MAP_STR = {
+        "NONE": 0, "FIRST_QUARTILE": 1, "SECOND_QUARTILE": 2, "THIRD_QUARTILE": 3, "FOURTH_QUARTILE": 4
+    }
+
+    # Normalize integer levels
+    grid_matrix = [] # 52 cols x 7 rows
+    for i, d in enumerate(days):
+        col = i // 7
+        row = i % 7
+        lvl = d["level"]
+        if isinstance(lvl, str):
+            if lvl in LEVEL_MAP_STR:
+                lvl = LEVEL_MAP_STR[lvl]
+            else:
+                try:
+                    lvl = int(lvl)
+                except:
+                    lvl = 0
+        grid_matrix.append({
+            "col": col,
+            "row": row,
+            "count": d["count"],
+            "level": lvl,
+            "date": d["date"]
+        })
+
+    # Identify real active cells (level >= 1)
+    active_cells = [c for c in grid_matrix if c["level"] >= 1 and 2 <= c["col"] <= 50]
+    print(f"Found {len(active_cells)} active contribution cells in real matrix")
+
+    # Select 8 hybrid arcade targets (Row-Sweeps + Occasional Random Jumps)
+    # Target structure: mostly row sweeps (2-3 in same row), then random jump, then another sweep
+    # Let's search active cells by rows to build realistic sweeps:
+    rows_active = {}
+    for c in active_cells:
+        rows_active.setdefault(c["row"], []).append(c)
+    for r in rows_active:
+        rows_active[r].sort(key=lambda x: x["col"])
+
+    # Build 8 coordinated targets from real data
+    chosen = []
+    
+    # Sweep 1: Row with good distribution
+    sweep_row_1 = 1 if 1 in rows_active and len(rows_active[1]) >= 2 else (list(rows_active.keys())[0] if rows_active else 1)
+    if sweep_row_1 in rows_active:
+        row_candidates = [c for c in rows_active[sweep_row_1] if c["col"] < 20]
+        if len(row_candidates) >= 2:
+            chosen.extend(row_candidates[:2])
+        elif len(rows_active[sweep_row_1]) >= 2:
+            chosen.extend(rows_active[sweep_row_1][:2])
+
+    # Random Jump 1
+    jump_1 = [c for c in active_cells if c["col"] >= 25 and c["row"] != sweep_row_1]
+    if jump_1:
+        chosen.append(jump_1[len(jump_1)//2])
+
+    # Sweep 2: Another row
+    sweep_row_2 = 4 if 4 in rows_active and len(rows_active[4]) >= 2 else 3
+    if sweep_row_2 in rows_active:
+        row_candidates = [c for c in rows_active[sweep_row_2] if 25 <= c["col"] <= 48]
+        if len(row_candidates) >= 2:
+            chosen.extend(row_candidates[:2])
+        elif len(rows_active[sweep_row_2]) >= 2:
+            chosen.extend(rows_active[sweep_row_2][:2])
+
+    # Random Jump 2
+    jump_2 = [c for c in active_cells if 10 <= c["col"] <= 24 and c["row"] not in [sweep_row_1, sweep_row_2]]
+    if jump_2:
+        chosen.append(jump_2[0])
+
+    # Sweep 3: Another row
+    sweep_row_3 = 3 if 3 in rows_active and len(rows_active[3]) >= 2 else 2
+    if sweep_row_3 in rows_active:
+        row_candidates = [c for c in rows_active[sweep_row_3] if c["col"] >= 20]
+        if len(row_candidates) >= 2:
+            chosen.extend(row_candidates[:2])
+
+    # If we need more to reach 8, add from active
+    idx = 0
+    while len(chosen) < 8 and idx < len(active_cells):
+        cand = active_cells[idx]
+        if cand not in chosen:
+            chosen.append(cand)
+        idx += 1
+
+    # Keep at 8 targets for tight, rapid-fire pacing
+    chosen = chosen[:8]
+    print(f"Selected {len(chosen)} real target cells for attack loop:")
+    for i, t in enumerate(chosen):
+        print(f"  Target {i+1}: Col {t['col']}, Row {t['row']}, Level {t['level']}, Date {t['date']}")
+
+    # Build timing with requested constraint:
+    # Post-hit pause = ~400ms (within requested 300-500ms max)
+    # Move: 250-450ms
+    # Aim: 60ms
+    # Laser: 120ms
+    # Impact: 110ms
+    targets_data = []
+    for i, c in enumerate(chosen):
+        init_lvl = c["level"]
+        new_lvl = max(0, init_lvl - 1)
+        init_color = LEVEL_COLORS[init_lvl]
+        new_color = LEVEL_COLORS[new_lvl]
+        
+        # Calculate move duration based on distance from previous target
+        if i == 0:
+            prev_col = chosen[-1]["col"]
+        else:
+            prev_col = chosen[i-1]["col"]
+        col_dist = abs(c["col"] - prev_col)
+        dt_move = 0.25 + min(0.20, (col_dist / 52.0) * 0.35) # between 0.25s and 0.45s
+        
+        targets_data.append({
+            "id": i + 1,
+            "col": c["col"],
+            "row": c["row"],
+            "init_lvl": init_lvl,
+            "new_lvl": new_lvl,
+            "init_color": init_color,
+            "new_color": new_color,
+            "dt_move": dt_move,
+            "dt_aim": 0.06,
+            "dt_laser": 0.12,
+            "dt_hit": 0.11,
+            "dt_pause": 0.40  # exactly in the 300-500ms target window
+        })
+
+    # Compute timeline
+    cur_t = 0.0
+    for t in targets_data:
+        t["x"] = t["col"] * 15
+        t["y"] = t["row"] * 13
+        t["cx"] = t["x"] + 5
+        t["cy"] = t["y"] + 5
+        t["laser_dist"] = 86 - t["cy"]
+        
+        t["t_start"] = cur_t
+        t["t_arrive"] = cur_t + t["dt_move"]
+        t["t_fire"] = t["t_arrive"] + t["dt_aim"]
+        t["t_hit"] = t["t_fire"] + t["dt_laser"]
+        t["t_settle"] = t["t_hit"] + t["dt_hit"]
+        t["t_end"] = t["t_settle"] + t["dt_pause"]
+        cur_t = t["t_end"]
+
+    TOTAL_DURATION = cur_t
+    print(f"Total loop duration: {TOTAL_DURATION:.2f}s for {len(targets_data)} strikes (~{TOTAL_DURATION/len(targets_data):.2f}s per attack)")
+
+    # Percentages
+    for t in targets_data:
+        t["p_start"] = (t["t_start"] / TOTAL_DURATION) * 100.0
+        t["p_arrive"] = (t["t_arrive"] / TOTAL_DURATION) * 100.0
+        t["p_fire"] = (t["t_fire"] / TOTAL_DURATION) * 100.0
+        t["p_hit"] = (t["t_hit"] / TOTAL_DURATION) * 100.0
+        t["p_settle"] = (t["t_settle"] / TOTAL_DURATION) * 100.0
+        t["p_end"] = (t["t_end"] / TOTAL_DURATION) * 100.0
+
+    # Keyframes
+    keyframes_css = []
+
+    # Rocket Keyframes
+    ship_kf = []
+    for t in targets_data:
+        ship_kf.append(f"  {t['p_start']:.2f}% {{ transform: translateX({t['x']}px); }}")
+        ship_kf.append(f"  {t['p_arrive']:.2f}% {{ transform: translateX({t['x']}px); }}")
+        ship_kf.append(f"  {t['p_end']:.2f}% {{ transform: translateX({t['x']}px); }}")
+    ship_kf.append(f"  100% {{ transform: translateX({targets_data[0]['x']}px); }}")
+    keyframes_css.append("@keyframes shipPatrolRoute {\n" + "\n".join(ship_kf) + "\n}")
+
+    # Laser Keyframes
+    for t in targets_data:
+        tid = t["id"]
+        pf = t["p_fire"]
+        ph = t["p_hit"]
+        dist = t["laser_dist"]
+        laser_kf = [
+            f"  0%, {pf - 0.01:.2f}% {{ opacity: 0; transform: translateY(0px); }}",
+            f"  {pf:.2f}% {{ opacity: 1; transform: translateY(0px); }}",
+            f"  {ph - 0.02:.2f}% {{ opacity: 1; transform: translateY(-{dist}px); }}",
+            f"  {ph:.2f}%, 100% {{ opacity: 0; transform: translateY(-{dist}px); }}"
+        ]
+        keyframes_css.append(f"@keyframes laserShot{tid} {{\n" + "\n".join(laser_kf) + "\n}")
+
+    # Spark Keyframes
+    for t in targets_data:
+        tid = t["id"]
+        ph = t["p_hit"]
+        ps = t["p_settle"]
+        spark_kf = [
+            f"  0%, {ph - 0.01:.2f}% {{ opacity: 0; transform: scale(0.2); }}",
+            f"  {ph:.2f}% {{ opacity: 1; transform: scale(0.6); }}",
+            f"  {(ph+ps)/2:.2f}% {{ opacity: 1; transform: scale(1.6); }}",
+            f"  {ps:.2f}%, 100% {{ opacity: 0; transform: scale(0.2); }}"
+        ]
+        keyframes_css.append(f"@keyframes sparkHit{tid} {{\n" + "\n".join(spark_kf) + "\n}")
+
+    # Damage Keyframes
+    for t in targets_data:
+        tid = t["id"]
+        ph = t["p_hit"]
+        ps = t["p_settle"]
+        init_c = t["init_color"]
+        new_c = t["new_color"]
+        damage_kf = [
+            f"  0%, {ph - 0.01:.2f}% {{ fill: {init_c}; stroke: none; }}",
+            f"  {ph:.2f}% {{ fill: #FDFBF7; stroke: #F59E0B; stroke-width: 1.5; }}",
+            f"  {ps:.2f}% {{ fill: {new_c}; stroke: none; }}",
+            f"  98.8% {{ fill: {new_c}; stroke: none; }}",
+            f"  100% {{ fill: {init_c}; stroke: none; }}"
+        ]
+        keyframes_css.append(f"@keyframes commitDamage{tid} {{\n" + "\n".join(damage_kf) + "\n}")
+
+    # Grid Rects
+    target_map = {(t["col"], t["row"]): t for t in targets_data}
+    grid_rects = []
+    for cell in grid_matrix:
+        col = cell["col"]
+        row = cell["row"]
+        x = col * 15
+        y = row * 13
+        if (col, row) in target_map:
+            t = target_map[(col, row)]
+            grid_rects.append(f'      <rect x="{x}" y="{y}" width="10" height="10" rx="2" class="commit-target-{t["id"]}"/>')
+        else:
+            color = LEVEL_COLORS[cell["level"]]
+            grid_rects.append(f'      <rect x="{x}" y="{y}" width="10" height="10" rx="2" fill="{color}"/>')
+    grid_content = "\n".join(grid_rects)
+
+    # Laser elements
+    laser_elements = []
+    for t in targets_data:
+        tid = t["id"]
+        cx = t["cx"]
+        laser_elements.append(f'''    <!-- Laser {tid} targeting Col {t["col"]}, Row {t["row"]} -->
+    <g class="laser-bolt-{tid}">
+      <line x1="{cx}" y1="86" x2="{cx}" y2="72" stroke="#E11D48" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="{cx}" y1="86" x2="{cx}" y2="72" stroke="#FDFBF7" stroke-width="1.2" stroke-linecap="round"/>
+    </g>''')
+    lasers_content = "\n".join(laser_elements)
+
+    # Spark elements
+    spark_elements = []
+    for t in targets_data:
+        tid = t["id"]
+        cx = t["cx"]
+        cy = t["cy"]
+        spark_elements.append(f'''    <!-- Impact Burst {tid} at ({cx}, {cy}) -->
+    <g transform="translate({cx}, {cy})" class="spark-burst-{tid}">
+      <circle cx="0" cy="0" r="4" fill="#FDFBF7"/>
+      <line x1="-5" y1="-5" x2="5" y2="5" stroke="#F59E0B" stroke-width="1.5"/>
+      <line x1="5" y1="-5" x2="-5" y2="5" stroke="#F59E0B" stroke-width="1.5"/>
+      <line x1="-6" y1="0" x2="6" y2="0" stroke="#E11D48" stroke-width="1.2"/>
+      <line x1="0" y1="-6" x2="0" y2="6" stroke="#E11D48" stroke-width="1.2"/>
+    </g>''')
+    sparks_content = "\n".join(spark_elements)
+
+    # CSS Rules
+    css_class_rules = [
+        f".ship-patrol {{ animation: shipPatrolRoute {TOTAL_DURATION:.2f}s cubic-bezier(0.25, 0, 0.15, 1) infinite; }}",
+        ".live-beacon { animation: beaconBlink 0.8s steps(2, start) infinite; }"
+    ]
+    for t in targets_data:
+        tid = t["id"]
+        cx = t["cx"]
+        cy = t["cy"]
+        css_class_rules.append(f".laser-bolt-{tid}   {{ animation: laserShot{tid} {TOTAL_DURATION:.2f}s linear infinite; }}")
+        css_class_rules.append(f".spark-burst-{tid}  {{ animation: sparkHit{tid} {TOTAL_DURATION:.2f}s ease-out infinite; transform-origin: {cx}px {cy}px; }}")
+        css_class_rules.append(f".commit-target-{tid} {{ animation: commitDamage{tid} {TOTAL_DURATION:.2f}s ease-in-out infinite; }}")
+
+    full_css = "\n      ".join(css_class_rules) + "\n\n      " + "\n\n      ".join(keyframes_css)
+
+    svg_output = f'''<svg width="850" height="250" viewBox="0 0 850 250" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .bh-bg       {{ fill: #111215; stroke: #2C303B; stroke-width: 1.5; }}
+      .tag-txt     {{ font-family: 'JetBrains Mono', Consolas, monospace; font-size: 11px; font-weight: 700; fill: #FDFBF7; letter-spacing: 1.5px; }}
+      .sub-txt     {{ font-family: 'JetBrains Mono', Consolas, monospace; font-size: 10px; fill: #71737E; letter-spacing: 1px; }}
+      .month-lbl   {{ font-family: 'JetBrains Mono', Consolas, monospace; font-size: 9px; fill: #52545F; }}
+      .score-lbl   {{ font-family: 'JetBrains Mono', Consolas, monospace; font-size: 9.5px; fill: #71737E; }}
+
+      @keyframes beaconBlink {{ 0%, 100% {{ opacity: 1; }} 50% {{ opacity: 0.2; }} }}
+
+      {full_css}
+    </style>
+  </defs>
+
+  <!-- Container Box -->
+  <rect width="850" height="250" rx="4" class="bh-bg"/>
+
+  <!-- Top Title Bar -->
+  <g transform="translate(24, 22)">
+    <circle cx="0" cy="5" r="3.5" fill="#39D353" class="live-beacon"/>
+    <text x="14" y="9" class="tag-txt">PLATE 03 // RETRO SPACE INVADERS: COMMIT BLAST ARCADE</text>
+    <text x="500" y="9" class="sub-txt">[AUTONOMOUS CANNON // LIVE TARGET STRIKES]</text>
+  </g>
+  <line x1="0" y1="42" x2="850" y2="42" stroke="#2C303B" stroke-width="1"/>
+
+  <!-- 52x7 Real GitHub Contribution Matrix -->
+  <g transform="translate(36, 62)">
+    
+    <!-- Month Labels -->
+    <text x="0" y="-8" class="month-lbl">JAN</text>
+    <text x="64" y="-8" class="month-lbl">FEB</text>
+    <text x="128" y="-8" class="month-lbl">MAR</text>
+    <text x="192" y="-8" class="month-lbl">APR</text>
+    <text x="256" y="-8" class="month-lbl">MAY</text>
+    <text x="320" y="-8" class="month-lbl">JUN</text>
+    <text x="384" y="-8" class="month-lbl">JUL</text>
+    <text x="448" y="-8" class="month-lbl">AUG</text>
+    <text x="512" y="-8" class="month-lbl">SEP</text>
+    <text x="576" y="-8" class="month-lbl">OCT</text>
+    <text x="640" y="-8" class="month-lbl">NOV</text>
+    <text x="704" y="-8" class="month-lbl">DEC</text>
+
+    <!-- Real Contribution Grid -->
+    <g>
+{grid_content}
+    </g>
+
+    <!-- Fired Laser Projectile Bolts (One active per attack, traveling directly to target commit) -->
+{lasers_content}
+
+    <!-- Impact Spark Bursts on Targeted Commits -->
+{sparks_content}
+
+    <!-- Autonomous Rocket Spaceship patrolling beneath targeted commits -->
+    <g class="ship-patrol">
+      <g transform="translate(5, 96)">
+        <!-- Rocket Nose Cone (Cannon Tip at y = 86 relative to grid) -->
+        <polygon points="0,-10 9,4 -9,4" fill="#FDFBF7"/>
+        <!-- Rocket Body & Wings -->
+        <rect x="-9" y="4" width="18" height="6" rx="1.5" fill="#2563EB"/>
+        <rect x="-4" y="1" width="8" height="7" fill="#E11D48"/>
+        <!-- Cockpit Window -->
+        <circle cx="0" cy="-2" r="2" fill="#00F0FF"/>
+        <!-- Rocket Thruster Flames -->
+        <polygon points="-6,10 -4,15 -2,10" fill="#F59E0B"/>
+        <polygon points="2,10 4,15 6,10" fill="#F59E0B"/>
+      </g>
+    </g>
+  </g>
+
+  <!-- Legend & Live Arcade Status -->
+  <g transform="translate(36, 215)">
+    <rect x="0" y="0" width="9" height="9" rx="2" fill="#161B22"/>
+    <text x="14" y="8" class="score-lbl">LEVEL 0 (DEPLETED)</text>
+
+    <rect x="150" y="0" width="9" height="9" rx="2" fill="#0E4429"/>
+    <text x="164" y="8" class="score-lbl">LEVEL 1</text>
+
+    <rect x="250" y="0" width="9" height="9" rx="2" fill="#006D32"/>
+    <text x="264" y="8" class="score-lbl">LEVEL 2</text>
+
+    <rect x="350" y="0" width="9" height="9" rx="2" fill="#26A641"/>
+    <text x="364" y="8" class="score-lbl">LEVEL 3</text>
+
+    <rect x="450" y="0" width="9" height="9" rx="2" fill="#39D353"/>
+    <text x="464" y="8" class="score-lbl" style="fill:#39D353; font-weight:bold;">LEVEL 4 (FULL LIGHT)</text>
+
+    <text x="630" y="8" font-family="'JetBrains Mono', monospace" font-size="10.5px" font-weight="700" fill="#2563EB">1,500+ COMMITS LOGGED</text>
+  </g>
+</svg>
+'''
+    os.makedirs(os.path.dirname(output_path), exist_ok=True)
+    with open(output_path, "w") as f:
+        f.write(svg_output)
+    print(f"Successfully wrote {output_path}")
+
+if __name__ == "__main__":
+    days = fetch_contributions(USERNAME, GITHUB_TOKEN)
+    if days:
+        generate_svg(days)
+    else:
+        print("Error: Could not retrieve contribution days.")
