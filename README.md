@@ -19,7 +19,13 @@
 
 <br/>
 
-### `//` PLATE 03: TELEMETRY &amp; REPOSITORY METRICS
+### `//` PLATE 03: KINETIC GEOMETRIC COMMIT MATRIX
+
+<img src="./assets/bauhaus-commit-matrix.svg" alt="Kinetic Geometric Commit Matrix" width="100%" />
+
+<br/>
+
+### `//` PLATE 04: TELEMETRY &amp; REPOSITORY METRICS
 
 <img src="./assets/bauhaus-telemetry.svg" alt="Repository Metrics Console" width="100%" />
 
