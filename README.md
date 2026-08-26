@@ -51,24 +51,14 @@
 
 <br/><br/>
 
-<!-- SECTOR 07: SENSOR ARRAY ACTIVE ORBITAL RADAR (CONTAINED FULLY INSIDE) -->
-<table width="100%">
-  <tr>
-    <td align="left">
-      <code>PORTAL GATEWAY // SECTOR 07: SENSOR ARRAY &amp; ORBITAL RADAR</code>
-      <br/><br/>
-      <b>📡 Deep-Space Subspace Sensor Array</b><br/>
-      <sub>Real-time incoming spacecraft telemetry &amp; visitor proximity tracking.</sub>
-      <br/><br/>
-      <a href="https://komarev.com/ghpvc/?username=YashRaut24-spaceport">
-        <img src="https://komarev.com/ghpvc/?username=YashRaut24-spaceport&style=for-the-badge&color=00F0FF&labelColor=0B0C10&label=ORBITAL+TRAFFIC+DETECTED" alt="Live Orbital Traffic Counter" />
-      </a>
-    </td>
-    <td align="center" width="150">
-      <img src="./assets/space-portal-radar.svg?v=orbit-radar" width="130" height="130" alt="Active Orbital Radar" />
-    </td>
-  </tr>
-</table>
+<!-- SECTOR 07: SENSOR ARRAY ACTIVE ORBITAL RADAR (FULL GATEWAY SIZE) -->
+<img src="./assets/space-portal-traffic.svg?v=orbit-full" alt="Active Orbital Radar Sensor Array" width="100%" />
+
+<br/>
+
+<a href="https://komarev.com/ghpvc/?username=YashRaut24-spaceport">
+  <img src="https://komarev.com/ghpvc/?username=YashRaut24-spaceport&style=for-the-badge&color=00F0FF&labelColor=0B0C10&label=ORBITAL+TRAFFIC+DETECTED" alt="Live Orbital Traffic Counter" />
+</a>
 
 <br/><br/>
 
