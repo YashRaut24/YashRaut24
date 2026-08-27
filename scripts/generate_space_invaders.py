@@ -4,6 +4,7 @@ import json
 import re
 import os
 import datetime
+import time
 
 USERNAME = "YashRaut24"
 GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN", "")
@@ -17,17 +18,27 @@ def fetch_contributions(username, token=""):
 
     if token:
         try:
-            # Query all contribution years via GraphQL
-            years_query = """
+            cal_query = """
             query($username: String!) {
               user(login: $username) {
                 contributionsCollection {
-                  contributionYears
+                  contributionCalendar {
+                    totalContributions
+                    weeks {
+                      contributionDays {
+                        date
+                        contributionCount
+                        contributionLevel
+                      }
+                    }
+                  }
+                  totalCommitContributions
+                  restrictedContributionsCount
                 }
               }
             }
             """
-            req_data = json.dumps({"query": years_query, "variables": {"username": username}}).encode('utf-8')
+            req_data = json.dumps({"query": cal_query, "variables": {"username": username}}).encode('utf-8')
             req = urllib.request.Request(
                 "https://api.github.com/graphql",
                 data=req_data,
@@ -39,62 +50,32 @@ def fetch_contributions(username, token=""):
             )
             with urllib.request.urlopen(req) as resp:
                 res = json.loads(resp.read().decode('utf-8'))
-                years = res["data"]["user"]["contributionsCollection"]["contributionYears"]
+                col = res["data"]["user"]["contributionsCollection"]
+                calendar = col["contributionCalendar"]
+                level_map = {"NONE": 0, "FIRST_QUARTILE": 1, "SECOND_QUARTILE": 2, "THIRD_QUARTILE": 3, "FOURTH_QUARTILE": 4}
+                for week in calendar["weeks"]:
+                    for day in week["contributionDays"]:
+                        lvl = level_map.get(day["contributionLevel"], 0)
+                        date_dict[day["date"]] = lvl
                 
-                # Fetch calendar for current year
-                cal_query = """
-                query($username: String!) {
-                  user(login: $username) {
-                    contributionsCollection {
-                      contributionCalendar {
-                        totalContributions
-                        weeks {
-                          contributionDays {
-                            date
-                            contributionCount
-                            contributionLevel
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-                """
-                req_data2 = json.dumps({"query": cal_query, "variables": {"username": username}}).encode('utf-8')
-                req2 = urllib.request.Request(
-                    "https://api.github.com/graphql",
-                    data=req_data2,
-                    headers={
-                        "Authorization": f"Bearer {token}",
-                        "User-Agent": "Space-Invaders-Generator",
-                        "Content-Type": "application/json"
-                    }
-                )
-                with urllib.request.urlopen(req2) as resp2:
-                    res2 = json.loads(resp2.read().decode('utf-8'))
-                    calendar = res2["data"]["user"]["contributionsCollection"]["contributionCalendar"]
-                    level_map = {"NONE": 0, "FIRST_QUARTILE": 1, "SECOND_QUARTILE": 2, "THIRD_QUARTILE": 3, "FOURTH_QUARTILE": 4}
-                    for week in calendar["weeks"]:
-                        for day in week["contributionDays"]:
-                            lvl = level_map.get(day["contributionLevel"], 0)
-                            date_dict[day["date"]] = lvl
-                    
-                    total_contribs = max(1938, calendar["totalContributions"])
-                    print(f"Fetched {len(date_dict)} days via GitHub GraphQL API. Total: {total_contribs}")
-                    return date_dict, total_contribs
+                cal_total = calendar["totalContributions"]
+                total_contribs = max(1938, cal_total)
+                print(f"Fetched {len(date_dict)} days via GitHub GraphQL API. Total: {total_contribs}")
+                return date_dict, total_contribs
         except Exception as e:
             print(f"GraphQL fetch failed: {e}. Falling back to calendar endpoint...")
 
-    # Fallback to contributions calendar endpoint
+    # Fallback to contributions calendar endpoint with cache-busting
     try:
-        url = f"https://github.com/users/{username}/contributions"
+        url = f"https://github.com/users/{username}/contributions?_={int(time.time())}"
         req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"})
         with urllib.request.urlopen(req) as resp:
             html = resp.read().decode('utf-8')
         
         m = re.search(r'([0-9,]+)\s+contributions\s+in', html)
         if m:
-            total_contribs = max(1938, int(m.group(1).replace(",", "")))
+            parsed_total = int(m.group(1).replace(",", ""))
+            total_contribs = max(1938, parsed_total)
         
         matches = re.findall(r'data-date="([^"]+)"(?:\s+[^>]*?)?data-level="([^"]+)"', html)
         if not matches:
@@ -308,7 +289,7 @@ def generate_svg(date_dict, total_contribs=1938, output_path="assets/space-invad
 }}'''
         keyframes_css.append(commit_kf)
 
-    # 3. Dynamic Live Destroyed HUD Counter Keyframes
+    # 3. Dynamic Live Destroyed HUD Counter Keyframes (0 -> 1 -> 2 -> ... -> 8 out of Total)
     for c_val in range(9):
         if c_val == 0:
             t_visible_start = 0.0
@@ -367,11 +348,10 @@ def generate_svg(date_dict, total_contribs=1938, output_path="assets/space-invad
 
     formatted_total = f"{total_contribs:,}"
 
-    # Counter Text Display Elements (Iterates proportionally from 0 to Total Commits!)
+    # Counter Text Display Elements (Starts from 0 and increments 1 per laser hit: 0 -> 1 -> 2 -> ... -> 8!)
     counter_elements = []
     for c_val in range(9):
-        curr_val = int(round((c_val / 8.0) * total_contribs))
-        counter_elements.append(f'      <text x="127" y="17" text-anchor="middle" class="counter-txt hud-val-{c_val}">DESTROYED: [ {curr_val:,} / {formatted_total} COMMITS ]</text>')
+        counter_elements.append(f'      <text x="127" y="17" text-anchor="middle" class="counter-txt hud-val-{c_val}">DESTROYED: [ {c_val} / {formatted_total} COMMITS ]</text>')
     counter_texts = "\n".join(counter_elements)
 
     # CSS Rules

@@ -386,14 +386,14 @@
   <g transform="translate(565, 10)">
     <rect width="260" height="26" rx="3" class="counter-frame"/>
       <text x="127" y="17" text-anchor="middle" class="counter-txt hud-val-0">DESTROYED: [ 0 / 1,938 COMMITS ]</text>
-      <text x="127" y="17" text-anchor="middle" class="counter-txt hud-val-1">DESTROYED: [ 242 / 1,938 COMMITS ]</text>
-      <text x="127" y="17" text-anchor="middle" class="counter-txt hud-val-2">DESTROYED: [ 484 / 1,938 COMMITS ]</text>
-      <text x="127" y="17" text-anchor="middle" class="counter-txt hud-val-3">DESTROYED: [ 727 / 1,938 COMMITS ]</text>
-      <text x="127" y="17" text-anchor="middle" class="counter-txt hud-val-4">DESTROYED: [ 969 / 1,938 COMMITS ]</text>
-      <text x="127" y="17" text-anchor="middle" class="counter-txt hud-val-5">DESTROYED: [ 1,211 / 1,938 COMMITS ]</text>
-      <text x="127" y="17" text-anchor="middle" class="counter-txt hud-val-6">DESTROYED: [ 1,454 / 1,938 COMMITS ]</text>
-      <text x="127" y="17" text-anchor="middle" class="counter-txt hud-val-7">DESTROYED: [ 1,696 / 1,938 COMMITS ]</text>
-      <text x="127" y="17" text-anchor="middle" class="counter-txt hud-val-8">DESTROYED: [ 1,938 / 1,938 COMMITS ]</text>
+      <text x="127" y="17" text-anchor="middle" class="counter-txt hud-val-1">DESTROYED: [ 1 / 1,938 COMMITS ]</text>
+      <text x="127" y="17" text-anchor="middle" class="counter-txt hud-val-2">DESTROYED: [ 2 / 1,938 COMMITS ]</text>
+      <text x="127" y="17" text-anchor="middle" class="counter-txt hud-val-3">DESTROYED: [ 3 / 1,938 COMMITS ]</text>
+      <text x="127" y="17" text-anchor="middle" class="counter-txt hud-val-4">DESTROYED: [ 4 / 1,938 COMMITS ]</text>
+      <text x="127" y="17" text-anchor="middle" class="counter-txt hud-val-5">DESTROYED: [ 5 / 1,938 COMMITS ]</text>
+      <text x="127" y="17" text-anchor="middle" class="counter-txt hud-val-6">DESTROYED: [ 6 / 1,938 COMMITS ]</text>
+      <text x="127" y="17" text-anchor="middle" class="counter-txt hud-val-7">DESTROYED: [ 7 / 1,938 COMMITS ]</text>
+      <text x="127" y="17" text-anchor="middle" class="counter-txt hud-val-8">DESTROYED: [ 8 / 1,938 COMMITS ]</text>
   </g>
   <line x1="0" y1="42" x2="850" y2="42" stroke="#2C303B" stroke-width="1"/>
 
