@@ -375,41 +375,34 @@ def generate_svg(date_records, total_contribs, output_path="assets/space-invader
 }}'''
         keyframes_css.append(commit_kf)
 
-    # 3. Dynamic Live Integer Counter (Counts smoothly from 0 to total_contribs, e.g. 0 -> 1 -> 2 ... -> 1,944)
-    # We generate rapid progressive steps across [0, total_contribs] so it literally ticks through each number
-    num_steps = min(total_contribs, 240)
-    step_vals = sorted(list(set([round((i / num_steps) * total_contribs) for i in range(num_steps + 1)])))
-    if step_vals[-1] != total_contribs:
-        step_vals.append(total_contribs)
-    
-    total_active_steps = len(step_vals)
-    step_duration = TOTAL_DURATION / total_active_steps
-
-    for idx, s_val in enumerate(step_vals):
-        t_start = idx * step_duration
-        t_end = (idx + 1) * step_duration if idx < total_active_steps - 1 else TOTAL_DURATION
-        
-        if idx == 0:
-            counter_kf = f'''@keyframes countStep{idx} {{
+    # 3. Step-by-Step HUD Destroyed Counter (Increments by EXACTLY +1 per successful laser hit: 0 -> 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8)
+    num_targets = len(targets_data)
+    for c_val in range(num_targets + 1):
+        if c_val == 0:
+            t_visible_end = cycle_start_times[0] + travel_durations[0] + T_AIM + T_LASER
+            counter_kf = f'''@keyframes hudCount0 {{
   0% {{ opacity: 1; }}
-  {to_pct(t_end - 0.01)} {{ opacity: 1; }}
-  {to_pct(t_end)} {{ opacity: 0; }}
+  {to_pct(t_visible_end - 0.01)} {{ opacity: 1; }}
+  {to_pct(t_visible_end)} {{ opacity: 0; }}
   100% {{ opacity: 0; }}
 }}'''
-        elif idx < total_active_steps - 1:
-            counter_kf = f'''@keyframes countStep{idx} {{
+        elif c_val < num_targets:
+            t_visible_start = cycle_start_times[c_val-1] + travel_durations[c_val-1] + T_AIM + T_LASER
+            t_visible_end = cycle_start_times[c_val] + travel_durations[c_val] + T_AIM + T_LASER
+            counter_kf = f'''@keyframes hudCount{c_val} {{
   0% {{ opacity: 0; }}
-  {to_pct(t_start - 0.01)} {{ opacity: 0; }}
-  {to_pct(t_start)} {{ opacity: 1; }}
-  {to_pct(t_end - 0.01)} {{ opacity: 1; }}
-  {to_pct(t_end)} {{ opacity: 0; }}
+  {to_pct(t_visible_start - 0.01)} {{ opacity: 0; }}
+  {to_pct(t_visible_start)} {{ opacity: 1; }}
+  {to_pct(t_visible_end - 0.01)} {{ opacity: 1; }}
+  {to_pct(t_visible_end)} {{ opacity: 0; }}
   100% {{ opacity: 0; }}
 }}'''
         else:
-            counter_kf = f'''@keyframes countStep{idx} {{
+            t_visible_start = cycle_start_times[num_targets-1] + travel_durations[num_targets-1] + T_AIM + T_LASER
+            counter_kf = f'''@keyframes hudCount{num_targets} {{
   0% {{ opacity: 0; }}
-  {to_pct(t_start - 0.01)} {{ opacity: 0; }}
-  {to_pct(t_start)} {{ opacity: 1; }}
+  {to_pct(t_visible_start - 0.01)} {{ opacity: 0; }}
+  {to_pct(t_visible_start)} {{ opacity: 1; }}
   {to_pct(TOTAL_DURATION - 0.01)} {{ opacity: 1; }}
   100% {{ opacity: 1; }}
 }}'''
@@ -440,11 +433,10 @@ def generate_svg(date_records, total_contribs, output_path="assets/space-invader
 
     formatted_total = f"{total_contribs:,}"
 
-    # Counter Text Display Elements (Clean, perfectly aligned text overlay)
+    # Counter Text Display Elements (Centered, crystal-clear, increments +1 on every single laser hit)
     counter_elements = []
-    for idx, s_val in enumerate(step_vals):
-        formatted_val = f"{s_val:,}"
-        counter_elements.append(f'      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-{idx}">DESTROYED: [ {formatted_val} / {formatted_total} COMMITS ]</text>')
+    for c_val in range(num_targets + 1):
+        counter_elements.append(f'      <text x="130" y="17" text-anchor="middle" class="counter-txt hud-val-{c_val}">DESTROYED: [ {c_val} / {formatted_total} COMMITS ]</text>')
     counter_texts = "\n".join(counter_elements)
 
     # CSS Rules
@@ -462,9 +454,9 @@ def generate_svg(date_records, total_contribs, output_path="assets/space-invader
         css_class_rules.append(f".spark-burst-{tid}  {{ animation: sparkHit{tid} {TOTAL_DURATION:.2f}s ease-out infinite; transform-origin: {cx}px {cy}px; }}")
         css_class_rules.append(f".commit-target-{tid} {{ animation: commitDamage{tid} {TOTAL_DURATION:.2f}s ease-in-out infinite; }}")
 
-    for idx in range(total_active_steps):
-        init_op = 1 if idx == 0 else 0
-        css_class_rules.append(f".step-val-{idx} {{ opacity: {init_op}; animation: countStep{idx} {TOTAL_DURATION:.2f}s linear infinite; }}")
+    for c_val in range(num_targets + 1):
+        init_op = 1 if c_val == 0 else 0
+        css_class_rules.append(f".hud-val-{c_val} {{ opacity: {init_op}; animation: hudCount{c_val} {TOTAL_DURATION:.2f}s linear infinite; }}")
 
     full_css = "\n".join(css_class_rules) + "\n\n" + "\n\n".join(keyframes_css)
 
