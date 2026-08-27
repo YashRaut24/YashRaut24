@@ -387,15 +387,15 @@
     <!-- Live Counter HUD Badge displaying total commits -->
     <g transform="translate(560, -8)">
       <rect width="250" height="26" rx="3" class="counter-frame"/>
-      <text x="12" y="17" class="counter-txt hud-val-0">DESTROYED: [ 1,921 / 1,929 COMMITS ]</text>
-      <text x="12" y="17" class="counter-txt hud-val-1">DESTROYED: [ 1,922 / 1,929 COMMITS ]</text>
-      <text x="12" y="17" class="counter-txt hud-val-2">DESTROYED: [ 1,923 / 1,929 COMMITS ]</text>
-      <text x="12" y="17" class="counter-txt hud-val-3">DESTROYED: [ 1,924 / 1,929 COMMITS ]</text>
-      <text x="12" y="17" class="counter-txt hud-val-4">DESTROYED: [ 1,925 / 1,929 COMMITS ]</text>
-      <text x="12" y="17" class="counter-txt hud-val-5">DESTROYED: [ 1,926 / 1,929 COMMITS ]</text>
-      <text x="12" y="17" class="counter-txt hud-val-6">DESTROYED: [ 1,927 / 1,929 COMMITS ]</text>
-      <text x="12" y="17" class="counter-txt hud-val-7">DESTROYED: [ 1,928 / 1,929 COMMITS ]</text>
-      <text x="12" y="17" class="counter-txt hud-val-8">DESTROYED: [ 1,929 / 1,929 COMMITS ]</text>
+      <text x="12" y="17" class="counter-txt hud-val-0">DESTROYED: [ 0 / 1,929 COMMITS ]</text>
+      <text x="12" y="17" class="counter-txt hud-val-1">DESTROYED: [ 1 / 1,929 COMMITS ]</text>
+      <text x="12" y="17" class="counter-txt hud-val-2">DESTROYED: [ 2 / 1,929 COMMITS ]</text>
+      <text x="12" y="17" class="counter-txt hud-val-3">DESTROYED: [ 3 / 1,929 COMMITS ]</text>
+      <text x="12" y="17" class="counter-txt hud-val-4">DESTROYED: [ 4 / 1,929 COMMITS ]</text>
+      <text x="12" y="17" class="counter-txt hud-val-5">DESTROYED: [ 5 / 1,929 COMMITS ]</text>
+      <text x="12" y="17" class="counter-txt hud-val-6">DESTROYED: [ 6 / 1,929 COMMITS ]</text>
+      <text x="12" y="17" class="counter-txt hud-val-7">DESTROYED: [ 7 / 1,929 COMMITS ]</text>
+      <text x="12" y="17" class="counter-txt hud-val-8">DESTROYED: [ 8 / 1,929 COMMITS ]</text>
     </g>
   </g>
   <line x1="0" y1="42" x2="850" y2="42" stroke="#2C303B" stroke-width="1"/>

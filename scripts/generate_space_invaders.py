@@ -361,13 +361,11 @@ def generate_svg(date_dict, total_contribs=1929, output_path="assets/space-invad
     sparks_content = "\n".join(spark_elements)
 
     formatted_total = f"{total_contribs:,}"
-    base_count = max(0, total_contribs - 8)
 
-    # Counter Text Display Elements (Counts towards the total commits!)
+    # Counter Text Display Elements (Starts from 0 and increments with each laser hit!)
     counter_elements = []
     for c_val in range(9):
-        curr_val = base_count + c_val
-        counter_elements.append(f'      <text x="12" y="17" class="counter-txt hud-val-{c_val}">DESTROYED: [ {curr_val:,} / {formatted_total} COMMITS ]</text>')
+        counter_elements.append(f'      <text x="12" y="17" class="counter-txt hud-val-{c_val}">DESTROYED: [ {c_val} / {formatted_total} COMMITS ]</text>')
     counter_texts = "\n".join(counter_elements)
 
     # CSS Rules
