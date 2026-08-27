@@ -375,45 +375,70 @@ def generate_svg(date_records, total_contribs, output_path="assets/space-invader
 }}'''
         keyframes_css.append(commit_kf)
 
-    # 3. Dynamic Destroyed Counter Progressing to 100% of Total Commits
-    num_targets = len(targets_data)
-    # Target milestones advancing from 0 to total_contribs (e.g. 0 -> 243 -> 486 -> ... -> 1,944)
-    destroyed_milestones = [0]
-    for i in range(1, num_targets + 1):
-        milestone = round((i / num_targets) * total_contribs)
-        destroyed_milestones.append(milestone)
-    destroyed_milestones[-1] = total_contribs # guarantee exact match with total
+    # 3. Continuous Odometer Rolling Counter Keyframes (0 -> 1 -> 2 -> ... -> TOTAL_COMMITS e.g. 1,944)
+    dh = 14 # vertical height per digit
+    
+    # Thousands digit keyframe (0 to total_contribs // 1000)
+    pct_1000 = (1000.0 / total_contribs) * 100.0 if total_contribs >= 1000 else 100.0
+    th_max = total_contribs // 1000
+    th_y = -th_max * dh
+    keyframes_css.append(f'''@keyframes odoThousands {{
+  0% {{ transform: translateY(0px); }}
+  {pct_1000 - 0.01:.2f}% {{ transform: translateY(0px); }}
+  {pct_1000:.2f}% {{ transform: translateY({th_y}px); }}
+  100% {{ transform: translateY({th_y}px); }}
+}}''')
 
-    for c_idx in range(num_targets + 1):
-        if c_idx == 0:
-            t_visible_end = cycle_start_times[0] + travel_durations[0] + T_AIM + T_LASER
-            counter_kf = f'''@keyframes hudCount0 {{
-  0% {{ opacity: 1; }}
-  {to_pct(t_visible_end - 0.01)} {{ opacity: 1; }}
-  {to_pct(t_visible_end)} {{ opacity: 0; }}
-  100% {{ opacity: 0; }}
-}}'''
-        elif c_idx < num_targets:
-            t_visible_start = cycle_start_times[c_idx-1] + travel_durations[c_idx-1] + T_AIM + T_LASER
-            t_visible_end = cycle_start_times[c_idx] + travel_durations[c_idx] + T_AIM + T_LASER
-            counter_kf = f'''@keyframes hudCount{c_idx} {{
+    # Comma visibility keyframe
+    keyframes_css.append(f'''@keyframes odoComma {{
   0% {{ opacity: 0; }}
-  {to_pct(t_visible_start - 0.01)} {{ opacity: 0; }}
-  {to_pct(t_visible_start)} {{ opacity: 1; }}
-  {to_pct(t_visible_end - 0.01)} {{ opacity: 1; }}
-  {to_pct(t_visible_end)} {{ opacity: 0; }}
-  100% {{ opacity: 0; }}
-}}'''
-        else:
-            t_visible_start = cycle_start_times[num_targets-1] + travel_durations[num_targets-1] + T_AIM + T_LASER
-            counter_kf = f'''@keyframes hudCount{num_targets} {{
-  0% {{ opacity: 0; }}
-  {to_pct(t_visible_start - 0.01)} {{ opacity: 0; }}
-  {to_pct(t_visible_start)} {{ opacity: 1; }}
-  {to_pct(TOTAL_DURATION - 0.01)} {{ opacity: 1; }}
+  {pct_1000 - 0.01:.2f}% {{ opacity: 0; }}
+  {pct_1000:.2f}% {{ opacity: 1; }}
   100% {{ opacity: 1; }}
-}}'''
-        keyframes_css.append(counter_kf)
+}}''')
+
+    # Hundreds digit keyframe (increments every 100 counts)
+    hu_kfs = []
+    for v in range(0, total_contribs + 1, 100):
+        pct = (v / total_contribs) * 100.0
+        digit = (v // 100) % 10
+        y = -digit * dh
+        if v > 0:
+            prev_pct = ((v - 0.1) / total_contribs) * 100.0
+            prev_d = ((v - 1) // 100) % 10
+            hu_kfs.append(f"  {prev_pct:.2f}% {{ transform: translateY({-prev_d * dh}px); }}")
+        hu_kfs.append(f"  {pct:.2f}% {{ transform: translateY({y}px); }}")
+    # Final exact position at total_contribs
+    final_hu = (total_contribs // 100) % 10
+    hu_kfs.append(f"  100% {{ transform: translateY({-final_hu * dh}px); }}")
+    keyframes_css.append(f'''@keyframes odoHundreds {{
+{chr(10).join(hu_kfs)}
+}}''')
+
+    # Tens digit keyframe (increments every 10 counts)
+    te_kfs = []
+    for v in range(0, total_contribs + 1, 10):
+        pct = (v / total_contribs) * 100.0
+        digit = (v // 10) % 10
+        y = -digit * dh
+        if v > 0:
+            prev_pct = ((v - 0.1) / total_contribs) * 100.0
+            prev_d = ((v - 1) // 10) % 10
+            te_kfs.append(f"  {prev_pct:.2f}% {{ transform: translateY({-prev_d * dh}px); }}")
+        te_kfs.append(f"  {pct:.2f}% {{ transform: translateY({y}px); }}")
+    final_te = (total_contribs // 10) % 10
+    te_kfs.append(f"  100% {{ transform: translateY({-final_te * dh}px); }}")
+    keyframes_css.append(f'''@keyframes odoTens {{
+{chr(10).join(te_kfs)}
+}}''')
+
+    # Ones digit cycle duration
+    num_ones_cycles = total_contribs / 10.0
+    ones_dur = TOTAL_DURATION / num_ones_cycles
+    keyframes_css.append(f'''@keyframes odoOnes {{
+  0% {{ transform: translateY(0px); }}
+  100% {{ transform: translateY(-{10 * dh}px); }}
+}}''')
 
     # Laser bolt elements
     laser_elements = []
@@ -440,19 +465,18 @@ def generate_svg(date_records, total_contribs, output_path="assets/space-invader
 
     formatted_total = f"{total_contribs:,}"
 
-    # Counter Text Display Elements (Starts from 0 and advances to total_contribs e.g. 0 -> 243 -> ... -> 1,944)
-    counter_elements = []
-    for c_idx in range(num_targets + 1):
-        cur_destroyed = f"{destroyed_milestones[c_idx]:,}"
-        counter_elements.append(f'      <text x="127" y="17" text-anchor="middle" class="counter-txt hud-val-{c_idx}">DESTROYED: [ {cur_destroyed} / {formatted_total} COMMITS ]</text>')
-    counter_texts = "\n".join(counter_elements)
-
     # CSS Rules
     css_class_rules = [
         f".ship-patrol {{ animation: shipPatrolRoute {TOTAL_DURATION:.2f}s cubic-bezier(0.25, 0, 0.15, 1) infinite; }}",
         ".live-beacon { animation: beaconBlink 0.8s steps(2, start) infinite; }",
         ".counter-frame { fill: #111216; stroke: #2563EB; stroke-width: 1.2; }",
-        ".counter-txt { font-family: 'JetBrains Mono', Consolas, monospace; font-size: 10px; font-weight: 700; fill: #39D353; letter-spacing: 0.8px; }"
+        ".counter-txt { font-family: 'JetBrains Mono', Consolas, monospace; font-size: 10px; font-weight: 700; fill: #39D353; letter-spacing: 0.8px; }",
+        ".odo-digit { font-family: 'JetBrains Mono', Consolas, monospace; font-size: 10px; font-weight: 700; fill: #39D353; }",
+        f".th-strip {{ animation: odoThousands {TOTAL_DURATION:.2f}s linear infinite; }}",
+        f".comma-val {{ animation: odoComma {TOTAL_DURATION:.2f}s steps(1) infinite; }}",
+        f".hu-strip {{ animation: odoHundreds {TOTAL_DURATION:.2f}s linear infinite; }}",
+        f".te-strip {{ animation: odoTens {TOTAL_DURATION:.2f}s linear infinite; }}",
+        f".on-strip {{ animation: odoOnes {ones_dur:.4f}s linear infinite; }}"
     ]
     for t in targets_data:
         tid = t["id"]
@@ -461,10 +485,6 @@ def generate_svg(date_records, total_contribs, output_path="assets/space-invader
         css_class_rules.append(f".laser-bolt-{tid}   {{ animation: laserShot{tid} {TOTAL_DURATION:.2f}s linear infinite; }}")
         css_class_rules.append(f".spark-burst-{tid}  {{ animation: sparkHit{tid} {TOTAL_DURATION:.2f}s ease-out infinite; transform-origin: {cx}px {cy}px; }}")
         css_class_rules.append(f".commit-target-{tid} {{ animation: commitDamage{tid} {TOTAL_DURATION:.2f}s ease-in-out infinite; }}")
-
-    for c_idx in range(num_targets + 1):
-        init_op = 1 if c_idx == 0 else 0
-        css_class_rules.append(f".hud-val-{c_idx} {{ opacity: {init_op}; animation: hudCount{c_idx} {TOTAL_DURATION:.2f}s linear infinite; }}")
 
     full_css = "\n".join(css_class_rules) + "\n\n" + "\n\n".join(keyframes_css)
 
@@ -490,6 +510,10 @@ def generate_svg(date_records, total_contribs, output_path="assets/space-invader
 
     grid_content = "\n".join(grid_rects)
 
+    # Digits for strips
+    digits_10 = "\n".join([f'          <text x="0" y="{13 + i*14}" class="odo-digit">{i}</text>' for i in range(10)])
+    digits_thousands = "\n".join([f'          <text x="0" y="{13 + i*14}" class="odo-digit">{i}</text>' for i in range(th_max + 1)])
+
     svg_output = f'''<svg width="850" height="275" viewBox="0 0 850 275" fill="none" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <style>
@@ -506,6 +530,9 @@ def generate_svg(date_records, total_contribs, output_path="assets/space-invader
 
       {full_css}
     </style>
+    <clipPath id="odo-clip">
+      <rect x="0" y="0" width="40" height="15" />
+    </clipPath>
   </defs>
 
   <!-- Container Box -->
@@ -517,10 +544,36 @@ def generate_svg(date_records, total_contribs, output_path="assets/space-invader
     <text x="14" y="9" class="tag-txt">PORTAL GATEWAY // SECTOR 03: RETRO LASER CANNON COMMIT ARCADE</text>
   </g>
 
-  <!-- Live Counter HUD Badge displaying total commits -->
+  <!-- Live Dynamic Destroyed Counter HUD (Counts every commit from 0 to {formatted_total}) -->
   <g transform="translate(565, 10)">
     <rect width="260" height="26" rx="3" class="counter-frame"/>
-{counter_texts}
+    <g transform="translate(10, 0)">
+      <text x="4" y="17" class="counter-txt">DESTROYED: [</text>
+      
+      <!-- Continuous Rolling Digits (0 to {formatted_total}) -->
+      <g transform="translate(94, 4)" clip-path="url(#odo-clip)">
+        <!-- Thousands -->
+        <g class="th-strip">
+{digits_thousands}
+        </g>
+        <!-- Comma -->
+        <text x="7" y="13" class="odo-digit comma-val">,</text>
+        <!-- Hundreds -->
+        <g class="hu-strip" transform="translate(14, 0)">
+{digits_10}
+        </g>
+        <!-- Tens -->
+        <g class="te-strip" transform="translate(21, 0)">
+{digits_10}
+        </g>
+        <!-- Ones -->
+        <g class="on-strip" transform="translate(28, 0)">
+{digits_10}
+        </g>
+      </g>
+
+      <text x="138" y="17" class="counter-txt">/ {formatted_total} COMMITS ]</text>
+    </g>
   </g>
   <line x1="0" y1="42" x2="850" y2="42" stroke="#2C303B" stroke-width="1"/>
 
