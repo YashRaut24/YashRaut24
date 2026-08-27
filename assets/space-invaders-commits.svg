@@ -12,362 +12,1703 @@
         50%      { opacity: 0.2; }
       }
 
-      .ship-patrol { animation: shipPatrolRoute 10.53s cubic-bezier(0.25, 0, 0.15, 1) infinite; }
+      .ship-patrol { animation: shipPatrolRoute 54.94s cubic-bezier(0.25, 0, 0.15, 1) infinite; }
 .live-beacon { animation: beaconBlink 0.8s steps(2, start) infinite; }
 .counter-frame { fill: #111216; stroke: #2563EB; stroke-width: 1.2; }
 .counter-txt { font-family: 'JetBrains Mono', Consolas, monospace; font-size: 10px; font-weight: 700; fill: #39D353; letter-spacing: 0.8px; }
-.laser-bolt-1   { animation: laserShot1 10.53s linear infinite; }
-.spark-burst-1  { animation: sparkHit1 10.53s ease-out infinite; transform-origin: 80px 5px; }
-.commit-target-1 { animation: commitDamage1 10.53s ease-in-out infinite; }
-.laser-bolt-2   { animation: laserShot2 10.53s linear infinite; }
-.spark-burst-2  { animation: sparkHit2 10.53s ease-out infinite; transform-origin: 110px 5px; }
-.commit-target-2 { animation: commitDamage2 10.53s ease-in-out infinite; }
-.laser-bolt-3   { animation: laserShot3 10.53s linear infinite; }
-.spark-burst-3  { animation: sparkHit3 10.53s ease-out infinite; transform-origin: 665px 57px; }
-.commit-target-3 { animation: commitDamage3 10.53s ease-in-out infinite; }
-.laser-bolt-4   { animation: laserShot4 10.53s linear infinite; }
-.spark-burst-4  { animation: sparkHit4 10.53s ease-out infinite; transform-origin: 410px 44px; }
-.commit-target-4 { animation: commitDamage4 10.53s ease-in-out infinite; }
-.laser-bolt-5   { animation: laserShot5 10.53s linear infinite; }
-.spark-burst-5  { animation: sparkHit5 10.53s ease-out infinite; transform-origin: 410px 18px; }
-.commit-target-5 { animation: commitDamage5 10.53s ease-in-out infinite; }
-.laser-bolt-6   { animation: laserShot6 10.53s linear infinite; }
-.spark-burst-6  { animation: sparkHit6 10.53s ease-out infinite; transform-origin: 275px 57px; }
-.commit-target-6 { animation: commitDamage6 10.53s ease-in-out infinite; }
-.laser-bolt-7   { animation: laserShot7 10.53s linear infinite; }
-.spark-burst-7  { animation: sparkHit7 10.53s ease-out infinite; transform-origin: 290px 5px; }
-.commit-target-7 { animation: commitDamage7 10.53s ease-in-out infinite; }
-.laser-bolt-8   { animation: laserShot8 10.53s linear infinite; }
-.spark-burst-8  { animation: sparkHit8 10.53s ease-out infinite; transform-origin: 335px 5px; }
-.commit-target-8 { animation: commitDamage8 10.53s ease-in-out infinite; }
-.hud-val-0 { opacity: 1; animation: hudCount0 10.53s linear infinite; }
-.hud-val-1 { opacity: 0; animation: hudCount1 10.53s linear infinite; }
-.hud-val-2 { opacity: 0; animation: hudCount2 10.53s linear infinite; }
-.hud-val-3 { opacity: 0; animation: hudCount3 10.53s linear infinite; }
-.hud-val-4 { opacity: 0; animation: hudCount4 10.53s linear infinite; }
-.hud-val-5 { opacity: 0; animation: hudCount5 10.53s linear infinite; }
-.hud-val-6 { opacity: 0; animation: hudCount6 10.53s linear infinite; }
-.hud-val-7 { opacity: 0; animation: hudCount7 10.53s linear infinite; }
-.hud-val-8 { opacity: 0; animation: hudCount8 10.53s linear infinite; }
+.laser-bolt-1   { animation: laserShot1 54.94s linear infinite; }
+.spark-burst-1  { animation: sparkHit1 54.94s ease-out infinite; transform-origin: 65px 5px; }
+.laser-bolt-2   { animation: laserShot2 54.94s linear infinite; }
+.spark-burst-2  { animation: sparkHit2 54.94s ease-out infinite; transform-origin: 80px 5px; }
+.laser-bolt-3   { animation: laserShot3 54.94s linear infinite; }
+.spark-burst-3  { animation: sparkHit3 54.94s ease-out infinite; transform-origin: 665px 57px; }
+.laser-bolt-4   { animation: laserShot4 54.94s linear infinite; }
+.spark-burst-4  { animation: sparkHit4 54.94s ease-out infinite; transform-origin: 470px 57px; }
+.laser-bolt-5   { animation: laserShot5 54.94s linear infinite; }
+.spark-burst-5  { animation: sparkHit5 54.94s ease-out infinite; transform-origin: 455px 44px; }
+.laser-bolt-6   { animation: laserShot6 54.94s linear infinite; }
+.spark-burst-6  { animation: sparkHit6 54.94s ease-out infinite; transform-origin: 260px 70px; }
+.laser-bolt-7   { animation: laserShot7 54.94s linear infinite; }
+.spark-burst-7  { animation: sparkHit7 54.94s ease-out infinite; transform-origin: 335px 5px; }
+.laser-bolt-8   { animation: laserShot8 54.94s linear infinite; }
+.spark-burst-8  { animation: sparkHit8 54.94s ease-out infinite; transform-origin: 470px 31px; }
+.laser-bolt-9   { animation: laserShot9 54.94s linear infinite; }
+.spark-burst-9  { animation: sparkHit9 54.94s ease-out infinite; transform-origin: 95px 18px; }
+.laser-bolt-10   { animation: laserShot10 54.94s linear infinite; }
+.spark-burst-10  { animation: sparkHit10 54.94s ease-out infinite; transform-origin: 635px 5px; }
+.laser-bolt-11   { animation: laserShot11 54.94s linear infinite; }
+.spark-burst-11  { animation: sparkHit11 54.94s ease-out infinite; transform-origin: 320px 83px; }
+.laser-bolt-12   { animation: laserShot12 54.94s linear infinite; }
+.spark-burst-12  { animation: sparkHit12 54.94s ease-out infinite; transform-origin: 635px 44px; }
+.laser-bolt-13   { animation: laserShot13 54.94s linear infinite; }
+.spark-burst-13  { animation: sparkHit13 54.94s ease-out infinite; transform-origin: 290px 5px; }
+.laser-bolt-14   { animation: laserShot14 54.94s linear infinite; }
+.spark-burst-14  { animation: sparkHit14 54.94s ease-out infinite; transform-origin: 500px 5px; }
+.laser-bolt-15   { animation: laserShot15 54.94s linear infinite; }
+.spark-burst-15  { animation: sparkHit15 54.94s ease-out infinite; transform-origin: 680px 18px; }
+.laser-bolt-16   { animation: laserShot16 54.94s linear infinite; }
+.spark-burst-16  { animation: sparkHit16 54.94s ease-out infinite; transform-origin: 80px 31px; }
+.laser-bolt-17   { animation: laserShot17 54.94s linear infinite; }
+.spark-burst-17  { animation: sparkHit17 54.94s ease-out infinite; transform-origin: 305px 31px; }
+.laser-bolt-18   { animation: laserShot18 54.94s linear infinite; }
+.spark-burst-18  { animation: sparkHit18 54.94s ease-out infinite; transform-origin: 455px 57px; }
+.laser-bolt-19   { animation: laserShot19 54.94s linear infinite; }
+.spark-burst-19  { animation: sparkHit19 54.94s ease-out infinite; transform-origin: 80px 5px; }
+.laser-bolt-20   { animation: laserShot20 54.94s linear infinite; }
+.spark-burst-20  { animation: sparkHit20 54.94s ease-out infinite; transform-origin: 665px 31px; }
+.laser-bolt-21   { animation: laserShot21 54.94s linear infinite; }
+.spark-burst-21  { animation: sparkHit21 54.94s ease-out infinite; transform-origin: 245px 31px; }
+.laser-bolt-22   { animation: laserShot22 54.94s linear infinite; }
+.spark-burst-22  { animation: sparkHit22 54.94s ease-out infinite; transform-origin: 470px 70px; }
+.laser-bolt-23   { animation: laserShot23 54.94s linear infinite; }
+.spark-burst-23  { animation: sparkHit23 54.94s ease-out infinite; transform-origin: 545px 18px; }
+.laser-bolt-24   { animation: laserShot24 54.94s linear infinite; }
+.spark-burst-24  { animation: sparkHit24 54.94s ease-out infinite; transform-origin: 245px 70px; }
+.laser-bolt-25   { animation: laserShot25 54.94s linear infinite; }
+.spark-burst-25  { animation: sparkHit25 54.94s ease-out infinite; transform-origin: 65px 83px; }
+.laser-bolt-26   { animation: laserShot26 54.94s linear infinite; }
+.spark-burst-26  { animation: sparkHit26 54.94s ease-out infinite; transform-origin: 470px 83px; }
+.laser-bolt-27   { animation: laserShot27 54.94s linear infinite; }
+.spark-burst-27  { animation: sparkHit27 54.94s ease-out infinite; transform-origin: 245px 83px; }
+.laser-bolt-28   { animation: laserShot28 54.94s linear infinite; }
+.spark-burst-28  { animation: sparkHit28 54.94s ease-out infinite; transform-origin: 530px 31px; }
+.laser-bolt-29   { animation: laserShot29 54.94s linear infinite; }
+.spark-burst-29  { animation: sparkHit29 54.94s ease-out infinite; transform-origin: 80px 5px; }
+.laser-bolt-30   { animation: laserShot30 54.94s linear infinite; }
+.spark-burst-30  { animation: sparkHit30 54.94s ease-out infinite; transform-origin: 485px 70px; }
+.laser-bolt-31   { animation: laserShot31 54.94s linear infinite; }
+.spark-burst-31  { animation: sparkHit31 54.94s ease-out infinite; transform-origin: 680px 83px; }
+.laser-bolt-32   { animation: laserShot32 54.94s linear infinite; }
+.spark-burst-32  { animation: sparkHit32 54.94s ease-out infinite; transform-origin: 125px 44px; }
+.laser-bolt-33   { animation: laserShot33 54.94s linear infinite; }
+.spark-burst-33  { animation: sparkHit33 54.94s ease-out infinite; transform-origin: 65px 5px; }
+.laser-bolt-34   { animation: laserShot34 54.94s linear infinite; }
+.spark-burst-34  { animation: sparkHit34 54.94s ease-out infinite; transform-origin: 245px 44px; }
+.laser-bolt-35   { animation: laserShot35 54.94s linear infinite; }
+.spark-burst-35  { animation: sparkHit35 54.94s ease-out infinite; transform-origin: 470px 70px; }
+.laser-bolt-36   { animation: laserShot36 54.94s linear infinite; }
+.spark-burst-36  { animation: sparkHit36 54.94s ease-out infinite; transform-origin: 650px 70px; }
+.laser-bolt-37   { animation: laserShot37 54.94s linear infinite; }
+.spark-burst-37  { animation: sparkHit37 54.94s ease-out infinite; transform-origin: 125px 57px; }
+.laser-bolt-38   { animation: laserShot38 54.94s linear infinite; }
+.spark-burst-38  { animation: sparkHit38 54.94s ease-out infinite; transform-origin: 470px 57px; }
+.laser-bolt-39   { animation: laserShot39 54.94s linear infinite; }
+.spark-burst-39  { animation: sparkHit39 54.94s ease-out infinite; transform-origin: 530px 44px; }
+.laser-bolt-40   { animation: laserShot40 54.94s linear infinite; }
+.spark-burst-40  { animation: sparkHit40 54.94s ease-out infinite; transform-origin: 665px 44px; }
+.commit-cell-c_4_0 { animation: commitDamage_c_4_0 54.94s ease-in-out infinite; }
+.commit-cell-c_5_0 { animation: commitDamage_c_5_0 54.94s ease-in-out infinite; }
+.commit-cell-c_44_4 { animation: commitDamage_c_44_4 54.94s ease-in-out infinite; }
+.commit-cell-c_31_4 { animation: commitDamage_c_31_4 54.94s ease-in-out infinite; }
+.commit-cell-c_30_3 { animation: commitDamage_c_30_3 54.94s ease-in-out infinite; }
+.commit-cell-c_17_5 { animation: commitDamage_c_17_5 54.94s ease-in-out infinite; }
+.commit-cell-c_22_0 { animation: commitDamage_c_22_0 54.94s ease-in-out infinite; }
+.commit-cell-c_31_2 { animation: commitDamage_c_31_2 54.94s ease-in-out infinite; }
+.commit-cell-c_6_1 { animation: commitDamage_c_6_1 54.94s ease-in-out infinite; }
+.commit-cell-c_42_0 { animation: commitDamage_c_42_0 54.94s ease-in-out infinite; }
+.commit-cell-c_21_6 { animation: commitDamage_c_21_6 54.94s ease-in-out infinite; }
+.commit-cell-c_42_3 { animation: commitDamage_c_42_3 54.94s ease-in-out infinite; }
+.commit-cell-c_19_0 { animation: commitDamage_c_19_0 54.94s ease-in-out infinite; }
+.commit-cell-c_33_0 { animation: commitDamage_c_33_0 54.94s ease-in-out infinite; }
+.commit-cell-c_45_1 { animation: commitDamage_c_45_1 54.94s ease-in-out infinite; }
+.commit-cell-c_5_2 { animation: commitDamage_c_5_2 54.94s ease-in-out infinite; }
+.commit-cell-c_20_2 { animation: commitDamage_c_20_2 54.94s ease-in-out infinite; }
+.commit-cell-c_30_4 { animation: commitDamage_c_30_4 54.94s ease-in-out infinite; }
+.commit-cell-c_44_2 { animation: commitDamage_c_44_2 54.94s ease-in-out infinite; }
+.commit-cell-c_16_2 { animation: commitDamage_c_16_2 54.94s ease-in-out infinite; }
+.commit-cell-c_31_5 { animation: commitDamage_c_31_5 54.94s ease-in-out infinite; }
+.commit-cell-c_36_1 { animation: commitDamage_c_36_1 54.94s ease-in-out infinite; }
+.commit-cell-c_16_5 { animation: commitDamage_c_16_5 54.94s ease-in-out infinite; }
+.commit-cell-c_4_6 { animation: commitDamage_c_4_6 54.94s ease-in-out infinite; }
+.commit-cell-c_31_6 { animation: commitDamage_c_31_6 54.94s ease-in-out infinite; }
+.commit-cell-c_16_6 { animation: commitDamage_c_16_6 54.94s ease-in-out infinite; }
+.commit-cell-c_35_2 { animation: commitDamage_c_35_2 54.94s ease-in-out infinite; }
+.commit-cell-c_32_5 { animation: commitDamage_c_32_5 54.94s ease-in-out infinite; }
+.commit-cell-c_45_6 { animation: commitDamage_c_45_6 54.94s ease-in-out infinite; }
+.commit-cell-c_8_3 { animation: commitDamage_c_8_3 54.94s ease-in-out infinite; }
+.commit-cell-c_16_3 { animation: commitDamage_c_16_3 54.94s ease-in-out infinite; }
+.commit-cell-c_43_5 { animation: commitDamage_c_43_5 54.94s ease-in-out infinite; }
+.commit-cell-c_8_4 { animation: commitDamage_c_8_4 54.94s ease-in-out infinite; }
+.commit-cell-c_35_3 { animation: commitDamage_c_35_3 54.94s ease-in-out infinite; }
+.commit-cell-c_44_3 { animation: commitDamage_c_44_3 54.94s ease-in-out infinite; }
+.hud-val-0 { opacity: 1; animation: hudCount0 54.94s linear infinite; }
+.hud-val-1 { opacity: 0; animation: hudCount1 54.94s linear infinite; }
+.hud-val-2 { opacity: 0; animation: hudCount2 54.94s linear infinite; }
+.hud-val-3 { opacity: 0; animation: hudCount3 54.94s linear infinite; }
+.hud-val-4 { opacity: 0; animation: hudCount4 54.94s linear infinite; }
+.hud-val-5 { opacity: 0; animation: hudCount5 54.94s linear infinite; }
+.hud-val-6 { opacity: 0; animation: hudCount6 54.94s linear infinite; }
+.hud-val-7 { opacity: 0; animation: hudCount7 54.94s linear infinite; }
+.hud-val-8 { opacity: 0; animation: hudCount8 54.94s linear infinite; }
+.hud-val-9 { opacity: 0; animation: hudCount9 54.94s linear infinite; }
+.hud-val-10 { opacity: 0; animation: hudCount10 54.94s linear infinite; }
+.hud-val-11 { opacity: 0; animation: hudCount11 54.94s linear infinite; }
+.hud-val-12 { opacity: 0; animation: hudCount12 54.94s linear infinite; }
+.hud-val-13 { opacity: 0; animation: hudCount13 54.94s linear infinite; }
+.hud-val-14 { opacity: 0; animation: hudCount14 54.94s linear infinite; }
+.hud-val-15 { opacity: 0; animation: hudCount15 54.94s linear infinite; }
+.hud-val-16 { opacity: 0; animation: hudCount16 54.94s linear infinite; }
+.hud-val-17 { opacity: 0; animation: hudCount17 54.94s linear infinite; }
+.hud-val-18 { opacity: 0; animation: hudCount18 54.94s linear infinite; }
+.hud-val-19 { opacity: 0; animation: hudCount19 54.94s linear infinite; }
+.hud-val-20 { opacity: 0; animation: hudCount20 54.94s linear infinite; }
+.hud-val-21 { opacity: 0; animation: hudCount21 54.94s linear infinite; }
+.hud-val-22 { opacity: 0; animation: hudCount22 54.94s linear infinite; }
+.hud-val-23 { opacity: 0; animation: hudCount23 54.94s linear infinite; }
+.hud-val-24 { opacity: 0; animation: hudCount24 54.94s linear infinite; }
+.hud-val-25 { opacity: 0; animation: hudCount25 54.94s linear infinite; }
+.hud-val-26 { opacity: 0; animation: hudCount26 54.94s linear infinite; }
+.hud-val-27 { opacity: 0; animation: hudCount27 54.94s linear infinite; }
+.hud-val-28 { opacity: 0; animation: hudCount28 54.94s linear infinite; }
+.hud-val-29 { opacity: 0; animation: hudCount29 54.94s linear infinite; }
+.hud-val-30 { opacity: 0; animation: hudCount30 54.94s linear infinite; }
+.hud-val-31 { opacity: 0; animation: hudCount31 54.94s linear infinite; }
+.hud-val-32 { opacity: 0; animation: hudCount32 54.94s linear infinite; }
+.hud-val-33 { opacity: 0; animation: hudCount33 54.94s linear infinite; }
+.hud-val-34 { opacity: 0; animation: hudCount34 54.94s linear infinite; }
+.hud-val-35 { opacity: 0; animation: hudCount35 54.94s linear infinite; }
+.hud-val-36 { opacity: 0; animation: hudCount36 54.94s linear infinite; }
+.hud-val-37 { opacity: 0; animation: hudCount37 54.94s linear infinite; }
+.hud-val-38 { opacity: 0; animation: hudCount38 54.94s linear infinite; }
+.hud-val-39 { opacity: 0; animation: hudCount39 54.94s linear infinite; }
+.hud-val-40 { opacity: 0; animation: hudCount40 54.94s linear infinite; }
 
 @keyframes shipPatrolRoute {
-  0.000%  { transform: translate(80px, 126px); }
-  4.829% { transform: translate(80px, 126px); }
-  13.187%    { transform: translate(80px, 126px); }
-  13.187%  { transform: translate(110px, 126px); }
-  16.657% { transform: translate(110px, 126px); }
-  25.015%    { transform: translate(110px, 126px); }
-  25.015%  { transform: translate(665px, 126px); }
-  31.042% { transform: translate(665px, 126px); }
-  39.399%    { transform: translate(665px, 126px); }
-  39.399%  { transform: translate(410px, 126px); }
-  43.966% { transform: translate(410px, 126px); }
-  52.323%    { transform: translate(410px, 126px); }
-  52.323%  { transform: translate(410px, 126px); }
-  55.647% { transform: translate(410px, 126px); }
-  64.005%    { transform: translate(410px, 126px); }
-  64.005%  { transform: translate(275px, 126px); }
-  67.987% { transform: translate(275px, 126px); }
-  76.344%    { transform: translate(275px, 126px); }
-  76.344%  { transform: translate(290px, 126px); }
-  79.741% { transform: translate(290px, 126px); }
-  88.099%    { transform: translate(290px, 126px); }
-  88.099%  { transform: translate(335px, 126px); }
-  91.642% { transform: translate(335px, 126px); }
-  100.000%    { transform: translate(335px, 126px); }
+  0.000%  { transform: translate(65px, 126px); }
+  0.940% { transform: translate(65px, 126px); }
+  2.541%    { transform: translate(65px, 126px); }
+  2.541%  { transform: translate(80px, 126px); }
+  3.193% { transform: translate(80px, 126px); }
+  4.794%    { transform: translate(80px, 126px); }
+  4.794%  { transform: translate(665px, 126px); }
+  5.978% { transform: translate(665px, 126px); }
+  7.580%    { transform: translate(665px, 126px); }
+  7.580%  { transform: translate(470px, 126px); }
+  8.399% { transform: translate(470px, 126px); }
+  10.001%    { transform: translate(470px, 126px); }
+  10.001%  { transform: translate(455px, 126px); }
+  10.652% { transform: translate(455px, 126px); }
+  12.254%    { transform: translate(455px, 126px); }
+  12.254%  { transform: translate(260px, 126px); }
+  13.073% { transform: translate(260px, 126px); }
+  14.675%    { transform: translate(260px, 126px); }
+  14.675%  { transform: translate(335px, 126px); }
+  15.382% { transform: translate(335px, 126px); }
+  16.984%    { transform: translate(335px, 126px); }
+  16.984%  { transform: translate(470px, 126px); }
+  17.747% { transform: translate(470px, 126px); }
+  19.349%    { transform: translate(470px, 126px); }
+  19.349%  { transform: translate(95px, 126px); }
+  20.336% { transform: translate(95px, 126px); }
+  21.938%    { transform: translate(95px, 126px); }
+  21.938%  { transform: translate(635px, 126px); }
+  23.079% { transform: translate(635px, 126px); }
+  24.681%    { transform: translate(635px, 126px); }
+  24.681%  { transform: translate(320px, 126px); }
+  25.612% { transform: translate(320px, 126px); }
+  27.214%    { transform: translate(320px, 126px); }
+  27.214%  { transform: translate(635px, 126px); }
+  28.145% { transform: translate(635px, 126px); }
+  29.747%    { transform: translate(635px, 126px); }
+  29.747%  { transform: translate(290px, 126px); }
+  30.706% { transform: translate(290px, 126px); }
+  32.308%    { transform: translate(290px, 126px); }
+  32.308%  { transform: translate(500px, 126px); }
+  33.141% { transform: translate(500px, 126px); }
+  34.743%    { transform: translate(500px, 126px); }
+  34.743%  { transform: translate(680px, 126px); }
+  35.548% { transform: translate(680px, 126px); }
+  37.150%    { transform: translate(680px, 126px); }
+  37.150%  { transform: translate(80px, 126px); }
+  38.347% { transform: translate(80px, 126px); }
+  39.949%    { transform: translate(80px, 126px); }
+  39.949%  { transform: translate(305px, 126px); }
+  40.796% { transform: translate(305px, 126px); }
+  42.398%    { transform: translate(305px, 126px); }
+  42.398%  { transform: translate(455px, 126px); }
+  43.175% { transform: translate(455px, 126px); }
+  44.777%    { transform: translate(455px, 126px); }
+  44.777%  { transform: translate(80px, 126px); }
+  45.764% { transform: translate(80px, 126px); }
+  47.366%    { transform: translate(80px, 126px); }
+  47.366%  { transform: translate(665px, 126px); }
+  48.549% { transform: translate(665px, 126px); }
+  50.151%    { transform: translate(665px, 126px); }
+  50.151%  { transform: translate(245px, 126px); }
+  51.180% { transform: translate(245px, 126px); }
+  52.782%    { transform: translate(245px, 126px); }
+  52.782%  { transform: translate(470px, 126px); }
+  53.629% { transform: translate(470px, 126px); }
+  55.231%    { transform: translate(470px, 126px); }
+  55.231%  { transform: translate(545px, 126px); }
+  55.938% { transform: translate(545px, 126px); }
+  57.540%    { transform: translate(545px, 126px); }
+  57.540%  { transform: translate(245px, 126px); }
+  58.457% { transform: translate(245px, 126px); }
+  60.059%    { transform: translate(245px, 126px); }
+  60.059%  { transform: translate(65px, 126px); }
+  60.865% { transform: translate(65px, 126px); }
+  62.466%    { transform: translate(65px, 126px); }
+  62.466%  { transform: translate(470px, 126px); }
+  63.482% { transform: translate(470px, 126px); }
+  65.083%    { transform: translate(470px, 126px); }
+  65.083%  { transform: translate(245px, 126px); }
+  65.931% { transform: translate(245px, 126px); }
+  67.532%    { transform: translate(245px, 126px); }
+  67.532%  { transform: translate(530px, 126px); }
+  68.436% { transform: translate(530px, 126px); }
+  70.038%    { transform: translate(530px, 126px); }
+  70.038%  { transform: translate(80px, 126px); }
+  71.095% { transform: translate(80px, 126px); }
+  72.697%    { transform: translate(80px, 126px); }
+  72.697%  { transform: translate(485px, 126px); }
+  73.712% { transform: translate(485px, 126px); }
+  75.314%    { transform: translate(485px, 126px); }
+  75.314%  { transform: translate(680px, 126px); }
+  76.133% { transform: translate(680px, 126px); }
+  77.735%    { transform: translate(680px, 126px); }
+  77.735%  { transform: translate(125px, 126px); }
+  78.890% { transform: translate(125px, 126px); }
+  80.492%    { transform: translate(125px, 126px); }
+  80.492%  { transform: translate(65px, 126px); }
+  81.185% { transform: translate(65px, 126px); }
+  82.787%    { transform: translate(65px, 126px); }
+  82.787%  { transform: translate(245px, 126px); }
+  83.592% { transform: translate(245px, 126px); }
+  85.194%    { transform: translate(245px, 126px); }
+  85.194%  { transform: translate(470px, 126px); }
+  86.041% { transform: translate(470px, 126px); }
+  87.643%    { transform: translate(470px, 126px); }
+  87.643%  { transform: translate(650px, 126px); }
+  88.448% { transform: translate(650px, 126px); }
+  90.050%    { transform: translate(650px, 126px); }
+  90.050%  { transform: translate(125px, 126px); }
+  91.177% { transform: translate(125px, 126px); }
+  92.779%    { transform: translate(125px, 126px); }
+  92.779%  { transform: translate(470px, 126px); }
+  93.738% { transform: translate(470px, 126px); }
+  95.340%    { transform: translate(470px, 126px); }
+  95.340%  { transform: translate(530px, 126px); }
+  96.033% { transform: translate(530px, 126px); }
+  97.635%    { transform: translate(530px, 126px); }
+  97.635%  { transform: translate(665px, 126px); }
+  98.398% { transform: translate(665px, 126px); }
+  100.000%    { transform: translate(665px, 126px); }
 }
 
 @keyframes laserShot1 {
-  0% { opacity: 0; transform: translate(80px, 116px) scaleY(0.5); }
-  5.684% { opacity: 0; transform: translate(80px, 116px) scaleY(0.5); }
-  5.779%        { opacity: 1; transform: translate(80px, 116px) scaleY(1.2); }
-  7.298%          { opacity: 1; transform: translate(80px, 5px) scaleY(0.3); }
-  7.488%   { opacity: 0; transform: translate(80px, 5px) scaleY(0); }
-  100% { opacity: 0; transform: translate(80px, 5px); }
+  0% { opacity: 0; transform: translate(65px, 116px) scaleY(0.5); }
+  1.103% { opacity: 0; transform: translate(65px, 116px) scaleY(0.5); }
+  1.122%        { opacity: 1; transform: translate(65px, 116px) scaleY(1.2); }
+  1.413%          { opacity: 1; transform: translate(65px, 5px) scaleY(0.3); }
+  1.449%   { opacity: 0; transform: translate(65px, 5px) scaleY(0); }
+  100% { opacity: 0; transform: translate(65px, 5px); }
 }
 
 @keyframes sparkHit1 {
   0% { opacity: 0; transform: scale(0.2); }
-  7.203% { opacity: 0; transform: scale(0.2); }
-  7.298%        { opacity: 1; transform: scale(1.6); }
-  8.438%         { opacity: 0.8; transform: scale(1.0); }
-  8.913%  { opacity: 0; transform: scale(0.3); }
+  1.395% { opacity: 0; transform: scale(0.2); }
+  1.413%        { opacity: 1; transform: scale(1.6); }
+  1.631%         { opacity: 0.8; transform: scale(1.0); }
+  1.722%  { opacity: 0; transform: scale(0.3); }
   100% { opacity: 0; transform: scale(0.2); }
 }
 
-@keyframes commitDamage1 {
-  0% { fill: #26A641; }
-  7.203% { fill: #26A641; }
-  7.298%        { fill: #FDFBF7; }
-  7.868% { fill: #006D32; opacity: 0.85; }
-  99.525% { fill: #006D32; }
-  100% { fill: #26A641; }
-}
-
 @keyframes laserShot2 {
-  0% { opacity: 0; transform: translate(110px, 116px) scaleY(0.5); }
-  17.512% { opacity: 0; transform: translate(110px, 116px) scaleY(0.5); }
-  17.607%        { opacity: 1; transform: translate(110px, 116px) scaleY(1.2); }
-  19.126%          { opacity: 1; transform: translate(110px, 5px) scaleY(0.3); }
-  19.316%   { opacity: 0; transform: translate(110px, 5px) scaleY(0); }
-  100% { opacity: 0; transform: translate(110px, 5px); }
+  0% { opacity: 0; transform: translate(80px, 116px) scaleY(0.5); }
+  3.356% { opacity: 0; transform: translate(80px, 116px) scaleY(0.5); }
+  3.375%        { opacity: 1; transform: translate(80px, 116px) scaleY(1.2); }
+  3.666%          { opacity: 1; transform: translate(80px, 5px) scaleY(0.3); }
+  3.702%   { opacity: 0; transform: translate(80px, 5px) scaleY(0); }
+  100% { opacity: 0; transform: translate(80px, 5px); }
 }
 
 @keyframes sparkHit2 {
   0% { opacity: 0; transform: scale(0.2); }
-  19.031% { opacity: 0; transform: scale(0.2); }
-  19.126%        { opacity: 1; transform: scale(1.6); }
-  20.266%         { opacity: 0.8; transform: scale(1.0); }
-  20.741%  { opacity: 0; transform: scale(0.3); }
+  3.648% { opacity: 0; transform: scale(0.2); }
+  3.666%        { opacity: 1; transform: scale(1.6); }
+  3.884%         { opacity: 0.8; transform: scale(1.0); }
+  3.975%  { opacity: 0; transform: scale(0.3); }
   100% { opacity: 0; transform: scale(0.2); }
-}
-
-@keyframes commitDamage2 {
-  0% { fill: #006D32; }
-  19.031% { fill: #006D32; }
-  19.126%        { fill: #FDFBF7; }
-  19.696% { fill: #0E4429; opacity: 0.85; }
-  99.525% { fill: #0E4429; }
-  100% { fill: #006D32; }
 }
 
 @keyframes laserShot3 {
   0% { opacity: 0; transform: translate(665px, 116px) scaleY(0.5); }
-  31.897% { opacity: 0; transform: translate(665px, 116px) scaleY(0.5); }
-  31.992%        { opacity: 1; transform: translate(665px, 116px) scaleY(1.2); }
-  33.511%          { opacity: 1; transform: translate(665px, 57px) scaleY(0.3); }
-  33.701%   { opacity: 0; transform: translate(665px, 57px) scaleY(0); }
+  6.141% { opacity: 0; transform: translate(665px, 116px) scaleY(0.5); }
+  6.160%        { opacity: 1; transform: translate(665px, 116px) scaleY(1.2); }
+  6.451%          { opacity: 1; transform: translate(665px, 57px) scaleY(0.3); }
+  6.487%   { opacity: 0; transform: translate(665px, 57px) scaleY(0); }
   100% { opacity: 0; transform: translate(665px, 57px); }
 }
 
 @keyframes sparkHit3 {
   0% { opacity: 0; transform: scale(0.2); }
-  33.416% { opacity: 0; transform: scale(0.2); }
-  33.511%        { opacity: 1; transform: scale(1.6); }
-  34.651%         { opacity: 0.8; transform: scale(1.0); }
-  35.126%  { opacity: 0; transform: scale(0.3); }
+  6.433% { opacity: 0; transform: scale(0.2); }
+  6.451%        { opacity: 1; transform: scale(1.6); }
+  6.669%         { opacity: 0.8; transform: scale(1.0); }
+  6.760%  { opacity: 0; transform: scale(0.3); }
   100% { opacity: 0; transform: scale(0.2); }
 }
 
-@keyframes commitDamage3 {
-  0% { fill: #26A641; }
-  33.416% { fill: #26A641; }
-  33.511%        { fill: #FDFBF7; }
-  34.081% { fill: #006D32; opacity: 0.85; }
-  99.525% { fill: #006D32; }
-  100% { fill: #26A641; }
-}
-
 @keyframes laserShot4 {
-  0% { opacity: 0; transform: translate(410px, 116px) scaleY(0.5); }
-  44.820% { opacity: 0; transform: translate(410px, 116px) scaleY(0.5); }
-  44.915%        { opacity: 1; transform: translate(410px, 116px) scaleY(1.2); }
-  46.435%          { opacity: 1; transform: translate(410px, 44px) scaleY(0.3); }
-  46.625%   { opacity: 0; transform: translate(410px, 44px) scaleY(0); }
-  100% { opacity: 0; transform: translate(410px, 44px); }
+  0% { opacity: 0; transform: translate(470px, 116px) scaleY(0.5); }
+  8.563% { opacity: 0; transform: translate(470px, 116px) scaleY(0.5); }
+  8.581%        { opacity: 1; transform: translate(470px, 116px) scaleY(1.2); }
+  8.872%          { opacity: 1; transform: translate(470px, 57px) scaleY(0.3); }
+  8.908%   { opacity: 0; transform: translate(470px, 57px) scaleY(0); }
+  100% { opacity: 0; transform: translate(470px, 57px); }
 }
 
 @keyframes sparkHit4 {
   0% { opacity: 0; transform: scale(0.2); }
-  46.340% { opacity: 0; transform: scale(0.2); }
-  46.435%        { opacity: 1; transform: scale(1.6); }
-  47.575%         { opacity: 0.8; transform: scale(1.0); }
-  48.049%  { opacity: 0; transform: scale(0.3); }
+  8.854% { opacity: 0; transform: scale(0.2); }
+  8.872%        { opacity: 1; transform: scale(1.6); }
+  9.090%         { opacity: 0.8; transform: scale(1.0); }
+  9.181%  { opacity: 0; transform: scale(0.3); }
   100% { opacity: 0; transform: scale(0.2); }
 }
 
-@keyframes commitDamage4 {
-  0% { fill: #0E4429; }
-  46.340% { fill: #0E4429; }
-  46.435%        { fill: #FDFBF7; }
-  47.005% { fill: #161B22; opacity: 0.85; }
-  99.525% { fill: #161B22; }
-  100% { fill: #0E4429; }
-}
-
 @keyframes laserShot5 {
-  0% { opacity: 0; transform: translate(410px, 116px) scaleY(0.5); }
-  56.502% { opacity: 0; transform: translate(410px, 116px) scaleY(0.5); }
-  56.597%        { opacity: 1; transform: translate(410px, 116px) scaleY(1.2); }
-  58.117%          { opacity: 1; transform: translate(410px, 18px) scaleY(0.3); }
-  58.307%   { opacity: 0; transform: translate(410px, 18px) scaleY(0); }
-  100% { opacity: 0; transform: translate(410px, 18px); }
+  0% { opacity: 0; transform: translate(455px, 116px) scaleY(0.5); }
+  10.816% { opacity: 0; transform: translate(455px, 116px) scaleY(0.5); }
+  10.834%        { opacity: 1; transform: translate(455px, 116px) scaleY(1.2); }
+  11.125%          { opacity: 1; transform: translate(455px, 44px) scaleY(0.3); }
+  11.161%   { opacity: 0; transform: translate(455px, 44px) scaleY(0); }
+  100% { opacity: 0; transform: translate(455px, 44px); }
 }
 
 @keyframes sparkHit5 {
   0% { opacity: 0; transform: scale(0.2); }
-  58.022% { opacity: 0; transform: scale(0.2); }
-  58.117%        { opacity: 1; transform: scale(1.6); }
-  59.256%         { opacity: 0.8; transform: scale(1.0); }
-  59.731%  { opacity: 0; transform: scale(0.3); }
+  11.107% { opacity: 0; transform: scale(0.2); }
+  11.125%        { opacity: 1; transform: scale(1.6); }
+  11.343%         { opacity: 0.8; transform: scale(1.0); }
+  11.434%  { opacity: 0; transform: scale(0.3); }
   100% { opacity: 0; transform: scale(0.2); }
 }
 
-@keyframes commitDamage5 {
-  0% { fill: #0E4429; }
-  58.022% { fill: #0E4429; }
-  58.117%        { fill: #FDFBF7; }
-  58.686% { fill: #161B22; opacity: 0.85; }
-  99.525% { fill: #161B22; }
-  100% { fill: #0E4429; }
-}
-
 @keyframes laserShot6 {
-  0% { opacity: 0; transform: translate(275px, 116px) scaleY(0.5); }
-  68.841% { opacity: 0; transform: translate(275px, 116px) scaleY(0.5); }
-  68.936%        { opacity: 1; transform: translate(275px, 116px) scaleY(1.2); }
-  70.456%          { opacity: 1; transform: translate(275px, 57px) scaleY(0.3); }
-  70.646%   { opacity: 0; transform: translate(275px, 57px) scaleY(0); }
-  100% { opacity: 0; transform: translate(275px, 57px); }
+  0% { opacity: 0; transform: translate(260px, 116px) scaleY(0.5); }
+  13.237% { opacity: 0; transform: translate(260px, 116px) scaleY(0.5); }
+  13.255%        { opacity: 1; transform: translate(260px, 116px) scaleY(1.2); }
+  13.546%          { opacity: 1; transform: translate(260px, 70px) scaleY(0.3); }
+  13.582%   { opacity: 0; transform: translate(260px, 70px) scaleY(0); }
+  100% { opacity: 0; transform: translate(260px, 70px); }
 }
 
 @keyframes sparkHit6 {
   0% { opacity: 0; transform: scale(0.2); }
-  70.361% { opacity: 0; transform: scale(0.2); }
-  70.456%        { opacity: 1; transform: scale(1.6); }
-  71.596%         { opacity: 0.8; transform: scale(1.0); }
-  72.070%  { opacity: 0; transform: scale(0.3); }
+  13.528% { opacity: 0; transform: scale(0.2); }
+  13.546%        { opacity: 1; transform: scale(1.6); }
+  13.764%         { opacity: 0.8; transform: scale(1.0); }
+  13.855%  { opacity: 0; transform: scale(0.3); }
   100% { opacity: 0; transform: scale(0.2); }
 }
 
-@keyframes commitDamage6 {
-  0% { fill: #0E4429; }
-  70.361% { fill: #0E4429; }
-  70.456%        { fill: #FDFBF7; }
-  71.026% { fill: #161B22; opacity: 0.85; }
-  99.525% { fill: #161B22; }
-  100% { fill: #0E4429; }
-}
-
 @keyframes laserShot7 {
-  0% { opacity: 0; transform: translate(290px, 116px) scaleY(0.5); }
-  80.596% { opacity: 0; transform: translate(290px, 116px) scaleY(0.5); }
-  80.691%        { opacity: 1; transform: translate(290px, 116px) scaleY(1.2); }
-  82.211%          { opacity: 1; transform: translate(290px, 5px) scaleY(0.3); }
-  82.401%   { opacity: 0; transform: translate(290px, 5px) scaleY(0); }
-  100% { opacity: 0; transform: translate(290px, 5px); }
+  0% { opacity: 0; transform: translate(335px, 116px) scaleY(0.5); }
+  15.546% { opacity: 0; transform: translate(335px, 116px) scaleY(0.5); }
+  15.564%        { opacity: 1; transform: translate(335px, 116px) scaleY(1.2); }
+  15.855%          { opacity: 1; transform: translate(335px, 5px) scaleY(0.3); }
+  15.891%   { opacity: 0; transform: translate(335px, 5px) scaleY(0); }
+  100% { opacity: 0; transform: translate(335px, 5px); }
 }
 
 @keyframes sparkHit7 {
   0% { opacity: 0; transform: scale(0.2); }
-  82.116% { opacity: 0; transform: scale(0.2); }
-  82.211%        { opacity: 1; transform: scale(1.6); }
-  83.350%         { opacity: 0.8; transform: scale(1.0); }
-  83.825%  { opacity: 0; transform: scale(0.3); }
+  15.837% { opacity: 0; transform: scale(0.2); }
+  15.855%        { opacity: 1; transform: scale(1.6); }
+  16.073%         { opacity: 0.8; transform: scale(1.0); }
+  16.164%  { opacity: 0; transform: scale(0.3); }
   100% { opacity: 0; transform: scale(0.2); }
 }
 
-@keyframes commitDamage7 {
-  0% { fill: #39D353; }
-  82.116% { fill: #39D353; }
-  82.211%        { fill: #FDFBF7; }
-  82.781% { fill: #26A641; opacity: 0.85; }
-  99.525% { fill: #26A641; }
-  100% { fill: #39D353; }
-}
-
 @keyframes laserShot8 {
-  0% { opacity: 0; transform: translate(335px, 116px) scaleY(0.5); }
-  92.497% { opacity: 0; transform: translate(335px, 116px) scaleY(0.5); }
-  92.592%        { opacity: 1; transform: translate(335px, 116px) scaleY(1.2); }
-  94.112%          { opacity: 1; transform: translate(335px, 5px) scaleY(0.3); }
-  94.302%   { opacity: 0; transform: translate(335px, 5px) scaleY(0); }
-  100% { opacity: 0; transform: translate(335px, 5px); }
+  0% { opacity: 0; transform: translate(470px, 116px) scaleY(0.5); }
+  17.911% { opacity: 0; transform: translate(470px, 116px) scaleY(0.5); }
+  17.929%        { opacity: 1; transform: translate(470px, 116px) scaleY(1.2); }
+  18.220%          { opacity: 1; transform: translate(470px, 31px) scaleY(0.3); }
+  18.256%   { opacity: 0; transform: translate(470px, 31px) scaleY(0); }
+  100% { opacity: 0; transform: translate(470px, 31px); }
 }
 
 @keyframes sparkHit8 {
   0% { opacity: 0; transform: scale(0.2); }
-  94.017% { opacity: 0; transform: scale(0.2); }
-  94.112%        { opacity: 1; transform: scale(1.6); }
-  95.251%         { opacity: 0.8; transform: scale(1.0); }
-  95.726%  { opacity: 0; transform: scale(0.3); }
+  18.202% { opacity: 0; transform: scale(0.2); }
+  18.220%        { opacity: 1; transform: scale(1.6); }
+  18.438%         { opacity: 0.8; transform: scale(1.0); }
+  18.529%  { opacity: 0; transform: scale(0.3); }
   100% { opacity: 0; transform: scale(0.2); }
 }
 
-@keyframes commitDamage8 {
+@keyframes laserShot9 {
+  0% { opacity: 0; transform: translate(95px, 116px) scaleY(0.5); }
+  20.500% { opacity: 0; transform: translate(95px, 116px) scaleY(0.5); }
+  20.518%        { opacity: 1; transform: translate(95px, 116px) scaleY(1.2); }
+  20.809%          { opacity: 1; transform: translate(95px, 18px) scaleY(0.3); }
+  20.845%   { opacity: 0; transform: translate(95px, 18px) scaleY(0); }
+  100% { opacity: 0; transform: translate(95px, 18px); }
+}
+
+@keyframes sparkHit9 {
+  0% { opacity: 0; transform: scale(0.2); }
+  20.791% { opacity: 0; transform: scale(0.2); }
+  20.809%        { opacity: 1; transform: scale(1.6); }
+  21.028%         { opacity: 0.8; transform: scale(1.0); }
+  21.119%  { opacity: 0; transform: scale(0.3); }
+  100% { opacity: 0; transform: scale(0.2); }
+}
+
+@keyframes laserShot10 {
+  0% { opacity: 0; transform: translate(635px, 116px) scaleY(0.5); }
+  23.243% { opacity: 0; transform: translate(635px, 116px) scaleY(0.5); }
+  23.261%        { opacity: 1; transform: translate(635px, 116px) scaleY(1.2); }
+  23.552%          { opacity: 1; transform: translate(635px, 5px) scaleY(0.3); }
+  23.589%   { opacity: 0; transform: translate(635px, 5px) scaleY(0); }
+  100% { opacity: 0; transform: translate(635px, 5px); }
+}
+
+@keyframes sparkHit10 {
+  0% { opacity: 0; transform: scale(0.2); }
+  23.534% { opacity: 0; transform: scale(0.2); }
+  23.552%        { opacity: 1; transform: scale(1.6); }
+  23.771%         { opacity: 0.8; transform: scale(1.0); }
+  23.862%  { opacity: 0; transform: scale(0.3); }
+  100% { opacity: 0; transform: scale(0.2); }
+}
+
+@keyframes laserShot11 {
+  0% { opacity: 0; transform: translate(320px, 116px) scaleY(0.5); }
+  25.776% { opacity: 0; transform: translate(320px, 116px) scaleY(0.5); }
+  25.794%        { opacity: 1; transform: translate(320px, 116px) scaleY(1.2); }
+  26.085%          { opacity: 1; transform: translate(320px, 83px) scaleY(0.3); }
+  26.122%   { opacity: 0; transform: translate(320px, 83px) scaleY(0); }
+  100% { opacity: 0; transform: translate(320px, 83px); }
+}
+
+@keyframes sparkHit11 {
+  0% { opacity: 0; transform: scale(0.2); }
+  26.067% { opacity: 0; transform: scale(0.2); }
+  26.085%        { opacity: 1; transform: scale(1.6); }
+  26.304%         { opacity: 0.8; transform: scale(1.0); }
+  26.395%  { opacity: 0; transform: scale(0.3); }
+  100% { opacity: 0; transform: scale(0.2); }
+}
+
+@keyframes laserShot12 {
+  0% { opacity: 0; transform: translate(635px, 116px) scaleY(0.5); }
+  28.309% { opacity: 0; transform: translate(635px, 116px) scaleY(0.5); }
+  28.327%        { opacity: 1; transform: translate(635px, 116px) scaleY(1.2); }
+  28.618%          { opacity: 1; transform: translate(635px, 44px) scaleY(0.3); }
+  28.655%   { opacity: 0; transform: translate(635px, 44px) scaleY(0); }
+  100% { opacity: 0; transform: translate(635px, 44px); }
+}
+
+@keyframes sparkHit12 {
+  0% { opacity: 0; transform: scale(0.2); }
+  28.600% { opacity: 0; transform: scale(0.2); }
+  28.618%        { opacity: 1; transform: scale(1.6); }
+  28.837%         { opacity: 0.8; transform: scale(1.0); }
+  28.928%  { opacity: 0; transform: scale(0.3); }
+  100% { opacity: 0; transform: scale(0.2); }
+}
+
+@keyframes laserShot13 {
+  0% { opacity: 0; transform: translate(290px, 116px) scaleY(0.5); }
+  30.870% { opacity: 0; transform: translate(290px, 116px) scaleY(0.5); }
+  30.888%        { opacity: 1; transform: translate(290px, 116px) scaleY(1.2); }
+  31.179%          { opacity: 1; transform: translate(290px, 5px) scaleY(0.3); }
+  31.216%   { opacity: 0; transform: translate(290px, 5px) scaleY(0); }
+  100% { opacity: 0; transform: translate(290px, 5px); }
+}
+
+@keyframes sparkHit13 {
+  0% { opacity: 0; transform: scale(0.2); }
+  31.161% { opacity: 0; transform: scale(0.2); }
+  31.179%        { opacity: 1; transform: scale(1.6); }
+  31.398%         { opacity: 0.8; transform: scale(1.0); }
+  31.489%  { opacity: 0; transform: scale(0.3); }
+  100% { opacity: 0; transform: scale(0.2); }
+}
+
+@keyframes laserShot14 {
+  0% { opacity: 0; transform: translate(500px, 116px) scaleY(0.5); }
+  33.305% { opacity: 0; transform: translate(500px, 116px) scaleY(0.5); }
+  33.323%        { opacity: 1; transform: translate(500px, 116px) scaleY(1.2); }
+  33.614%          { opacity: 1; transform: translate(500px, 5px) scaleY(0.3); }
+  33.651%   { opacity: 0; transform: translate(500px, 5px) scaleY(0); }
+  100% { opacity: 0; transform: translate(500px, 5px); }
+}
+
+@keyframes sparkHit14 {
+  0% { opacity: 0; transform: scale(0.2); }
+  33.596% { opacity: 0; transform: scale(0.2); }
+  33.614%        { opacity: 1; transform: scale(1.6); }
+  33.833%         { opacity: 0.8; transform: scale(1.0); }
+  33.924%  { opacity: 0; transform: scale(0.3); }
+  100% { opacity: 0; transform: scale(0.2); }
+}
+
+@keyframes laserShot15 {
+  0% { opacity: 0; transform: translate(680px, 116px) scaleY(0.5); }
+  35.712% { opacity: 0; transform: translate(680px, 116px) scaleY(0.5); }
+  35.730%        { opacity: 1; transform: translate(680px, 116px) scaleY(1.2); }
+  36.021%          { opacity: 1; transform: translate(680px, 18px) scaleY(0.3); }
+  36.058%   { opacity: 0; transform: translate(680px, 18px) scaleY(0); }
+  100% { opacity: 0; transform: translate(680px, 18px); }
+}
+
+@keyframes sparkHit15 {
+  0% { opacity: 0; transform: scale(0.2); }
+  36.003% { opacity: 0; transform: scale(0.2); }
+  36.021%        { opacity: 1; transform: scale(1.6); }
+  36.240%         { opacity: 0.8; transform: scale(1.0); }
+  36.331%  { opacity: 0; transform: scale(0.3); }
+  100% { opacity: 0; transform: scale(0.2); }
+}
+
+@keyframes laserShot16 {
+  0% { opacity: 0; transform: translate(80px, 116px) scaleY(0.5); }
+  38.511% { opacity: 0; transform: translate(80px, 116px) scaleY(0.5); }
+  38.529%        { opacity: 1; transform: translate(80px, 116px) scaleY(1.2); }
+  38.820%          { opacity: 1; transform: translate(80px, 31px) scaleY(0.3); }
+  38.857%   { opacity: 0; transform: translate(80px, 31px) scaleY(0); }
+  100% { opacity: 0; transform: translate(80px, 31px); }
+}
+
+@keyframes sparkHit16 {
+  0% { opacity: 0; transform: scale(0.2); }
+  38.802% { opacity: 0; transform: scale(0.2); }
+  38.820%        { opacity: 1; transform: scale(1.6); }
+  39.039%         { opacity: 0.8; transform: scale(1.0); }
+  39.130%  { opacity: 0; transform: scale(0.3); }
+  100% { opacity: 0; transform: scale(0.2); }
+}
+
+@keyframes laserShot17 {
+  0% { opacity: 0; transform: translate(305px, 116px) scaleY(0.5); }
+  40.960% { opacity: 0; transform: translate(305px, 116px) scaleY(0.5); }
+  40.978%        { opacity: 1; transform: translate(305px, 116px) scaleY(1.2); }
+  41.269%          { opacity: 1; transform: translate(305px, 31px) scaleY(0.3); }
+  41.306%   { opacity: 0; transform: translate(305px, 31px) scaleY(0); }
+  100% { opacity: 0; transform: translate(305px, 31px); }
+}
+
+@keyframes sparkHit17 {
+  0% { opacity: 0; transform: scale(0.2); }
+  41.251% { opacity: 0; transform: scale(0.2); }
+  41.269%        { opacity: 1; transform: scale(1.6); }
+  41.488%         { opacity: 0.8; transform: scale(1.0); }
+  41.579%  { opacity: 0; transform: scale(0.3); }
+  100% { opacity: 0; transform: scale(0.2); }
+}
+
+@keyframes laserShot18 {
+  0% { opacity: 0; transform: translate(455px, 116px) scaleY(0.5); }
+  43.339% { opacity: 0; transform: translate(455px, 116px) scaleY(0.5); }
+  43.357%        { opacity: 1; transform: translate(455px, 116px) scaleY(1.2); }
+  43.648%          { opacity: 1; transform: translate(455px, 57px) scaleY(0.3); }
+  43.685%   { opacity: 0; transform: translate(455px, 57px) scaleY(0); }
+  100% { opacity: 0; transform: translate(455px, 57px); }
+}
+
+@keyframes sparkHit18 {
+  0% { opacity: 0; transform: scale(0.2); }
+  43.630% { opacity: 0; transform: scale(0.2); }
+  43.648%        { opacity: 1; transform: scale(1.6); }
+  43.867%         { opacity: 0.8; transform: scale(1.0); }
+  43.958%  { opacity: 0; transform: scale(0.3); }
+  100% { opacity: 0; transform: scale(0.2); }
+}
+
+@keyframes laserShot19 {
+  0% { opacity: 0; transform: translate(80px, 116px) scaleY(0.5); }
+  45.928% { opacity: 0; transform: translate(80px, 116px) scaleY(0.5); }
+  45.946%        { opacity: 1; transform: translate(80px, 116px) scaleY(1.2); }
+  46.238%          { opacity: 1; transform: translate(80px, 5px) scaleY(0.3); }
+  46.274%   { opacity: 0; transform: translate(80px, 5px) scaleY(0); }
+  100% { opacity: 0; transform: translate(80px, 5px); }
+}
+
+@keyframes sparkHit19 {
+  0% { opacity: 0; transform: scale(0.2); }
+  46.219% { opacity: 0; transform: scale(0.2); }
+  46.238%        { opacity: 1; transform: scale(1.6); }
+  46.456%         { opacity: 0.8; transform: scale(1.0); }
+  46.547%  { opacity: 0; transform: scale(0.3); }
+  100% { opacity: 0; transform: scale(0.2); }
+}
+
+@keyframes laserShot20 {
+  0% { opacity: 0; transform: translate(665px, 116px) scaleY(0.5); }
+  48.713% { opacity: 0; transform: translate(665px, 116px) scaleY(0.5); }
+  48.731%        { opacity: 1; transform: translate(665px, 116px) scaleY(1.2); }
+  49.023%          { opacity: 1; transform: translate(665px, 31px) scaleY(0.3); }
+  49.059%   { opacity: 0; transform: translate(665px, 31px) scaleY(0); }
+  100% { opacity: 0; transform: translate(665px, 31px); }
+}
+
+@keyframes sparkHit20 {
+  0% { opacity: 0; transform: scale(0.2); }
+  49.004% { opacity: 0; transform: scale(0.2); }
+  49.023%        { opacity: 1; transform: scale(1.6); }
+  49.241%         { opacity: 0.8; transform: scale(1.0); }
+  49.332%  { opacity: 0; transform: scale(0.3); }
+  100% { opacity: 0; transform: scale(0.2); }
+}
+
+@keyframes laserShot21 {
+  0% { opacity: 0; transform: translate(245px, 116px) scaleY(0.5); }
+  51.344% { opacity: 0; transform: translate(245px, 116px) scaleY(0.5); }
+  51.362%        { opacity: 1; transform: translate(245px, 116px) scaleY(1.2); }
+  51.654%          { opacity: 1; transform: translate(245px, 31px) scaleY(0.3); }
+  51.690%   { opacity: 0; transform: translate(245px, 31px) scaleY(0); }
+  100% { opacity: 0; transform: translate(245px, 31px); }
+}
+
+@keyframes sparkHit21 {
+  0% { opacity: 0; transform: scale(0.2); }
+  51.635% { opacity: 0; transform: scale(0.2); }
+  51.654%        { opacity: 1; transform: scale(1.6); }
+  51.872%         { opacity: 0.8; transform: scale(1.0); }
+  51.963%  { opacity: 0; transform: scale(0.3); }
+  100% { opacity: 0; transform: scale(0.2); }
+}
+
+@keyframes laserShot22 {
+  0% { opacity: 0; transform: translate(470px, 116px) scaleY(0.5); }
+  53.793% { opacity: 0; transform: translate(470px, 116px) scaleY(0.5); }
+  53.811%        { opacity: 1; transform: translate(470px, 116px) scaleY(1.2); }
+  54.103%          { opacity: 1; transform: translate(470px, 70px) scaleY(0.3); }
+  54.139%   { opacity: 0; transform: translate(470px, 70px) scaleY(0); }
+  100% { opacity: 0; transform: translate(470px, 70px); }
+}
+
+@keyframes sparkHit22 {
+  0% { opacity: 0; transform: scale(0.2); }
+  54.085% { opacity: 0; transform: scale(0.2); }
+  54.103%        { opacity: 1; transform: scale(1.6); }
+  54.321%         { opacity: 0.8; transform: scale(1.0); }
+  54.412%  { opacity: 0; transform: scale(0.3); }
+  100% { opacity: 0; transform: scale(0.2); }
+}
+
+@keyframes laserShot23 {
+  0% { opacity: 0; transform: translate(545px, 116px) scaleY(0.5); }
+  56.102% { opacity: 0; transform: translate(545px, 116px) scaleY(0.5); }
+  56.120%        { opacity: 1; transform: translate(545px, 116px) scaleY(1.2); }
+  56.412%          { opacity: 1; transform: translate(545px, 18px) scaleY(0.3); }
+  56.448%   { opacity: 0; transform: translate(545px, 18px) scaleY(0); }
+  100% { opacity: 0; transform: translate(545px, 18px); }
+}
+
+@keyframes sparkHit23 {
+  0% { opacity: 0; transform: scale(0.2); }
+  56.394% { opacity: 0; transform: scale(0.2); }
+  56.412%        { opacity: 1; transform: scale(1.6); }
+  56.630%         { opacity: 0.8; transform: scale(1.0); }
+  56.721%  { opacity: 0; transform: scale(0.3); }
+  100% { opacity: 0; transform: scale(0.2); }
+}
+
+@keyframes laserShot24 {
+  0% { opacity: 0; transform: translate(245px, 116px) scaleY(0.5); }
+  58.621% { opacity: 0; transform: translate(245px, 116px) scaleY(0.5); }
+  58.640%        { opacity: 1; transform: translate(245px, 116px) scaleY(1.2); }
+  58.931%          { opacity: 1; transform: translate(245px, 70px) scaleY(0.3); }
+  58.967%   { opacity: 0; transform: translate(245px, 70px) scaleY(0); }
+  100% { opacity: 0; transform: translate(245px, 70px); }
+}
+
+@keyframes sparkHit24 {
+  0% { opacity: 0; transform: scale(0.2); }
+  58.913% { opacity: 0; transform: scale(0.2); }
+  58.931%        { opacity: 1; transform: scale(1.6); }
+  59.149%         { opacity: 0.8; transform: scale(1.0); }
+  59.240%  { opacity: 0; transform: scale(0.3); }
+  100% { opacity: 0; transform: scale(0.2); }
+}
+
+@keyframes laserShot25 {
+  0% { opacity: 0; transform: translate(65px, 116px) scaleY(0.5); }
+  61.028% { opacity: 0; transform: translate(65px, 116px) scaleY(0.5); }
+  61.047%        { opacity: 1; transform: translate(65px, 116px) scaleY(1.2); }
+  61.338%          { opacity: 1; transform: translate(65px, 83px) scaleY(0.3); }
+  61.374%   { opacity: 0; transform: translate(65px, 83px) scaleY(0); }
+  100% { opacity: 0; transform: translate(65px, 83px); }
+}
+
+@keyframes sparkHit25 {
+  0% { opacity: 0; transform: scale(0.2); }
+  61.320% { opacity: 0; transform: scale(0.2); }
+  61.338%        { opacity: 1; transform: scale(1.6); }
+  61.556%         { opacity: 0.8; transform: scale(1.0); }
+  61.647%  { opacity: 0; transform: scale(0.3); }
+  100% { opacity: 0; transform: scale(0.2); }
+}
+
+@keyframes laserShot26 {
+  0% { opacity: 0; transform: translate(470px, 116px) scaleY(0.5); }
+  63.645% { opacity: 0; transform: translate(470px, 116px) scaleY(0.5); }
+  63.664%        { opacity: 1; transform: translate(470px, 116px) scaleY(1.2); }
+  63.955%          { opacity: 1; transform: translate(470px, 83px) scaleY(0.3); }
+  63.991%   { opacity: 0; transform: translate(470px, 83px) scaleY(0); }
+  100% { opacity: 0; transform: translate(470px, 83px); }
+}
+
+@keyframes sparkHit26 {
+  0% { opacity: 0; transform: scale(0.2); }
+  63.937% { opacity: 0; transform: scale(0.2); }
+  63.955%        { opacity: 1; transform: scale(1.6); }
+  64.173%         { opacity: 0.8; transform: scale(1.0); }
+  64.264%  { opacity: 0; transform: scale(0.3); }
+  100% { opacity: 0; transform: scale(0.2); }
+}
+
+@keyframes laserShot27 {
+  0% { opacity: 0; transform: translate(245px, 116px) scaleY(0.5); }
+  66.094% { opacity: 0; transform: translate(245px, 116px) scaleY(0.5); }
+  66.113%        { opacity: 1; transform: translate(245px, 116px) scaleY(1.2); }
+  66.404%          { opacity: 1; transform: translate(245px, 83px) scaleY(0.3); }
+  66.440%   { opacity: 0; transform: translate(245px, 83px) scaleY(0); }
+  100% { opacity: 0; transform: translate(245px, 83px); }
+}
+
+@keyframes sparkHit27 {
+  0% { opacity: 0; transform: scale(0.2); }
+  66.386% { opacity: 0; transform: scale(0.2); }
+  66.404%        { opacity: 1; transform: scale(1.6); }
+  66.622%         { opacity: 0.8; transform: scale(1.0); }
+  66.713%  { opacity: 0; transform: scale(0.3); }
+  100% { opacity: 0; transform: scale(0.2); }
+}
+
+@keyframes laserShot28 {
+  0% { opacity: 0; transform: translate(530px, 116px) scaleY(0.5); }
+  68.599% { opacity: 0; transform: translate(530px, 116px) scaleY(0.5); }
+  68.618%        { opacity: 1; transform: translate(530px, 116px) scaleY(1.2); }
+  68.909%          { opacity: 1; transform: translate(530px, 31px) scaleY(0.3); }
+  68.945%   { opacity: 0; transform: translate(530px, 31px) scaleY(0); }
+  100% { opacity: 0; transform: translate(530px, 31px); }
+}
+
+@keyframes sparkHit28 {
+  0% { opacity: 0; transform: scale(0.2); }
+  68.891% { opacity: 0; transform: scale(0.2); }
+  68.909%        { opacity: 1; transform: scale(1.6); }
+  69.127%         { opacity: 0.8; transform: scale(1.0); }
+  69.218%  { opacity: 0; transform: scale(0.3); }
+  100% { opacity: 0; transform: scale(0.2); }
+}
+
+@keyframes laserShot29 {
+  0% { opacity: 0; transform: translate(80px, 116px) scaleY(0.5); }
+  71.259% { opacity: 0; transform: translate(80px, 116px) scaleY(0.5); }
+  71.277%        { opacity: 1; transform: translate(80px, 116px) scaleY(1.2); }
+  71.568%          { opacity: 1; transform: translate(80px, 5px) scaleY(0.3); }
+  71.604%   { opacity: 0; transform: translate(80px, 5px) scaleY(0); }
+  100% { opacity: 0; transform: translate(80px, 5px); }
+}
+
+@keyframes sparkHit29 {
+  0% { opacity: 0; transform: scale(0.2); }
+  71.550% { opacity: 0; transform: scale(0.2); }
+  71.568%        { opacity: 1; transform: scale(1.6); }
+  71.786%         { opacity: 0.8; transform: scale(1.0); }
+  71.877%  { opacity: 0; transform: scale(0.3); }
+  100% { opacity: 0; transform: scale(0.2); }
+}
+
+@keyframes laserShot30 {
+  0% { opacity: 0; transform: translate(485px, 116px) scaleY(0.5); }
+  73.876% { opacity: 0; transform: translate(485px, 116px) scaleY(0.5); }
+  73.894%        { opacity: 1; transform: translate(485px, 116px) scaleY(1.2); }
+  74.185%          { opacity: 1; transform: translate(485px, 70px) scaleY(0.3); }
+  74.221%   { opacity: 0; transform: translate(485px, 70px) scaleY(0); }
+  100% { opacity: 0; transform: translate(485px, 70px); }
+}
+
+@keyframes sparkHit30 {
+  0% { opacity: 0; transform: scale(0.2); }
+  74.167% { opacity: 0; transform: scale(0.2); }
+  74.185%        { opacity: 1; transform: scale(1.6); }
+  74.403%         { opacity: 0.8; transform: scale(1.0); }
+  74.495%  { opacity: 0; transform: scale(0.3); }
+  100% { opacity: 0; transform: scale(0.2); }
+}
+
+@keyframes laserShot31 {
+  0% { opacity: 0; transform: translate(680px, 116px) scaleY(0.5); }
+  76.297% { opacity: 0; transform: translate(680px, 116px) scaleY(0.5); }
+  76.315%        { opacity: 1; transform: translate(680px, 116px) scaleY(1.2); }
+  76.606%          { opacity: 1; transform: translate(680px, 83px) scaleY(0.3); }
+  76.642%   { opacity: 0; transform: translate(680px, 83px) scaleY(0); }
+  100% { opacity: 0; transform: translate(680px, 83px); }
+}
+
+@keyframes sparkHit31 {
+  0% { opacity: 0; transform: scale(0.2); }
+  76.588% { opacity: 0; transform: scale(0.2); }
+  76.606%        { opacity: 1; transform: scale(1.6); }
+  76.825%         { opacity: 0.8; transform: scale(1.0); }
+  76.916%  { opacity: 0; transform: scale(0.3); }
+  100% { opacity: 0; transform: scale(0.2); }
+}
+
+@keyframes laserShot32 {
+  0% { opacity: 0; transform: translate(125px, 116px) scaleY(0.5); }
+  79.054% { opacity: 0; transform: translate(125px, 116px) scaleY(0.5); }
+  79.072%        { opacity: 1; transform: translate(125px, 116px) scaleY(1.2); }
+  79.363%          { opacity: 1; transform: translate(125px, 44px) scaleY(0.3); }
+  79.400%   { opacity: 0; transform: translate(125px, 44px) scaleY(0); }
+  100% { opacity: 0; transform: translate(125px, 44px); }
+}
+
+@keyframes sparkHit32 {
+  0% { opacity: 0; transform: scale(0.2); }
+  79.345% { opacity: 0; transform: scale(0.2); }
+  79.363%        { opacity: 1; transform: scale(1.6); }
+  79.582%         { opacity: 0.8; transform: scale(1.0); }
+  79.673%  { opacity: 0; transform: scale(0.3); }
+  100% { opacity: 0; transform: scale(0.2); }
+}
+
+@keyframes laserShot33 {
+  0% { opacity: 0; transform: translate(65px, 116px) scaleY(0.5); }
+  81.349% { opacity: 0; transform: translate(65px, 116px) scaleY(0.5); }
+  81.367%        { opacity: 1; transform: translate(65px, 116px) scaleY(1.2); }
+  81.658%          { opacity: 1; transform: translate(65px, 5px) scaleY(0.3); }
+  81.695%   { opacity: 0; transform: translate(65px, 5px) scaleY(0); }
+  100% { opacity: 0; transform: translate(65px, 5px); }
+}
+
+@keyframes sparkHit33 {
+  0% { opacity: 0; transform: scale(0.2); }
+  81.640% { opacity: 0; transform: scale(0.2); }
+  81.658%        { opacity: 1; transform: scale(1.6); }
+  81.877%         { opacity: 0.8; transform: scale(1.0); }
+  81.968%  { opacity: 0; transform: scale(0.3); }
+  100% { opacity: 0; transform: scale(0.2); }
+}
+
+@keyframes laserShot34 {
+  0% { opacity: 0; transform: translate(245px, 116px) scaleY(0.5); }
+  83.756% { opacity: 0; transform: translate(245px, 116px) scaleY(0.5); }
+  83.774%        { opacity: 1; transform: translate(245px, 116px) scaleY(1.2); }
+  84.065%          { opacity: 1; transform: translate(245px, 44px) scaleY(0.3); }
+  84.102%   { opacity: 0; transform: translate(245px, 44px) scaleY(0); }
+  100% { opacity: 0; transform: translate(245px, 44px); }
+}
+
+@keyframes sparkHit34 {
+  0% { opacity: 0; transform: scale(0.2); }
+  84.047% { opacity: 0; transform: scale(0.2); }
+  84.065%        { opacity: 1; transform: scale(1.6); }
+  84.284%         { opacity: 0.8; transform: scale(1.0); }
+  84.375%  { opacity: 0; transform: scale(0.3); }
+  100% { opacity: 0; transform: scale(0.2); }
+}
+
+@keyframes laserShot35 {
+  0% { opacity: 0; transform: translate(470px, 116px) scaleY(0.5); }
+  86.205% { opacity: 0; transform: translate(470px, 116px) scaleY(0.5); }
+  86.223%        { opacity: 1; transform: translate(470px, 116px) scaleY(1.2); }
+  86.514%          { opacity: 1; transform: translate(470px, 70px) scaleY(0.3); }
+  86.551%   { opacity: 0; transform: translate(470px, 70px) scaleY(0); }
+  100% { opacity: 0; transform: translate(470px, 70px); }
+}
+
+@keyframes sparkHit35 {
+  0% { opacity: 0; transform: scale(0.2); }
+  86.496% { opacity: 0; transform: scale(0.2); }
+  86.514%        { opacity: 1; transform: scale(1.6); }
+  86.733%         { opacity: 0.8; transform: scale(1.0); }
+  86.824%  { opacity: 0; transform: scale(0.3); }
+  100% { opacity: 0; transform: scale(0.2); }
+}
+
+@keyframes laserShot36 {
+  0% { opacity: 0; transform: translate(650px, 116px) scaleY(0.5); }
+  88.612% { opacity: 0; transform: translate(650px, 116px) scaleY(0.5); }
+  88.630%        { opacity: 1; transform: translate(650px, 116px) scaleY(1.2); }
+  88.921%          { opacity: 1; transform: translate(650px, 70px) scaleY(0.3); }
+  88.958%   { opacity: 0; transform: translate(650px, 70px) scaleY(0); }
+  100% { opacity: 0; transform: translate(650px, 70px); }
+}
+
+@keyframes sparkHit36 {
+  0% { opacity: 0; transform: scale(0.2); }
+  88.903% { opacity: 0; transform: scale(0.2); }
+  88.921%        { opacity: 1; transform: scale(1.6); }
+  89.140%         { opacity: 0.8; transform: scale(1.0); }
+  89.231%  { opacity: 0; transform: scale(0.3); }
+  100% { opacity: 0; transform: scale(0.2); }
+}
+
+@keyframes laserShot37 {
+  0% { opacity: 0; transform: translate(125px, 116px) scaleY(0.5); }
+  91.341% { opacity: 0; transform: translate(125px, 116px) scaleY(0.5); }
+  91.359%        { opacity: 1; transform: translate(125px, 116px) scaleY(1.2); }
+  91.650%          { opacity: 1; transform: translate(125px, 57px) scaleY(0.3); }
+  91.687%   { opacity: 0; transform: translate(125px, 57px) scaleY(0); }
+  100% { opacity: 0; transform: translate(125px, 57px); }
+}
+
+@keyframes sparkHit37 {
+  0% { opacity: 0; transform: scale(0.2); }
+  91.632% { opacity: 0; transform: scale(0.2); }
+  91.650%        { opacity: 1; transform: scale(1.6); }
+  91.869%         { opacity: 0.8; transform: scale(1.0); }
+  91.960%  { opacity: 0; transform: scale(0.3); }
+  100% { opacity: 0; transform: scale(0.2); }
+}
+
+@keyframes laserShot38 {
+  0% { opacity: 0; transform: translate(470px, 116px) scaleY(0.5); }
+  93.902% { opacity: 0; transform: translate(470px, 116px) scaleY(0.5); }
+  93.920%        { opacity: 1; transform: translate(470px, 116px) scaleY(1.2); }
+  94.211%          { opacity: 1; transform: translate(470px, 57px) scaleY(0.3); }
+  94.248%   { opacity: 0; transform: translate(470px, 57px) scaleY(0); }
+  100% { opacity: 0; transform: translate(470px, 57px); }
+}
+
+@keyframes sparkHit38 {
+  0% { opacity: 0; transform: scale(0.2); }
+  94.193% { opacity: 0; transform: scale(0.2); }
+  94.211%        { opacity: 1; transform: scale(1.6); }
+  94.430%         { opacity: 0.8; transform: scale(1.0); }
+  94.521%  { opacity: 0; transform: scale(0.3); }
+  100% { opacity: 0; transform: scale(0.2); }
+}
+
+@keyframes laserShot39 {
+  0% { opacity: 0; transform: translate(530px, 116px) scaleY(0.5); }
+  96.197% { opacity: 0; transform: translate(530px, 116px) scaleY(0.5); }
+  96.215%        { opacity: 1; transform: translate(530px, 116px) scaleY(1.2); }
+  96.506%          { opacity: 1; transform: translate(530px, 44px) scaleY(0.3); }
+  96.543%   { opacity: 0; transform: translate(530px, 44px) scaleY(0); }
+  100% { opacity: 0; transform: translate(530px, 44px); }
+}
+
+@keyframes sparkHit39 {
+  0% { opacity: 0; transform: scale(0.2); }
+  96.488% { opacity: 0; transform: scale(0.2); }
+  96.506%        { opacity: 1; transform: scale(1.6); }
+  96.725%         { opacity: 0.8; transform: scale(1.0); }
+  96.816%  { opacity: 0; transform: scale(0.3); }
+  100% { opacity: 0; transform: scale(0.2); }
+}
+
+@keyframes laserShot40 {
+  0% { opacity: 0; transform: translate(665px, 116px) scaleY(0.5); }
+  98.562% { opacity: 0; transform: translate(665px, 116px) scaleY(0.5); }
+  98.580%        { opacity: 1; transform: translate(665px, 116px) scaleY(1.2); }
+  98.871%          { opacity: 1; transform: translate(665px, 44px) scaleY(0.3); }
+  98.908%   { opacity: 0; transform: translate(665px, 44px) scaleY(0); }
+  100% { opacity: 0; transform: translate(665px, 44px); }
+}
+
+@keyframes sparkHit40 {
+  0% { opacity: 0; transform: scale(0.2); }
+  98.853% { opacity: 0; transform: scale(0.2); }
+  98.871%        { opacity: 1; transform: scale(1.6); }
+  99.090%         { opacity: 0.8; transform: scale(1.0); }
+  99.181%  { opacity: 0; transform: scale(0.3); }
+  100% { opacity: 0; transform: scale(0.2); }
+}
+
+@keyframes commitDamage_c_4_0 {
   0% { fill: #006D32; }
-  94.017% { fill: #006D32; }
-  94.112%        { fill: #FDFBF7; }
-  94.681% { fill: #0E4429; opacity: 0.85; }
-  99.525% { fill: #0E4429; }
+  1.395% { fill: #006D32; }
+  1.413% { fill: #FDFBF7; }
+  1.504% { fill: #0E4429; }
+  81.640% { fill: #0E4429; }
+  81.658% { fill: #FDFBF7; }
+  81.749% { fill: #161B22; }
+  99.909% { fill: #161B22; }
   100% { fill: #006D32; }
+}
+
+@keyframes commitDamage_c_5_0 {
+  0% { fill: #006D32; }
+  3.648% { fill: #006D32; }
+  3.666% { fill: #FDFBF7; }
+  3.757% { fill: #0E4429; }
+  46.219% { fill: #0E4429; }
+  46.238% { fill: #FDFBF7; }
+  46.329% { fill: #161B22; }
+  71.550% { fill: #161B22; }
+  71.568% { fill: #FDFBF7; }
+  71.659% { fill: #161B22; }
+  99.909% { fill: #161B22; }
+  100% { fill: #006D32; }
+}
+
+@keyframes commitDamage_c_44_4 {
+  0% { fill: #006D32; }
+  6.433% { fill: #006D32; }
+  6.451% { fill: #FDFBF7; }
+  6.542% { fill: #0E4429; }
+  99.909% { fill: #0E4429; }
+  100% { fill: #006D32; }
+}
+
+@keyframes commitDamage_c_31_4 {
+  0% { fill: #006D32; }
+  8.854% { fill: #006D32; }
+  8.872% { fill: #FDFBF7; }
+  8.963% { fill: #0E4429; }
+  94.193% { fill: #0E4429; }
+  94.211% { fill: #FDFBF7; }
+  94.302% { fill: #161B22; }
+  99.909% { fill: #161B22; }
+  100% { fill: #006D32; }
+}
+
+@keyframes commitDamage_c_30_3 {
+  0% { fill: #0E4429; }
+  11.107% { fill: #0E4429; }
+  11.125% { fill: #FDFBF7; }
+  11.216% { fill: #161B22; }
+  99.909% { fill: #161B22; }
+  100% { fill: #0E4429; }
+}
+
+@keyframes commitDamage_c_17_5 {
+  0% { fill: #0E4429; }
+  13.528% { fill: #0E4429; }
+  13.546% { fill: #FDFBF7; }
+  13.637% { fill: #161B22; }
+  99.909% { fill: #161B22; }
+  100% { fill: #0E4429; }
+}
+
+@keyframes commitDamage_c_22_0 {
+  0% { fill: #006D32; }
+  15.837% { fill: #006D32; }
+  15.855% { fill: #FDFBF7; }
+  15.946% { fill: #0E4429; }
+  99.909% { fill: #0E4429; }
+  100% { fill: #006D32; }
+}
+
+@keyframes commitDamage_c_31_2 {
+  0% { fill: #0E4429; }
+  18.202% { fill: #0E4429; }
+  18.220% { fill: #FDFBF7; }
+  18.311% { fill: #161B22; }
+  99.909% { fill: #161B22; }
+  100% { fill: #0E4429; }
+}
+
+@keyframes commitDamage_c_6_1 {
+  0% { fill: #006D32; }
+  20.791% { fill: #006D32; }
+  20.809% { fill: #FDFBF7; }
+  20.900% { fill: #0E4429; }
+  99.909% { fill: #0E4429; }
+  100% { fill: #006D32; }
+}
+
+@keyframes commitDamage_c_42_0 {
+  0% { fill: #006D32; }
+  23.534% { fill: #006D32; }
+  23.552% { fill: #FDFBF7; }
+  23.643% { fill: #0E4429; }
+  99.909% { fill: #0E4429; }
+  100% { fill: #006D32; }
+}
+
+@keyframes commitDamage_c_21_6 {
+  0% { fill: #26A641; }
+  26.067% { fill: #26A641; }
+  26.085% { fill: #FDFBF7; }
+  26.176% { fill: #006D32; }
+  99.909% { fill: #006D32; }
+  100% { fill: #26A641; }
+}
+
+@keyframes commitDamage_c_42_3 {
+  0% { fill: #0E4429; }
+  28.600% { fill: #0E4429; }
+  28.618% { fill: #FDFBF7; }
+  28.709% { fill: #161B22; }
+  99.909% { fill: #161B22; }
+  100% { fill: #0E4429; }
+}
+
+@keyframes commitDamage_c_19_0 {
+  0% { fill: #26A641; }
+  31.161% { fill: #26A641; }
+  31.179% { fill: #FDFBF7; }
+  31.270% { fill: #006D32; }
+  99.909% { fill: #006D32; }
+  100% { fill: #26A641; }
+}
+
+@keyframes commitDamage_c_33_0 {
+  0% { fill: #0E4429; }
+  33.596% { fill: #0E4429; }
+  33.614% { fill: #FDFBF7; }
+  33.705% { fill: #161B22; }
+  99.909% { fill: #161B22; }
+  100% { fill: #0E4429; }
+}
+
+@keyframes commitDamage_c_45_1 {
+  0% { fill: #26A641; }
+  36.003% { fill: #26A641; }
+  36.021% { fill: #FDFBF7; }
+  36.112% { fill: #006D32; }
+  99.909% { fill: #006D32; }
+  100% { fill: #26A641; }
+}
+
+@keyframes commitDamage_c_5_2 {
+  0% { fill: #006D32; }
+  38.802% { fill: #006D32; }
+  38.820% { fill: #FDFBF7; }
+  38.911% { fill: #0E4429; }
+  99.909% { fill: #0E4429; }
+  100% { fill: #006D32; }
+}
+
+@keyframes commitDamage_c_20_2 {
+  0% { fill: #006D32; }
+  41.251% { fill: #006D32; }
+  41.269% { fill: #FDFBF7; }
+  41.360% { fill: #0E4429; }
+  99.909% { fill: #0E4429; }
+  100% { fill: #006D32; }
+}
+
+@keyframes commitDamage_c_30_4 {
+  0% { fill: #0E4429; }
+  43.630% { fill: #0E4429; }
+  43.648% { fill: #FDFBF7; }
+  43.739% { fill: #161B22; }
+  99.909% { fill: #161B22; }
+  100% { fill: #0E4429; }
+}
+
+@keyframes commitDamage_c_44_2 {
+  0% { fill: #006D32; }
+  49.004% { fill: #006D32; }
+  49.023% { fill: #FDFBF7; }
+  49.114% { fill: #0E4429; }
+  99.909% { fill: #0E4429; }
+  100% { fill: #006D32; }
+}
+
+@keyframes commitDamage_c_16_2 {
+  0% { fill: #0E4429; }
+  51.635% { fill: #0E4429; }
+  51.654% { fill: #FDFBF7; }
+  51.745% { fill: #161B22; }
+  99.909% { fill: #161B22; }
+  100% { fill: #0E4429; }
+}
+
+@keyframes commitDamage_c_31_5 {
+  0% { fill: #39D353; }
+  54.085% { fill: #39D353; }
+  54.103% { fill: #FDFBF7; }
+  54.194% { fill: #26A641; }
+  86.496% { fill: #26A641; }
+  86.514% { fill: #FDFBF7; }
+  86.605% { fill: #006D32; }
+  99.909% { fill: #006D32; }
+  100% { fill: #39D353; }
+}
+
+@keyframes commitDamage_c_36_1 {
+  0% { fill: #0E4429; }
+  56.394% { fill: #0E4429; }
+  56.412% { fill: #FDFBF7; }
+  56.503% { fill: #161B22; }
+  99.909% { fill: #161B22; }
+  100% { fill: #0E4429; }
+}
+
+@keyframes commitDamage_c_16_5 {
+  0% { fill: #006D32; }
+  58.913% { fill: #006D32; }
+  58.931% { fill: #FDFBF7; }
+  59.022% { fill: #0E4429; }
+  99.909% { fill: #0E4429; }
+  100% { fill: #006D32; }
+}
+
+@keyframes commitDamage_c_4_6 {
+  0% { fill: #39D353; }
+  61.320% { fill: #39D353; }
+  61.338% { fill: #FDFBF7; }
+  61.429% { fill: #26A641; }
+  99.909% { fill: #26A641; }
+  100% { fill: #39D353; }
+}
+
+@keyframes commitDamage_c_31_6 {
+  0% { fill: #39D353; }
+  63.937% { fill: #39D353; }
+  63.955% { fill: #FDFBF7; }
+  64.046% { fill: #26A641; }
+  99.909% { fill: #26A641; }
+  100% { fill: #39D353; }
+}
+
+@keyframes commitDamage_c_16_6 {
+  0% { fill: #006D32; }
+  66.386% { fill: #006D32; }
+  66.404% { fill: #FDFBF7; }
+  66.495% { fill: #0E4429; }
+  99.909% { fill: #0E4429; }
+  100% { fill: #006D32; }
+}
+
+@keyframes commitDamage_c_35_2 {
+  0% { fill: #006D32; }
+  68.891% { fill: #006D32; }
+  68.909% { fill: #FDFBF7; }
+  69.000% { fill: #0E4429; }
+  99.909% { fill: #0E4429; }
+  100% { fill: #006D32; }
+}
+
+@keyframes commitDamage_c_32_5 {
+  0% { fill: #006D32; }
+  74.167% { fill: #006D32; }
+  74.185% { fill: #FDFBF7; }
+  74.276% { fill: #0E4429; }
+  99.909% { fill: #0E4429; }
+  100% { fill: #006D32; }
+}
+
+@keyframes commitDamage_c_45_6 {
+  0% { fill: #006D32; }
+  76.588% { fill: #006D32; }
+  76.606% { fill: #FDFBF7; }
+  76.697% { fill: #0E4429; }
+  99.909% { fill: #0E4429; }
+  100% { fill: #006D32; }
+}
+
+@keyframes commitDamage_c_8_3 {
+  0% { fill: #006D32; }
+  79.345% { fill: #006D32; }
+  79.363% { fill: #FDFBF7; }
+  79.454% { fill: #0E4429; }
+  99.909% { fill: #0E4429; }
+  100% { fill: #006D32; }
+}
+
+@keyframes commitDamage_c_16_3 {
+  0% { fill: #006D32; }
+  84.047% { fill: #006D32; }
+  84.065% { fill: #FDFBF7; }
+  84.156% { fill: #0E4429; }
+  99.909% { fill: #0E4429; }
+  100% { fill: #006D32; }
+}
+
+@keyframes commitDamage_c_43_5 {
+  0% { fill: #006D32; }
+  88.903% { fill: #006D32; }
+  88.921% { fill: #FDFBF7; }
+  89.012% { fill: #0E4429; }
+  99.909% { fill: #0E4429; }
+  100% { fill: #006D32; }
+}
+
+@keyframes commitDamage_c_8_4 {
+  0% { fill: #0E4429; }
+  91.632% { fill: #0E4429; }
+  91.650% { fill: #FDFBF7; }
+  91.741% { fill: #161B22; }
+  99.909% { fill: #161B22; }
+  100% { fill: #0E4429; }
+}
+
+@keyframes commitDamage_c_35_3 {
+  0% { fill: #0E4429; }
+  96.488% { fill: #0E4429; }
+  96.506% { fill: #FDFBF7; }
+  96.597% { fill: #161B22; }
+  99.909% { fill: #161B22; }
+  100% { fill: #0E4429; }
+}
+
+@keyframes commitDamage_c_44_3 {
+  0% { fill: #39D353; }
+  98.853% { fill: #39D353; }
+  98.871% { fill: #FDFBF7; }
+  98.962% { fill: #26A641; }
+  99.909% { fill: #26A641; }
+  100% { fill: #39D353; }
 }
 
 @keyframes hudCount0 {
   0% { opacity: 1; }
-  7.203% { opacity: 1; }
-  7.298% { opacity: 0; }
+  1.395% { opacity: 1; }
+  1.413% { opacity: 0; }
   100% { opacity: 0; }
 }
 
 @keyframes hudCount1 {
   0% { opacity: 0; }
-  7.203% { opacity: 0; }
-  7.298% { opacity: 1; }
-  19.031% { opacity: 1; }
-  19.126% { opacity: 0; }
+  1.395% { opacity: 0; }
+  1.413% { opacity: 1; }
+  3.648% { opacity: 1; }
+  3.666% { opacity: 0; }
   100% { opacity: 0; }
 }
 
 @keyframes hudCount2 {
   0% { opacity: 0; }
-  19.031% { opacity: 0; }
-  19.126% { opacity: 1; }
-  33.416% { opacity: 1; }
-  33.511% { opacity: 0; }
+  3.648% { opacity: 0; }
+  3.666% { opacity: 1; }
+  6.433% { opacity: 1; }
+  6.451% { opacity: 0; }
   100% { opacity: 0; }
 }
 
 @keyframes hudCount3 {
   0% { opacity: 0; }
-  33.416% { opacity: 0; }
-  33.511% { opacity: 1; }
-  46.340% { opacity: 1; }
-  46.435% { opacity: 0; }
+  6.433% { opacity: 0; }
+  6.451% { opacity: 1; }
+  8.854% { opacity: 1; }
+  8.872% { opacity: 0; }
   100% { opacity: 0; }
 }
 
 @keyframes hudCount4 {
   0% { opacity: 0; }
-  46.340% { opacity: 0; }
-  46.435% { opacity: 1; }
-  58.022% { opacity: 1; }
-  58.117% { opacity: 0; }
+  8.854% { opacity: 0; }
+  8.872% { opacity: 1; }
+  11.107% { opacity: 1; }
+  11.125% { opacity: 0; }
   100% { opacity: 0; }
 }
 
 @keyframes hudCount5 {
   0% { opacity: 0; }
-  58.022% { opacity: 0; }
-  58.117% { opacity: 1; }
-  70.361% { opacity: 1; }
-  70.456% { opacity: 0; }
+  11.107% { opacity: 0; }
+  11.125% { opacity: 1; }
+  13.528% { opacity: 1; }
+  13.546% { opacity: 0; }
   100% { opacity: 0; }
 }
 
 @keyframes hudCount6 {
   0% { opacity: 0; }
-  70.361% { opacity: 0; }
-  70.456% { opacity: 1; }
-  82.116% { opacity: 1; }
-  82.211% { opacity: 0; }
+  13.528% { opacity: 0; }
+  13.546% { opacity: 1; }
+  15.837% { opacity: 1; }
+  15.855% { opacity: 0; }
   100% { opacity: 0; }
 }
 
 @keyframes hudCount7 {
   0% { opacity: 0; }
-  82.116% { opacity: 0; }
-  82.211% { opacity: 1; }
-  94.017% { opacity: 1; }
-  94.112% { opacity: 0; }
+  15.837% { opacity: 0; }
+  15.855% { opacity: 1; }
+  18.202% { opacity: 1; }
+  18.220% { opacity: 0; }
   100% { opacity: 0; }
 }
 
 @keyframes hudCount8 {
   0% { opacity: 0; }
-  94.017% { opacity: 0; }
-  94.112% { opacity: 1; }
-  99.905% { opacity: 1; }
+  18.202% { opacity: 0; }
+  18.220% { opacity: 1; }
+  20.791% { opacity: 1; }
+  20.809% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes hudCount9 {
+  0% { opacity: 0; }
+  20.791% { opacity: 0; }
+  20.809% { opacity: 1; }
+  23.534% { opacity: 1; }
+  23.552% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes hudCount10 {
+  0% { opacity: 0; }
+  23.534% { opacity: 0; }
+  23.552% { opacity: 1; }
+  26.067% { opacity: 1; }
+  26.085% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes hudCount11 {
+  0% { opacity: 0; }
+  26.067% { opacity: 0; }
+  26.085% { opacity: 1; }
+  28.600% { opacity: 1; }
+  28.618% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes hudCount12 {
+  0% { opacity: 0; }
+  28.600% { opacity: 0; }
+  28.618% { opacity: 1; }
+  31.161% { opacity: 1; }
+  31.179% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes hudCount13 {
+  0% { opacity: 0; }
+  31.161% { opacity: 0; }
+  31.179% { opacity: 1; }
+  33.596% { opacity: 1; }
+  33.614% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes hudCount14 {
+  0% { opacity: 0; }
+  33.596% { opacity: 0; }
+  33.614% { opacity: 1; }
+  36.003% { opacity: 1; }
+  36.021% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes hudCount15 {
+  0% { opacity: 0; }
+  36.003% { opacity: 0; }
+  36.021% { opacity: 1; }
+  38.802% { opacity: 1; }
+  38.820% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes hudCount16 {
+  0% { opacity: 0; }
+  38.802% { opacity: 0; }
+  38.820% { opacity: 1; }
+  41.251% { opacity: 1; }
+  41.269% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes hudCount17 {
+  0% { opacity: 0; }
+  41.251% { opacity: 0; }
+  41.269% { opacity: 1; }
+  43.630% { opacity: 1; }
+  43.648% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes hudCount18 {
+  0% { opacity: 0; }
+  43.630% { opacity: 0; }
+  43.648% { opacity: 1; }
+  46.219% { opacity: 1; }
+  46.238% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes hudCount19 {
+  0% { opacity: 0; }
+  46.219% { opacity: 0; }
+  46.238% { opacity: 1; }
+  49.004% { opacity: 1; }
+  49.023% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes hudCount20 {
+  0% { opacity: 0; }
+  49.004% { opacity: 0; }
+  49.023% { opacity: 1; }
+  51.635% { opacity: 1; }
+  51.654% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes hudCount21 {
+  0% { opacity: 0; }
+  51.635% { opacity: 0; }
+  51.654% { opacity: 1; }
+  54.085% { opacity: 1; }
+  54.103% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes hudCount22 {
+  0% { opacity: 0; }
+  54.085% { opacity: 0; }
+  54.103% { opacity: 1; }
+  56.394% { opacity: 1; }
+  56.412% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes hudCount23 {
+  0% { opacity: 0; }
+  56.394% { opacity: 0; }
+  56.412% { opacity: 1; }
+  58.913% { opacity: 1; }
+  58.931% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes hudCount24 {
+  0% { opacity: 0; }
+  58.913% { opacity: 0; }
+  58.931% { opacity: 1; }
+  61.320% { opacity: 1; }
+  61.338% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes hudCount25 {
+  0% { opacity: 0; }
+  61.320% { opacity: 0; }
+  61.338% { opacity: 1; }
+  63.937% { opacity: 1; }
+  63.955% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes hudCount26 {
+  0% { opacity: 0; }
+  63.937% { opacity: 0; }
+  63.955% { opacity: 1; }
+  66.386% { opacity: 1; }
+  66.404% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes hudCount27 {
+  0% { opacity: 0; }
+  66.386% { opacity: 0; }
+  66.404% { opacity: 1; }
+  68.891% { opacity: 1; }
+  68.909% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes hudCount28 {
+  0% { opacity: 0; }
+  68.891% { opacity: 0; }
+  68.909% { opacity: 1; }
+  71.550% { opacity: 1; }
+  71.568% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes hudCount29 {
+  0% { opacity: 0; }
+  71.550% { opacity: 0; }
+  71.568% { opacity: 1; }
+  74.167% { opacity: 1; }
+  74.185% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes hudCount30 {
+  0% { opacity: 0; }
+  74.167% { opacity: 0; }
+  74.185% { opacity: 1; }
+  76.588% { opacity: 1; }
+  76.606% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes hudCount31 {
+  0% { opacity: 0; }
+  76.588% { opacity: 0; }
+  76.606% { opacity: 1; }
+  79.345% { opacity: 1; }
+  79.363% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes hudCount32 {
+  0% { opacity: 0; }
+  79.345% { opacity: 0; }
+  79.363% { opacity: 1; }
+  81.640% { opacity: 1; }
+  81.658% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes hudCount33 {
+  0% { opacity: 0; }
+  81.640% { opacity: 0; }
+  81.658% { opacity: 1; }
+  84.047% { opacity: 1; }
+  84.065% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes hudCount34 {
+  0% { opacity: 0; }
+  84.047% { opacity: 0; }
+  84.065% { opacity: 1; }
+  86.496% { opacity: 1; }
+  86.514% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes hudCount35 {
+  0% { opacity: 0; }
+  86.496% { opacity: 0; }
+  86.514% { opacity: 1; }
+  88.903% { opacity: 1; }
+  88.921% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes hudCount36 {
+  0% { opacity: 0; }
+  88.903% { opacity: 0; }
+  88.921% { opacity: 1; }
+  91.632% { opacity: 1; }
+  91.650% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes hudCount37 {
+  0% { opacity: 0; }
+  91.632% { opacity: 0; }
+  91.650% { opacity: 1; }
+  94.193% { opacity: 1; }
+  94.211% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes hudCount38 {
+  0% { opacity: 0; }
+  94.193% { opacity: 0; }
+  94.211% { opacity: 1; }
+  96.488% { opacity: 1; }
+  96.506% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes hudCount39 {
+  0% { opacity: 0; }
+  96.488% { opacity: 0; }
+  96.506% { opacity: 1; }
+  98.853% { opacity: 1; }
+  98.871% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes hudCount40 {
+  0% { opacity: 0; }
+  98.853% { opacity: 0; }
+  98.871% { opacity: 1; }
+  99.982% { opacity: 1; }
   100% { opacity: 1; }
 }
     </style>
@@ -385,15 +1726,47 @@
   <!-- Live Counter HUD Badge displaying total commits -->
   <g transform="translate(565, 10)">
     <rect width="260" height="26" rx="3" class="counter-frame"/>
-      <text x="127" y="17" text-anchor="middle" class="counter-txt hud-val-0">DESTROYED: [ 0 / 1,503 COMMITS ]</text>
-      <text x="127" y="17" text-anchor="middle" class="counter-txt hud-val-1">DESTROYED: [ 1 / 1,503 COMMITS ]</text>
-      <text x="127" y="17" text-anchor="middle" class="counter-txt hud-val-2">DESTROYED: [ 2 / 1,503 COMMITS ]</text>
-      <text x="127" y="17" text-anchor="middle" class="counter-txt hud-val-3">DESTROYED: [ 3 / 1,503 COMMITS ]</text>
-      <text x="127" y="17" text-anchor="middle" class="counter-txt hud-val-4">DESTROYED: [ 4 / 1,503 COMMITS ]</text>
-      <text x="127" y="17" text-anchor="middle" class="counter-txt hud-val-5">DESTROYED: [ 5 / 1,503 COMMITS ]</text>
-      <text x="127" y="17" text-anchor="middle" class="counter-txt hud-val-6">DESTROYED: [ 6 / 1,503 COMMITS ]</text>
-      <text x="127" y="17" text-anchor="middle" class="counter-txt hud-val-7">DESTROYED: [ 7 / 1,503 COMMITS ]</text>
-      <text x="127" y="17" text-anchor="middle" class="counter-txt hud-val-8">DESTROYED: [ 8 / 1,503 COMMITS ]</text>
+      <text x="127" y="17" text-anchor="middle" class="counter-txt hud-val-0">DESTROYED: [ 0 / 1,944 COMMITS ]</text>
+      <text x="127" y="17" text-anchor="middle" class="counter-txt hud-val-1">DESTROYED: [ 1 / 1,944 COMMITS ]</text>
+      <text x="127" y="17" text-anchor="middle" class="counter-txt hud-val-2">DESTROYED: [ 2 / 1,944 COMMITS ]</text>
+      <text x="127" y="17" text-anchor="middle" class="counter-txt hud-val-3">DESTROYED: [ 3 / 1,944 COMMITS ]</text>
+      <text x="127" y="17" text-anchor="middle" class="counter-txt hud-val-4">DESTROYED: [ 4 / 1,944 COMMITS ]</text>
+      <text x="127" y="17" text-anchor="middle" class="counter-txt hud-val-5">DESTROYED: [ 5 / 1,944 COMMITS ]</text>
+      <text x="127" y="17" text-anchor="middle" class="counter-txt hud-val-6">DESTROYED: [ 6 / 1,944 COMMITS ]</text>
+      <text x="127" y="17" text-anchor="middle" class="counter-txt hud-val-7">DESTROYED: [ 7 / 1,944 COMMITS ]</text>
+      <text x="127" y="17" text-anchor="middle" class="counter-txt hud-val-8">DESTROYED: [ 8 / 1,944 COMMITS ]</text>
+      <text x="127" y="17" text-anchor="middle" class="counter-txt hud-val-9">DESTROYED: [ 9 / 1,944 COMMITS ]</text>
+      <text x="127" y="17" text-anchor="middle" class="counter-txt hud-val-10">DESTROYED: [ 10 / 1,944 COMMITS ]</text>
+      <text x="127" y="17" text-anchor="middle" class="counter-txt hud-val-11">DESTROYED: [ 11 / 1,944 COMMITS ]</text>
+      <text x="127" y="17" text-anchor="middle" class="counter-txt hud-val-12">DESTROYED: [ 12 / 1,944 COMMITS ]</text>
+      <text x="127" y="17" text-anchor="middle" class="counter-txt hud-val-13">DESTROYED: [ 13 / 1,944 COMMITS ]</text>
+      <text x="127" y="17" text-anchor="middle" class="counter-txt hud-val-14">DESTROYED: [ 14 / 1,944 COMMITS ]</text>
+      <text x="127" y="17" text-anchor="middle" class="counter-txt hud-val-15">DESTROYED: [ 15 / 1,944 COMMITS ]</text>
+      <text x="127" y="17" text-anchor="middle" class="counter-txt hud-val-16">DESTROYED: [ 16 / 1,944 COMMITS ]</text>
+      <text x="127" y="17" text-anchor="middle" class="counter-txt hud-val-17">DESTROYED: [ 17 / 1,944 COMMITS ]</text>
+      <text x="127" y="17" text-anchor="middle" class="counter-txt hud-val-18">DESTROYED: [ 18 / 1,944 COMMITS ]</text>
+      <text x="127" y="17" text-anchor="middle" class="counter-txt hud-val-19">DESTROYED: [ 19 / 1,944 COMMITS ]</text>
+      <text x="127" y="17" text-anchor="middle" class="counter-txt hud-val-20">DESTROYED: [ 20 / 1,944 COMMITS ]</text>
+      <text x="127" y="17" text-anchor="middle" class="counter-txt hud-val-21">DESTROYED: [ 21 / 1,944 COMMITS ]</text>
+      <text x="127" y="17" text-anchor="middle" class="counter-txt hud-val-22">DESTROYED: [ 22 / 1,944 COMMITS ]</text>
+      <text x="127" y="17" text-anchor="middle" class="counter-txt hud-val-23">DESTROYED: [ 23 / 1,944 COMMITS ]</text>
+      <text x="127" y="17" text-anchor="middle" class="counter-txt hud-val-24">DESTROYED: [ 24 / 1,944 COMMITS ]</text>
+      <text x="127" y="17" text-anchor="middle" class="counter-txt hud-val-25">DESTROYED: [ 25 / 1,944 COMMITS ]</text>
+      <text x="127" y="17" text-anchor="middle" class="counter-txt hud-val-26">DESTROYED: [ 26 / 1,944 COMMITS ]</text>
+      <text x="127" y="17" text-anchor="middle" class="counter-txt hud-val-27">DESTROYED: [ 27 / 1,944 COMMITS ]</text>
+      <text x="127" y="17" text-anchor="middle" class="counter-txt hud-val-28">DESTROYED: [ 28 / 1,944 COMMITS ]</text>
+      <text x="127" y="17" text-anchor="middle" class="counter-txt hud-val-29">DESTROYED: [ 29 / 1,944 COMMITS ]</text>
+      <text x="127" y="17" text-anchor="middle" class="counter-txt hud-val-30">DESTROYED: [ 30 / 1,944 COMMITS ]</text>
+      <text x="127" y="17" text-anchor="middle" class="counter-txt hud-val-31">DESTROYED: [ 31 / 1,944 COMMITS ]</text>
+      <text x="127" y="17" text-anchor="middle" class="counter-txt hud-val-32">DESTROYED: [ 32 / 1,944 COMMITS ]</text>
+      <text x="127" y="17" text-anchor="middle" class="counter-txt hud-val-33">DESTROYED: [ 33 / 1,944 COMMITS ]</text>
+      <text x="127" y="17" text-anchor="middle" class="counter-txt hud-val-34">DESTROYED: [ 34 / 1,944 COMMITS ]</text>
+      <text x="127" y="17" text-anchor="middle" class="counter-txt hud-val-35">DESTROYED: [ 35 / 1,944 COMMITS ]</text>
+      <text x="127" y="17" text-anchor="middle" class="counter-txt hud-val-36">DESTROYED: [ 36 / 1,944 COMMITS ]</text>
+      <text x="127" y="17" text-anchor="middle" class="counter-txt hud-val-37">DESTROYED: [ 37 / 1,944 COMMITS ]</text>
+      <text x="127" y="17" text-anchor="middle" class="counter-txt hud-val-38">DESTROYED: [ 38 / 1,944 COMMITS ]</text>
+      <text x="127" y="17" text-anchor="middle" class="counter-txt hud-val-39">DESTROYED: [ 39 / 1,944 COMMITS ]</text>
+      <text x="127" y="17" text-anchor="middle" class="counter-txt hud-val-40">DESTROYED: [ 40 / 1,944 COMMITS ]</text>
   </g>
   <line x1="0" y1="42" x2="850" y2="42" stroke="#2C303B" stroke-width="1"/>
 
@@ -444,39 +1817,39 @@
       <rect x="45" y="52" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="45" y="65" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="45" y="78" width="10" height="10" rx="2" fill="#0E4429"/>
-      <rect x="60" y="0" width="10" height="10" rx="2" fill="#161B22"/>
+      <rect x="60" y="0" width="10" height="10" rx="2" class="commit-cell-c_4_0"/>
       <rect x="60" y="13" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="60" y="26" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="60" y="39" width="10" height="10" rx="2" fill="#0E4429"/>
       <rect x="60" y="52" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="60" y="65" width="10" height="10" rx="2" fill="#0E4429"/>
-      <rect x="60" y="78" width="10" height="10" rx="2" fill="#39D353"/>
-      <rect x="75" y="0" width="10" height="10" rx="2" class="commit-target-1"/>
+      <rect x="60" y="78" width="10" height="10" rx="2" class="commit-cell-c_4_6"/>
+      <rect x="75" y="0" width="10" height="10" rx="2" class="commit-cell-c_5_0"/>
       <rect x="75" y="13" width="10" height="10" rx="2" fill="#006D32"/>
-      <rect x="75" y="26" width="10" height="10" rx="2" fill="#26A641"/>
+      <rect x="75" y="26" width="10" height="10" rx="2" class="commit-cell-c_5_2"/>
       <rect x="75" y="39" width="10" height="10" rx="2" fill="#0E4429"/>
-      <rect x="75" y="52" width="10" height="10" rx="2" fill="#006D32"/>
+      <rect x="75" y="52" width="10" height="10" rx="2" fill="#0E4429"/>
       <rect x="75" y="65" width="10" height="10" rx="2" fill="#0E4429"/>
       <rect x="75" y="78" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="90" y="0" width="10" height="10" rx="2" fill="#161B22"/>
-      <rect x="90" y="13" width="10" height="10" rx="2" fill="#26A641"/>
+      <rect x="90" y="13" width="10" height="10" rx="2" class="commit-cell-c_6_1"/>
       <rect x="90" y="26" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="90" y="39" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="90" y="52" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="90" y="65" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="90" y="78" width="10" height="10" rx="2" fill="#0E4429"/>
-      <rect x="105" y="0" width="10" height="10" rx="2" class="commit-target-2"/>
+      <rect x="105" y="0" width="10" height="10" rx="2" fill="#0E4429"/>
       <rect x="105" y="13" width="10" height="10" rx="2" fill="#0E4429"/>
       <rect x="105" y="26" width="10" height="10" rx="2" fill="#0E4429"/>
       <rect x="105" y="39" width="10" height="10" rx="2" fill="#0E4429"/>
       <rect x="105" y="52" width="10" height="10" rx="2" fill="#006D32"/>
       <rect x="105" y="65" width="10" height="10" rx="2" fill="#0E4429"/>
       <rect x="105" y="78" width="10" height="10" rx="2" fill="#006D32"/>
-      <rect x="120" y="0" width="10" height="10" rx="2" fill="#39D353"/>
-      <rect x="120" y="13" width="10" height="10" rx="2" fill="#26A641"/>
+      <rect x="120" y="0" width="10" height="10" rx="2" fill="#26A641"/>
+      <rect x="120" y="13" width="10" height="10" rx="2" fill="#006D32"/>
       <rect x="120" y="26" width="10" height="10" rx="2" fill="#0E4429"/>
-      <rect x="120" y="39" width="10" height="10" rx="2" fill="#006D32"/>
-      <rect x="120" y="52" width="10" height="10" rx="2" fill="#0E4429"/>
+      <rect x="120" y="39" width="10" height="10" rx="2" class="commit-cell-c_8_3"/>
+      <rect x="120" y="52" width="10" height="10" rx="2" class="commit-cell-c_8_4"/>
       <rect x="120" y="65" width="10" height="10" rx="2" fill="#26A641"/>
       <rect x="120" y="78" width="10" height="10" rx="2" fill="#0E4429"/>
       <rect x="135" y="0" width="10" height="10" rx="2" fill="#006D32"/>
@@ -530,35 +1903,35 @@
       <rect x="225" y="78" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="240" y="0" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="240" y="13" width="10" height="10" rx="2" fill="#161B22"/>
-      <rect x="240" y="26" width="10" height="10" rx="2" fill="#0E4429"/>
-      <rect x="240" y="39" width="10" height="10" rx="2" fill="#26A641"/>
+      <rect x="240" y="26" width="10" height="10" rx="2" class="commit-cell-c_16_2"/>
+      <rect x="240" y="39" width="10" height="10" rx="2" class="commit-cell-c_16_3"/>
       <rect x="240" y="52" width="10" height="10" rx="2" fill="#161B22"/>
-      <rect x="240" y="65" width="10" height="10" rx="2" fill="#26A641"/>
-      <rect x="240" y="78" width="10" height="10" rx="2" fill="#26A641"/>
+      <rect x="240" y="65" width="10" height="10" rx="2" class="commit-cell-c_16_5"/>
+      <rect x="240" y="78" width="10" height="10" rx="2" class="commit-cell-c_16_6"/>
       <rect x="255" y="0" width="10" height="10" rx="2" fill="#0E4429"/>
       <rect x="255" y="13" width="10" height="10" rx="2" fill="#0E4429"/>
       <rect x="255" y="26" width="10" height="10" rx="2" fill="#0E4429"/>
       <rect x="255" y="39" width="10" height="10" rx="2" fill="#0E4429"/>
       <rect x="255" y="52" width="10" height="10" rx="2" fill="#161B22"/>
-      <rect x="255" y="65" width="10" height="10" rx="2" fill="#0E4429"/>
+      <rect x="255" y="65" width="10" height="10" rx="2" class="commit-cell-c_17_5"/>
       <rect x="255" y="78" width="10" height="10" rx="2" fill="#0E4429"/>
       <rect x="270" y="0" width="10" height="10" rx="2" fill="#161B22"/>
-      <rect x="270" y="13" width="10" height="10" rx="2" fill="#006D32"/>
+      <rect x="270" y="13" width="10" height="10" rx="2" fill="#0E4429"/>
       <rect x="270" y="26" width="10" height="10" rx="2" fill="#006D32"/>
       <rect x="270" y="39" width="10" height="10" rx="2" fill="#0E4429"/>
-      <rect x="270" y="52" width="10" height="10" rx="2" class="commit-target-6"/>
-      <rect x="270" y="65" width="10" height="10" rx="2" fill="#006D32"/>
-      <rect x="270" y="78" width="10" height="10" rx="2" fill="#006D32"/>
-      <rect x="285" y="0" width="10" height="10" rx="2" class="commit-target-7"/>
+      <rect x="270" y="52" width="10" height="10" rx="2" fill="#0E4429"/>
+      <rect x="270" y="65" width="10" height="10" rx="2" fill="#0E4429"/>
+      <rect x="270" y="78" width="10" height="10" rx="2" fill="#0E4429"/>
+      <rect x="285" y="0" width="10" height="10" rx="2" class="commit-cell-c_19_0"/>
       <rect x="285" y="13" width="10" height="10" rx="2" fill="#0E4429"/>
       <rect x="285" y="26" width="10" height="10" rx="2" fill="#0E4429"/>
       <rect x="285" y="39" width="10" height="10" rx="2" fill="#0E4429"/>
-      <rect x="285" y="52" width="10" height="10" rx="2" fill="#161B22"/>
+      <rect x="285" y="52" width="10" height="10" rx="2" fill="#0E4429"/>
       <rect x="285" y="65" width="10" height="10" rx="2" fill="#26A641"/>
       <rect x="285" y="78" width="10" height="10" rx="2" fill="#0E4429"/>
-      <rect x="300" y="0" width="10" height="10" rx="2" fill="#006D32"/>
-      <rect x="300" y="13" width="10" height="10" rx="2" fill="#161B22"/>
-      <rect x="300" y="26" width="10" height="10" rx="2" fill="#006D32"/>
+      <rect x="300" y="0" width="10" height="10" rx="2" fill="#0E4429"/>
+      <rect x="300" y="13" width="10" height="10" rx="2" fill="#0E4429"/>
+      <rect x="300" y="26" width="10" height="10" rx="2" class="commit-cell-c_20_2"/>
       <rect x="300" y="39" width="10" height="10" rx="2" fill="#0E4429"/>
       <rect x="300" y="52" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="300" y="65" width="10" height="10" rx="2" fill="#161B22"/>
@@ -569,8 +1942,8 @@
       <rect x="315" y="39" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="315" y="52" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="315" y="65" width="10" height="10" rx="2" fill="#0E4429"/>
-      <rect x="315" y="78" width="10" height="10" rx="2" fill="#26A641"/>
-      <rect x="330" y="0" width="10" height="10" rx="2" class="commit-target-8"/>
+      <rect x="315" y="78" width="10" height="10" rx="2" class="commit-cell-c_21_6"/>
+      <rect x="330" y="0" width="10" height="10" rx="2" class="commit-cell-c_22_0"/>
       <rect x="330" y="13" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="330" y="26" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="330" y="39" width="10" height="10" rx="2" fill="#161B22"/>
@@ -606,9 +1979,9 @@
       <rect x="390" y="65" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="390" y="78" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="405" y="0" width="10" height="10" rx="2" fill="#161B22"/>
-      <rect x="405" y="13" width="10" height="10" rx="2" class="commit-target-5"/>
+      <rect x="405" y="13" width="10" height="10" rx="2" fill="#0E4429"/>
       <rect x="405" y="26" width="10" height="10" rx="2" fill="#0E4429"/>
-      <rect x="405" y="39" width="10" height="10" rx="2" class="commit-target-4"/>
+      <rect x="405" y="39" width="10" height="10" rx="2" fill="#0E4429"/>
       <rect x="405" y="52" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="405" y="65" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="405" y="78" width="10" height="10" rx="2" fill="#161B22"/>
@@ -629,49 +2002,49 @@
       <rect x="450" y="0" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="450" y="13" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="450" y="26" width="10" height="10" rx="2" fill="#161B22"/>
-      <rect x="450" y="39" width="10" height="10" rx="2" fill="#0E4429"/>
-      <rect x="450" y="52" width="10" height="10" rx="2" fill="#0E4429"/>
+      <rect x="450" y="39" width="10" height="10" rx="2" class="commit-cell-c_30_3"/>
+      <rect x="450" y="52" width="10" height="10" rx="2" class="commit-cell-c_30_4"/>
       <rect x="450" y="65" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="450" y="78" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="465" y="0" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="465" y="13" width="10" height="10" rx="2" fill="#006D32"/>
-      <rect x="465" y="26" width="10" height="10" rx="2" fill="#0E4429"/>
+      <rect x="465" y="26" width="10" height="10" rx="2" class="commit-cell-c_31_2"/>
       <rect x="465" y="39" width="10" height="10" rx="2" fill="#161B22"/>
-      <rect x="465" y="52" width="10" height="10" rx="2" fill="#0E4429"/>
-      <rect x="465" y="65" width="10" height="10" rx="2" fill="#161B22"/>
-      <rect x="465" y="78" width="10" height="10" rx="2" fill="#161B22"/>
-      <rect x="480" y="0" width="10" height="10" rx="2" fill="#161B22"/>
-      <rect x="480" y="13" width="10" height="10" rx="2" fill="#161B22"/>
+      <rect x="465" y="52" width="10" height="10" rx="2" class="commit-cell-c_31_4"/>
+      <rect x="465" y="65" width="10" height="10" rx="2" class="commit-cell-c_31_5"/>
+      <rect x="465" y="78" width="10" height="10" rx="2" class="commit-cell-c_31_6"/>
+      <rect x="480" y="0" width="10" height="10" rx="2" fill="#26A641"/>
+      <rect x="480" y="13" width="10" height="10" rx="2" fill="#0E4429"/>
       <rect x="480" y="26" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="480" y="39" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="480" y="52" width="10" height="10" rx="2" fill="#161B22"/>
-      <rect x="480" y="65" width="10" height="10" rx="2" fill="#161B22"/>
+      <rect x="480" y="65" width="10" height="10" rx="2" class="commit-cell-c_32_5"/>
       <rect x="480" y="78" width="10" height="10" rx="2" fill="#161B22"/>
-      <rect x="495" y="0" width="10" height="10" rx="2" fill="#161B22"/>
+      <rect x="495" y="0" width="10" height="10" rx="2" class="commit-cell-c_33_0"/>
       <rect x="495" y="13" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="495" y="26" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="495" y="39" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="495" y="52" width="10" height="10" rx="2" fill="#0E4429"/>
       <rect x="495" y="65" width="10" height="10" rx="2" fill="#0E4429"/>
-      <rect x="495" y="78" width="10" height="10" rx="2" fill="#161B22"/>
-      <rect x="510" y="0" width="10" height="10" rx="2" fill="#161B22"/>
+      <rect x="495" y="78" width="10" height="10" rx="2" fill="#0E4429"/>
+      <rect x="510" y="0" width="10" height="10" rx="2" fill="#0E4429"/>
       <rect x="510" y="13" width="10" height="10" rx="2" fill="#0E4429"/>
       <rect x="510" y="26" width="10" height="10" rx="2" fill="#161B22"/>
-      <rect x="510" y="39" width="10" height="10" rx="2" fill="#161B22"/>
-      <rect x="510" y="52" width="10" height="10" rx="2" fill="#161B22"/>
+      <rect x="510" y="39" width="10" height="10" rx="2" fill="#0E4429"/>
+      <rect x="510" y="52" width="10" height="10" rx="2" fill="#0E4429"/>
       <rect x="510" y="65" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="510" y="78" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="525" y="0" width="10" height="10" rx="2" fill="#161B22"/>
-      <rect x="525" y="13" width="10" height="10" rx="2" fill="#161B22"/>
-      <rect x="525" y="26" width="10" height="10" rx="2" fill="#161B22"/>
-      <rect x="525" y="39" width="10" height="10" rx="2" fill="#161B22"/>
+      <rect x="525" y="13" width="10" height="10" rx="2" fill="#39D353"/>
+      <rect x="525" y="26" width="10" height="10" rx="2" class="commit-cell-c_35_2"/>
+      <rect x="525" y="39" width="10" height="10" rx="2" class="commit-cell-c_35_3"/>
       <rect x="525" y="52" width="10" height="10" rx="2" fill="#0E4429"/>
       <rect x="525" y="65" width="10" height="10" rx="2" fill="#0E4429"/>
-      <rect x="525" y="78" width="10" height="10" rx="2" fill="#161B22"/>
+      <rect x="525" y="78" width="10" height="10" rx="2" fill="#39D353"/>
       <rect x="540" y="0" width="10" height="10" rx="2" fill="#161B22"/>
-      <rect x="540" y="13" width="10" height="10" rx="2" fill="#161B22"/>
-      <rect x="540" y="26" width="10" height="10" rx="2" fill="#161B22"/>
-      <rect x="540" y="39" width="10" height="10" rx="2" fill="#161B22"/>
+      <rect x="540" y="13" width="10" height="10" rx="2" class="commit-cell-c_36_1"/>
+      <rect x="540" y="26" width="10" height="10" rx="2" fill="#0E4429"/>
+      <rect x="540" y="39" width="10" height="10" rx="2" fill="#0E4429"/>
       <rect x="540" y="52" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="540" y="65" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="540" y="78" width="10" height="10" rx="2" fill="#161B22"/>
@@ -689,7 +2062,7 @@
       <rect x="570" y="52" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="570" y="65" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="570" y="78" width="10" height="10" rx="2" fill="#161B22"/>
-      <rect x="585" y="0" width="10" height="10" rx="2" fill="#161B22"/>
+      <rect x="585" y="0" width="10" height="10" rx="2" fill="#0E4429"/>
       <rect x="585" y="13" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="585" y="26" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="585" y="39" width="10" height="10" rx="2" fill="#161B22"/>
@@ -708,50 +2081,50 @@
       <rect x="615" y="26" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="615" y="39" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="615" y="52" width="10" height="10" rx="2" fill="#0E4429"/>
-      <rect x="615" y="65" width="10" height="10" rx="2" fill="#26A641"/>
+      <rect x="615" y="65" width="10" height="10" rx="2" fill="#006D32"/>
       <rect x="615" y="78" width="10" height="10" rx="2" fill="#0E4429"/>
-      <rect x="630" y="0" width="10" height="10" rx="2" fill="#26A641"/>
+      <rect x="630" y="0" width="10" height="10" rx="2" class="commit-cell-c_42_0"/>
       <rect x="630" y="13" width="10" height="10" rx="2" fill="#0E4429"/>
       <rect x="630" y="26" width="10" height="10" rx="2" fill="#0E4429"/>
-      <rect x="630" y="39" width="10" height="10" rx="2" fill="#0E4429"/>
+      <rect x="630" y="39" width="10" height="10" rx="2" class="commit-cell-c_42_3"/>
       <rect x="630" y="52" width="10" height="10" rx="2" fill="#0E4429"/>
       <rect x="630" y="65" width="10" height="10" rx="2" fill="#0E4429"/>
       <rect x="630" y="78" width="10" height="10" rx="2" fill="#0E4429"/>
       <rect x="645" y="0" width="10" height="10" rx="2" fill="#0E4429"/>
       <rect x="645" y="13" width="10" height="10" rx="2" fill="#0E4429"/>
-      <rect x="645" y="26" width="10" height="10" rx="2" fill="#006D32"/>
+      <rect x="645" y="26" width="10" height="10" rx="2" fill="#0E4429"/>
       <rect x="645" y="39" width="10" height="10" rx="2" fill="#006D32"/>
       <rect x="645" y="52" width="10" height="10" rx="2" fill="#0E4429"/>
-      <rect x="645" y="65" width="10" height="10" rx="2" fill="#26A641"/>
+      <rect x="645" y="65" width="10" height="10" rx="2" class="commit-cell-c_43_5"/>
       <rect x="645" y="78" width="10" height="10" rx="2" fill="#0E4429"/>
       <rect x="660" y="0" width="10" height="10" rx="2" fill="#0E4429"/>
-      <rect x="660" y="13" width="10" height="10" rx="2" fill="#006D32"/>
-      <rect x="660" y="26" width="10" height="10" rx="2" fill="#26A641"/>
-      <rect x="660" y="39" width="10" height="10" rx="2" fill="#39D353"/>
-      <rect x="660" y="52" width="10" height="10" rx="2" class="commit-target-3"/>
+      <rect x="660" y="13" width="10" height="10" rx="2" fill="#0E4429"/>
+      <rect x="660" y="26" width="10" height="10" rx="2" class="commit-cell-c_44_2"/>
+      <rect x="660" y="39" width="10" height="10" rx="2" class="commit-cell-c_44_3"/>
+      <rect x="660" y="52" width="10" height="10" rx="2" class="commit-cell-c_44_4"/>
       <rect x="660" y="65" width="10" height="10" rx="2" fill="#26A641"/>
-      <rect x="660" y="78" width="10" height="10" rx="2" fill="#39D353"/>
-      <rect x="675" y="0" width="10" height="10" rx="2" fill="#39D353"/>
-      <rect x="675" y="13" width="10" height="10" rx="2" fill="#39D353"/>
+      <rect x="660" y="78" width="10" height="10" rx="2" fill="#26A641"/>
+      <rect x="675" y="0" width="10" height="10" rx="2" fill="#26A641"/>
+      <rect x="675" y="13" width="10" height="10" rx="2" class="commit-cell-c_45_1"/>
       <rect x="675" y="26" width="10" height="10" rx="2" fill="#0E4429"/>
-      <rect x="675" y="39" width="10" height="10" rx="2" fill="#39D353"/>
+      <rect x="675" y="39" width="10" height="10" rx="2" fill="#26A641"/>
       <rect x="675" y="52" width="10" height="10" rx="2" fill="#006D32"/>
       <rect x="675" y="65" width="10" height="10" rx="2" fill="#006D32"/>
-      <rect x="675" y="78" width="10" height="10" rx="2" fill="#006D32"/>
+      <rect x="675" y="78" width="10" height="10" rx="2" class="commit-cell-c_45_6"/>
       <rect x="690" y="0" width="10" height="10" rx="2" fill="#0E4429"/>
-      <rect x="690" y="13" width="10" height="10" rx="2" fill="#0E4429"/>
+      <rect x="690" y="13" width="10" height="10" rx="2" fill="#39D353"/>
       <rect x="690" y="26" width="10" height="10" rx="2" fill="#0E4429"/>
       <rect x="690" y="39" width="10" height="10" rx="2" fill="#0E4429"/>
-      <rect x="690" y="52" width="10" height="10" rx="2" fill="#39D353"/>
-      <rect x="690" y="65" width="10" height="10" rx="2" fill="#26A641"/>
-      <rect x="690" y="78" width="10" height="10" rx="2" fill="#39D353"/>
-      <rect x="705" y="0" width="10" height="10" rx="2" fill="#26A641"/>
-      <rect x="705" y="13" width="10" height="10" rx="2" fill="#26A641"/>
+      <rect x="690" y="52" width="10" height="10" rx="2" fill="#26A641"/>
+      <rect x="690" y="65" width="10" height="10" rx="2" fill="#006D32"/>
+      <rect x="690" y="78" width="10" height="10" rx="2" fill="#26A641"/>
+      <rect x="705" y="0" width="10" height="10" rx="2" fill="#006D32"/>
+      <rect x="705" y="13" width="10" height="10" rx="2" fill="#006D32"/>
       <rect x="705" y="26" width="10" height="10" rx="2" fill="#0E4429"/>
       <rect x="705" y="39" width="10" height="10" rx="2" fill="#006D32"/>
       <rect x="705" y="52" width="10" height="10" rx="2" fill="#0E4429"/>
-      <rect x="705" y="65" width="10" height="10" rx="2" fill="#26A641"/>
-      <rect x="705" y="78" width="10" height="10" rx="2" fill="#26A641"/>
+      <rect x="705" y="65" width="10" height="10" rx="2" fill="#39D353"/>
+      <rect x="705" y="78" width="10" height="10" rx="2" fill="#006D32"/>
       <rect x="720" y="0" width="10" height="10" rx="2" fill="#0E4429"/>
       <rect x="720" y="13" width="10" height="10" rx="2" fill="#006D32"/>
       <rect x="720" y="26" width="10" height="10" rx="2" fill="#0E4429"/>
@@ -759,13 +2132,13 @@
       <rect x="720" y="52" width="10" height="10" rx="2" fill="#006D32"/>
       <rect x="720" y="65" width="10" height="10" rx="2" fill="#006D32"/>
       <rect x="720" y="78" width="10" height="10" rx="2" fill="#39D353"/>
-      <rect x="735" y="0" width="10" height="10" rx="2" fill="#006D32"/>
+      <rect x="735" y="0" width="10" height="10" rx="2" fill="#0E4429"/>
       <rect x="735" y="13" width="10" height="10" rx="2" fill="#0E4429"/>
       <rect x="735" y="26" width="10" height="10" rx="2" fill="#39D353"/>
       <rect x="735" y="39" width="10" height="10" rx="2" fill="#0E4429"/>
       <rect x="735" y="52" width="10" height="10" rx="2" fill="#0E4429"/>
       <rect x="735" y="65" width="10" height="10" rx="2" fill="#0E4429"/>
-      <rect x="735" y="78" width="10" height="10" rx="2" fill="#26A641"/>
+      <rect x="735" y="78" width="10" height="10" rx="2" fill="#006D32"/>
       <rect x="750" y="0" width="10" height="10" rx="2" fill="#0E4429"/>
       <rect x="750" y="13" width="10" height="10" rx="2" fill="#0E4429"/>
       <rect x="750" y="26" width="10" height="10" rx="2" fill="#0E4429"/>
@@ -773,9 +2146,9 @@
       <rect x="750" y="52" width="10" height="10" rx="2" fill="#0E4429"/>
       <rect x="750" y="65" width="10" height="10" rx="2" fill="#0E4429"/>
       <rect x="750" y="78" width="10" height="10" rx="2" fill="#0E4429"/>
-      <rect x="765" y="0" width="10" height="10" rx="2" fill="#39D353"/>
+      <rect x="765" y="0" width="10" height="10" rx="2" fill="#26A641"/>
       <rect x="765" y="13" width="10" height="10" rx="2" fill="#006D32"/>
-      <rect x="765" y="26" width="10" height="10" rx="2" fill="#006D32"/>
+      <rect x="765" y="26" width="10" height="10" rx="2" fill="#0E4429"/>
       <rect x="765" y="39" width="10" height="10" rx="2" fill="#0E4429"/>
       <rect x="765" y="52" width="10" height="10" rx="2" fill="#0E4429"/>
       <rect x="765" y="65" width="10" height="10" rx="2" fill="#0E4429"/>
@@ -792,20 +2165,52 @@
     <line x1="0" y1="0" x2="0" y2="18" stroke="#00F0FF" stroke-width="2.5" stroke-linecap="round" class="laser-bolt-6"/>
     <line x1="0" y1="0" x2="0" y2="18" stroke="#00F0FF" stroke-width="2.5" stroke-linecap="round" class="laser-bolt-7"/>
     <line x1="0" y1="0" x2="0" y2="18" stroke="#00F0FF" stroke-width="2.5" stroke-linecap="round" class="laser-bolt-8"/>
+    <line x1="0" y1="0" x2="0" y2="18" stroke="#00F0FF" stroke-width="2.5" stroke-linecap="round" class="laser-bolt-9"/>
+    <line x1="0" y1="0" x2="0" y2="18" stroke="#00F0FF" stroke-width="2.5" stroke-linecap="round" class="laser-bolt-10"/>
+    <line x1="0" y1="0" x2="0" y2="18" stroke="#00F0FF" stroke-width="2.5" stroke-linecap="round" class="laser-bolt-11"/>
+    <line x1="0" y1="0" x2="0" y2="18" stroke="#00F0FF" stroke-width="2.5" stroke-linecap="round" class="laser-bolt-12"/>
+    <line x1="0" y1="0" x2="0" y2="18" stroke="#00F0FF" stroke-width="2.5" stroke-linecap="round" class="laser-bolt-13"/>
+    <line x1="0" y1="0" x2="0" y2="18" stroke="#00F0FF" stroke-width="2.5" stroke-linecap="round" class="laser-bolt-14"/>
+    <line x1="0" y1="0" x2="0" y2="18" stroke="#00F0FF" stroke-width="2.5" stroke-linecap="round" class="laser-bolt-15"/>
+    <line x1="0" y1="0" x2="0" y2="18" stroke="#00F0FF" stroke-width="2.5" stroke-linecap="round" class="laser-bolt-16"/>
+    <line x1="0" y1="0" x2="0" y2="18" stroke="#00F0FF" stroke-width="2.5" stroke-linecap="round" class="laser-bolt-17"/>
+    <line x1="0" y1="0" x2="0" y2="18" stroke="#00F0FF" stroke-width="2.5" stroke-linecap="round" class="laser-bolt-18"/>
+    <line x1="0" y1="0" x2="0" y2="18" stroke="#00F0FF" stroke-width="2.5" stroke-linecap="round" class="laser-bolt-19"/>
+    <line x1="0" y1="0" x2="0" y2="18" stroke="#00F0FF" stroke-width="2.5" stroke-linecap="round" class="laser-bolt-20"/>
+    <line x1="0" y1="0" x2="0" y2="18" stroke="#00F0FF" stroke-width="2.5" stroke-linecap="round" class="laser-bolt-21"/>
+    <line x1="0" y1="0" x2="0" y2="18" stroke="#00F0FF" stroke-width="2.5" stroke-linecap="round" class="laser-bolt-22"/>
+    <line x1="0" y1="0" x2="0" y2="18" stroke="#00F0FF" stroke-width="2.5" stroke-linecap="round" class="laser-bolt-23"/>
+    <line x1="0" y1="0" x2="0" y2="18" stroke="#00F0FF" stroke-width="2.5" stroke-linecap="round" class="laser-bolt-24"/>
+    <line x1="0" y1="0" x2="0" y2="18" stroke="#00F0FF" stroke-width="2.5" stroke-linecap="round" class="laser-bolt-25"/>
+    <line x1="0" y1="0" x2="0" y2="18" stroke="#00F0FF" stroke-width="2.5" stroke-linecap="round" class="laser-bolt-26"/>
+    <line x1="0" y1="0" x2="0" y2="18" stroke="#00F0FF" stroke-width="2.5" stroke-linecap="round" class="laser-bolt-27"/>
+    <line x1="0" y1="0" x2="0" y2="18" stroke="#00F0FF" stroke-width="2.5" stroke-linecap="round" class="laser-bolt-28"/>
+    <line x1="0" y1="0" x2="0" y2="18" stroke="#00F0FF" stroke-width="2.5" stroke-linecap="round" class="laser-bolt-29"/>
+    <line x1="0" y1="0" x2="0" y2="18" stroke="#00F0FF" stroke-width="2.5" stroke-linecap="round" class="laser-bolt-30"/>
+    <line x1="0" y1="0" x2="0" y2="18" stroke="#00F0FF" stroke-width="2.5" stroke-linecap="round" class="laser-bolt-31"/>
+    <line x1="0" y1="0" x2="0" y2="18" stroke="#00F0FF" stroke-width="2.5" stroke-linecap="round" class="laser-bolt-32"/>
+    <line x1="0" y1="0" x2="0" y2="18" stroke="#00F0FF" stroke-width="2.5" stroke-linecap="round" class="laser-bolt-33"/>
+    <line x1="0" y1="0" x2="0" y2="18" stroke="#00F0FF" stroke-width="2.5" stroke-linecap="round" class="laser-bolt-34"/>
+    <line x1="0" y1="0" x2="0" y2="18" stroke="#00F0FF" stroke-width="2.5" stroke-linecap="round" class="laser-bolt-35"/>
+    <line x1="0" y1="0" x2="0" y2="18" stroke="#00F0FF" stroke-width="2.5" stroke-linecap="round" class="laser-bolt-36"/>
+    <line x1="0" y1="0" x2="0" y2="18" stroke="#00F0FF" stroke-width="2.5" stroke-linecap="round" class="laser-bolt-37"/>
+    <line x1="0" y1="0" x2="0" y2="18" stroke="#00F0FF" stroke-width="2.5" stroke-linecap="round" class="laser-bolt-38"/>
+    <line x1="0" y1="0" x2="0" y2="18" stroke="#00F0FF" stroke-width="2.5" stroke-linecap="round" class="laser-bolt-39"/>
+    <line x1="0" y1="0" x2="0" y2="18" stroke="#00F0FF" stroke-width="2.5" stroke-linecap="round" class="laser-bolt-40"/>
     </g>
 
     <!-- Hit Impact Sparks -->
     <g>
-    <!-- Impact Burst 1 at (80, 5) -->
-    <g transform="translate(80, 5)" class="spark-burst-1">
+    <!-- Impact Burst 1 at (65, 5) -->
+    <g transform="translate(65, 5)" class="spark-burst-1">
       <circle cx="0" cy="0" r="4" fill="#FDFBF7"/>
       <line x1="-5" y1="-5" x2="5" y2="5" stroke="#F59E0B" stroke-width="1.5"/>
       <line x1="5" y1="-5" x2="-5" y2="5" stroke="#F59E0B" stroke-width="1.5"/>
       <line x1="-6" y1="0" x2="6" y2="0" stroke="#E11D48" stroke-width="1.2"/>
       <line x1="0" y1="-6" x2="0" y2="6" stroke="#E11D48" stroke-width="1.2"/>
     </g>
-    <!-- Impact Burst 2 at (110, 5) -->
-    <g transform="translate(110, 5)" class="spark-burst-2">
+    <!-- Impact Burst 2 at (80, 5) -->
+    <g transform="translate(80, 5)" class="spark-burst-2">
       <circle cx="0" cy="0" r="4" fill="#FDFBF7"/>
       <line x1="-5" y1="-5" x2="5" y2="5" stroke="#F59E0B" stroke-width="1.5"/>
       <line x1="5" y1="-5" x2="-5" y2="5" stroke="#F59E0B" stroke-width="1.5"/>
@@ -820,40 +2225,296 @@
       <line x1="-6" y1="0" x2="6" y2="0" stroke="#E11D48" stroke-width="1.2"/>
       <line x1="0" y1="-6" x2="0" y2="6" stroke="#E11D48" stroke-width="1.2"/>
     </g>
-    <!-- Impact Burst 4 at (410, 44) -->
-    <g transform="translate(410, 44)" class="spark-burst-4">
+    <!-- Impact Burst 4 at (470, 57) -->
+    <g transform="translate(470, 57)" class="spark-burst-4">
       <circle cx="0" cy="0" r="4" fill="#FDFBF7"/>
       <line x1="-5" y1="-5" x2="5" y2="5" stroke="#F59E0B" stroke-width="1.5"/>
       <line x1="5" y1="-5" x2="-5" y2="5" stroke="#F59E0B" stroke-width="1.5"/>
       <line x1="-6" y1="0" x2="6" y2="0" stroke="#E11D48" stroke-width="1.2"/>
       <line x1="0" y1="-6" x2="0" y2="6" stroke="#E11D48" stroke-width="1.2"/>
     </g>
-    <!-- Impact Burst 5 at (410, 18) -->
-    <g transform="translate(410, 18)" class="spark-burst-5">
+    <!-- Impact Burst 5 at (455, 44) -->
+    <g transform="translate(455, 44)" class="spark-burst-5">
       <circle cx="0" cy="0" r="4" fill="#FDFBF7"/>
       <line x1="-5" y1="-5" x2="5" y2="5" stroke="#F59E0B" stroke-width="1.5"/>
       <line x1="5" y1="-5" x2="-5" y2="5" stroke="#F59E0B" stroke-width="1.5"/>
       <line x1="-6" y1="0" x2="6" y2="0" stroke="#E11D48" stroke-width="1.2"/>
       <line x1="0" y1="-6" x2="0" y2="6" stroke="#E11D48" stroke-width="1.2"/>
     </g>
-    <!-- Impact Burst 6 at (275, 57) -->
-    <g transform="translate(275, 57)" class="spark-burst-6">
+    <!-- Impact Burst 6 at (260, 70) -->
+    <g transform="translate(260, 70)" class="spark-burst-6">
       <circle cx="0" cy="0" r="4" fill="#FDFBF7"/>
       <line x1="-5" y1="-5" x2="5" y2="5" stroke="#F59E0B" stroke-width="1.5"/>
       <line x1="5" y1="-5" x2="-5" y2="5" stroke="#F59E0B" stroke-width="1.5"/>
       <line x1="-6" y1="0" x2="6" y2="0" stroke="#E11D48" stroke-width="1.2"/>
       <line x1="0" y1="-6" x2="0" y2="6" stroke="#E11D48" stroke-width="1.2"/>
     </g>
-    <!-- Impact Burst 7 at (290, 5) -->
-    <g transform="translate(290, 5)" class="spark-burst-7">
+    <!-- Impact Burst 7 at (335, 5) -->
+    <g transform="translate(335, 5)" class="spark-burst-7">
       <circle cx="0" cy="0" r="4" fill="#FDFBF7"/>
       <line x1="-5" y1="-5" x2="5" y2="5" stroke="#F59E0B" stroke-width="1.5"/>
       <line x1="5" y1="-5" x2="-5" y2="5" stroke="#F59E0B" stroke-width="1.5"/>
       <line x1="-6" y1="0" x2="6" y2="0" stroke="#E11D48" stroke-width="1.2"/>
       <line x1="0" y1="-6" x2="0" y2="6" stroke="#E11D48" stroke-width="1.2"/>
     </g>
-    <!-- Impact Burst 8 at (335, 5) -->
-    <g transform="translate(335, 5)" class="spark-burst-8">
+    <!-- Impact Burst 8 at (470, 31) -->
+    <g transform="translate(470, 31)" class="spark-burst-8">
+      <circle cx="0" cy="0" r="4" fill="#FDFBF7"/>
+      <line x1="-5" y1="-5" x2="5" y2="5" stroke="#F59E0B" stroke-width="1.5"/>
+      <line x1="5" y1="-5" x2="-5" y2="5" stroke="#F59E0B" stroke-width="1.5"/>
+      <line x1="-6" y1="0" x2="6" y2="0" stroke="#E11D48" stroke-width="1.2"/>
+      <line x1="0" y1="-6" x2="0" y2="6" stroke="#E11D48" stroke-width="1.2"/>
+    </g>
+    <!-- Impact Burst 9 at (95, 18) -->
+    <g transform="translate(95, 18)" class="spark-burst-9">
+      <circle cx="0" cy="0" r="4" fill="#FDFBF7"/>
+      <line x1="-5" y1="-5" x2="5" y2="5" stroke="#F59E0B" stroke-width="1.5"/>
+      <line x1="5" y1="-5" x2="-5" y2="5" stroke="#F59E0B" stroke-width="1.5"/>
+      <line x1="-6" y1="0" x2="6" y2="0" stroke="#E11D48" stroke-width="1.2"/>
+      <line x1="0" y1="-6" x2="0" y2="6" stroke="#E11D48" stroke-width="1.2"/>
+    </g>
+    <!-- Impact Burst 10 at (635, 5) -->
+    <g transform="translate(635, 5)" class="spark-burst-10">
+      <circle cx="0" cy="0" r="4" fill="#FDFBF7"/>
+      <line x1="-5" y1="-5" x2="5" y2="5" stroke="#F59E0B" stroke-width="1.5"/>
+      <line x1="5" y1="-5" x2="-5" y2="5" stroke="#F59E0B" stroke-width="1.5"/>
+      <line x1="-6" y1="0" x2="6" y2="0" stroke="#E11D48" stroke-width="1.2"/>
+      <line x1="0" y1="-6" x2="0" y2="6" stroke="#E11D48" stroke-width="1.2"/>
+    </g>
+    <!-- Impact Burst 11 at (320, 83) -->
+    <g transform="translate(320, 83)" class="spark-burst-11">
+      <circle cx="0" cy="0" r="4" fill="#FDFBF7"/>
+      <line x1="-5" y1="-5" x2="5" y2="5" stroke="#F59E0B" stroke-width="1.5"/>
+      <line x1="5" y1="-5" x2="-5" y2="5" stroke="#F59E0B" stroke-width="1.5"/>
+      <line x1="-6" y1="0" x2="6" y2="0" stroke="#E11D48" stroke-width="1.2"/>
+      <line x1="0" y1="-6" x2="0" y2="6" stroke="#E11D48" stroke-width="1.2"/>
+    </g>
+    <!-- Impact Burst 12 at (635, 44) -->
+    <g transform="translate(635, 44)" class="spark-burst-12">
+      <circle cx="0" cy="0" r="4" fill="#FDFBF7"/>
+      <line x1="-5" y1="-5" x2="5" y2="5" stroke="#F59E0B" stroke-width="1.5"/>
+      <line x1="5" y1="-5" x2="-5" y2="5" stroke="#F59E0B" stroke-width="1.5"/>
+      <line x1="-6" y1="0" x2="6" y2="0" stroke="#E11D48" stroke-width="1.2"/>
+      <line x1="0" y1="-6" x2="0" y2="6" stroke="#E11D48" stroke-width="1.2"/>
+    </g>
+    <!-- Impact Burst 13 at (290, 5) -->
+    <g transform="translate(290, 5)" class="spark-burst-13">
+      <circle cx="0" cy="0" r="4" fill="#FDFBF7"/>
+      <line x1="-5" y1="-5" x2="5" y2="5" stroke="#F59E0B" stroke-width="1.5"/>
+      <line x1="5" y1="-5" x2="-5" y2="5" stroke="#F59E0B" stroke-width="1.5"/>
+      <line x1="-6" y1="0" x2="6" y2="0" stroke="#E11D48" stroke-width="1.2"/>
+      <line x1="0" y1="-6" x2="0" y2="6" stroke="#E11D48" stroke-width="1.2"/>
+    </g>
+    <!-- Impact Burst 14 at (500, 5) -->
+    <g transform="translate(500, 5)" class="spark-burst-14">
+      <circle cx="0" cy="0" r="4" fill="#FDFBF7"/>
+      <line x1="-5" y1="-5" x2="5" y2="5" stroke="#F59E0B" stroke-width="1.5"/>
+      <line x1="5" y1="-5" x2="-5" y2="5" stroke="#F59E0B" stroke-width="1.5"/>
+      <line x1="-6" y1="0" x2="6" y2="0" stroke="#E11D48" stroke-width="1.2"/>
+      <line x1="0" y1="-6" x2="0" y2="6" stroke="#E11D48" stroke-width="1.2"/>
+    </g>
+    <!-- Impact Burst 15 at (680, 18) -->
+    <g transform="translate(680, 18)" class="spark-burst-15">
+      <circle cx="0" cy="0" r="4" fill="#FDFBF7"/>
+      <line x1="-5" y1="-5" x2="5" y2="5" stroke="#F59E0B" stroke-width="1.5"/>
+      <line x1="5" y1="-5" x2="-5" y2="5" stroke="#F59E0B" stroke-width="1.5"/>
+      <line x1="-6" y1="0" x2="6" y2="0" stroke="#E11D48" stroke-width="1.2"/>
+      <line x1="0" y1="-6" x2="0" y2="6" stroke="#E11D48" stroke-width="1.2"/>
+    </g>
+    <!-- Impact Burst 16 at (80, 31) -->
+    <g transform="translate(80, 31)" class="spark-burst-16">
+      <circle cx="0" cy="0" r="4" fill="#FDFBF7"/>
+      <line x1="-5" y1="-5" x2="5" y2="5" stroke="#F59E0B" stroke-width="1.5"/>
+      <line x1="5" y1="-5" x2="-5" y2="5" stroke="#F59E0B" stroke-width="1.5"/>
+      <line x1="-6" y1="0" x2="6" y2="0" stroke="#E11D48" stroke-width="1.2"/>
+      <line x1="0" y1="-6" x2="0" y2="6" stroke="#E11D48" stroke-width="1.2"/>
+    </g>
+    <!-- Impact Burst 17 at (305, 31) -->
+    <g transform="translate(305, 31)" class="spark-burst-17">
+      <circle cx="0" cy="0" r="4" fill="#FDFBF7"/>
+      <line x1="-5" y1="-5" x2="5" y2="5" stroke="#F59E0B" stroke-width="1.5"/>
+      <line x1="5" y1="-5" x2="-5" y2="5" stroke="#F59E0B" stroke-width="1.5"/>
+      <line x1="-6" y1="0" x2="6" y2="0" stroke="#E11D48" stroke-width="1.2"/>
+      <line x1="0" y1="-6" x2="0" y2="6" stroke="#E11D48" stroke-width="1.2"/>
+    </g>
+    <!-- Impact Burst 18 at (455, 57) -->
+    <g transform="translate(455, 57)" class="spark-burst-18">
+      <circle cx="0" cy="0" r="4" fill="#FDFBF7"/>
+      <line x1="-5" y1="-5" x2="5" y2="5" stroke="#F59E0B" stroke-width="1.5"/>
+      <line x1="5" y1="-5" x2="-5" y2="5" stroke="#F59E0B" stroke-width="1.5"/>
+      <line x1="-6" y1="0" x2="6" y2="0" stroke="#E11D48" stroke-width="1.2"/>
+      <line x1="0" y1="-6" x2="0" y2="6" stroke="#E11D48" stroke-width="1.2"/>
+    </g>
+    <!-- Impact Burst 19 at (80, 5) -->
+    <g transform="translate(80, 5)" class="spark-burst-19">
+      <circle cx="0" cy="0" r="4" fill="#FDFBF7"/>
+      <line x1="-5" y1="-5" x2="5" y2="5" stroke="#F59E0B" stroke-width="1.5"/>
+      <line x1="5" y1="-5" x2="-5" y2="5" stroke="#F59E0B" stroke-width="1.5"/>
+      <line x1="-6" y1="0" x2="6" y2="0" stroke="#E11D48" stroke-width="1.2"/>
+      <line x1="0" y1="-6" x2="0" y2="6" stroke="#E11D48" stroke-width="1.2"/>
+    </g>
+    <!-- Impact Burst 20 at (665, 31) -->
+    <g transform="translate(665, 31)" class="spark-burst-20">
+      <circle cx="0" cy="0" r="4" fill="#FDFBF7"/>
+      <line x1="-5" y1="-5" x2="5" y2="5" stroke="#F59E0B" stroke-width="1.5"/>
+      <line x1="5" y1="-5" x2="-5" y2="5" stroke="#F59E0B" stroke-width="1.5"/>
+      <line x1="-6" y1="0" x2="6" y2="0" stroke="#E11D48" stroke-width="1.2"/>
+      <line x1="0" y1="-6" x2="0" y2="6" stroke="#E11D48" stroke-width="1.2"/>
+    </g>
+    <!-- Impact Burst 21 at (245, 31) -->
+    <g transform="translate(245, 31)" class="spark-burst-21">
+      <circle cx="0" cy="0" r="4" fill="#FDFBF7"/>
+      <line x1="-5" y1="-5" x2="5" y2="5" stroke="#F59E0B" stroke-width="1.5"/>
+      <line x1="5" y1="-5" x2="-5" y2="5" stroke="#F59E0B" stroke-width="1.5"/>
+      <line x1="-6" y1="0" x2="6" y2="0" stroke="#E11D48" stroke-width="1.2"/>
+      <line x1="0" y1="-6" x2="0" y2="6" stroke="#E11D48" stroke-width="1.2"/>
+    </g>
+    <!-- Impact Burst 22 at (470, 70) -->
+    <g transform="translate(470, 70)" class="spark-burst-22">
+      <circle cx="0" cy="0" r="4" fill="#FDFBF7"/>
+      <line x1="-5" y1="-5" x2="5" y2="5" stroke="#F59E0B" stroke-width="1.5"/>
+      <line x1="5" y1="-5" x2="-5" y2="5" stroke="#F59E0B" stroke-width="1.5"/>
+      <line x1="-6" y1="0" x2="6" y2="0" stroke="#E11D48" stroke-width="1.2"/>
+      <line x1="0" y1="-6" x2="0" y2="6" stroke="#E11D48" stroke-width="1.2"/>
+    </g>
+    <!-- Impact Burst 23 at (545, 18) -->
+    <g transform="translate(545, 18)" class="spark-burst-23">
+      <circle cx="0" cy="0" r="4" fill="#FDFBF7"/>
+      <line x1="-5" y1="-5" x2="5" y2="5" stroke="#F59E0B" stroke-width="1.5"/>
+      <line x1="5" y1="-5" x2="-5" y2="5" stroke="#F59E0B" stroke-width="1.5"/>
+      <line x1="-6" y1="0" x2="6" y2="0" stroke="#E11D48" stroke-width="1.2"/>
+      <line x1="0" y1="-6" x2="0" y2="6" stroke="#E11D48" stroke-width="1.2"/>
+    </g>
+    <!-- Impact Burst 24 at (245, 70) -->
+    <g transform="translate(245, 70)" class="spark-burst-24">
+      <circle cx="0" cy="0" r="4" fill="#FDFBF7"/>
+      <line x1="-5" y1="-5" x2="5" y2="5" stroke="#F59E0B" stroke-width="1.5"/>
+      <line x1="5" y1="-5" x2="-5" y2="5" stroke="#F59E0B" stroke-width="1.5"/>
+      <line x1="-6" y1="0" x2="6" y2="0" stroke="#E11D48" stroke-width="1.2"/>
+      <line x1="0" y1="-6" x2="0" y2="6" stroke="#E11D48" stroke-width="1.2"/>
+    </g>
+    <!-- Impact Burst 25 at (65, 83) -->
+    <g transform="translate(65, 83)" class="spark-burst-25">
+      <circle cx="0" cy="0" r="4" fill="#FDFBF7"/>
+      <line x1="-5" y1="-5" x2="5" y2="5" stroke="#F59E0B" stroke-width="1.5"/>
+      <line x1="5" y1="-5" x2="-5" y2="5" stroke="#F59E0B" stroke-width="1.5"/>
+      <line x1="-6" y1="0" x2="6" y2="0" stroke="#E11D48" stroke-width="1.2"/>
+      <line x1="0" y1="-6" x2="0" y2="6" stroke="#E11D48" stroke-width="1.2"/>
+    </g>
+    <!-- Impact Burst 26 at (470, 83) -->
+    <g transform="translate(470, 83)" class="spark-burst-26">
+      <circle cx="0" cy="0" r="4" fill="#FDFBF7"/>
+      <line x1="-5" y1="-5" x2="5" y2="5" stroke="#F59E0B" stroke-width="1.5"/>
+      <line x1="5" y1="-5" x2="-5" y2="5" stroke="#F59E0B" stroke-width="1.5"/>
+      <line x1="-6" y1="0" x2="6" y2="0" stroke="#E11D48" stroke-width="1.2"/>
+      <line x1="0" y1="-6" x2="0" y2="6" stroke="#E11D48" stroke-width="1.2"/>
+    </g>
+    <!-- Impact Burst 27 at (245, 83) -->
+    <g transform="translate(245, 83)" class="spark-burst-27">
+      <circle cx="0" cy="0" r="4" fill="#FDFBF7"/>
+      <line x1="-5" y1="-5" x2="5" y2="5" stroke="#F59E0B" stroke-width="1.5"/>
+      <line x1="5" y1="-5" x2="-5" y2="5" stroke="#F59E0B" stroke-width="1.5"/>
+      <line x1="-6" y1="0" x2="6" y2="0" stroke="#E11D48" stroke-width="1.2"/>
+      <line x1="0" y1="-6" x2="0" y2="6" stroke="#E11D48" stroke-width="1.2"/>
+    </g>
+    <!-- Impact Burst 28 at (530, 31) -->
+    <g transform="translate(530, 31)" class="spark-burst-28">
+      <circle cx="0" cy="0" r="4" fill="#FDFBF7"/>
+      <line x1="-5" y1="-5" x2="5" y2="5" stroke="#F59E0B" stroke-width="1.5"/>
+      <line x1="5" y1="-5" x2="-5" y2="5" stroke="#F59E0B" stroke-width="1.5"/>
+      <line x1="-6" y1="0" x2="6" y2="0" stroke="#E11D48" stroke-width="1.2"/>
+      <line x1="0" y1="-6" x2="0" y2="6" stroke="#E11D48" stroke-width="1.2"/>
+    </g>
+    <!-- Impact Burst 29 at (80, 5) -->
+    <g transform="translate(80, 5)" class="spark-burst-29">
+      <circle cx="0" cy="0" r="4" fill="#FDFBF7"/>
+      <line x1="-5" y1="-5" x2="5" y2="5" stroke="#F59E0B" stroke-width="1.5"/>
+      <line x1="5" y1="-5" x2="-5" y2="5" stroke="#F59E0B" stroke-width="1.5"/>
+      <line x1="-6" y1="0" x2="6" y2="0" stroke="#E11D48" stroke-width="1.2"/>
+      <line x1="0" y1="-6" x2="0" y2="6" stroke="#E11D48" stroke-width="1.2"/>
+    </g>
+    <!-- Impact Burst 30 at (485, 70) -->
+    <g transform="translate(485, 70)" class="spark-burst-30">
+      <circle cx="0" cy="0" r="4" fill="#FDFBF7"/>
+      <line x1="-5" y1="-5" x2="5" y2="5" stroke="#F59E0B" stroke-width="1.5"/>
+      <line x1="5" y1="-5" x2="-5" y2="5" stroke="#F59E0B" stroke-width="1.5"/>
+      <line x1="-6" y1="0" x2="6" y2="0" stroke="#E11D48" stroke-width="1.2"/>
+      <line x1="0" y1="-6" x2="0" y2="6" stroke="#E11D48" stroke-width="1.2"/>
+    </g>
+    <!-- Impact Burst 31 at (680, 83) -->
+    <g transform="translate(680, 83)" class="spark-burst-31">
+      <circle cx="0" cy="0" r="4" fill="#FDFBF7"/>
+      <line x1="-5" y1="-5" x2="5" y2="5" stroke="#F59E0B" stroke-width="1.5"/>
+      <line x1="5" y1="-5" x2="-5" y2="5" stroke="#F59E0B" stroke-width="1.5"/>
+      <line x1="-6" y1="0" x2="6" y2="0" stroke="#E11D48" stroke-width="1.2"/>
+      <line x1="0" y1="-6" x2="0" y2="6" stroke="#E11D48" stroke-width="1.2"/>
+    </g>
+    <!-- Impact Burst 32 at (125, 44) -->
+    <g transform="translate(125, 44)" class="spark-burst-32">
+      <circle cx="0" cy="0" r="4" fill="#FDFBF7"/>
+      <line x1="-5" y1="-5" x2="5" y2="5" stroke="#F59E0B" stroke-width="1.5"/>
+      <line x1="5" y1="-5" x2="-5" y2="5" stroke="#F59E0B" stroke-width="1.5"/>
+      <line x1="-6" y1="0" x2="6" y2="0" stroke="#E11D48" stroke-width="1.2"/>
+      <line x1="0" y1="-6" x2="0" y2="6" stroke="#E11D48" stroke-width="1.2"/>
+    </g>
+    <!-- Impact Burst 33 at (65, 5) -->
+    <g transform="translate(65, 5)" class="spark-burst-33">
+      <circle cx="0" cy="0" r="4" fill="#FDFBF7"/>
+      <line x1="-5" y1="-5" x2="5" y2="5" stroke="#F59E0B" stroke-width="1.5"/>
+      <line x1="5" y1="-5" x2="-5" y2="5" stroke="#F59E0B" stroke-width="1.5"/>
+      <line x1="-6" y1="0" x2="6" y2="0" stroke="#E11D48" stroke-width="1.2"/>
+      <line x1="0" y1="-6" x2="0" y2="6" stroke="#E11D48" stroke-width="1.2"/>
+    </g>
+    <!-- Impact Burst 34 at (245, 44) -->
+    <g transform="translate(245, 44)" class="spark-burst-34">
+      <circle cx="0" cy="0" r="4" fill="#FDFBF7"/>
+      <line x1="-5" y1="-5" x2="5" y2="5" stroke="#F59E0B" stroke-width="1.5"/>
+      <line x1="5" y1="-5" x2="-5" y2="5" stroke="#F59E0B" stroke-width="1.5"/>
+      <line x1="-6" y1="0" x2="6" y2="0" stroke="#E11D48" stroke-width="1.2"/>
+      <line x1="0" y1="-6" x2="0" y2="6" stroke="#E11D48" stroke-width="1.2"/>
+    </g>
+    <!-- Impact Burst 35 at (470, 70) -->
+    <g transform="translate(470, 70)" class="spark-burst-35">
+      <circle cx="0" cy="0" r="4" fill="#FDFBF7"/>
+      <line x1="-5" y1="-5" x2="5" y2="5" stroke="#F59E0B" stroke-width="1.5"/>
+      <line x1="5" y1="-5" x2="-5" y2="5" stroke="#F59E0B" stroke-width="1.5"/>
+      <line x1="-6" y1="0" x2="6" y2="0" stroke="#E11D48" stroke-width="1.2"/>
+      <line x1="0" y1="-6" x2="0" y2="6" stroke="#E11D48" stroke-width="1.2"/>
+    </g>
+    <!-- Impact Burst 36 at (650, 70) -->
+    <g transform="translate(650, 70)" class="spark-burst-36">
+      <circle cx="0" cy="0" r="4" fill="#FDFBF7"/>
+      <line x1="-5" y1="-5" x2="5" y2="5" stroke="#F59E0B" stroke-width="1.5"/>
+      <line x1="5" y1="-5" x2="-5" y2="5" stroke="#F59E0B" stroke-width="1.5"/>
+      <line x1="-6" y1="0" x2="6" y2="0" stroke="#E11D48" stroke-width="1.2"/>
+      <line x1="0" y1="-6" x2="0" y2="6" stroke="#E11D48" stroke-width="1.2"/>
+    </g>
+    <!-- Impact Burst 37 at (125, 57) -->
+    <g transform="translate(125, 57)" class="spark-burst-37">
+      <circle cx="0" cy="0" r="4" fill="#FDFBF7"/>
+      <line x1="-5" y1="-5" x2="5" y2="5" stroke="#F59E0B" stroke-width="1.5"/>
+      <line x1="5" y1="-5" x2="-5" y2="5" stroke="#F59E0B" stroke-width="1.5"/>
+      <line x1="-6" y1="0" x2="6" y2="0" stroke="#E11D48" stroke-width="1.2"/>
+      <line x1="0" y1="-6" x2="0" y2="6" stroke="#E11D48" stroke-width="1.2"/>
+    </g>
+    <!-- Impact Burst 38 at (470, 57) -->
+    <g transform="translate(470, 57)" class="spark-burst-38">
+      <circle cx="0" cy="0" r="4" fill="#FDFBF7"/>
+      <line x1="-5" y1="-5" x2="5" y2="5" stroke="#F59E0B" stroke-width="1.5"/>
+      <line x1="5" y1="-5" x2="-5" y2="5" stroke="#F59E0B" stroke-width="1.5"/>
+      <line x1="-6" y1="0" x2="6" y2="0" stroke="#E11D48" stroke-width="1.2"/>
+      <line x1="0" y1="-6" x2="0" y2="6" stroke="#E11D48" stroke-width="1.2"/>
+    </g>
+    <!-- Impact Burst 39 at (530, 44) -->
+    <g transform="translate(530, 44)" class="spark-burst-39">
+      <circle cx="0" cy="0" r="4" fill="#FDFBF7"/>
+      <line x1="-5" y1="-5" x2="5" y2="5" stroke="#F59E0B" stroke-width="1.5"/>
+      <line x1="5" y1="-5" x2="-5" y2="5" stroke="#F59E0B" stroke-width="1.5"/>
+      <line x1="-6" y1="0" x2="6" y2="0" stroke="#E11D48" stroke-width="1.2"/>
+      <line x1="0" y1="-6" x2="0" y2="6" stroke="#E11D48" stroke-width="1.2"/>
+    </g>
+    <!-- Impact Burst 40 at (665, 44) -->
+    <g transform="translate(665, 44)" class="spark-burst-40">
       <circle cx="0" cy="0" r="4" fill="#FDFBF7"/>
       <line x1="-5" y1="-5" x2="5" y2="5" stroke="#F59E0B" stroke-width="1.5"/>
       <line x1="5" y1="-5" x2="-5" y2="5" stroke="#F59E0B" stroke-width="1.5"/>
@@ -894,6 +2555,6 @@
     <rect x="450" y="0" width="9" height="9" rx="2" fill="#39D353"/>
     <text x="464" y="8" class="score-lbl" style="fill:#39D353; font-weight:bold;">LEVEL 4 (FULL LIGHT)</text>
 
-    <text x="630" y="8" font-family="'JetBrains Mono', monospace" font-size="10.5px" font-weight="700" fill="#2563EB">1,503 TOTAL COMMITS</text>
+    <text x="630" y="8" font-family="'JetBrains Mono', monospace" font-size="10.5px" font-weight="700" fill="#2563EB">1,944 TOTAL COMMITS</text>
   </g>
 </svg>
