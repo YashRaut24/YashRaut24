@@ -16,12 +16,6 @@
 .live-beacon { animation: beaconBlink 0.8s steps(2, start) infinite; }
 .counter-frame { fill: #111216; stroke: #2563EB; stroke-width: 1.2; }
 .counter-txt { font-family: 'JetBrains Mono', Consolas, monospace; font-size: 10px; font-weight: 700; fill: #39D353; letter-spacing: 0.8px; }
-.odo-digit { font-family: 'JetBrains Mono', Consolas, monospace; font-size: 10px; font-weight: 700; fill: #39D353; }
-.th-strip { animation: odoThousands 10.56s linear infinite; }
-.comma-val { animation: odoComma 10.56s steps(1) infinite; }
-.hu-strip { animation: odoHundreds 10.56s linear infinite; }
-.te-strip { animation: odoTens 10.56s linear infinite; }
-.on-strip { animation: odoOnes 0.0543s linear infinite; }
 .laser-bolt-1   { animation: laserShot1 10.56s linear infinite; }
 .spark-burst-1  { animation: sparkHit1 10.56s ease-out infinite; transform-origin: 65px 5px; }
 .commit-target-1 { animation: commitDamage1 10.56s ease-in-out infinite; }
@@ -46,6 +40,247 @@
 .laser-bolt-8   { animation: laserShot8 10.56s linear infinite; }
 .spark-burst-8  { animation: sparkHit8 10.56s ease-out infinite; transform-origin: 335px 5px; }
 .commit-target-8 { animation: commitDamage8 10.56s ease-in-out infinite; }
+.step-val-0 { opacity: 1; animation: countStep0 10.56s linear infinite; }
+.step-val-1 { opacity: 0; animation: countStep1 10.56s linear infinite; }
+.step-val-2 { opacity: 0; animation: countStep2 10.56s linear infinite; }
+.step-val-3 { opacity: 0; animation: countStep3 10.56s linear infinite; }
+.step-val-4 { opacity: 0; animation: countStep4 10.56s linear infinite; }
+.step-val-5 { opacity: 0; animation: countStep5 10.56s linear infinite; }
+.step-val-6 { opacity: 0; animation: countStep6 10.56s linear infinite; }
+.step-val-7 { opacity: 0; animation: countStep7 10.56s linear infinite; }
+.step-val-8 { opacity: 0; animation: countStep8 10.56s linear infinite; }
+.step-val-9 { opacity: 0; animation: countStep9 10.56s linear infinite; }
+.step-val-10 { opacity: 0; animation: countStep10 10.56s linear infinite; }
+.step-val-11 { opacity: 0; animation: countStep11 10.56s linear infinite; }
+.step-val-12 { opacity: 0; animation: countStep12 10.56s linear infinite; }
+.step-val-13 { opacity: 0; animation: countStep13 10.56s linear infinite; }
+.step-val-14 { opacity: 0; animation: countStep14 10.56s linear infinite; }
+.step-val-15 { opacity: 0; animation: countStep15 10.56s linear infinite; }
+.step-val-16 { opacity: 0; animation: countStep16 10.56s linear infinite; }
+.step-val-17 { opacity: 0; animation: countStep17 10.56s linear infinite; }
+.step-val-18 { opacity: 0; animation: countStep18 10.56s linear infinite; }
+.step-val-19 { opacity: 0; animation: countStep19 10.56s linear infinite; }
+.step-val-20 { opacity: 0; animation: countStep20 10.56s linear infinite; }
+.step-val-21 { opacity: 0; animation: countStep21 10.56s linear infinite; }
+.step-val-22 { opacity: 0; animation: countStep22 10.56s linear infinite; }
+.step-val-23 { opacity: 0; animation: countStep23 10.56s linear infinite; }
+.step-val-24 { opacity: 0; animation: countStep24 10.56s linear infinite; }
+.step-val-25 { opacity: 0; animation: countStep25 10.56s linear infinite; }
+.step-val-26 { opacity: 0; animation: countStep26 10.56s linear infinite; }
+.step-val-27 { opacity: 0; animation: countStep27 10.56s linear infinite; }
+.step-val-28 { opacity: 0; animation: countStep28 10.56s linear infinite; }
+.step-val-29 { opacity: 0; animation: countStep29 10.56s linear infinite; }
+.step-val-30 { opacity: 0; animation: countStep30 10.56s linear infinite; }
+.step-val-31 { opacity: 0; animation: countStep31 10.56s linear infinite; }
+.step-val-32 { opacity: 0; animation: countStep32 10.56s linear infinite; }
+.step-val-33 { opacity: 0; animation: countStep33 10.56s linear infinite; }
+.step-val-34 { opacity: 0; animation: countStep34 10.56s linear infinite; }
+.step-val-35 { opacity: 0; animation: countStep35 10.56s linear infinite; }
+.step-val-36 { opacity: 0; animation: countStep36 10.56s linear infinite; }
+.step-val-37 { opacity: 0; animation: countStep37 10.56s linear infinite; }
+.step-val-38 { opacity: 0; animation: countStep38 10.56s linear infinite; }
+.step-val-39 { opacity: 0; animation: countStep39 10.56s linear infinite; }
+.step-val-40 { opacity: 0; animation: countStep40 10.56s linear infinite; }
+.step-val-41 { opacity: 0; animation: countStep41 10.56s linear infinite; }
+.step-val-42 { opacity: 0; animation: countStep42 10.56s linear infinite; }
+.step-val-43 { opacity: 0; animation: countStep43 10.56s linear infinite; }
+.step-val-44 { opacity: 0; animation: countStep44 10.56s linear infinite; }
+.step-val-45 { opacity: 0; animation: countStep45 10.56s linear infinite; }
+.step-val-46 { opacity: 0; animation: countStep46 10.56s linear infinite; }
+.step-val-47 { opacity: 0; animation: countStep47 10.56s linear infinite; }
+.step-val-48 { opacity: 0; animation: countStep48 10.56s linear infinite; }
+.step-val-49 { opacity: 0; animation: countStep49 10.56s linear infinite; }
+.step-val-50 { opacity: 0; animation: countStep50 10.56s linear infinite; }
+.step-val-51 { opacity: 0; animation: countStep51 10.56s linear infinite; }
+.step-val-52 { opacity: 0; animation: countStep52 10.56s linear infinite; }
+.step-val-53 { opacity: 0; animation: countStep53 10.56s linear infinite; }
+.step-val-54 { opacity: 0; animation: countStep54 10.56s linear infinite; }
+.step-val-55 { opacity: 0; animation: countStep55 10.56s linear infinite; }
+.step-val-56 { opacity: 0; animation: countStep56 10.56s linear infinite; }
+.step-val-57 { opacity: 0; animation: countStep57 10.56s linear infinite; }
+.step-val-58 { opacity: 0; animation: countStep58 10.56s linear infinite; }
+.step-val-59 { opacity: 0; animation: countStep59 10.56s linear infinite; }
+.step-val-60 { opacity: 0; animation: countStep60 10.56s linear infinite; }
+.step-val-61 { opacity: 0; animation: countStep61 10.56s linear infinite; }
+.step-val-62 { opacity: 0; animation: countStep62 10.56s linear infinite; }
+.step-val-63 { opacity: 0; animation: countStep63 10.56s linear infinite; }
+.step-val-64 { opacity: 0; animation: countStep64 10.56s linear infinite; }
+.step-val-65 { opacity: 0; animation: countStep65 10.56s linear infinite; }
+.step-val-66 { opacity: 0; animation: countStep66 10.56s linear infinite; }
+.step-val-67 { opacity: 0; animation: countStep67 10.56s linear infinite; }
+.step-val-68 { opacity: 0; animation: countStep68 10.56s linear infinite; }
+.step-val-69 { opacity: 0; animation: countStep69 10.56s linear infinite; }
+.step-val-70 { opacity: 0; animation: countStep70 10.56s linear infinite; }
+.step-val-71 { opacity: 0; animation: countStep71 10.56s linear infinite; }
+.step-val-72 { opacity: 0; animation: countStep72 10.56s linear infinite; }
+.step-val-73 { opacity: 0; animation: countStep73 10.56s linear infinite; }
+.step-val-74 { opacity: 0; animation: countStep74 10.56s linear infinite; }
+.step-val-75 { opacity: 0; animation: countStep75 10.56s linear infinite; }
+.step-val-76 { opacity: 0; animation: countStep76 10.56s linear infinite; }
+.step-val-77 { opacity: 0; animation: countStep77 10.56s linear infinite; }
+.step-val-78 { opacity: 0; animation: countStep78 10.56s linear infinite; }
+.step-val-79 { opacity: 0; animation: countStep79 10.56s linear infinite; }
+.step-val-80 { opacity: 0; animation: countStep80 10.56s linear infinite; }
+.step-val-81 { opacity: 0; animation: countStep81 10.56s linear infinite; }
+.step-val-82 { opacity: 0; animation: countStep82 10.56s linear infinite; }
+.step-val-83 { opacity: 0; animation: countStep83 10.56s linear infinite; }
+.step-val-84 { opacity: 0; animation: countStep84 10.56s linear infinite; }
+.step-val-85 { opacity: 0; animation: countStep85 10.56s linear infinite; }
+.step-val-86 { opacity: 0; animation: countStep86 10.56s linear infinite; }
+.step-val-87 { opacity: 0; animation: countStep87 10.56s linear infinite; }
+.step-val-88 { opacity: 0; animation: countStep88 10.56s linear infinite; }
+.step-val-89 { opacity: 0; animation: countStep89 10.56s linear infinite; }
+.step-val-90 { opacity: 0; animation: countStep90 10.56s linear infinite; }
+.step-val-91 { opacity: 0; animation: countStep91 10.56s linear infinite; }
+.step-val-92 { opacity: 0; animation: countStep92 10.56s linear infinite; }
+.step-val-93 { opacity: 0; animation: countStep93 10.56s linear infinite; }
+.step-val-94 { opacity: 0; animation: countStep94 10.56s linear infinite; }
+.step-val-95 { opacity: 0; animation: countStep95 10.56s linear infinite; }
+.step-val-96 { opacity: 0; animation: countStep96 10.56s linear infinite; }
+.step-val-97 { opacity: 0; animation: countStep97 10.56s linear infinite; }
+.step-val-98 { opacity: 0; animation: countStep98 10.56s linear infinite; }
+.step-val-99 { opacity: 0; animation: countStep99 10.56s linear infinite; }
+.step-val-100 { opacity: 0; animation: countStep100 10.56s linear infinite; }
+.step-val-101 { opacity: 0; animation: countStep101 10.56s linear infinite; }
+.step-val-102 { opacity: 0; animation: countStep102 10.56s linear infinite; }
+.step-val-103 { opacity: 0; animation: countStep103 10.56s linear infinite; }
+.step-val-104 { opacity: 0; animation: countStep104 10.56s linear infinite; }
+.step-val-105 { opacity: 0; animation: countStep105 10.56s linear infinite; }
+.step-val-106 { opacity: 0; animation: countStep106 10.56s linear infinite; }
+.step-val-107 { opacity: 0; animation: countStep107 10.56s linear infinite; }
+.step-val-108 { opacity: 0; animation: countStep108 10.56s linear infinite; }
+.step-val-109 { opacity: 0; animation: countStep109 10.56s linear infinite; }
+.step-val-110 { opacity: 0; animation: countStep110 10.56s linear infinite; }
+.step-val-111 { opacity: 0; animation: countStep111 10.56s linear infinite; }
+.step-val-112 { opacity: 0; animation: countStep112 10.56s linear infinite; }
+.step-val-113 { opacity: 0; animation: countStep113 10.56s linear infinite; }
+.step-val-114 { opacity: 0; animation: countStep114 10.56s linear infinite; }
+.step-val-115 { opacity: 0; animation: countStep115 10.56s linear infinite; }
+.step-val-116 { opacity: 0; animation: countStep116 10.56s linear infinite; }
+.step-val-117 { opacity: 0; animation: countStep117 10.56s linear infinite; }
+.step-val-118 { opacity: 0; animation: countStep118 10.56s linear infinite; }
+.step-val-119 { opacity: 0; animation: countStep119 10.56s linear infinite; }
+.step-val-120 { opacity: 0; animation: countStep120 10.56s linear infinite; }
+.step-val-121 { opacity: 0; animation: countStep121 10.56s linear infinite; }
+.step-val-122 { opacity: 0; animation: countStep122 10.56s linear infinite; }
+.step-val-123 { opacity: 0; animation: countStep123 10.56s linear infinite; }
+.step-val-124 { opacity: 0; animation: countStep124 10.56s linear infinite; }
+.step-val-125 { opacity: 0; animation: countStep125 10.56s linear infinite; }
+.step-val-126 { opacity: 0; animation: countStep126 10.56s linear infinite; }
+.step-val-127 { opacity: 0; animation: countStep127 10.56s linear infinite; }
+.step-val-128 { opacity: 0; animation: countStep128 10.56s linear infinite; }
+.step-val-129 { opacity: 0; animation: countStep129 10.56s linear infinite; }
+.step-val-130 { opacity: 0; animation: countStep130 10.56s linear infinite; }
+.step-val-131 { opacity: 0; animation: countStep131 10.56s linear infinite; }
+.step-val-132 { opacity: 0; animation: countStep132 10.56s linear infinite; }
+.step-val-133 { opacity: 0; animation: countStep133 10.56s linear infinite; }
+.step-val-134 { opacity: 0; animation: countStep134 10.56s linear infinite; }
+.step-val-135 { opacity: 0; animation: countStep135 10.56s linear infinite; }
+.step-val-136 { opacity: 0; animation: countStep136 10.56s linear infinite; }
+.step-val-137 { opacity: 0; animation: countStep137 10.56s linear infinite; }
+.step-val-138 { opacity: 0; animation: countStep138 10.56s linear infinite; }
+.step-val-139 { opacity: 0; animation: countStep139 10.56s linear infinite; }
+.step-val-140 { opacity: 0; animation: countStep140 10.56s linear infinite; }
+.step-val-141 { opacity: 0; animation: countStep141 10.56s linear infinite; }
+.step-val-142 { opacity: 0; animation: countStep142 10.56s linear infinite; }
+.step-val-143 { opacity: 0; animation: countStep143 10.56s linear infinite; }
+.step-val-144 { opacity: 0; animation: countStep144 10.56s linear infinite; }
+.step-val-145 { opacity: 0; animation: countStep145 10.56s linear infinite; }
+.step-val-146 { opacity: 0; animation: countStep146 10.56s linear infinite; }
+.step-val-147 { opacity: 0; animation: countStep147 10.56s linear infinite; }
+.step-val-148 { opacity: 0; animation: countStep148 10.56s linear infinite; }
+.step-val-149 { opacity: 0; animation: countStep149 10.56s linear infinite; }
+.step-val-150 { opacity: 0; animation: countStep150 10.56s linear infinite; }
+.step-val-151 { opacity: 0; animation: countStep151 10.56s linear infinite; }
+.step-val-152 { opacity: 0; animation: countStep152 10.56s linear infinite; }
+.step-val-153 { opacity: 0; animation: countStep153 10.56s linear infinite; }
+.step-val-154 { opacity: 0; animation: countStep154 10.56s linear infinite; }
+.step-val-155 { opacity: 0; animation: countStep155 10.56s linear infinite; }
+.step-val-156 { opacity: 0; animation: countStep156 10.56s linear infinite; }
+.step-val-157 { opacity: 0; animation: countStep157 10.56s linear infinite; }
+.step-val-158 { opacity: 0; animation: countStep158 10.56s linear infinite; }
+.step-val-159 { opacity: 0; animation: countStep159 10.56s linear infinite; }
+.step-val-160 { opacity: 0; animation: countStep160 10.56s linear infinite; }
+.step-val-161 { opacity: 0; animation: countStep161 10.56s linear infinite; }
+.step-val-162 { opacity: 0; animation: countStep162 10.56s linear infinite; }
+.step-val-163 { opacity: 0; animation: countStep163 10.56s linear infinite; }
+.step-val-164 { opacity: 0; animation: countStep164 10.56s linear infinite; }
+.step-val-165 { opacity: 0; animation: countStep165 10.56s linear infinite; }
+.step-val-166 { opacity: 0; animation: countStep166 10.56s linear infinite; }
+.step-val-167 { opacity: 0; animation: countStep167 10.56s linear infinite; }
+.step-val-168 { opacity: 0; animation: countStep168 10.56s linear infinite; }
+.step-val-169 { opacity: 0; animation: countStep169 10.56s linear infinite; }
+.step-val-170 { opacity: 0; animation: countStep170 10.56s linear infinite; }
+.step-val-171 { opacity: 0; animation: countStep171 10.56s linear infinite; }
+.step-val-172 { opacity: 0; animation: countStep172 10.56s linear infinite; }
+.step-val-173 { opacity: 0; animation: countStep173 10.56s linear infinite; }
+.step-val-174 { opacity: 0; animation: countStep174 10.56s linear infinite; }
+.step-val-175 { opacity: 0; animation: countStep175 10.56s linear infinite; }
+.step-val-176 { opacity: 0; animation: countStep176 10.56s linear infinite; }
+.step-val-177 { opacity: 0; animation: countStep177 10.56s linear infinite; }
+.step-val-178 { opacity: 0; animation: countStep178 10.56s linear infinite; }
+.step-val-179 { opacity: 0; animation: countStep179 10.56s linear infinite; }
+.step-val-180 { opacity: 0; animation: countStep180 10.56s linear infinite; }
+.step-val-181 { opacity: 0; animation: countStep181 10.56s linear infinite; }
+.step-val-182 { opacity: 0; animation: countStep182 10.56s linear infinite; }
+.step-val-183 { opacity: 0; animation: countStep183 10.56s linear infinite; }
+.step-val-184 { opacity: 0; animation: countStep184 10.56s linear infinite; }
+.step-val-185 { opacity: 0; animation: countStep185 10.56s linear infinite; }
+.step-val-186 { opacity: 0; animation: countStep186 10.56s linear infinite; }
+.step-val-187 { opacity: 0; animation: countStep187 10.56s linear infinite; }
+.step-val-188 { opacity: 0; animation: countStep188 10.56s linear infinite; }
+.step-val-189 { opacity: 0; animation: countStep189 10.56s linear infinite; }
+.step-val-190 { opacity: 0; animation: countStep190 10.56s linear infinite; }
+.step-val-191 { opacity: 0; animation: countStep191 10.56s linear infinite; }
+.step-val-192 { opacity: 0; animation: countStep192 10.56s linear infinite; }
+.step-val-193 { opacity: 0; animation: countStep193 10.56s linear infinite; }
+.step-val-194 { opacity: 0; animation: countStep194 10.56s linear infinite; }
+.step-val-195 { opacity: 0; animation: countStep195 10.56s linear infinite; }
+.step-val-196 { opacity: 0; animation: countStep196 10.56s linear infinite; }
+.step-val-197 { opacity: 0; animation: countStep197 10.56s linear infinite; }
+.step-val-198 { opacity: 0; animation: countStep198 10.56s linear infinite; }
+.step-val-199 { opacity: 0; animation: countStep199 10.56s linear infinite; }
+.step-val-200 { opacity: 0; animation: countStep200 10.56s linear infinite; }
+.step-val-201 { opacity: 0; animation: countStep201 10.56s linear infinite; }
+.step-val-202 { opacity: 0; animation: countStep202 10.56s linear infinite; }
+.step-val-203 { opacity: 0; animation: countStep203 10.56s linear infinite; }
+.step-val-204 { opacity: 0; animation: countStep204 10.56s linear infinite; }
+.step-val-205 { opacity: 0; animation: countStep205 10.56s linear infinite; }
+.step-val-206 { opacity: 0; animation: countStep206 10.56s linear infinite; }
+.step-val-207 { opacity: 0; animation: countStep207 10.56s linear infinite; }
+.step-val-208 { opacity: 0; animation: countStep208 10.56s linear infinite; }
+.step-val-209 { opacity: 0; animation: countStep209 10.56s linear infinite; }
+.step-val-210 { opacity: 0; animation: countStep210 10.56s linear infinite; }
+.step-val-211 { opacity: 0; animation: countStep211 10.56s linear infinite; }
+.step-val-212 { opacity: 0; animation: countStep212 10.56s linear infinite; }
+.step-val-213 { opacity: 0; animation: countStep213 10.56s linear infinite; }
+.step-val-214 { opacity: 0; animation: countStep214 10.56s linear infinite; }
+.step-val-215 { opacity: 0; animation: countStep215 10.56s linear infinite; }
+.step-val-216 { opacity: 0; animation: countStep216 10.56s linear infinite; }
+.step-val-217 { opacity: 0; animation: countStep217 10.56s linear infinite; }
+.step-val-218 { opacity: 0; animation: countStep218 10.56s linear infinite; }
+.step-val-219 { opacity: 0; animation: countStep219 10.56s linear infinite; }
+.step-val-220 { opacity: 0; animation: countStep220 10.56s linear infinite; }
+.step-val-221 { opacity: 0; animation: countStep221 10.56s linear infinite; }
+.step-val-222 { opacity: 0; animation: countStep222 10.56s linear infinite; }
+.step-val-223 { opacity: 0; animation: countStep223 10.56s linear infinite; }
+.step-val-224 { opacity: 0; animation: countStep224 10.56s linear infinite; }
+.step-val-225 { opacity: 0; animation: countStep225 10.56s linear infinite; }
+.step-val-226 { opacity: 0; animation: countStep226 10.56s linear infinite; }
+.step-val-227 { opacity: 0; animation: countStep227 10.56s linear infinite; }
+.step-val-228 { opacity: 0; animation: countStep228 10.56s linear infinite; }
+.step-val-229 { opacity: 0; animation: countStep229 10.56s linear infinite; }
+.step-val-230 { opacity: 0; animation: countStep230 10.56s linear infinite; }
+.step-val-231 { opacity: 0; animation: countStep231 10.56s linear infinite; }
+.step-val-232 { opacity: 0; animation: countStep232 10.56s linear infinite; }
+.step-val-233 { opacity: 0; animation: countStep233 10.56s linear infinite; }
+.step-val-234 { opacity: 0; animation: countStep234 10.56s linear infinite; }
+.step-val-235 { opacity: 0; animation: countStep235 10.56s linear infinite; }
+.step-val-236 { opacity: 0; animation: countStep236 10.56s linear infinite; }
+.step-val-237 { opacity: 0; animation: countStep237 10.56s linear infinite; }
+.step-val-238 { opacity: 0; animation: countStep238 10.56s linear infinite; }
+.step-val-239 { opacity: 0; animation: countStep239 10.56s linear infinite; }
+.step-val-240 { opacity: 0; animation: countStep240 10.56s linear infinite; }
 
 @keyframes shipPatrolRoute {
   0.000%  { transform: translate(65px, 126px); }
@@ -290,464 +525,2172 @@
   100% { fill: #006D32; }
 }
 
-@keyframes odoThousands {
-  0% { transform: translateY(0px); }
-  51.43% { transform: translateY(0px); }
-  51.44% { transform: translateY(-14px); }
-  100% { transform: translateY(-14px); }
+@keyframes countStep0 {
+  0% { opacity: 1; }
+  0.320% { opacity: 1; }
+  0.415% { opacity: 0; }
+  100% { opacity: 0; }
 }
 
-@keyframes odoComma {
+@keyframes countStep1 {
   0% { opacity: 0; }
-  51.43% { opacity: 0; }
-  51.44% { opacity: 1; }
+  0.320% { opacity: 0; }
+  0.415% { opacity: 1; }
+  0.735% { opacity: 1; }
+  0.830% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep2 {
+  0% { opacity: 0; }
+  0.735% { opacity: 0; }
+  0.830% { opacity: 1; }
+  1.150% { opacity: 1; }
+  1.245% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep3 {
+  0% { opacity: 0; }
+  1.150% { opacity: 0; }
+  1.245% { opacity: 1; }
+  1.565% { opacity: 1; }
+  1.660% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep4 {
+  0% { opacity: 0; }
+  1.565% { opacity: 0; }
+  1.660% { opacity: 1; }
+  1.980% { opacity: 1; }
+  2.075% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep5 {
+  0% { opacity: 0; }
+  1.980% { opacity: 0; }
+  2.075% { opacity: 1; }
+  2.395% { opacity: 1; }
+  2.490% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep6 {
+  0% { opacity: 0; }
+  2.395% { opacity: 0; }
+  2.490% { opacity: 1; }
+  2.810% { opacity: 1; }
+  2.905% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep7 {
+  0% { opacity: 0; }
+  2.810% { opacity: 0; }
+  2.905% { opacity: 1; }
+  3.225% { opacity: 1; }
+  3.320% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep8 {
+  0% { opacity: 0; }
+  3.225% { opacity: 0; }
+  3.320% { opacity: 1; }
+  3.640% { opacity: 1; }
+  3.734% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep9 {
+  0% { opacity: 0; }
+  3.640% { opacity: 0; }
+  3.734% { opacity: 1; }
+  4.055% { opacity: 1; }
+  4.149% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep10 {
+  0% { opacity: 0; }
+  4.055% { opacity: 0; }
+  4.149% { opacity: 1; }
+  4.470% { opacity: 1; }
+  4.564% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep11 {
+  0% { opacity: 0; }
+  4.470% { opacity: 0; }
+  4.564% { opacity: 1; }
+  4.885% { opacity: 1; }
+  4.979% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep12 {
+  0% { opacity: 0; }
+  4.885% { opacity: 0; }
+  4.979% { opacity: 1; }
+  5.299% { opacity: 1; }
+  5.394% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep13 {
+  0% { opacity: 0; }
+  5.299% { opacity: 0; }
+  5.394% { opacity: 1; }
+  5.714% { opacity: 1; }
+  5.809% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep14 {
+  0% { opacity: 0; }
+  5.714% { opacity: 0; }
+  5.809% { opacity: 1; }
+  6.129% { opacity: 1; }
+  6.224% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep15 {
+  0% { opacity: 0; }
+  6.129% { opacity: 0; }
+  6.224% { opacity: 1; }
+  6.544% { opacity: 1; }
+  6.639% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep16 {
+  0% { opacity: 0; }
+  6.544% { opacity: 0; }
+  6.639% { opacity: 1; }
+  6.959% { opacity: 1; }
+  7.054% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep17 {
+  0% { opacity: 0; }
+  6.959% { opacity: 0; }
+  7.054% { opacity: 1; }
+  7.374% { opacity: 1; }
+  7.469% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep18 {
+  0% { opacity: 0; }
+  7.374% { opacity: 0; }
+  7.469% { opacity: 1; }
+  7.789% { opacity: 1; }
+  7.884% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep19 {
+  0% { opacity: 0; }
+  7.789% { opacity: 0; }
+  7.884% { opacity: 1; }
+  8.204% { opacity: 1; }
+  8.299% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep20 {
+  0% { opacity: 0; }
+  8.204% { opacity: 0; }
+  8.299% { opacity: 1; }
+  8.619% { opacity: 1; }
+  8.714% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep21 {
+  0% { opacity: 0; }
+  8.619% { opacity: 0; }
+  8.714% { opacity: 1; }
+  9.034% { opacity: 1; }
+  9.129% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep22 {
+  0% { opacity: 0; }
+  9.034% { opacity: 0; }
+  9.129% { opacity: 1; }
+  9.449% { opacity: 1; }
+  9.544% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep23 {
+  0% { opacity: 0; }
+  9.449% { opacity: 0; }
+  9.544% { opacity: 1; }
+  9.864% { opacity: 1; }
+  9.959% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep24 {
+  0% { opacity: 0; }
+  9.864% { opacity: 0; }
+  9.959% { opacity: 1; }
+  10.279% { opacity: 1; }
+  10.373% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep25 {
+  0% { opacity: 0; }
+  10.279% { opacity: 0; }
+  10.373% { opacity: 1; }
+  10.694% { opacity: 1; }
+  10.788% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep26 {
+  0% { opacity: 0; }
+  10.694% { opacity: 0; }
+  10.788% { opacity: 1; }
+  11.109% { opacity: 1; }
+  11.203% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep27 {
+  0% { opacity: 0; }
+  11.109% { opacity: 0; }
+  11.203% { opacity: 1; }
+  11.524% { opacity: 1; }
+  11.618% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep28 {
+  0% { opacity: 0; }
+  11.524% { opacity: 0; }
+  11.618% { opacity: 1; }
+  11.938% { opacity: 1; }
+  12.033% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep29 {
+  0% { opacity: 0; }
+  11.938% { opacity: 0; }
+  12.033% { opacity: 1; }
+  12.353% { opacity: 1; }
+  12.448% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep30 {
+  0% { opacity: 0; }
+  12.353% { opacity: 0; }
+  12.448% { opacity: 1; }
+  12.768% { opacity: 1; }
+  12.863% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep31 {
+  0% { opacity: 0; }
+  12.768% { opacity: 0; }
+  12.863% { opacity: 1; }
+  13.183% { opacity: 1; }
+  13.278% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep32 {
+  0% { opacity: 0; }
+  13.183% { opacity: 0; }
+  13.278% { opacity: 1; }
+  13.598% { opacity: 1; }
+  13.693% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep33 {
+  0% { opacity: 0; }
+  13.598% { opacity: 0; }
+  13.693% { opacity: 1; }
+  14.013% { opacity: 1; }
+  14.108% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep34 {
+  0% { opacity: 0; }
+  14.013% { opacity: 0; }
+  14.108% { opacity: 1; }
+  14.428% { opacity: 1; }
+  14.523% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep35 {
+  0% { opacity: 0; }
+  14.428% { opacity: 0; }
+  14.523% { opacity: 1; }
+  14.843% { opacity: 1; }
+  14.938% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep36 {
+  0% { opacity: 0; }
+  14.843% { opacity: 0; }
+  14.938% { opacity: 1; }
+  15.258% { opacity: 1; }
+  15.353% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep37 {
+  0% { opacity: 0; }
+  15.258% { opacity: 0; }
+  15.353% { opacity: 1; }
+  15.673% { opacity: 1; }
+  15.768% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep38 {
+  0% { opacity: 0; }
+  15.673% { opacity: 0; }
+  15.768% { opacity: 1; }
+  16.088% { opacity: 1; }
+  16.183% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep39 {
+  0% { opacity: 0; }
+  16.088% { opacity: 0; }
+  16.183% { opacity: 1; }
+  16.503% { opacity: 1; }
+  16.598% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep40 {
+  0% { opacity: 0; }
+  16.503% { opacity: 0; }
+  16.598% { opacity: 1; }
+  16.918% { opacity: 1; }
+  17.012% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep41 {
+  0% { opacity: 0; }
+  16.918% { opacity: 0; }
+  17.012% { opacity: 1; }
+  17.333% { opacity: 1; }
+  17.427% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep42 {
+  0% { opacity: 0; }
+  17.333% { opacity: 0; }
+  17.427% { opacity: 1; }
+  17.748% { opacity: 1; }
+  17.842% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep43 {
+  0% { opacity: 0; }
+  17.748% { opacity: 0; }
+  17.842% { opacity: 1; }
+  18.163% { opacity: 1; }
+  18.257% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep44 {
+  0% { opacity: 0; }
+  18.163% { opacity: 0; }
+  18.257% { opacity: 1; }
+  18.578% { opacity: 1; }
+  18.672% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep45 {
+  0% { opacity: 0; }
+  18.578% { opacity: 0; }
+  18.672% { opacity: 1; }
+  18.992% { opacity: 1; }
+  19.087% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep46 {
+  0% { opacity: 0; }
+  18.992% { opacity: 0; }
+  19.087% { opacity: 1; }
+  19.407% { opacity: 1; }
+  19.502% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep47 {
+  0% { opacity: 0; }
+  19.407% { opacity: 0; }
+  19.502% { opacity: 1; }
+  19.822% { opacity: 1; }
+  19.917% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep48 {
+  0% { opacity: 0; }
+  19.822% { opacity: 0; }
+  19.917% { opacity: 1; }
+  20.237% { opacity: 1; }
+  20.332% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep49 {
+  0% { opacity: 0; }
+  20.237% { opacity: 0; }
+  20.332% { opacity: 1; }
+  20.652% { opacity: 1; }
+  20.747% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep50 {
+  0% { opacity: 0; }
+  20.652% { opacity: 0; }
+  20.747% { opacity: 1; }
+  21.067% { opacity: 1; }
+  21.162% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep51 {
+  0% { opacity: 0; }
+  21.067% { opacity: 0; }
+  21.162% { opacity: 1; }
+  21.482% { opacity: 1; }
+  21.577% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep52 {
+  0% { opacity: 0; }
+  21.482% { opacity: 0; }
+  21.577% { opacity: 1; }
+  21.897% { opacity: 1; }
+  21.992% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep53 {
+  0% { opacity: 0; }
+  21.897% { opacity: 0; }
+  21.992% { opacity: 1; }
+  22.312% { opacity: 1; }
+  22.407% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep54 {
+  0% { opacity: 0; }
+  22.312% { opacity: 0; }
+  22.407% { opacity: 1; }
+  22.727% { opacity: 1; }
+  22.822% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep55 {
+  0% { opacity: 0; }
+  22.727% { opacity: 0; }
+  22.822% { opacity: 1; }
+  23.142% { opacity: 1; }
+  23.237% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep56 {
+  0% { opacity: 0; }
+  23.142% { opacity: 0; }
+  23.237% { opacity: 1; }
+  23.557% { opacity: 1; }
+  23.651% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep57 {
+  0% { opacity: 0; }
+  23.557% { opacity: 0; }
+  23.651% { opacity: 1; }
+  23.972% { opacity: 1; }
+  24.066% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep58 {
+  0% { opacity: 0; }
+  23.972% { opacity: 0; }
+  24.066% { opacity: 1; }
+  24.387% { opacity: 1; }
+  24.481% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep59 {
+  0% { opacity: 0; }
+  24.387% { opacity: 0; }
+  24.481% { opacity: 1; }
+  24.802% { opacity: 1; }
+  24.896% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep60 {
+  0% { opacity: 0; }
+  24.802% { opacity: 0; }
+  24.896% { opacity: 1; }
+  25.217% { opacity: 1; }
+  25.311% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep61 {
+  0% { opacity: 0; }
+  25.217% { opacity: 0; }
+  25.311% { opacity: 1; }
+  25.631% { opacity: 1; }
+  25.726% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep62 {
+  0% { opacity: 0; }
+  25.631% { opacity: 0; }
+  25.726% { opacity: 1; }
+  26.046% { opacity: 1; }
+  26.141% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep63 {
+  0% { opacity: 0; }
+  26.046% { opacity: 0; }
+  26.141% { opacity: 1; }
+  26.461% { opacity: 1; }
+  26.556% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep64 {
+  0% { opacity: 0; }
+  26.461% { opacity: 0; }
+  26.556% { opacity: 1; }
+  26.876% { opacity: 1; }
+  26.971% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep65 {
+  0% { opacity: 0; }
+  26.876% { opacity: 0; }
+  26.971% { opacity: 1; }
+  27.291% { opacity: 1; }
+  27.386% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep66 {
+  0% { opacity: 0; }
+  27.291% { opacity: 0; }
+  27.386% { opacity: 1; }
+  27.706% { opacity: 1; }
+  27.801% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep67 {
+  0% { opacity: 0; }
+  27.706% { opacity: 0; }
+  27.801% { opacity: 1; }
+  28.121% { opacity: 1; }
+  28.216% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep68 {
+  0% { opacity: 0; }
+  28.121% { opacity: 0; }
+  28.216% { opacity: 1; }
+  28.536% { opacity: 1; }
+  28.631% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep69 {
+  0% { opacity: 0; }
+  28.536% { opacity: 0; }
+  28.631% { opacity: 1; }
+  28.951% { opacity: 1; }
+  29.046% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep70 {
+  0% { opacity: 0; }
+  28.951% { opacity: 0; }
+  29.046% { opacity: 1; }
+  29.366% { opacity: 1; }
+  29.461% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep71 {
+  0% { opacity: 0; }
+  29.366% { opacity: 0; }
+  29.461% { opacity: 1; }
+  29.781% { opacity: 1; }
+  29.876% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep72 {
+  0% { opacity: 0; }
+  29.781% { opacity: 0; }
+  29.876% { opacity: 1; }
+  30.196% { opacity: 1; }
+  30.290% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep73 {
+  0% { opacity: 0; }
+  30.196% { opacity: 0; }
+  30.290% { opacity: 1; }
+  30.611% { opacity: 1; }
+  30.705% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep74 {
+  0% { opacity: 0; }
+  30.611% { opacity: 0; }
+  30.705% { opacity: 1; }
+  31.026% { opacity: 1; }
+  31.120% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep75 {
+  0% { opacity: 0; }
+  31.026% { opacity: 0; }
+  31.120% { opacity: 1; }
+  31.441% { opacity: 1; }
+  31.535% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep76 {
+  0% { opacity: 0; }
+  31.441% { opacity: 0; }
+  31.535% { opacity: 1; }
+  31.856% { opacity: 1; }
+  31.950% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep77 {
+  0% { opacity: 0; }
+  31.856% { opacity: 0; }
+  31.950% { opacity: 1; }
+  32.270% { opacity: 1; }
+  32.365% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep78 {
+  0% { opacity: 0; }
+  32.270% { opacity: 0; }
+  32.365% { opacity: 1; }
+  32.685% { opacity: 1; }
+  32.780% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep79 {
+  0% { opacity: 0; }
+  32.685% { opacity: 0; }
+  32.780% { opacity: 1; }
+  33.100% { opacity: 1; }
+  33.195% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep80 {
+  0% { opacity: 0; }
+  33.100% { opacity: 0; }
+  33.195% { opacity: 1; }
+  33.515% { opacity: 1; }
+  33.610% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep81 {
+  0% { opacity: 0; }
+  33.515% { opacity: 0; }
+  33.610% { opacity: 1; }
+  33.930% { opacity: 1; }
+  34.025% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep82 {
+  0% { opacity: 0; }
+  33.930% { opacity: 0; }
+  34.025% { opacity: 1; }
+  34.345% { opacity: 1; }
+  34.440% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep83 {
+  0% { opacity: 0; }
+  34.345% { opacity: 0; }
+  34.440% { opacity: 1; }
+  34.760% { opacity: 1; }
+  34.855% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep84 {
+  0% { opacity: 0; }
+  34.760% { opacity: 0; }
+  34.855% { opacity: 1; }
+  35.175% { opacity: 1; }
+  35.270% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep85 {
+  0% { opacity: 0; }
+  35.175% { opacity: 0; }
+  35.270% { opacity: 1; }
+  35.590% { opacity: 1; }
+  35.685% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep86 {
+  0% { opacity: 0; }
+  35.590% { opacity: 0; }
+  35.685% { opacity: 1; }
+  36.005% { opacity: 1; }
+  36.100% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep87 {
+  0% { opacity: 0; }
+  36.005% { opacity: 0; }
+  36.100% { opacity: 1; }
+  36.420% { opacity: 1; }
+  36.515% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep88 {
+  0% { opacity: 0; }
+  36.420% { opacity: 0; }
+  36.515% { opacity: 1; }
+  36.835% { opacity: 1; }
+  36.929% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep89 {
+  0% { opacity: 0; }
+  36.835% { opacity: 0; }
+  36.929% { opacity: 1; }
+  37.250% { opacity: 1; }
+  37.344% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep90 {
+  0% { opacity: 0; }
+  37.250% { opacity: 0; }
+  37.344% { opacity: 1; }
+  37.665% { opacity: 1; }
+  37.759% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep91 {
+  0% { opacity: 0; }
+  37.665% { opacity: 0; }
+  37.759% { opacity: 1; }
+  38.080% { opacity: 1; }
+  38.174% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep92 {
+  0% { opacity: 0; }
+  38.080% { opacity: 0; }
+  38.174% { opacity: 1; }
+  38.495% { opacity: 1; }
+  38.589% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep93 {
+  0% { opacity: 0; }
+  38.495% { opacity: 0; }
+  38.589% { opacity: 1; }
+  38.909% { opacity: 1; }
+  39.004% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep94 {
+  0% { opacity: 0; }
+  38.909% { opacity: 0; }
+  39.004% { opacity: 1; }
+  39.324% { opacity: 1; }
+  39.419% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep95 {
+  0% { opacity: 0; }
+  39.324% { opacity: 0; }
+  39.419% { opacity: 1; }
+  39.739% { opacity: 1; }
+  39.834% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep96 {
+  0% { opacity: 0; }
+  39.739% { opacity: 0; }
+  39.834% { opacity: 1; }
+  40.154% { opacity: 1; }
+  40.249% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep97 {
+  0% { opacity: 0; }
+  40.154% { opacity: 0; }
+  40.249% { opacity: 1; }
+  40.569% { opacity: 1; }
+  40.664% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep98 {
+  0% { opacity: 0; }
+  40.569% { opacity: 0; }
+  40.664% { opacity: 1; }
+  40.984% { opacity: 1; }
+  41.079% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep99 {
+  0% { opacity: 0; }
+  40.984% { opacity: 0; }
+  41.079% { opacity: 1; }
+  41.399% { opacity: 1; }
+  41.494% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep100 {
+  0% { opacity: 0; }
+  41.399% { opacity: 0; }
+  41.494% { opacity: 1; }
+  41.814% { opacity: 1; }
+  41.909% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep101 {
+  0% { opacity: 0; }
+  41.814% { opacity: 0; }
+  41.909% { opacity: 1; }
+  42.229% { opacity: 1; }
+  42.324% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep102 {
+  0% { opacity: 0; }
+  42.229% { opacity: 0; }
+  42.324% { opacity: 1; }
+  42.644% { opacity: 1; }
+  42.739% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep103 {
+  0% { opacity: 0; }
+  42.644% { opacity: 0; }
+  42.739% { opacity: 1; }
+  43.059% { opacity: 1; }
+  43.154% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep104 {
+  0% { opacity: 0; }
+  43.059% { opacity: 0; }
+  43.154% { opacity: 1; }
+  43.474% { opacity: 1; }
+  43.568% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep105 {
+  0% { opacity: 0; }
+  43.474% { opacity: 0; }
+  43.568% { opacity: 1; }
+  43.889% { opacity: 1; }
+  43.983% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep106 {
+  0% { opacity: 0; }
+  43.889% { opacity: 0; }
+  43.983% { opacity: 1; }
+  44.304% { opacity: 1; }
+  44.398% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep107 {
+  0% { opacity: 0; }
+  44.304% { opacity: 0; }
+  44.398% { opacity: 1; }
+  44.719% { opacity: 1; }
+  44.813% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep108 {
+  0% { opacity: 0; }
+  44.719% { opacity: 0; }
+  44.813% { opacity: 1; }
+  45.134% { opacity: 1; }
+  45.228% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep109 {
+  0% { opacity: 0; }
+  45.134% { opacity: 0; }
+  45.228% { opacity: 1; }
+  45.548% { opacity: 1; }
+  45.643% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep110 {
+  0% { opacity: 0; }
+  45.548% { opacity: 0; }
+  45.643% { opacity: 1; }
+  45.963% { opacity: 1; }
+  46.058% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep111 {
+  0% { opacity: 0; }
+  45.963% { opacity: 0; }
+  46.058% { opacity: 1; }
+  46.378% { opacity: 1; }
+  46.473% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep112 {
+  0% { opacity: 0; }
+  46.378% { opacity: 0; }
+  46.473% { opacity: 1; }
+  46.793% { opacity: 1; }
+  46.888% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep113 {
+  0% { opacity: 0; }
+  46.793% { opacity: 0; }
+  46.888% { opacity: 1; }
+  47.208% { opacity: 1; }
+  47.303% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep114 {
+  0% { opacity: 0; }
+  47.208% { opacity: 0; }
+  47.303% { opacity: 1; }
+  47.623% { opacity: 1; }
+  47.718% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep115 {
+  0% { opacity: 0; }
+  47.623% { opacity: 0; }
+  47.718% { opacity: 1; }
+  48.038% { opacity: 1; }
+  48.133% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep116 {
+  0% { opacity: 0; }
+  48.038% { opacity: 0; }
+  48.133% { opacity: 1; }
+  48.453% { opacity: 1; }
+  48.548% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep117 {
+  0% { opacity: 0; }
+  48.453% { opacity: 0; }
+  48.548% { opacity: 1; }
+  48.868% { opacity: 1; }
+  48.963% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep118 {
+  0% { opacity: 0; }
+  48.868% { opacity: 0; }
+  48.963% { opacity: 1; }
+  49.283% { opacity: 1; }
+  49.378% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep119 {
+  0% { opacity: 0; }
+  49.283% { opacity: 0; }
+  49.378% { opacity: 1; }
+  49.698% { opacity: 1; }
+  49.793% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep120 {
+  0% { opacity: 0; }
+  49.698% { opacity: 0; }
+  49.793% { opacity: 1; }
+  50.113% { opacity: 1; }
+  50.207% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep121 {
+  0% { opacity: 0; }
+  50.113% { opacity: 0; }
+  50.207% { opacity: 1; }
+  50.528% { opacity: 1; }
+  50.622% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep122 {
+  0% { opacity: 0; }
+  50.528% { opacity: 0; }
+  50.622% { opacity: 1; }
+  50.943% { opacity: 1; }
+  51.037% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep123 {
+  0% { opacity: 0; }
+  50.943% { opacity: 0; }
+  51.037% { opacity: 1; }
+  51.358% { opacity: 1; }
+  51.452% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep124 {
+  0% { opacity: 0; }
+  51.358% { opacity: 0; }
+  51.452% { opacity: 1; }
+  51.773% { opacity: 1; }
+  51.867% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep125 {
+  0% { opacity: 0; }
+  51.773% { opacity: 0; }
+  51.867% { opacity: 1; }
+  52.187% { opacity: 1; }
+  52.282% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep126 {
+  0% { opacity: 0; }
+  52.187% { opacity: 0; }
+  52.282% { opacity: 1; }
+  52.602% { opacity: 1; }
+  52.697% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep127 {
+  0% { opacity: 0; }
+  52.602% { opacity: 0; }
+  52.697% { opacity: 1; }
+  53.017% { opacity: 1; }
+  53.112% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep128 {
+  0% { opacity: 0; }
+  53.017% { opacity: 0; }
+  53.112% { opacity: 1; }
+  53.432% { opacity: 1; }
+  53.527% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep129 {
+  0% { opacity: 0; }
+  53.432% { opacity: 0; }
+  53.527% { opacity: 1; }
+  53.847% { opacity: 1; }
+  53.942% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep130 {
+  0% { opacity: 0; }
+  53.847% { opacity: 0; }
+  53.942% { opacity: 1; }
+  54.262% { opacity: 1; }
+  54.357% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep131 {
+  0% { opacity: 0; }
+  54.262% { opacity: 0; }
+  54.357% { opacity: 1; }
+  54.677% { opacity: 1; }
+  54.772% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep132 {
+  0% { opacity: 0; }
+  54.677% { opacity: 0; }
+  54.772% { opacity: 1; }
+  55.092% { opacity: 1; }
+  55.187% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep133 {
+  0% { opacity: 0; }
+  55.092% { opacity: 0; }
+  55.187% { opacity: 1; }
+  55.507% { opacity: 1; }
+  55.602% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep134 {
+  0% { opacity: 0; }
+  55.507% { opacity: 0; }
+  55.602% { opacity: 1; }
+  55.922% { opacity: 1; }
+  56.017% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep135 {
+  0% { opacity: 0; }
+  55.922% { opacity: 0; }
+  56.017% { opacity: 1; }
+  56.337% { opacity: 1; }
+  56.432% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep136 {
+  0% { opacity: 0; }
+  56.337% { opacity: 0; }
+  56.432% { opacity: 1; }
+  56.752% { opacity: 1; }
+  56.846% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep137 {
+  0% { opacity: 0; }
+  56.752% { opacity: 0; }
+  56.846% { opacity: 1; }
+  57.167% { opacity: 1; }
+  57.261% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep138 {
+  0% { opacity: 0; }
+  57.167% { opacity: 0; }
+  57.261% { opacity: 1; }
+  57.582% { opacity: 1; }
+  57.676% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep139 {
+  0% { opacity: 0; }
+  57.582% { opacity: 0; }
+  57.676% { opacity: 1; }
+  57.997% { opacity: 1; }
+  58.091% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep140 {
+  0% { opacity: 0; }
+  57.997% { opacity: 0; }
+  58.091% { opacity: 1; }
+  58.412% { opacity: 1; }
+  58.506% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep141 {
+  0% { opacity: 0; }
+  58.412% { opacity: 0; }
+  58.506% { opacity: 1; }
+  58.826% { opacity: 1; }
+  58.921% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep142 {
+  0% { opacity: 0; }
+  58.826% { opacity: 0; }
+  58.921% { opacity: 1; }
+  59.241% { opacity: 1; }
+  59.336% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep143 {
+  0% { opacity: 0; }
+  59.241% { opacity: 0; }
+  59.336% { opacity: 1; }
+  59.656% { opacity: 1; }
+  59.751% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep144 {
+  0% { opacity: 0; }
+  59.656% { opacity: 0; }
+  59.751% { opacity: 1; }
+  60.071% { opacity: 1; }
+  60.166% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep145 {
+  0% { opacity: 0; }
+  60.071% { opacity: 0; }
+  60.166% { opacity: 1; }
+  60.486% { opacity: 1; }
+  60.581% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep146 {
+  0% { opacity: 0; }
+  60.486% { opacity: 0; }
+  60.581% { opacity: 1; }
+  60.901% { opacity: 1; }
+  60.996% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep147 {
+  0% { opacity: 0; }
+  60.901% { opacity: 0; }
+  60.996% { opacity: 1; }
+  61.316% { opacity: 1; }
+  61.411% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep148 {
+  0% { opacity: 0; }
+  61.316% { opacity: 0; }
+  61.411% { opacity: 1; }
+  61.731% { opacity: 1; }
+  61.826% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep149 {
+  0% { opacity: 0; }
+  61.731% { opacity: 0; }
+  61.826% { opacity: 1; }
+  62.146% { opacity: 1; }
+  62.241% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep150 {
+  0% { opacity: 0; }
+  62.146% { opacity: 0; }
+  62.241% { opacity: 1; }
+  62.561% { opacity: 1; }
+  62.656% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep151 {
+  0% { opacity: 0; }
+  62.561% { opacity: 0; }
+  62.656% { opacity: 1; }
+  62.976% { opacity: 1; }
+  63.071% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep152 {
+  0% { opacity: 0; }
+  62.976% { opacity: 0; }
+  63.071% { opacity: 1; }
+  63.391% { opacity: 1; }
+  63.485% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep153 {
+  0% { opacity: 0; }
+  63.391% { opacity: 0; }
+  63.485% { opacity: 1; }
+  63.806% { opacity: 1; }
+  63.900% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep154 {
+  0% { opacity: 0; }
+  63.806% { opacity: 0; }
+  63.900% { opacity: 1; }
+  64.221% { opacity: 1; }
+  64.315% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep155 {
+  0% { opacity: 0; }
+  64.221% { opacity: 0; }
+  64.315% { opacity: 1; }
+  64.636% { opacity: 1; }
+  64.730% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep156 {
+  0% { opacity: 0; }
+  64.636% { opacity: 0; }
+  64.730% { opacity: 1; }
+  65.051% { opacity: 1; }
+  65.145% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep157 {
+  0% { opacity: 0; }
+  65.051% { opacity: 0; }
+  65.145% { opacity: 1; }
+  65.465% { opacity: 1; }
+  65.560% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep158 {
+  0% { opacity: 0; }
+  65.465% { opacity: 0; }
+  65.560% { opacity: 1; }
+  65.880% { opacity: 1; }
+  65.975% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep159 {
+  0% { opacity: 0; }
+  65.880% { opacity: 0; }
+  65.975% { opacity: 1; }
+  66.295% { opacity: 1; }
+  66.390% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep160 {
+  0% { opacity: 0; }
+  66.295% { opacity: 0; }
+  66.390% { opacity: 1; }
+  66.710% { opacity: 1; }
+  66.805% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep161 {
+  0% { opacity: 0; }
+  66.710% { opacity: 0; }
+  66.805% { opacity: 1; }
+  67.125% { opacity: 1; }
+  67.220% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep162 {
+  0% { opacity: 0; }
+  67.125% { opacity: 0; }
+  67.220% { opacity: 1; }
+  67.540% { opacity: 1; }
+  67.635% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep163 {
+  0% { opacity: 0; }
+  67.540% { opacity: 0; }
+  67.635% { opacity: 1; }
+  67.955% { opacity: 1; }
+  68.050% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep164 {
+  0% { opacity: 0; }
+  67.955% { opacity: 0; }
+  68.050% { opacity: 1; }
+  68.370% { opacity: 1; }
+  68.465% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep165 {
+  0% { opacity: 0; }
+  68.370% { opacity: 0; }
+  68.465% { opacity: 1; }
+  68.785% { opacity: 1; }
+  68.880% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep166 {
+  0% { opacity: 0; }
+  68.785% { opacity: 0; }
+  68.880% { opacity: 1; }
+  69.200% { opacity: 1; }
+  69.295% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep167 {
+  0% { opacity: 0; }
+  69.200% { opacity: 0; }
+  69.295% { opacity: 1; }
+  69.615% { opacity: 1; }
+  69.710% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep168 {
+  0% { opacity: 0; }
+  69.615% { opacity: 0; }
+  69.710% { opacity: 1; }
+  70.030% { opacity: 1; }
+  70.124% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep169 {
+  0% { opacity: 0; }
+  70.030% { opacity: 0; }
+  70.124% { opacity: 1; }
+  70.445% { opacity: 1; }
+  70.539% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep170 {
+  0% { opacity: 0; }
+  70.445% { opacity: 0; }
+  70.539% { opacity: 1; }
+  70.860% { opacity: 1; }
+  70.954% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep171 {
+  0% { opacity: 0; }
+  70.860% { opacity: 0; }
+  70.954% { opacity: 1; }
+  71.275% { opacity: 1; }
+  71.369% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep172 {
+  0% { opacity: 0; }
+  71.275% { opacity: 0; }
+  71.369% { opacity: 1; }
+  71.690% { opacity: 1; }
+  71.784% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep173 {
+  0% { opacity: 0; }
+  71.690% { opacity: 0; }
+  71.784% { opacity: 1; }
+  72.104% { opacity: 1; }
+  72.199% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep174 {
+  0% { opacity: 0; }
+  72.104% { opacity: 0; }
+  72.199% { opacity: 1; }
+  72.519% { opacity: 1; }
+  72.614% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep175 {
+  0% { opacity: 0; }
+  72.519% { opacity: 0; }
+  72.614% { opacity: 1; }
+  72.934% { opacity: 1; }
+  73.029% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep176 {
+  0% { opacity: 0; }
+  72.934% { opacity: 0; }
+  73.029% { opacity: 1; }
+  73.349% { opacity: 1; }
+  73.444% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep177 {
+  0% { opacity: 0; }
+  73.349% { opacity: 0; }
+  73.444% { opacity: 1; }
+  73.764% { opacity: 1; }
+  73.859% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep178 {
+  0% { opacity: 0; }
+  73.764% { opacity: 0; }
+  73.859% { opacity: 1; }
+  74.179% { opacity: 1; }
+  74.274% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep179 {
+  0% { opacity: 0; }
+  74.179% { opacity: 0; }
+  74.274% { opacity: 1; }
+  74.594% { opacity: 1; }
+  74.689% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep180 {
+  0% { opacity: 0; }
+  74.594% { opacity: 0; }
+  74.689% { opacity: 1; }
+  75.009% { opacity: 1; }
+  75.104% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep181 {
+  0% { opacity: 0; }
+  75.009% { opacity: 0; }
+  75.104% { opacity: 1; }
+  75.424% { opacity: 1; }
+  75.519% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep182 {
+  0% { opacity: 0; }
+  75.424% { opacity: 0; }
+  75.519% { opacity: 1; }
+  75.839% { opacity: 1; }
+  75.934% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep183 {
+  0% { opacity: 0; }
+  75.839% { opacity: 0; }
+  75.934% { opacity: 1; }
+  76.254% { opacity: 1; }
+  76.349% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep184 {
+  0% { opacity: 0; }
+  76.254% { opacity: 0; }
+  76.349% { opacity: 1; }
+  76.669% { opacity: 1; }
+  76.763% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep185 {
+  0% { opacity: 0; }
+  76.669% { opacity: 0; }
+  76.763% { opacity: 1; }
+  77.084% { opacity: 1; }
+  77.178% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep186 {
+  0% { opacity: 0; }
+  77.084% { opacity: 0; }
+  77.178% { opacity: 1; }
+  77.499% { opacity: 1; }
+  77.593% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep187 {
+  0% { opacity: 0; }
+  77.499% { opacity: 0; }
+  77.593% { opacity: 1; }
+  77.914% { opacity: 1; }
+  78.008% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep188 {
+  0% { opacity: 0; }
+  77.914% { opacity: 0; }
+  78.008% { opacity: 1; }
+  78.329% { opacity: 1; }
+  78.423% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep189 {
+  0% { opacity: 0; }
+  78.329% { opacity: 0; }
+  78.423% { opacity: 1; }
+  78.743% { opacity: 1; }
+  78.838% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep190 {
+  0% { opacity: 0; }
+  78.743% { opacity: 0; }
+  78.838% { opacity: 1; }
+  79.158% { opacity: 1; }
+  79.253% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep191 {
+  0% { opacity: 0; }
+  79.158% { opacity: 0; }
+  79.253% { opacity: 1; }
+  79.573% { opacity: 1; }
+  79.668% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep192 {
+  0% { opacity: 0; }
+  79.573% { opacity: 0; }
+  79.668% { opacity: 1; }
+  79.988% { opacity: 1; }
+  80.083% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep193 {
+  0% { opacity: 0; }
+  79.988% { opacity: 0; }
+  80.083% { opacity: 1; }
+  80.403% { opacity: 1; }
+  80.498% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep194 {
+  0% { opacity: 0; }
+  80.403% { opacity: 0; }
+  80.498% { opacity: 1; }
+  80.818% { opacity: 1; }
+  80.913% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep195 {
+  0% { opacity: 0; }
+  80.818% { opacity: 0; }
+  80.913% { opacity: 1; }
+  81.233% { opacity: 1; }
+  81.328% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep196 {
+  0% { opacity: 0; }
+  81.233% { opacity: 0; }
+  81.328% { opacity: 1; }
+  81.648% { opacity: 1; }
+  81.743% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep197 {
+  0% { opacity: 0; }
+  81.648% { opacity: 0; }
+  81.743% { opacity: 1; }
+  82.063% { opacity: 1; }
+  82.158% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep198 {
+  0% { opacity: 0; }
+  82.063% { opacity: 0; }
+  82.158% { opacity: 1; }
+  82.478% { opacity: 1; }
+  82.573% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep199 {
+  0% { opacity: 0; }
+  82.478% { opacity: 0; }
+  82.573% { opacity: 1; }
+  82.893% { opacity: 1; }
+  82.988% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep200 {
+  0% { opacity: 0; }
+  82.893% { opacity: 0; }
+  82.988% { opacity: 1; }
+  83.308% { opacity: 1; }
+  83.402% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep201 {
+  0% { opacity: 0; }
+  83.308% { opacity: 0; }
+  83.402% { opacity: 1; }
+  83.723% { opacity: 1; }
+  83.817% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep202 {
+  0% { opacity: 0; }
+  83.723% { opacity: 0; }
+  83.817% { opacity: 1; }
+  84.138% { opacity: 1; }
+  84.232% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep203 {
+  0% { opacity: 0; }
+  84.138% { opacity: 0; }
+  84.232% { opacity: 1; }
+  84.553% { opacity: 1; }
+  84.647% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep204 {
+  0% { opacity: 0; }
+  84.553% { opacity: 0; }
+  84.647% { opacity: 1; }
+  84.968% { opacity: 1; }
+  85.062% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep205 {
+  0% { opacity: 0; }
+  84.968% { opacity: 0; }
+  85.062% { opacity: 1; }
+  85.382% { opacity: 1; }
+  85.477% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep206 {
+  0% { opacity: 0; }
+  85.382% { opacity: 0; }
+  85.477% { opacity: 1; }
+  85.797% { opacity: 1; }
+  85.892% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep207 {
+  0% { opacity: 0; }
+  85.797% { opacity: 0; }
+  85.892% { opacity: 1; }
+  86.212% { opacity: 1; }
+  86.307% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep208 {
+  0% { opacity: 0; }
+  86.212% { opacity: 0; }
+  86.307% { opacity: 1; }
+  86.627% { opacity: 1; }
+  86.722% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep209 {
+  0% { opacity: 0; }
+  86.627% { opacity: 0; }
+  86.722% { opacity: 1; }
+  87.042% { opacity: 1; }
+  87.137% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep210 {
+  0% { opacity: 0; }
+  87.042% { opacity: 0; }
+  87.137% { opacity: 1; }
+  87.457% { opacity: 1; }
+  87.552% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep211 {
+  0% { opacity: 0; }
+  87.457% { opacity: 0; }
+  87.552% { opacity: 1; }
+  87.872% { opacity: 1; }
+  87.967% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep212 {
+  0% { opacity: 0; }
+  87.872% { opacity: 0; }
+  87.967% { opacity: 1; }
+  88.287% { opacity: 1; }
+  88.382% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep213 {
+  0% { opacity: 0; }
+  88.287% { opacity: 0; }
+  88.382% { opacity: 1; }
+  88.702% { opacity: 1; }
+  88.797% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep214 {
+  0% { opacity: 0; }
+  88.702% { opacity: 0; }
+  88.797% { opacity: 1; }
+  89.117% { opacity: 1; }
+  89.212% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep215 {
+  0% { opacity: 0; }
+  89.117% { opacity: 0; }
+  89.212% { opacity: 1; }
+  89.532% { opacity: 1; }
+  89.627% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep216 {
+  0% { opacity: 0; }
+  89.532% { opacity: 0; }
+  89.627% { opacity: 1; }
+  89.947% { opacity: 1; }
+  90.041% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep217 {
+  0% { opacity: 0; }
+  89.947% { opacity: 0; }
+  90.041% { opacity: 1; }
+  90.362% { opacity: 1; }
+  90.456% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep218 {
+  0% { opacity: 0; }
+  90.362% { opacity: 0; }
+  90.456% { opacity: 1; }
+  90.777% { opacity: 1; }
+  90.871% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep219 {
+  0% { opacity: 0; }
+  90.777% { opacity: 0; }
+  90.871% { opacity: 1; }
+  91.192% { opacity: 1; }
+  91.286% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep220 {
+  0% { opacity: 0; }
+  91.192% { opacity: 0; }
+  91.286% { opacity: 1; }
+  91.607% { opacity: 1; }
+  91.701% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep221 {
+  0% { opacity: 0; }
+  91.607% { opacity: 0; }
+  91.701% { opacity: 1; }
+  92.021% { opacity: 1; }
+  92.116% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep222 {
+  0% { opacity: 0; }
+  92.021% { opacity: 0; }
+  92.116% { opacity: 1; }
+  92.436% { opacity: 1; }
+  92.531% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep223 {
+  0% { opacity: 0; }
+  92.436% { opacity: 0; }
+  92.531% { opacity: 1; }
+  92.851% { opacity: 1; }
+  92.946% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep224 {
+  0% { opacity: 0; }
+  92.851% { opacity: 0; }
+  92.946% { opacity: 1; }
+  93.266% { opacity: 1; }
+  93.361% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep225 {
+  0% { opacity: 0; }
+  93.266% { opacity: 0; }
+  93.361% { opacity: 1; }
+  93.681% { opacity: 1; }
+  93.776% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep226 {
+  0% { opacity: 0; }
+  93.681% { opacity: 0; }
+  93.776% { opacity: 1; }
+  94.096% { opacity: 1; }
+  94.191% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep227 {
+  0% { opacity: 0; }
+  94.096% { opacity: 0; }
+  94.191% { opacity: 1; }
+  94.511% { opacity: 1; }
+  94.606% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep228 {
+  0% { opacity: 0; }
+  94.511% { opacity: 0; }
+  94.606% { opacity: 1; }
+  94.926% { opacity: 1; }
+  95.021% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep229 {
+  0% { opacity: 0; }
+  94.926% { opacity: 0; }
+  95.021% { opacity: 1; }
+  95.341% { opacity: 1; }
+  95.436% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep230 {
+  0% { opacity: 0; }
+  95.341% { opacity: 0; }
+  95.436% { opacity: 1; }
+  95.756% { opacity: 1; }
+  95.851% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep231 {
+  0% { opacity: 0; }
+  95.756% { opacity: 0; }
+  95.851% { opacity: 1; }
+  96.171% { opacity: 1; }
+  96.266% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep232 {
+  0% { opacity: 0; }
+  96.171% { opacity: 0; }
+  96.266% { opacity: 1; }
+  96.586% { opacity: 1; }
+  96.680% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep233 {
+  0% { opacity: 0; }
+  96.586% { opacity: 0; }
+  96.680% { opacity: 1; }
+  97.001% { opacity: 1; }
+  97.095% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep234 {
+  0% { opacity: 0; }
+  97.001% { opacity: 0; }
+  97.095% { opacity: 1; }
+  97.416% { opacity: 1; }
+  97.510% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep235 {
+  0% { opacity: 0; }
+  97.416% { opacity: 0; }
+  97.510% { opacity: 1; }
+  97.831% { opacity: 1; }
+  97.925% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep236 {
+  0% { opacity: 0; }
+  97.831% { opacity: 0; }
+  97.925% { opacity: 1; }
+  98.246% { opacity: 1; }
+  98.340% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep237 {
+  0% { opacity: 0; }
+  98.246% { opacity: 0; }
+  98.340% { opacity: 1; }
+  98.660% { opacity: 1; }
+  98.755% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep238 {
+  0% { opacity: 0; }
+  98.660% { opacity: 0; }
+  98.755% { opacity: 1; }
+  99.075% { opacity: 1; }
+  99.170% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep239 {
+  0% { opacity: 0; }
+  99.075% { opacity: 0; }
+  99.170% { opacity: 1; }
+  99.490% { opacity: 1; }
+  99.585% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes countStep240 {
+  0% { opacity: 0; }
+  99.490% { opacity: 0; }
+  99.585% { opacity: 1; }
+  99.905% { opacity: 1; }
   100% { opacity: 1; }
 }
-
-@keyframes odoHundreds {
-  0.00% { transform: translateY(0px); }
-  5.14% { transform: translateY(0px); }
-  5.14% { transform: translateY(-14px); }
-  10.28% { transform: translateY(-14px); }
-  10.29% { transform: translateY(-28px); }
-  15.43% { transform: translateY(-28px); }
-  15.43% { transform: translateY(-42px); }
-  20.57% { transform: translateY(-42px); }
-  20.58% { transform: translateY(-56px); }
-  25.72% { transform: translateY(-56px); }
-  25.72% { transform: translateY(-70px); }
-  30.86% { transform: translateY(-70px); }
-  30.86% { transform: translateY(-84px); }
-  36.00% { transform: translateY(-84px); }
-  36.01% { transform: translateY(-98px); }
-  41.15% { transform: translateY(-98px); }
-  41.15% { transform: translateY(-112px); }
-  46.29% { transform: translateY(-112px); }
-  46.30% { transform: translateY(-126px); }
-  51.44% { transform: translateY(-126px); }
-  51.44% { transform: translateY(0px); }
-  56.58% { transform: translateY(0px); }
-  56.58% { transform: translateY(-14px); }
-  61.72% { transform: translateY(-14px); }
-  61.73% { transform: translateY(-28px); }
-  66.87% { transform: translateY(-28px); }
-  66.87% { transform: translateY(-42px); }
-  72.01% { transform: translateY(-42px); }
-  72.02% { transform: translateY(-56px); }
-  77.16% { transform: translateY(-56px); }
-  77.16% { transform: translateY(-70px); }
-  82.30% { transform: translateY(-70px); }
-  82.30% { transform: translateY(-84px); }
-  87.44% { transform: translateY(-84px); }
-  87.45% { transform: translateY(-98px); }
-  92.59% { transform: translateY(-98px); }
-  92.59% { transform: translateY(-112px); }
-  97.73% { transform: translateY(-112px); }
-  97.74% { transform: translateY(-126px); }
-  100% { transform: translateY(-126px); }
-}
-
-@keyframes odoTens {
-  0.00% { transform: translateY(0px); }
-  0.51% { transform: translateY(0px); }
-  0.51% { transform: translateY(-14px); }
-  1.02% { transform: translateY(-14px); }
-  1.03% { transform: translateY(-28px); }
-  1.54% { transform: translateY(-28px); }
-  1.54% { transform: translateY(-42px); }
-  2.05% { transform: translateY(-42px); }
-  2.06% { transform: translateY(-56px); }
-  2.57% { transform: translateY(-56px); }
-  2.57% { transform: translateY(-70px); }
-  3.08% { transform: translateY(-70px); }
-  3.09% { transform: translateY(-84px); }
-  3.60% { transform: translateY(-84px); }
-  3.60% { transform: translateY(-98px); }
-  4.11% { transform: translateY(-98px); }
-  4.12% { transform: translateY(-112px); }
-  4.62% { transform: translateY(-112px); }
-  4.63% { transform: translateY(-126px); }
-  5.14% { transform: translateY(-126px); }
-  5.14% { transform: translateY(0px); }
-  5.65% { transform: translateY(0px); }
-  5.66% { transform: translateY(-14px); }
-  6.17% { transform: translateY(-14px); }
-  6.17% { transform: translateY(-28px); }
-  6.68% { transform: translateY(-28px); }
-  6.69% { transform: translateY(-42px); }
-  7.20% { transform: translateY(-42px); }
-  7.20% { transform: translateY(-56px); }
-  7.71% { transform: translateY(-56px); }
-  7.72% { transform: translateY(-70px); }
-  8.23% { transform: translateY(-70px); }
-  8.23% { transform: translateY(-84px); }
-  8.74% { transform: translateY(-84px); }
-  8.74% { transform: translateY(-98px); }
-  9.25% { transform: translateY(-98px); }
-  9.26% { transform: translateY(-112px); }
-  9.77% { transform: translateY(-112px); }
-  9.77% { transform: translateY(-126px); }
-  10.28% { transform: translateY(-126px); }
-  10.29% { transform: translateY(0px); }
-  10.80% { transform: translateY(0px); }
-  10.80% { transform: translateY(-14px); }
-  11.31% { transform: translateY(-14px); }
-  11.32% { transform: translateY(-28px); }
-  11.83% { transform: translateY(-28px); }
-  11.83% { transform: translateY(-42px); }
-  12.34% { transform: translateY(-42px); }
-  12.35% { transform: translateY(-56px); }
-  12.85% { transform: translateY(-56px); }
-  12.86% { transform: translateY(-70px); }
-  13.37% { transform: translateY(-70px); }
-  13.37% { transform: translateY(-84px); }
-  13.88% { transform: translateY(-84px); }
-  13.89% { transform: translateY(-98px); }
-  14.40% { transform: translateY(-98px); }
-  14.40% { transform: translateY(-112px); }
-  14.91% { transform: translateY(-112px); }
-  14.92% { transform: translateY(-126px); }
-  15.43% { transform: translateY(-126px); }
-  15.43% { transform: translateY(0px); }
-  15.94% { transform: translateY(0px); }
-  15.95% { transform: translateY(-14px); }
-  16.46% { transform: translateY(-14px); }
-  16.46% { transform: translateY(-28px); }
-  16.97% { transform: translateY(-28px); }
-  16.98% { transform: translateY(-42px); }
-  17.48% { transform: translateY(-42px); }
-  17.49% { transform: translateY(-56px); }
-  18.00% { transform: translateY(-56px); }
-  18.00% { transform: translateY(-70px); }
-  18.51% { transform: translateY(-70px); }
-  18.52% { transform: translateY(-84px); }
-  19.03% { transform: translateY(-84px); }
-  19.03% { transform: translateY(-98px); }
-  19.54% { transform: translateY(-98px); }
-  19.55% { transform: translateY(-112px); }
-  20.06% { transform: translateY(-112px); }
-  20.06% { transform: translateY(-126px); }
-  20.57% { transform: translateY(-126px); }
-  20.58% { transform: translateY(0px); }
-  21.09% { transform: translateY(0px); }
-  21.09% { transform: translateY(-14px); }
-  21.60% { transform: translateY(-14px); }
-  21.60% { transform: translateY(-28px); }
-  22.11% { transform: translateY(-28px); }
-  22.12% { transform: translateY(-42px); }
-  22.63% { transform: translateY(-42px); }
-  22.63% { transform: translateY(-56px); }
-  23.14% { transform: translateY(-56px); }
-  23.15% { transform: translateY(-70px); }
-  23.66% { transform: translateY(-70px); }
-  23.66% { transform: translateY(-84px); }
-  24.17% { transform: translateY(-84px); }
-  24.18% { transform: translateY(-98px); }
-  24.69% { transform: translateY(-98px); }
-  24.69% { transform: translateY(-112px); }
-  25.20% { transform: translateY(-112px); }
-  25.21% { transform: translateY(-126px); }
-  25.72% { transform: translateY(-126px); }
-  25.72% { transform: translateY(0px); }
-  26.23% { transform: translateY(0px); }
-  26.23% { transform: translateY(-14px); }
-  26.74% { transform: translateY(-14px); }
-  26.75% { transform: translateY(-28px); }
-  27.26% { transform: translateY(-28px); }
-  27.26% { transform: translateY(-42px); }
-  27.77% { transform: translateY(-42px); }
-  27.78% { transform: translateY(-56px); }
-  28.29% { transform: translateY(-56px); }
-  28.29% { transform: translateY(-70px); }
-  28.80% { transform: translateY(-70px); }
-  28.81% { transform: translateY(-84px); }
-  29.32% { transform: translateY(-84px); }
-  29.32% { transform: translateY(-98px); }
-  29.83% { transform: translateY(-98px); }
-  29.84% { transform: translateY(-112px); }
-  30.34% { transform: translateY(-112px); }
-  30.35% { transform: translateY(-126px); }
-  30.86% { transform: translateY(-126px); }
-  30.86% { transform: translateY(0px); }
-  31.37% { transform: translateY(0px); }
-  31.38% { transform: translateY(-14px); }
-  31.89% { transform: translateY(-14px); }
-  31.89% { transform: translateY(-28px); }
-  32.40% { transform: translateY(-28px); }
-  32.41% { transform: translateY(-42px); }
-  32.92% { transform: translateY(-42px); }
-  32.92% { transform: translateY(-56px); }
-  33.43% { transform: translateY(-56px); }
-  33.44% { transform: translateY(-70px); }
-  33.95% { transform: translateY(-70px); }
-  33.95% { transform: translateY(-84px); }
-  34.46% { transform: translateY(-84px); }
-  34.47% { transform: translateY(-98px); }
-  34.97% { transform: translateY(-98px); }
-  34.98% { transform: translateY(-112px); }
-  35.49% { transform: translateY(-112px); }
-  35.49% { transform: translateY(-126px); }
-  36.00% { transform: translateY(-126px); }
-  36.01% { transform: translateY(0px); }
-  36.52% { transform: translateY(0px); }
-  36.52% { transform: translateY(-14px); }
-  37.03% { transform: translateY(-14px); }
-  37.04% { transform: translateY(-28px); }
-  37.55% { transform: translateY(-28px); }
-  37.55% { transform: translateY(-42px); }
-  38.06% { transform: translateY(-42px); }
-  38.07% { transform: translateY(-56px); }
-  38.58% { transform: translateY(-56px); }
-  38.58% { transform: translateY(-70px); }
-  39.09% { transform: translateY(-70px); }
-  39.09% { transform: translateY(-84px); }
-  39.60% { transform: translateY(-84px); }
-  39.61% { transform: translateY(-98px); }
-  40.12% { transform: translateY(-98px); }
-  40.12% { transform: translateY(-112px); }
-  40.63% { transform: translateY(-112px); }
-  40.64% { transform: translateY(-126px); }
-  41.15% { transform: translateY(-126px); }
-  41.15% { transform: translateY(0px); }
-  41.66% { transform: translateY(0px); }
-  41.67% { transform: translateY(-14px); }
-  42.18% { transform: translateY(-14px); }
-  42.18% { transform: translateY(-28px); }
-  42.69% { transform: translateY(-28px); }
-  42.70% { transform: translateY(-42px); }
-  43.20% { transform: translateY(-42px); }
-  43.21% { transform: translateY(-56px); }
-  43.72% { transform: translateY(-56px); }
-  43.72% { transform: translateY(-70px); }
-  44.23% { transform: translateY(-70px); }
-  44.24% { transform: translateY(-84px); }
-  44.75% { transform: translateY(-84px); }
-  44.75% { transform: translateY(-98px); }
-  45.26% { transform: translateY(-98px); }
-  45.27% { transform: translateY(-112px); }
-  45.78% { transform: translateY(-112px); }
-  45.78% { transform: translateY(-126px); }
-  46.29% { transform: translateY(-126px); }
-  46.30% { transform: translateY(0px); }
-  46.81% { transform: translateY(0px); }
-  46.81% { transform: translateY(-14px); }
-  47.32% { transform: translateY(-14px); }
-  47.33% { transform: translateY(-28px); }
-  47.83% { transform: translateY(-28px); }
-  47.84% { transform: translateY(-42px); }
-  48.35% { transform: translateY(-42px); }
-  48.35% { transform: translateY(-56px); }
-  48.86% { transform: translateY(-56px); }
-  48.87% { transform: translateY(-70px); }
-  49.38% { transform: translateY(-70px); }
-  49.38% { transform: translateY(-84px); }
-  49.89% { transform: translateY(-84px); }
-  49.90% { transform: translateY(-98px); }
-  50.41% { transform: translateY(-98px); }
-  50.41% { transform: translateY(-112px); }
-  50.92% { transform: translateY(-112px); }
-  50.93% { transform: translateY(-126px); }
-  51.44% { transform: translateY(-126px); }
-  51.44% { transform: translateY(0px); }
-  51.95% { transform: translateY(0px); }
-  51.95% { transform: translateY(-14px); }
-  52.46% { transform: translateY(-14px); }
-  52.47% { transform: translateY(-28px); }
-  52.98% { transform: translateY(-28px); }
-  52.98% { transform: translateY(-42px); }
-  53.49% { transform: translateY(-42px); }
-  53.50% { transform: translateY(-56px); }
-  54.01% { transform: translateY(-56px); }
-  54.01% { transform: translateY(-70px); }
-  54.52% { transform: translateY(-70px); }
-  54.53% { transform: translateY(-84px); }
-  55.04% { transform: translateY(-84px); }
-  55.04% { transform: translateY(-98px); }
-  55.55% { transform: translateY(-98px); }
-  55.56% { transform: translateY(-112px); }
-  56.06% { transform: translateY(-112px); }
-  56.07% { transform: translateY(-126px); }
-  56.58% { transform: translateY(-126px); }
-  56.58% { transform: translateY(0px); }
-  57.09% { transform: translateY(0px); }
-  57.10% { transform: translateY(-14px); }
-  57.61% { transform: translateY(-14px); }
-  57.61% { transform: translateY(-28px); }
-  58.12% { transform: translateY(-28px); }
-  58.13% { transform: translateY(-42px); }
-  58.64% { transform: translateY(-42px); }
-  58.64% { transform: translateY(-56px); }
-  59.15% { transform: translateY(-56px); }
-  59.16% { transform: translateY(-70px); }
-  59.67% { transform: translateY(-70px); }
-  59.67% { transform: translateY(-84px); }
-  60.18% { transform: translateY(-84px); }
-  60.19% { transform: translateY(-98px); }
-  60.69% { transform: translateY(-98px); }
-  60.70% { transform: translateY(-112px); }
-  61.21% { transform: translateY(-112px); }
-  61.21% { transform: translateY(-126px); }
-  61.72% { transform: translateY(-126px); }
-  61.73% { transform: translateY(0px); }
-  62.24% { transform: translateY(0px); }
-  62.24% { transform: translateY(-14px); }
-  62.75% { transform: translateY(-14px); }
-  62.76% { transform: translateY(-28px); }
-  63.27% { transform: translateY(-28px); }
-  63.27% { transform: translateY(-42px); }
-  63.78% { transform: translateY(-42px); }
-  63.79% { transform: translateY(-56px); }
-  64.30% { transform: translateY(-56px); }
-  64.30% { transform: translateY(-70px); }
-  64.81% { transform: translateY(-70px); }
-  64.81% { transform: translateY(-84px); }
-  65.32% { transform: translateY(-84px); }
-  65.33% { transform: translateY(-98px); }
-  65.84% { transform: translateY(-98px); }
-  65.84% { transform: translateY(-112px); }
-  66.35% { transform: translateY(-112px); }
-  66.36% { transform: translateY(-126px); }
-  66.87% { transform: translateY(-126px); }
-  66.87% { transform: translateY(0px); }
-  67.38% { transform: translateY(0px); }
-  67.39% { transform: translateY(-14px); }
-  67.90% { transform: translateY(-14px); }
-  67.90% { transform: translateY(-28px); }
-  68.41% { transform: translateY(-28px); }
-  68.42% { transform: translateY(-42px); }
-  68.92% { transform: translateY(-42px); }
-  68.93% { transform: translateY(-56px); }
-  69.44% { transform: translateY(-56px); }
-  69.44% { transform: translateY(-70px); }
-  69.95% { transform: translateY(-70px); }
-  69.96% { transform: translateY(-84px); }
-  70.47% { transform: translateY(-84px); }
-  70.47% { transform: translateY(-98px); }
-  70.98% { transform: translateY(-98px); }
-  70.99% { transform: translateY(-112px); }
-  71.50% { transform: translateY(-112px); }
-  71.50% { transform: translateY(-126px); }
-  72.01% { transform: translateY(-126px); }
-  72.02% { transform: translateY(0px); }
-  72.53% { transform: translateY(0px); }
-  72.53% { transform: translateY(-14px); }
-  73.04% { transform: translateY(-14px); }
-  73.05% { transform: translateY(-28px); }
-  73.55% { transform: translateY(-28px); }
-  73.56% { transform: translateY(-42px); }
-  74.07% { transform: translateY(-42px); }
-  74.07% { transform: translateY(-56px); }
-  74.58% { transform: translateY(-56px); }
-  74.59% { transform: translateY(-70px); }
-  75.10% { transform: translateY(-70px); }
-  75.10% { transform: translateY(-84px); }
-  75.61% { transform: translateY(-84px); }
-  75.62% { transform: translateY(-98px); }
-  76.13% { transform: translateY(-98px); }
-  76.13% { transform: translateY(-112px); }
-  76.64% { transform: translateY(-112px); }
-  76.65% { transform: translateY(-126px); }
-  77.16% { transform: translateY(-126px); }
-  77.16% { transform: translateY(0px); }
-  77.67% { transform: translateY(0px); }
-  77.67% { transform: translateY(-14px); }
-  78.18% { transform: translateY(-14px); }
-  78.19% { transform: translateY(-28px); }
-  78.70% { transform: translateY(-28px); }
-  78.70% { transform: translateY(-42px); }
-  79.21% { transform: translateY(-42px); }
-  79.22% { transform: translateY(-56px); }
-  79.73% { transform: translateY(-56px); }
-  79.73% { transform: translateY(-70px); }
-  80.24% { transform: translateY(-70px); }
-  80.25% { transform: translateY(-84px); }
-  80.76% { transform: translateY(-84px); }
-  80.76% { transform: translateY(-98px); }
-  81.27% { transform: translateY(-98px); }
-  81.28% { transform: translateY(-112px); }
-  81.78% { transform: translateY(-112px); }
-  81.79% { transform: translateY(-126px); }
-  82.30% { transform: translateY(-126px); }
-  82.30% { transform: translateY(0px); }
-  82.81% { transform: translateY(0px); }
-  82.82% { transform: translateY(-14px); }
-  83.33% { transform: translateY(-14px); }
-  83.33% { transform: translateY(-28px); }
-  83.84% { transform: translateY(-28px); }
-  83.85% { transform: translateY(-42px); }
-  84.36% { transform: translateY(-42px); }
-  84.36% { transform: translateY(-56px); }
-  84.87% { transform: translateY(-56px); }
-  84.88% { transform: translateY(-70px); }
-  85.39% { transform: translateY(-70px); }
-  85.39% { transform: translateY(-84px); }
-  85.90% { transform: translateY(-84px); }
-  85.91% { transform: translateY(-98px); }
-  86.41% { transform: translateY(-98px); }
-  86.42% { transform: translateY(-112px); }
-  86.93% { transform: translateY(-112px); }
-  86.93% { transform: translateY(-126px); }
-  87.44% { transform: translateY(-126px); }
-  87.45% { transform: translateY(0px); }
-  87.96% { transform: translateY(0px); }
-  87.96% { transform: translateY(-14px); }
-  88.47% { transform: translateY(-14px); }
-  88.48% { transform: translateY(-28px); }
-  88.99% { transform: translateY(-28px); }
-  88.99% { transform: translateY(-42px); }
-  89.50% { transform: translateY(-42px); }
-  89.51% { transform: translateY(-56px); }
-  90.02% { transform: translateY(-56px); }
-  90.02% { transform: translateY(-70px); }
-  90.53% { transform: translateY(-70px); }
-  90.53% { transform: translateY(-84px); }
-  91.04% { transform: translateY(-84px); }
-  91.05% { transform: translateY(-98px); }
-  91.56% { transform: translateY(-98px); }
-  91.56% { transform: translateY(-112px); }
-  92.07% { transform: translateY(-112px); }
-  92.08% { transform: translateY(-126px); }
-  92.59% { transform: translateY(-126px); }
-  92.59% { transform: translateY(0px); }
-  93.10% { transform: translateY(0px); }
-  93.11% { transform: translateY(-14px); }
-  93.62% { transform: translateY(-14px); }
-  93.62% { transform: translateY(-28px); }
-  94.13% { transform: translateY(-28px); }
-  94.14% { transform: translateY(-42px); }
-  94.65% { transform: translateY(-42px); }
-  94.65% { transform: translateY(-56px); }
-  95.16% { transform: translateY(-56px); }
-  95.16% { transform: translateY(-70px); }
-  95.67% { transform: translateY(-70px); }
-  95.68% { transform: translateY(-84px); }
-  96.19% { transform: translateY(-84px); }
-  96.19% { transform: translateY(-98px); }
-  96.70% { transform: translateY(-98px); }
-  96.71% { transform: translateY(-112px); }
-  97.22% { transform: translateY(-112px); }
-  97.22% { transform: translateY(-126px); }
-  97.73% { transform: translateY(-126px); }
-  97.74% { transform: translateY(0px); }
-  98.25% { transform: translateY(0px); }
-  98.25% { transform: translateY(-14px); }
-  98.76% { transform: translateY(-14px); }
-  98.77% { transform: translateY(-28px); }
-  99.27% { transform: translateY(-28px); }
-  99.28% { transform: translateY(-42px); }
-  99.79% { transform: translateY(-42px); }
-  99.79% { transform: translateY(-56px); }
-  100% { transform: translateY(-56px); }
-}
-
-@keyframes odoOnes {
-  0% { transform: translateY(0px); }
-  100% { transform: translateY(-140px); }
-}
     </style>
-    <clipPath id="odo-clip">
-      <rect x="0" y="0" width="40" height="15" />
-    </clipPath>
   </defs>
 
   <!-- Container Box -->
@@ -759,64 +2702,250 @@
     <text x="14" y="9" class="tag-txt">PORTAL GATEWAY // SECTOR 03: RETRO LASER CANNON COMMIT ARCADE</text>
   </g>
 
-  <!-- Live Dynamic Destroyed Counter HUD (Counts every commit from 0 to 1,944) -->
+  <!-- Live Counter HUD Badge displaying total commits -->
   <g transform="translate(565, 10)">
     <rect width="260" height="26" rx="3" class="counter-frame"/>
-    <g transform="translate(10, 0)">
-      <text x="4" y="17" class="counter-txt">DESTROYED: [</text>
-      
-      <!-- Continuous Rolling Digits (0 to 1,944) -->
-      <g transform="translate(94, 4)" clip-path="url(#odo-clip)">
-        <!-- Thousands -->
-        <g class="th-strip">
-          <text x="0" y="13" class="odo-digit">0</text>
-          <text x="0" y="27" class="odo-digit">1</text>
-        </g>
-        <!-- Comma -->
-        <text x="7" y="13" class="odo-digit comma-val">,</text>
-        <!-- Hundreds -->
-        <g class="hu-strip" transform="translate(14, 0)">
-          <text x="0" y="13" class="odo-digit">0</text>
-          <text x="0" y="27" class="odo-digit">1</text>
-          <text x="0" y="41" class="odo-digit">2</text>
-          <text x="0" y="55" class="odo-digit">3</text>
-          <text x="0" y="69" class="odo-digit">4</text>
-          <text x="0" y="83" class="odo-digit">5</text>
-          <text x="0" y="97" class="odo-digit">6</text>
-          <text x="0" y="111" class="odo-digit">7</text>
-          <text x="0" y="125" class="odo-digit">8</text>
-          <text x="0" y="139" class="odo-digit">9</text>
-        </g>
-        <!-- Tens -->
-        <g class="te-strip" transform="translate(21, 0)">
-          <text x="0" y="13" class="odo-digit">0</text>
-          <text x="0" y="27" class="odo-digit">1</text>
-          <text x="0" y="41" class="odo-digit">2</text>
-          <text x="0" y="55" class="odo-digit">3</text>
-          <text x="0" y="69" class="odo-digit">4</text>
-          <text x="0" y="83" class="odo-digit">5</text>
-          <text x="0" y="97" class="odo-digit">6</text>
-          <text x="0" y="111" class="odo-digit">7</text>
-          <text x="0" y="125" class="odo-digit">8</text>
-          <text x="0" y="139" class="odo-digit">9</text>
-        </g>
-        <!-- Ones -->
-        <g class="on-strip" transform="translate(28, 0)">
-          <text x="0" y="13" class="odo-digit">0</text>
-          <text x="0" y="27" class="odo-digit">1</text>
-          <text x="0" y="41" class="odo-digit">2</text>
-          <text x="0" y="55" class="odo-digit">3</text>
-          <text x="0" y="69" class="odo-digit">4</text>
-          <text x="0" y="83" class="odo-digit">5</text>
-          <text x="0" y="97" class="odo-digit">6</text>
-          <text x="0" y="111" class="odo-digit">7</text>
-          <text x="0" y="125" class="odo-digit">8</text>
-          <text x="0" y="139" class="odo-digit">9</text>
-        </g>
-      </g>
-
-      <text x="138" y="17" class="counter-txt">/ 1,944 COMMITS ]</text>
-    </g>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-0">DESTROYED: [ 0 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-1">DESTROYED: [ 8 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-2">DESTROYED: [ 16 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-3">DESTROYED: [ 24 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-4">DESTROYED: [ 32 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-5">DESTROYED: [ 40 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-6">DESTROYED: [ 49 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-7">DESTROYED: [ 57 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-8">DESTROYED: [ 65 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-9">DESTROYED: [ 73 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-10">DESTROYED: [ 81 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-11">DESTROYED: [ 89 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-12">DESTROYED: [ 97 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-13">DESTROYED: [ 105 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-14">DESTROYED: [ 113 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-15">DESTROYED: [ 122 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-16">DESTROYED: [ 130 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-17">DESTROYED: [ 138 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-18">DESTROYED: [ 146 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-19">DESTROYED: [ 154 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-20">DESTROYED: [ 162 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-21">DESTROYED: [ 170 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-22">DESTROYED: [ 178 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-23">DESTROYED: [ 186 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-24">DESTROYED: [ 194 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-25">DESTROYED: [ 202 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-26">DESTROYED: [ 211 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-27">DESTROYED: [ 219 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-28">DESTROYED: [ 227 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-29">DESTROYED: [ 235 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-30">DESTROYED: [ 243 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-31">DESTROYED: [ 251 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-32">DESTROYED: [ 259 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-33">DESTROYED: [ 267 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-34">DESTROYED: [ 275 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-35">DESTROYED: [ 284 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-36">DESTROYED: [ 292 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-37">DESTROYED: [ 300 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-38">DESTROYED: [ 308 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-39">DESTROYED: [ 316 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-40">DESTROYED: [ 324 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-41">DESTROYED: [ 332 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-42">DESTROYED: [ 340 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-43">DESTROYED: [ 348 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-44">DESTROYED: [ 356 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-45">DESTROYED: [ 364 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-46">DESTROYED: [ 373 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-47">DESTROYED: [ 381 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-48">DESTROYED: [ 389 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-49">DESTROYED: [ 397 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-50">DESTROYED: [ 405 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-51">DESTROYED: [ 413 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-52">DESTROYED: [ 421 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-53">DESTROYED: [ 429 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-54">DESTROYED: [ 437 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-55">DESTROYED: [ 446 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-56">DESTROYED: [ 454 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-57">DESTROYED: [ 462 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-58">DESTROYED: [ 470 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-59">DESTROYED: [ 478 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-60">DESTROYED: [ 486 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-61">DESTROYED: [ 494 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-62">DESTROYED: [ 502 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-63">DESTROYED: [ 510 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-64">DESTROYED: [ 518 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-65">DESTROYED: [ 526 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-66">DESTROYED: [ 535 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-67">DESTROYED: [ 543 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-68">DESTROYED: [ 551 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-69">DESTROYED: [ 559 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-70">DESTROYED: [ 567 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-71">DESTROYED: [ 575 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-72">DESTROYED: [ 583 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-73">DESTROYED: [ 591 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-74">DESTROYED: [ 599 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-75">DESTROYED: [ 608 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-76">DESTROYED: [ 616 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-77">DESTROYED: [ 624 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-78">DESTROYED: [ 632 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-79">DESTROYED: [ 640 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-80">DESTROYED: [ 648 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-81">DESTROYED: [ 656 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-82">DESTROYED: [ 664 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-83">DESTROYED: [ 672 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-84">DESTROYED: [ 680 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-85">DESTROYED: [ 688 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-86">DESTROYED: [ 697 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-87">DESTROYED: [ 705 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-88">DESTROYED: [ 713 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-89">DESTROYED: [ 721 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-90">DESTROYED: [ 729 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-91">DESTROYED: [ 737 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-92">DESTROYED: [ 745 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-93">DESTROYED: [ 753 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-94">DESTROYED: [ 761 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-95">DESTROYED: [ 770 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-96">DESTROYED: [ 778 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-97">DESTROYED: [ 786 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-98">DESTROYED: [ 794 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-99">DESTROYED: [ 802 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-100">DESTROYED: [ 810 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-101">DESTROYED: [ 818 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-102">DESTROYED: [ 826 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-103">DESTROYED: [ 834 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-104">DESTROYED: [ 842 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-105">DESTROYED: [ 850 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-106">DESTROYED: [ 859 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-107">DESTROYED: [ 867 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-108">DESTROYED: [ 875 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-109">DESTROYED: [ 883 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-110">DESTROYED: [ 891 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-111">DESTROYED: [ 899 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-112">DESTROYED: [ 907 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-113">DESTROYED: [ 915 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-114">DESTROYED: [ 923 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-115">DESTROYED: [ 932 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-116">DESTROYED: [ 940 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-117">DESTROYED: [ 948 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-118">DESTROYED: [ 956 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-119">DESTROYED: [ 964 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-120">DESTROYED: [ 972 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-121">DESTROYED: [ 980 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-122">DESTROYED: [ 988 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-123">DESTROYED: [ 996 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-124">DESTROYED: [ 1,004 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-125">DESTROYED: [ 1,013 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-126">DESTROYED: [ 1,021 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-127">DESTROYED: [ 1,029 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-128">DESTROYED: [ 1,037 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-129">DESTROYED: [ 1,045 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-130">DESTROYED: [ 1,053 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-131">DESTROYED: [ 1,061 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-132">DESTROYED: [ 1,069 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-133">DESTROYED: [ 1,077 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-134">DESTROYED: [ 1,085 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-135">DESTROYED: [ 1,094 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-136">DESTROYED: [ 1,102 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-137">DESTROYED: [ 1,110 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-138">DESTROYED: [ 1,118 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-139">DESTROYED: [ 1,126 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-140">DESTROYED: [ 1,134 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-141">DESTROYED: [ 1,142 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-142">DESTROYED: [ 1,150 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-143">DESTROYED: [ 1,158 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-144">DESTROYED: [ 1,166 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-145">DESTROYED: [ 1,174 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-146">DESTROYED: [ 1,183 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-147">DESTROYED: [ 1,191 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-148">DESTROYED: [ 1,199 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-149">DESTROYED: [ 1,207 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-150">DESTROYED: [ 1,215 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-151">DESTROYED: [ 1,223 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-152">DESTROYED: [ 1,231 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-153">DESTROYED: [ 1,239 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-154">DESTROYED: [ 1,247 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-155">DESTROYED: [ 1,256 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-156">DESTROYED: [ 1,264 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-157">DESTROYED: [ 1,272 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-158">DESTROYED: [ 1,280 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-159">DESTROYED: [ 1,288 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-160">DESTROYED: [ 1,296 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-161">DESTROYED: [ 1,304 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-162">DESTROYED: [ 1,312 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-163">DESTROYED: [ 1,320 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-164">DESTROYED: [ 1,328 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-165">DESTROYED: [ 1,336 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-166">DESTROYED: [ 1,345 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-167">DESTROYED: [ 1,353 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-168">DESTROYED: [ 1,361 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-169">DESTROYED: [ 1,369 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-170">DESTROYED: [ 1,377 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-171">DESTROYED: [ 1,385 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-172">DESTROYED: [ 1,393 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-173">DESTROYED: [ 1,401 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-174">DESTROYED: [ 1,409 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-175">DESTROYED: [ 1,418 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-176">DESTROYED: [ 1,426 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-177">DESTROYED: [ 1,434 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-178">DESTROYED: [ 1,442 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-179">DESTROYED: [ 1,450 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-180">DESTROYED: [ 1,458 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-181">DESTROYED: [ 1,466 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-182">DESTROYED: [ 1,474 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-183">DESTROYED: [ 1,482 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-184">DESTROYED: [ 1,490 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-185">DESTROYED: [ 1,498 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-186">DESTROYED: [ 1,507 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-187">DESTROYED: [ 1,515 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-188">DESTROYED: [ 1,523 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-189">DESTROYED: [ 1,531 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-190">DESTROYED: [ 1,539 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-191">DESTROYED: [ 1,547 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-192">DESTROYED: [ 1,555 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-193">DESTROYED: [ 1,563 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-194">DESTROYED: [ 1,571 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-195">DESTROYED: [ 1,580 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-196">DESTROYED: [ 1,588 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-197">DESTROYED: [ 1,596 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-198">DESTROYED: [ 1,604 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-199">DESTROYED: [ 1,612 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-200">DESTROYED: [ 1,620 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-201">DESTROYED: [ 1,628 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-202">DESTROYED: [ 1,636 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-203">DESTROYED: [ 1,644 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-204">DESTROYED: [ 1,652 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-205">DESTROYED: [ 1,660 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-206">DESTROYED: [ 1,669 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-207">DESTROYED: [ 1,677 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-208">DESTROYED: [ 1,685 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-209">DESTROYED: [ 1,693 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-210">DESTROYED: [ 1,701 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-211">DESTROYED: [ 1,709 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-212">DESTROYED: [ 1,717 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-213">DESTROYED: [ 1,725 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-214">DESTROYED: [ 1,733 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-215">DESTROYED: [ 1,742 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-216">DESTROYED: [ 1,750 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-217">DESTROYED: [ 1,758 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-218">DESTROYED: [ 1,766 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-219">DESTROYED: [ 1,774 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-220">DESTROYED: [ 1,782 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-221">DESTROYED: [ 1,790 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-222">DESTROYED: [ 1,798 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-223">DESTROYED: [ 1,806 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-224">DESTROYED: [ 1,814 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-225">DESTROYED: [ 1,822 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-226">DESTROYED: [ 1,831 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-227">DESTROYED: [ 1,839 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-228">DESTROYED: [ 1,847 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-229">DESTROYED: [ 1,855 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-230">DESTROYED: [ 1,863 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-231">DESTROYED: [ 1,871 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-232">DESTROYED: [ 1,879 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-233">DESTROYED: [ 1,887 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-234">DESTROYED: [ 1,895 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-235">DESTROYED: [ 1,904 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-236">DESTROYED: [ 1,912 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-237">DESTROYED: [ 1,920 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-238">DESTROYED: [ 1,928 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-239">DESTROYED: [ 1,936 / 1,944 COMMITS ]</text>
+      <text x="130" y="17" text-anchor="middle" class="counter-txt step-val-240">DESTROYED: [ 1,944 / 1,944 COMMITS ]</text>
   </g>
   <line x1="0" y1="42" x2="850" y2="42" stroke="#2C303B" stroke-width="1"/>
 
