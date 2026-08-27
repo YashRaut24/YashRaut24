@@ -13,7 +13,7 @@ def fetch_contributions(username, token=""):
     """
     Fetch real GitHub contributions calendar and lifetime total contributions for user.
     """
-    total_contribs = 1938
+    total_contribs = 1942
     date_dict = {}
 
     if token:
@@ -59,7 +59,7 @@ def fetch_contributions(username, token=""):
                         date_dict[day["date"]] = lvl
                 
                 cal_total = calendar["totalContributions"]
-                total_contribs = max(1938, cal_total)
+                total_contribs = max(1942, cal_total)
                 print(f"Fetched {len(date_dict)} days via GitHub GraphQL API. Total: {total_contribs}")
                 return date_dict, total_contribs
         except Exception as e:
@@ -75,7 +75,7 @@ def fetch_contributions(username, token=""):
         m = re.search(r'([0-9,]+)\s+contributions\s+in', html)
         if m:
             parsed_total = int(m.group(1).replace(",", ""))
-            total_contribs = max(1938, parsed_total)
+            total_contribs = max(1942, parsed_total)
         
         matches = re.findall(r'data-date="([^"]+)"(?:\s+[^>]*?)?data-level="([^"]+)"', html)
         if not matches:
@@ -87,7 +87,7 @@ def fetch_contributions(username, token=""):
         return date_dict, total_contribs
     except Exception as e:
         print(f"Calendar fetch failed: {e}")
-        return {}, 1938
+        return {}, 1942
 
 def sync_other_svgs(total_contribs):
     """
@@ -117,7 +117,7 @@ def sync_other_svgs(total_contribs):
             f.write(content)
         print(f"Synced {telemetry_path} with {formatted_total} COMMITS")
 
-def generate_svg(date_dict, total_contribs=1938, output_path="assets/space-invaders-commits.svg"):
+def generate_svg(date_dict, total_contribs=1942, output_path="assets/space-invaders-commits.svg"):
     if not date_dict:
         raise ValueError("No contribution dates provided")
 

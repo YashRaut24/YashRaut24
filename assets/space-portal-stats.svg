@@ -47,7 +47,7 @@
     
     <!-- COLUMN 1: Total Contributions -->
     <g transform="translate(140, 48)">
-      <text x="0" y="0" text-anchor="middle" class="num-val">1,938</text>
+      <text x="0" y="0" text-anchor="middle" class="num-val">1,942</text>
       <text x="0" y="24" text-anchor="middle" class="lbl-main">Total Contributions</text>
       <text x="0" y="44" text-anchor="middle" class="date-txt">Aug 9, 2024 – Present</text>
     </g>
