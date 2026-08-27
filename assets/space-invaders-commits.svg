@@ -13,9 +13,9 @@
       }
 
       .ship-patrol { animation: shipPatrolRoute 15.33s cubic-bezier(0.25, 0, 0.15, 1) infinite; }
-.live-beacon {{ animation: beaconBlink 0.8s steps(2, start) infinite; }}
-.counter-frame {{ fill: #16171C; stroke: #2563EB; stroke-width: 1.2; }}
-.counter-txt {{ font-family: 'JetBrains Mono', Consolas, monospace; font-size: 10px; font-weight: 700; fill: #39D353; letter-spacing: 0.8px; }}
+.live-beacon { animation: beaconBlink 0.8s steps(2, start) infinite; }
+.counter-frame { fill: #111216; stroke: #2563EB; stroke-width: 1.2; }
+.counter-txt { font-family: 'JetBrains Mono', Consolas, monospace; font-size: 10px; font-weight: 700; fill: #39D353; letter-spacing: 0.8px; }
 .laser-bolt-1   { animation: laserShot1 15.33s linear infinite; }
 .spark-burst-1  { animation: sparkHit1 15.33s ease-out infinite; transform-origin: 80px 5px; }
 .commit-target-1 { animation: commitDamage1 15.33s ease-in-out infinite; }
@@ -40,15 +40,15 @@
 .laser-bolt-8   { animation: laserShot8 15.33s linear infinite; }
 .spark-burst-8  { animation: sparkHit8 15.33s ease-out infinite; transform-origin: 335px 5px; }
 .commit-target-8 { animation: commitDamage8 15.33s ease-in-out infinite; }
-.hud-val-0 { animation: hudCount0 15.33s steps(1, start) infinite; }
-.hud-val-1 { animation: hudCount1 15.33s steps(1, start) infinite; }
-.hud-val-2 { animation: hudCount2 15.33s steps(1, start) infinite; }
-.hud-val-3 { animation: hudCount3 15.33s steps(1, start) infinite; }
-.hud-val-4 { animation: hudCount4 15.33s steps(1, start) infinite; }
-.hud-val-5 { animation: hudCount5 15.33s steps(1, start) infinite; }
-.hud-val-6 { animation: hudCount6 15.33s steps(1, start) infinite; }
-.hud-val-7 { animation: hudCount7 15.33s steps(1, start) infinite; }
-.hud-val-8 { animation: hudCount8 15.33s steps(1, start) infinite; }
+.hud-val-0 { opacity: 1; animation: hudCount0 15.33s linear infinite; }
+.hud-val-1 { opacity: 0; animation: hudCount1 15.33s linear infinite; }
+.hud-val-2 { opacity: 0; animation: hudCount2 15.33s linear infinite; }
+.hud-val-3 { opacity: 0; animation: hudCount3 15.33s linear infinite; }
+.hud-val-4 { opacity: 0; animation: hudCount4 15.33s linear infinite; }
+.hud-val-5 { opacity: 0; animation: hudCount5 15.33s linear infinite; }
+.hud-val-6 { opacity: 0; animation: hudCount6 15.33s linear infinite; }
+.hud-val-7 { opacity: 0; animation: hudCount7 15.33s linear infinite; }
+.hud-val-8 { opacity: 0; animation: hudCount8 15.33s linear infinite; }
 
 @keyframes shipPatrolRoute {
   0.000%  { transform: translate(80px, 126px); }
@@ -295,82 +295,79 @@
 
 @keyframes hudCount0 {
   0% { opacity: 1; }
-  0.000% { opacity: 0; }
-  0.000%                 { opacity: 1; }
-  4.883%             { opacity: 1; }
-  5.013%                   { opacity: 0; }
+  4.948% { opacity: 1; }
+  5.013% { opacity: 0; }
   100% { opacity: 0; }
 }
 
 @keyframes hudCount1 {
   0% { opacity: 0; }
-  4.883% { opacity: 0; }
-  5.013%                 { opacity: 1; }
-  16.921%             { opacity: 1; }
-  17.051%                   { opacity: 0; }
+  4.948% { opacity: 0; }
+  5.013% { opacity: 1; }
+  16.986% { opacity: 1; }
+  17.051% { opacity: 0; }
   100% { opacity: 0; }
 }
 
 @keyframes hudCount2 {
   0% { opacity: 0; }
-  16.921% { opacity: 0; }
-  17.051%                 { opacity: 1; }
-  30.716%             { opacity: 1; }
-  30.846%                   { opacity: 0; }
+  16.986% { opacity: 0; }
+  17.051% { opacity: 1; }
+  30.781% { opacity: 1; }
+  30.846% { opacity: 0; }
   100% { opacity: 0; }
 }
 
 @keyframes hudCount3 {
   0% { opacity: 0; }
-  30.716% { opacity: 0; }
-  30.846%                 { opacity: 1; }
-  43.507%             { opacity: 1; }
-  43.637%                   { opacity: 0; }
+  30.781% { opacity: 0; }
+  30.846% { opacity: 1; }
+  43.572% { opacity: 1; }
+  43.637% { opacity: 0; }
   100% { opacity: 0; }
 }
 
 @keyframes hudCount4 {
   0% { opacity: 0; }
-  43.507% { opacity: 0; }
-  43.637%                 { opacity: 1; }
-  55.445%             { opacity: 1; }
-  55.575%                   { opacity: 0; }
+  43.572% { opacity: 0; }
+  43.637% { opacity: 1; }
+  55.510% { opacity: 1; }
+  55.575% { opacity: 0; }
   100% { opacity: 0; }
 }
 
 @keyframes hudCount5 {
   0% { opacity: 0; }
-  55.445% { opacity: 0; }
-  55.575%                 { opacity: 1; }
-  67.834%             { opacity: 1; }
-  67.965%                   { opacity: 0; }
+  55.510% { opacity: 0; }
+  55.575% { opacity: 1; }
+  67.899% { opacity: 1; }
+  67.965% { opacity: 0; }
   100% { opacity: 0; }
 }
 
 @keyframes hudCount6 {
   0% { opacity: 0; }
-  67.834% { opacity: 0; }
-  67.965%                 { opacity: 1; }
-  79.822%             { opacity: 1; }
-  79.953%                   { opacity: 0; }
+  67.899% { opacity: 0; }
+  67.965% { opacity: 1; }
+  79.888% { opacity: 1; }
+  79.953% { opacity: 0; }
   100% { opacity: 0; }
 }
 
 @keyframes hudCount7 {
   0% { opacity: 0; }
-  79.822% { opacity: 0; }
-  79.953%                 { opacity: 1; }
-  91.911%             { opacity: 1; }
-  92.041%                   { opacity: 0; }
+  79.888% { opacity: 0; }
+  79.953% { opacity: 1; }
+  91.976% { opacity: 1; }
+  92.041% { opacity: 0; }
   100% { opacity: 0; }
 }
 
 @keyframes hudCount8 {
   0% { opacity: 0; }
-  91.911% { opacity: 0; }
-  92.041%                 { opacity: 1; }
-  99.870%             { opacity: 1; }
-  100.000%                   { opacity: 0; }
+  91.976% { opacity: 0; }
+  92.041% { opacity: 1; }
+  99.935% { opacity: 1; }
   100% { opacity: 1; }
 }
     </style>
@@ -383,20 +380,20 @@
   <g transform="translate(24, 22)">
     <circle cx="0" cy="5" r="3.5" fill="#39D353" class="live-beacon"/>
     <text x="14" y="9" class="tag-txt">PORTAL GATEWAY // SECTOR 03: RETRO LASER CANNON COMMIT ARCADE</text>
-    
-    <!-- Live Counter HUD Badge displaying total commits -->
-    <g transform="translate(560, -8)">
-      <rect width="250" height="26" rx="3" class="counter-frame"/>
-      <text x="12" y="17" class="counter-txt hud-val-0">DESTROYED: [ 0 / 1,938 COMMITS ]</text>
-      <text x="12" y="17" class="counter-txt hud-val-1">DESTROYED: [ 242 / 1,938 COMMITS ]</text>
-      <text x="12" y="17" class="counter-txt hud-val-2">DESTROYED: [ 484 / 1,938 COMMITS ]</text>
-      <text x="12" y="17" class="counter-txt hud-val-3">DESTROYED: [ 727 / 1,938 COMMITS ]</text>
-      <text x="12" y="17" class="counter-txt hud-val-4">DESTROYED: [ 969 / 1,938 COMMITS ]</text>
-      <text x="12" y="17" class="counter-txt hud-val-5">DESTROYED: [ 1,211 / 1,938 COMMITS ]</text>
-      <text x="12" y="17" class="counter-txt hud-val-6">DESTROYED: [ 1,454 / 1,938 COMMITS ]</text>
-      <text x="12" y="17" class="counter-txt hud-val-7">DESTROYED: [ 1,696 / 1,938 COMMITS ]</text>
-      <text x="12" y="17" class="counter-txt hud-val-8">DESTROYED: [ 1,938 / 1,938 COMMITS ]</text>
-    </g>
+  </g>
+
+  <!-- Live Counter HUD Badge displaying total commits -->
+  <g transform="translate(565, 10)">
+    <rect width="260" height="26" rx="3" class="counter-frame"/>
+      <text x="127" y="17" text-anchor="middle" class="counter-txt hud-val-0">DESTROYED: [ 0 / 1,938 COMMITS ]</text>
+      <text x="127" y="17" text-anchor="middle" class="counter-txt hud-val-1">DESTROYED: [ 242 / 1,938 COMMITS ]</text>
+      <text x="127" y="17" text-anchor="middle" class="counter-txt hud-val-2">DESTROYED: [ 484 / 1,938 COMMITS ]</text>
+      <text x="127" y="17" text-anchor="middle" class="counter-txt hud-val-3">DESTROYED: [ 727 / 1,938 COMMITS ]</text>
+      <text x="127" y="17" text-anchor="middle" class="counter-txt hud-val-4">DESTROYED: [ 969 / 1,938 COMMITS ]</text>
+      <text x="127" y="17" text-anchor="middle" class="counter-txt hud-val-5">DESTROYED: [ 1,211 / 1,938 COMMITS ]</text>
+      <text x="127" y="17" text-anchor="middle" class="counter-txt hud-val-6">DESTROYED: [ 1,454 / 1,938 COMMITS ]</text>
+      <text x="127" y="17" text-anchor="middle" class="counter-txt hud-val-7">DESTROYED: [ 1,696 / 1,938 COMMITS ]</text>
+      <text x="127" y="17" text-anchor="middle" class="counter-txt hud-val-8">DESTROYED: [ 1,938 / 1,938 COMMITS ]</text>
   </g>
   <line x1="0" y1="42" x2="850" y2="42" stroke="#2C303B" stroke-width="1"/>
 

@@ -313,20 +313,32 @@ def generate_svg(date_dict, total_contribs=1938, output_path="assets/space-invad
         if c_val == 0:
             t_visible_start = 0.0
             t_visible_end = cycle_start_times[0] + travel_durations[0] + T_AIM + T_LASER
+            counter_kf = f'''@keyframes hudCount0 {{
+  0% {{ opacity: 1; }}
+  {to_pct(t_visible_end - 0.01)} {{ opacity: 1; }}
+  {to_pct(t_visible_end)} {{ opacity: 0; }}
+  100% {{ opacity: 0; }}
+}}'''
         elif c_val < 8:
             t_visible_start = cycle_start_times[c_val-1] + travel_durations[c_val-1] + T_AIM + T_LASER
             t_visible_end = cycle_start_times[c_val] + travel_durations[c_val] + T_AIM + T_LASER
+            counter_kf = f'''@keyframes hudCount{c_val} {{
+  0% {{ opacity: 0; }}
+  {to_pct(t_visible_start - 0.01)} {{ opacity: 0; }}
+  {to_pct(t_visible_start)} {{ opacity: 1; }}
+  {to_pct(t_visible_end - 0.01)} {{ opacity: 1; }}
+  {to_pct(t_visible_end)} {{ opacity: 0; }}
+  100% {{ opacity: 0; }}
+}}'''
         else:
             t_visible_start = cycle_start_times[7] + travel_durations[7] + T_AIM + T_LASER
             t_visible_end = TOTAL_DURATION
-
-        counter_kf = f'''@keyframes hudCount{c_val} {{
-  0% {{ opacity: {1 if c_val == 0 else 0}; }}
-  {to_pct(max(0.0, t_visible_start - 0.02))} {{ opacity: 0; }}
-  {to_pct(t_visible_start)}                 {{ opacity: 1; }}
-  {to_pct(t_visible_end - 0.02)}             {{ opacity: 1; }}
-  {to_pct(t_visible_end)}                   {{ opacity: 0; }}
-  100% {{ opacity: {1 if c_val == 8 else 0}; }}
+            counter_kf = f'''@keyframes hudCount8 {{
+  0% {{ opacity: 0; }}
+  {to_pct(t_visible_start - 0.01)} {{ opacity: 0; }}
+  {to_pct(t_visible_start)} {{ opacity: 1; }}
+  {to_pct(TOTAL_DURATION - 0.01)} {{ opacity: 1; }}
+  100% {{ opacity: 1; }}
 }}'''
         keyframes_css.append(counter_kf)
 
@@ -359,15 +371,15 @@ def generate_svg(date_dict, total_contribs=1938, output_path="assets/space-invad
     counter_elements = []
     for c_val in range(9):
         curr_val = int(round((c_val / 8.0) * total_contribs))
-        counter_elements.append(f'      <text x="12" y="17" class="counter-txt hud-val-{c_val}">DESTROYED: [ {curr_val:,} / {formatted_total} COMMITS ]</text>')
+        counter_elements.append(f'      <text x="127" y="17" text-anchor="middle" class="counter-txt hud-val-{c_val}">DESTROYED: [ {curr_val:,} / {formatted_total} COMMITS ]</text>')
     counter_texts = "\n".join(counter_elements)
 
     # CSS Rules
     css_class_rules = [
         f".ship-patrol {{ animation: shipPatrolRoute {TOTAL_DURATION:.2f}s cubic-bezier(0.25, 0, 0.15, 1) infinite; }}",
-        ".live-beacon {{ animation: beaconBlink 0.8s steps(2, start) infinite; }}",
-        ".counter-frame {{ fill: #16171C; stroke: #2563EB; stroke-width: 1.2; }}",
-        ".counter-txt {{ font-family: 'JetBrains Mono', Consolas, monospace; font-size: 10px; font-weight: 700; fill: #39D353; letter-spacing: 0.8px; }}"
+        ".live-beacon { animation: beaconBlink 0.8s steps(2, start) infinite; }",
+        ".counter-frame { fill: #111216; stroke: #2563EB; stroke-width: 1.2; }",
+        ".counter-txt { font-family: 'JetBrains Mono', Consolas, monospace; font-size: 10px; font-weight: 700; fill: #39D353; letter-spacing: 0.8px; }"
     ]
     for t in targets_data:
         tid = t["id"]
@@ -378,7 +390,8 @@ def generate_svg(date_dict, total_contribs=1938, output_path="assets/space-invad
         css_class_rules.append(f".commit-target-{tid} {{ animation: commitDamage{tid} {TOTAL_DURATION:.2f}s ease-in-out infinite; }}")
 
     for c_val in range(9):
-        css_class_rules.append(f".hud-val-{c_val} {{ animation: hudCount{c_val} {TOTAL_DURATION:.2f}s steps(1, start) infinite; }}")
+        init_op = 1 if c_val == 0 else 0
+        css_class_rules.append(f".hud-val-{c_val} {{ opacity: {init_op}; animation: hudCount{c_val} {TOTAL_DURATION:.2f}s linear infinite; }}")
 
     full_css = "\n".join(css_class_rules) + "\n\n" + "\n\n".join(keyframes_css)
 
@@ -429,12 +442,12 @@ def generate_svg(date_dict, total_contribs=1938, output_path="assets/space-invad
   <g transform="translate(24, 22)">
     <circle cx="0" cy="5" r="3.5" fill="#39D353" class="live-beacon"/>
     <text x="14" y="9" class="tag-txt">PORTAL GATEWAY // SECTOR 03: RETRO LASER CANNON COMMIT ARCADE</text>
-    
-    <!-- Live Counter HUD Badge displaying total commits -->
-    <g transform="translate(560, -8)">
-      <rect width="250" height="26" rx="3" class="counter-frame"/>
+  </g>
+
+  <!-- Live Counter HUD Badge displaying total commits -->
+  <g transform="translate(565, 10)">
+    <rect width="260" height="26" rx="3" class="counter-frame"/>
 {counter_texts}
-    </g>
   </g>
   <line x1="0" y1="42" x2="850" y2="42" stroke="#2C303B" stroke-width="1"/>
 
