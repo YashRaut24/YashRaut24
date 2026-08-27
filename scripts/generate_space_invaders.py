@@ -224,94 +224,38 @@ def generate_svg(date_records, total_contribs, output_path="assets/space-invader
     print(f"Generated 52x7 grid spanning {first_sunday} to {last_date}.")
     print(f"Found {len(active_cells)} active contribution cells in authentic layout.")
 
-    # Multi-round target selection across the contribution matrix
-    # Round stages select diverse, realistic targets across different sectors of the grid
-    round_selectors = [
-        # Round 1: Early-year & Mid-year sectors
-        [
-            lambda c: c["lvl"] >= 2 and c["col"] < 12,
-            lambda c: c["lvl"] >= 2 and c["col"] < 14,
-            lambda c: c["lvl"] >= 2 and c["col"] > 40 and c["row"] >= 4,
-            lambda c: c["lvl"] >= 1 and 26 <= c["col"] <= 38 and c["row"] >= 3,
-            lambda c: c["lvl"] >= 1 and 26 <= c["col"] <= 38,
-            lambda c: c["lvl"] >= 1 and 12 <= c["col"] <= 24 and c["row"] >= 4,
-            lambda c: c["lvl"] >= 2 and 18 <= c["col"] <= 26,
-            lambda c: c["lvl"] >= 1 and 22 <= c["col"] <= 32,
-        ],
-        # Round 2: Autumn & Winter sectors
-        [
-            lambda c: c["lvl"] >= 2 and 6 <= c["col"] <= 16,
-            lambda c: c["lvl"] >= 2 and 36 <= c["col"] <= 46,
-            lambda c: c["lvl"] >= 3 and c["col"] >= 15,
-            lambda c: c["lvl"] >= 1 and 40 <= c["col"] <= 51 and c["row"] <= 3,
-            lambda c: c["lvl"] >= 2 and 10 <= c["col"] <= 20,
-            lambda c: c["lvl"] >= 1 and 28 <= c["col"] <= 38 and c["row"] <= 2,
-            lambda c: c["lvl"] >= 2 and 44 <= c["col"] <= 51,
-            lambda c: c["lvl"] >= 1 and c["col"] <= 10,
-        ],
-        # Round 3: Spring & Summer sectors
-        [
-            lambda c: c["lvl"] >= 2 and 20 <= c["col"] <= 30,
-            lambda c: c["lvl"] >= 1 and 30 <= c["col"] <= 40,
-            lambda c: c["lvl"] >= 2 and 2 <= c["col"] <= 12,
-            lambda c: c["lvl"] >= 2 and 42 <= c["col"] <= 50,
-            lambda c: c["lvl"] >= 1 and 14 <= c["col"] <= 24,
-            lambda c: c["lvl"] >= 3 and 25 <= c["col"] <= 35,
-            lambda c: c["lvl"] >= 1 and 35 <= c["col"] <= 45,
-            lambda c: c["lvl"] >= 2 and 8 <= c["col"] <= 18,
-        ],
-        # Round 4: High intensity clusters
-        [
-            lambda c: c["lvl"] >= 3 and c["col"] < 25,
-            lambda c: c["lvl"] >= 3 and c["col"] >= 25,
-            lambda c: c["lvl"] >= 2 and 15 <= c["col"] <= 28,
-            lambda c: c["lvl"] >= 2 and 32 <= c["col"] <= 48,
-            lambda c: c["lvl"] >= 1 and c["col"] <= 15,
-            lambda c: c["lvl"] >= 2 and 22 <= c["col"] <= 36,
-            lambda c: c["lvl"] >= 1 and 45 <= c["col"] <= 51,
-            lambda c: c["lvl"] >= 2 and 5 <= c["col"] <= 20,
-        ],
-        # Round 5: Full spectrum sweep
-        [
-            lambda c: c["lvl"] >= 2 and 4 <= c["col"] <= 14,
-            lambda c: c["lvl"] >= 1 and 16 <= c["col"] <= 26,
-            lambda c: c["lvl"] >= 2 and 28 <= c["col"] <= 38,
-            lambda c: c["lvl"] >= 2 and 40 <= c["col"] <= 50,
-            lambda c: c["lvl"] >= 1 and 8 <= c["col"] <= 18,
-            lambda c: c["lvl"] >= 2 and 20 <= c["col"] <= 32,
-            lambda c: c["lvl"] >= 1 and 34 <= c["col"] <= 44,
-            lambda c: c["lvl"] >= 3 and c["col"] >= 10,
-        ]
+    targets = []
+    preferred_stages = [
+        lambda c: c["lvl"] >= 2 and c["col"] < 12,
+        lambda c: c["lvl"] >= 2 and c["col"] < 14 and c not in targets,
+        lambda c: c["lvl"] >= 2 and c["col"] > 40 and c["row"] >= 4,
+        lambda c: c["lvl"] >= 1 and 26 <= c["col"] <= 38 and c["row"] >= 3,
+        lambda c: c["lvl"] >= 1 and 26 <= c["col"] <= 38 and c not in targets,
+        lambda c: c["lvl"] >= 1 and 12 <= c["col"] <= 24 and c["row"] >= 4,
+        lambda c: c["lvl"] >= 2 and 18 <= c["col"] <= 26 and c not in targets,
+        lambda c: c["lvl"] >= 1 and 22 <= c["col"] <= 32 and c not in targets,
     ]
 
-    all_attack_targets = []
-    used_in_round = set()
+    for stage_fn in preferred_stages:
+        candidates = [c for c in active_cells if stage_fn(c) and c not in targets]
+        if candidates:
+            targets.append(candidates[0])
+        else:
+            remaining = [c for c in active_cells if c not in targets]
+            if remaining:
+                targets.append(remaining[len(remaining)//2])
 
-    for r_idx, stage_fns in enumerate(round_selectors):
-        round_targets = []
-        for stage_fn in stage_fns:
-            candidates = [c for c in active_cells if stage_fn(c) and (c["col"], c["row"]) not in used_in_round]
-            if not candidates:
-                candidates = [c for c in active_cells if stage_fn(c)]
-            if not candidates:
-                candidates = [c for c in active_cells if (c["col"], c["row"]) not in used_in_round]
-            if not candidates:
-                candidates = active_cells
+    targets = targets[:8]
+    while len(targets) < 8:
+        targets.append(active_cells[len(targets) % len(active_cells)])
 
-            selected = candidates[len(round_targets) % len(candidates)]
-            round_targets.append(selected)
-            used_in_round.add((selected["col"], selected["row"]))
+    print(f"Selected {len(targets)} real targets:")
+    for idx, t in enumerate(targets):
+        print(f"  Target {idx+1}: Col {t['col']}, Row {t['row']}, Level {t['lvl']}, Date {t['date']}, Contribs {t['contributions']}")
 
-        all_attack_targets.extend(round_targets)
-        used_in_round.clear()
-
-    TOTAL_ATTACKS = len(all_attack_targets)
-    print(f"Generated continuous multi-round attack sequence with {TOTAL_ATTACKS} hits.")
-
-    # Target sequence with hit IDs (1 to TOTAL_ATTACKS)
     targets_data = []
-    cell_state_map = {} # (col, row) -> current animated level
-    for idx, t in enumerate(all_attack_targets):
+    cell_state_map = {}
+    for idx, t in enumerate(targets):
         key = (t["col"], t["row"])
         if key not in cell_state_map:
             cell_state_map[key] = t["lvl"]
@@ -338,7 +282,7 @@ def generate_svg(date_records, total_contribs, output_path="assets/space-invader
     T_AIM      = 0.10
     T_LASER    = 0.16
     T_HIT      = 0.12
-    T_POST_HIT = 0.50 # snappy ~0.5s post-hit delay
+    T_POST_HIT = 0.50
     ATTACK_SEQ_DURATION = T_AIM + T_LASER + T_HIT + T_POST_HIT # ~0.88s
 
     cannon_y = 126
@@ -366,7 +310,7 @@ def generate_svg(date_records, total_contribs, output_path="assets/space-invader
 
     keyframes_css = []
 
-    # 1. Rocket Movement Route Keyframes across all attacks
+    # 1. Rocket Movement Route Keyframes
     route_kfs = []
     for i, t in enumerate(targets_data):
         t_start = cycle_start_times[i]
@@ -384,7 +328,7 @@ def generate_svg(date_records, total_contribs, output_path="assets/space-invader
 {route_kfs_str}
 }}''')
 
-    # 2. Lasers & Spark Burst Keyframes for each attack
+    # 2. Laser, Burst & Commit Damage Keyframes for each target
     for i, t in enumerate(targets_data):
         tid = t["id"]
         t_start = cycle_start_times[i]
@@ -417,51 +361,31 @@ def generate_svg(date_records, total_contribs, output_path="assets/space-invader
 }}'''
         keyframes_css.append(spark_kf)
 
-    # 3. Grid Cell Damage Keyframes per targeted cell
-    dim_colors = ["#161B22", "#0E4429", "#006D32", "#26A641", "#39D353"]
-    # Group hits by grid coordinate (col, row)
-    cell_hits_map = {}
-    for i, t in enumerate(targets_data):
-        key = (t["col"], t["row"])
-        if key not in cell_hits_map:
-            cell_hits_map[key] = []
-        
-        t_start = cycle_start_times[i]
-        t_arrive = t_start + travel_durations[i]
-        t_fire_hit = t_arrive + T_AIM + T_LASER
-        
-        cell_hits_map[key].append({
-            "hit_time": t_fire_hit,
-            "start_lvl": t["start_lvl"],
-            "damaged_lvl": t["damaged_lvl"],
-            "orig_lvl": t["lvl"]
-        })
+        dim_colors = ["#161B22", "#0E4429", "#006D32", "#26A641", "#39D353"]
+        orig_color = dim_colors[t["start_lvl"]]
+        target_color = dim_colors[t["damaged_lvl"]]
 
-    for (col, row), hits in cell_hits_map.items():
-        cell_id = f"c_{col}_{row}"
-        init_lvl = hits[0]["orig_lvl"]
-        init_color = dim_colors[init_lvl]
-        
-        cell_kfs = [f"  0% {{ fill: {init_color}; }}"]
-        for h in hits:
-            t_hit = h["hit_time"]
-            curr_col = dim_colors[h["start_lvl"]]
-            dmg_col = dim_colors[h["damaged_lvl"]]
-            cell_kfs.append(f"  {to_pct(t_hit - 0.01)} {{ fill: {curr_col}; }}")
-            cell_kfs.append(f"  {to_pct(t_hit)} {{ fill: #FDFBF7; }}")
-            cell_kfs.append(f"  {to_pct(t_hit + 0.05)} {{ fill: {dmg_col}; }}")
-        
-        cell_kfs.append(f"  {to_pct(TOTAL_DURATION - 0.05)} {{ fill: {dim_colors[hits[-1]['damaged_lvl']]}; }}")
-        cell_kfs.append(f"  100% {{ fill: {init_color}; }}")
-        
-        cell_kf_str = "\n".join(cell_kfs)
-        keyframes_css.append(f'''@keyframes commitDamage_{cell_id} {{
-{cell_kf_str}
-}}''')
+        commit_kf = f'''@keyframes commitDamage{tid} {{
+  0% {{ fill: {orig_color}; }}
+  {to_pct(t_fire_hit - 0.01)} {{ fill: {orig_color}; }}
+  {to_pct(t_fire_hit)}        {{ fill: #FDFBF7; }}
+  {to_pct(t_fire_hit + 0.06)} {{ fill: {target_color}; opacity: 0.85; }}
+  {to_pct(TOTAL_DURATION - 0.05)} {{ fill: {target_color}; }}
+  100% {{ fill: {orig_color}; }}
+}}'''
+        keyframes_css.append(commit_kf)
 
-    # 4. Continuous Destroyed HUD Counter Keyframes (0 -> 1 -> 2 -> ... -> TOTAL_ATTACKS)
-    for c_val in range(TOTAL_ATTACKS + 1):
-        if c_val == 0:
+    # 3. Dynamic Destroyed Counter Progressing to 100% of Total Commits
+    num_targets = len(targets_data)
+    # Target milestones advancing from 0 to total_contribs (e.g. 0 -> 243 -> 486 -> ... -> 1,944)
+    destroyed_milestones = [0]
+    for i in range(1, num_targets + 1):
+        milestone = round((i / num_targets) * total_contribs)
+        destroyed_milestones.append(milestone)
+    destroyed_milestones[-1] = total_contribs # guarantee exact match with total
+
+    for c_idx in range(num_targets + 1):
+        if c_idx == 0:
             t_visible_end = cycle_start_times[0] + travel_durations[0] + T_AIM + T_LASER
             counter_kf = f'''@keyframes hudCount0 {{
   0% {{ opacity: 1; }}
@@ -469,10 +393,10 @@ def generate_svg(date_records, total_contribs, output_path="assets/space-invader
   {to_pct(t_visible_end)} {{ opacity: 0; }}
   100% {{ opacity: 0; }}
 }}'''
-        elif c_val < TOTAL_ATTACKS:
-            t_visible_start = cycle_start_times[c_val-1] + travel_durations[c_val-1] + T_AIM + T_LASER
-            t_visible_end = cycle_start_times[c_val] + travel_durations[c_val] + T_AIM + T_LASER
-            counter_kf = f'''@keyframes hudCount{c_val} {{
+        elif c_idx < num_targets:
+            t_visible_start = cycle_start_times[c_idx-1] + travel_durations[c_idx-1] + T_AIM + T_LASER
+            t_visible_end = cycle_start_times[c_idx] + travel_durations[c_idx] + T_AIM + T_LASER
+            counter_kf = f'''@keyframes hudCount{c_idx} {{
   0% {{ opacity: 0; }}
   {to_pct(t_visible_start - 0.01)} {{ opacity: 0; }}
   {to_pct(t_visible_start)} {{ opacity: 1; }}
@@ -481,8 +405,8 @@ def generate_svg(date_records, total_contribs, output_path="assets/space-invader
   100% {{ opacity: 0; }}
 }}'''
         else:
-            t_visible_start = cycle_start_times[TOTAL_ATTACKS-1] + travel_durations[TOTAL_ATTACKS-1] + T_AIM + T_LASER
-            counter_kf = f'''@keyframes hudCount{TOTAL_ATTACKS} {{
+            t_visible_start = cycle_start_times[num_targets-1] + travel_durations[num_targets-1] + T_AIM + T_LASER
+            counter_kf = f'''@keyframes hudCount{num_targets} {{
   0% {{ opacity: 0; }}
   {to_pct(t_visible_start - 0.01)} {{ opacity: 0; }}
   {to_pct(t_visible_start)} {{ opacity: 1; }}
@@ -516,10 +440,11 @@ def generate_svg(date_records, total_contribs, output_path="assets/space-invader
 
     formatted_total = f"{total_contribs:,}"
 
-    # Counter Text Display Elements (Starts from 0 and increments continuously 1 per hit: 0 -> 1 -> 2 -> ... -> TOTAL_ATTACKS)
+    # Counter Text Display Elements (Starts from 0 and advances to total_contribs e.g. 0 -> 243 -> ... -> 1,944)
     counter_elements = []
-    for c_val in range(TOTAL_ATTACKS + 1):
-        counter_elements.append(f'      <text x="127" y="17" text-anchor="middle" class="counter-txt hud-val-{c_val}">DESTROYED: [ {c_val} / {formatted_total} COMMITS ]</text>')
+    for c_idx in range(num_targets + 1):
+        cur_destroyed = f"{destroyed_milestones[c_idx]:,}"
+        counter_elements.append(f'      <text x="127" y="17" text-anchor="middle" class="counter-txt hud-val-{c_idx}">DESTROYED: [ {cur_destroyed} / {formatted_total} COMMITS ]</text>')
     counter_texts = "\n".join(counter_elements)
 
     # CSS Rules
@@ -535,20 +460,17 @@ def generate_svg(date_records, total_contribs, output_path="assets/space-invader
         cy = t["cy"]
         css_class_rules.append(f".laser-bolt-{tid}   {{ animation: laserShot{tid} {TOTAL_DURATION:.2f}s linear infinite; }}")
         css_class_rules.append(f".spark-burst-{tid}  {{ animation: sparkHit{tid} {TOTAL_DURATION:.2f}s ease-out infinite; transform-origin: {cx}px {cy}px; }}")
+        css_class_rules.append(f".commit-target-{tid} {{ animation: commitDamage{tid} {TOTAL_DURATION:.2f}s ease-in-out infinite; }}")
 
-    for (col, row) in cell_hits_map.keys():
-        cell_id = f"c_{col}_{row}"
-        css_class_rules.append(f".commit-cell-{cell_id} {{ animation: commitDamage_{cell_id} {TOTAL_DURATION:.2f}s ease-in-out infinite; }}")
-
-    for c_val in range(TOTAL_ATTACKS + 1):
-        init_op = 1 if c_val == 0 else 0
-        css_class_rules.append(f".hud-val-{c_val} {{ opacity: {init_op}; animation: hudCount{c_val} {TOTAL_DURATION:.2f}s linear infinite; }}")
+    for c_idx in range(num_targets + 1):
+        init_op = 1 if c_idx == 0 else 0
+        css_class_rules.append(f".hud-val-{c_idx} {{ opacity: {init_op}; animation: hudCount{c_idx} {TOTAL_DURATION:.2f}s linear infinite; }}")
 
     full_css = "\n".join(css_class_rules) + "\n\n" + "\n\n".join(keyframes_css)
 
     # Construct the 52x7 Grid SVG Elements
     grid_rects = []
-    targeted_cell_set = set(cell_hits_map.keys())
+    target_tuples = {(t["col"], t["row"]): t["id"] for t in targets_data}
 
     for col in range(52):
         for row in range(7):
@@ -560,9 +482,9 @@ def generate_svg(date_records, total_contribs, output_path="assets/space-invader
             colors = ["#161B22", "#0E4429", "#006D32", "#26A641", "#39D353"]
             fill_color = colors[lvl]
 
-            if (col, row) in targeted_cell_set:
-                cell_id = f"c_{col}_{row}"
-                grid_rects.append(f'      <rect x="{x}" y="{y}" width="10" height="10" rx="2" class="commit-cell-{cell_id}"/>')
+            if (col, row) in target_tuples:
+                tid = target_tuples[(col, row)]
+                grid_rects.append(f'      <rect x="{x}" y="{y}" width="10" height="10" rx="2" class="commit-target-{tid}"/>')
             else:
                 grid_rects.append(f'      <rect x="{x}" y="{y}" width="10" height="10" rx="2" fill="{fill_color}"/>')
 
