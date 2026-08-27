@@ -387,15 +387,15 @@
     <!-- Live Counter HUD Badge displaying total commits -->
     <g transform="translate(560, -8)">
       <rect width="250" height="26" rx="3" class="counter-frame"/>
-      <text x="12" y="17" class="counter-txt hud-val-0">DESTROYED: [ 0 / 1,937 COMMITS ]</text>
-      <text x="12" y="17" class="counter-txt hud-val-1">DESTROYED: [ 242 / 1,937 COMMITS ]</text>
-      <text x="12" y="17" class="counter-txt hud-val-2">DESTROYED: [ 484 / 1,937 COMMITS ]</text>
-      <text x="12" y="17" class="counter-txt hud-val-3">DESTROYED: [ 726 / 1,937 COMMITS ]</text>
-      <text x="12" y="17" class="counter-txt hud-val-4">DESTROYED: [ 968 / 1,937 COMMITS ]</text>
-      <text x="12" y="17" class="counter-txt hud-val-5">DESTROYED: [ 1,211 / 1,937 COMMITS ]</text>
-      <text x="12" y="17" class="counter-txt hud-val-6">DESTROYED: [ 1,453 / 1,937 COMMITS ]</text>
-      <text x="12" y="17" class="counter-txt hud-val-7">DESTROYED: [ 1,695 / 1,937 COMMITS ]</text>
-      <text x="12" y="17" class="counter-txt hud-val-8">DESTROYED: [ 1,937 / 1,937 COMMITS ]</text>
+      <text x="12" y="17" class="counter-txt hud-val-0">DESTROYED: [ 0 / 1,938 COMMITS ]</text>
+      <text x="12" y="17" class="counter-txt hud-val-1">DESTROYED: [ 242 / 1,938 COMMITS ]</text>
+      <text x="12" y="17" class="counter-txt hud-val-2">DESTROYED: [ 484 / 1,938 COMMITS ]</text>
+      <text x="12" y="17" class="counter-txt hud-val-3">DESTROYED: [ 727 / 1,938 COMMITS ]</text>
+      <text x="12" y="17" class="counter-txt hud-val-4">DESTROYED: [ 969 / 1,938 COMMITS ]</text>
+      <text x="12" y="17" class="counter-txt hud-val-5">DESTROYED: [ 1,211 / 1,938 COMMITS ]</text>
+      <text x="12" y="17" class="counter-txt hud-val-6">DESTROYED: [ 1,454 / 1,938 COMMITS ]</text>
+      <text x="12" y="17" class="counter-txt hud-val-7">DESTROYED: [ 1,696 / 1,938 COMMITS ]</text>
+      <text x="12" y="17" class="counter-txt hud-val-8">DESTROYED: [ 1,938 / 1,938 COMMITS ]</text>
     </g>
   </g>
   <line x1="0" y1="42" x2="850" y2="42" stroke="#2C303B" stroke-width="1"/>
@@ -897,6 +897,6 @@
     <rect x="450" y="0" width="9" height="9" rx="2" fill="#39D353"/>
     <text x="464" y="8" class="score-lbl" style="fill:#39D353; font-weight:bold;">LEVEL 4 (FULL LIGHT)</text>
 
-    <text x="630" y="8" font-family="'JetBrains Mono', monospace" font-size="10.5px" font-weight="700" fill="#2563EB">1,937 TOTAL COMMITS</text>
+    <text x="630" y="8" font-family="'JetBrains Mono', monospace" font-size="10.5px" font-weight="700" fill="#2563EB">1,938 TOTAL COMMITS</text>
   </g>
 </svg>
