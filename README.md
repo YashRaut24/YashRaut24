@@ -1,43 +1,58 @@
 <div align="center">
 
 <!-- UNIFIED SPACE PORTAL PROFILE -->
-<img src="./assets/space-portal-unified.svg?v=unified-portal" alt="Yash Raut Unified Space Portal Profile" width="100%" />
+<img
+  src="./assets/space-portal-unified.svg?v=unified-portal"
+  alt="Yash Raut Unified Space Portal Profile"
+  width="100%"
+/>
 
 <br/><br/>
 
 <!-- ORBITAL FLIGHT DECK // DIRECT COMM-LINKS -->
+
 <a href="https://yash-raut-portfolio.vercel.app/" target="_blank">
-  <img src="https://img.shields.io/badge/ORBITAL_PORTFOLIO-0B0C10?style=for-the-badge&logo=vercel&logoColor=00F0FF" alt="Orbital Portfolio" />
+  <img
+    src="https://img.shields.io/badge/ORBITAL_PORTFOLIO-0B0C10?style=for-the-badge&logo=vercel&logoColor=00F0FF"
+    alt="Orbital Portfolio"
+  />
 </a>
+
 &nbsp;&nbsp;
+
 <a href="https://drive.google.com/file/d/1wxB0VFUBAfz9cwoHMvBYegOlju8308Sa/view?usp=sharing" target="_blank">
-  <img src="https://img.shields.io/badge/FLIGHT_RESUME-0B0C10?style=for-the-badge&logo=googledrive&logoColor=39D353" alt="Flight Resume" />
+  <img
+    src="https://img.shields.io/badge/FLIGHT_RESUME-0B0C10?style=for-the-badge&logo=googledrive&logoColor=39D353"
+    alt="Flight Resume"
+  />
 </a>
 
 <br/><br/>
 
 <a href="https://www.linkedin.com/in/yash-raut-240505-yr30/" target="_blank">
-  <img src="https://img.shields.io/badge/LINKEDIN-0B0C10?style=for-the-badge&logo=data%3Aimage/svg%2Bxml%3Bbase64%2CPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iIzBBNjZDMiI%2BPHBhdGggZD0iTTE5IDNhMiAyIDAgMCAxIDIgMnYxNGEyIDIgMCAwIDEtMiAySDVhMiAyIDAgMCAxLTItMlY1YTIgMjAgMSAwIDAgMSAyLTJoMTRtLS41IDE1LjV2LTUuM2EzLjI2IDMuMjYgMCAwIDAtMy4yNi0zLjI2Yy0uODUgMC0xLjg0LjUyLTIuMjggMS4zdi0xLjExaC0yLjc5djguMzdoMi43OXYtNC45M2MwLS43Ny42Mi0xLjQgMS4zOS0xLjRhMS40IDEuNCAwIDAgMSAxLjQgMS40djQuOTNoMi43NU02LjQ2IDEwLjl2OC4zN0g5LjI1VjEwLjlINi40Nk03Ljg2IDYuMzJhMS42MyAxLjYzIDAgMSAwIDAgMy4yNiAxLjYzIDEuNjMgMCAwIDAgMC0zLjI2WiIvPjwvc3ZnPg%3D%3D" alt="LinkedIn Network" />
+  <img
+    src="https://img.shields.io/badge/LINKEDIN-0B0C10?style=for-the-badge&logo=linkedin&logoColor=00F0FF"
+    alt="LinkedIn"
+  />
 </a>
+
 &nbsp;&nbsp;
+
 <a href="mailto:yashdr2405@gmail.com">
-  <img src="https://img.shields.io/badge/yashdr2405%40gmail.com-0B0C10?style=for-the-badge&logo=gmail&logoColor=EA4335" alt="Direct Email" />
-</a>
-
-</div>
-
-<br/>
-
-<!-- UNIFIED SPACE PORTAL // ALL PROFILE SECTORS -->
-<img src="./assets/space-portal-unified.svg?v=unified-portal" alt="Unified Space Portal Profile Dashboard" width="100%" />
-
-<br/>
-
-<a href="https://komarev.com/ghpvc/?username=YashRaut24-spaceport">
-  <img src="https://komarev.com/ghpvc/?username=YashRaut24-spaceport&style=flat-square&color=00F0FF&labelColor=0B0C10&label=ORBITAL+TRAFFIC" alt="Live Orbital Traffic Counter" />
+  <img
+    src="https://img.shields.io/badge/YASHDR2405%40GMAIL.COM-0B0C10?style=for-the-badge&logo=gmail&logoColor=EA4335"
+    alt="Email"
+  />
 </a>
 
 <br/><br/>
 
-<!-- MISSION CONTROL DOCKING COLOPHON -->
-<img src="./assets/space-portal-footer.svg?v=unified-portal" alt="Spaceport Mission Control Footer" width="100%" />
+<!-- ORBITAL TRAFFIC -->
+<a href="https://komarev.com/ghpvc/?username=YashRaut24-spaceport">
+  <img
+    src="https://komarev.com/ghpvc/?username=YashRaut24-spaceport&style=flat-square&color=00F0FF&labelColor=0B0C10&label=ORBITAL+TRAFFIC"
+    alt="Orbital Traffic Counter"
+  />
+</a>
+
+</div>
