@@ -1,58 +1,58 @@
 <div align="center">
 
 <!-- SECTOR 01: SPACE PORTAL MISSION COMMAND DECK -->
-<img src="./assets/space-portal-hero.svg?v=portal-1929" alt="Yash Raut Space Portal Hero" width="100%" />
+<img src="./assets/space-portal-hero.svg?v=portal-v5" alt="Yash Raut Space Portal Hero" width="100%" />
 
 <br/><br/>
 
-<!-- ORBITAL FLIGHT DECK // DIRECT COMM-LINKS -->
+<!-- ORBITAL FLIGHT DECK // DIRECT COMM-LINKS (CLEAN SINGLE-LABEL BADGES) -->
 <a href="https://yash-raut-portfolio.vercel.app/" target="_blank">
-  <img src="https://img.shields.io/badge/ORBITAL_PORTFOLIO-yash--raut--portfolio.vercel.app-0B0C10?style=for-the-badge&logo=vercel&logoColor=00F0FF" alt="Orbital Portfolio" />
+  <img src="https://img.shields.io/badge/ORBITAL_PORTFOLIO-0B0C10?style=for-the-badge&logo=vercel&logoColor=00F0FF" alt="Orbital Portfolio" />
 </a>
 &nbsp;&nbsp;
 <a href="https://drive.google.com/file/d/1wxB0VFUBAfz9cwoHMvBYegOlju8308Sa/view?usp=sharing" target="_blank">
-  <img src="https://img.shields.io/badge/FLIGHT_RESUME_CV-Google_Drive_Doc-0B0C10?style=for-the-badge&logo=googledrive&logoColor=39D353" alt="Flight Resume" />
+  <img src="https://img.shields.io/badge/FLIGHT_RESUME-0B0C10?style=for-the-badge&logo=googledrive&logoColor=39D353" alt="Flight Resume" />
 </a>
 
 <br/><br/>
 
 <a href="https://www.linkedin.com/in/yash-raut-240505-yr30/" target="_blank">
-  <img src="https://img.shields.io/badge/COMM_NETWORK-LinkedIn_Yash_Raut-0B0C10?style=for-the-badge&logo=linkedin&logoColor=2563EB" alt="LinkedIn Network" />
+  <img src="https://img.shields.io/badge/LINKEDIN-0B0C10?style=for-the-badge&logo=linkedin&logoColor=0077B5" alt="LinkedIn Network" />
 </a>
 &nbsp;&nbsp;
 <a href="mailto:yashdr2405@gmail.com">
-  <img src="https://img.shields.io/badge/SUBSPACE_RELAY-yashdr2405%40gmail.com-0B0C10?style=for-the-badge&logo=gmail&logoColor=F59E0B" alt="Subspace Relay Email" />
+  <img src="https://img.shields.io/badge/SUBSPACE_RELAY-0B0C10?style=for-the-badge&logo=gmail&logoColor=EA4335" alt="Subspace Relay Email" />
 </a>
 
 <br/><br/>
 
 <!-- SECTOR 02: TECHNICAL STACK & CAPABILITIES -->
-<img src="./assets/space-portal-systems.svg?v=portal-1929" alt="Technical Stack and Capabilities" width="100%" />
+<img src="./assets/space-portal-systems.svg?v=portal-v5" alt="Technical Stack and Capabilities" width="100%" />
 
 <br/><br/>
 
 <!-- SECTOR 03: RETRO LASER CANNON COMMIT BLAST ARCADE -->
-<img src="./assets/space-invaders-commits.svg?v=portal-1929" alt="Space Invaders Commit Blast Arcade" width="100%" />
+<img src="./assets/space-invaders-commits.svg?v=portal-v5" alt="Space Invaders Commit Blast Arcade" width="100%" />
 
 <br/><br/>
 
 <!-- SECTOR 04: GITHUB CONTRIBUTIONS & STREAK CONSOLE -->
-<img src="./assets/space-portal-stats.svg?v=portal-1929" alt="GitHub Contributions and Streak Console" width="100%" />
+<img src="./assets/space-portal-stats.svg?v=portal-v5" alt="GitHub Contributions and Streak Console" width="100%" />
 
 <br/><br/>
 
 <!-- SECTOR 05: MISSION FLIGHT LOGS & INDUSTRY EXPERIENCE -->
-<img src="./assets/space-portal-timeline.svg?v=portal-1929" alt="Mission Flight Logs and Industry Experience" width="100%" />
+<img src="./assets/space-portal-timeline.svg?v=portal-v5" alt="Mission Flight Logs and Industry Experience" width="100%" />
 
 <br/><br/>
 
 <!-- SECTOR 06: ACADEMIC & MISSION TELEMETRY -->
-<img src="./assets/space-portal-telemetry.svg?v=portal-1929" alt="Academic and Mission Telemetry" width="100%" />
+<img src="./assets/space-portal-telemetry.svg?v=portal-v5" alt="Academic and Mission Telemetry" width="100%" />
 
 <br/><br/>
 
 <!-- SECTOR 07: SENSOR ARRAY ACTIVE ORBITAL RADAR -->
-<img src="./assets/space-portal-traffic.svg?v=orbit-v3" alt="Active Orbital Radar Sensor Array" width="100%" />
+<img src="./assets/space-portal-traffic.svg?v=portal-v5" alt="Active Orbital Radar Sensor Array" width="100%" />
 
 <br/>
 
@@ -63,6 +63,6 @@
 <br/><br/>
 
 <!-- MISSION CONTROL DOCKING COLOPHON -->
-<img src="./assets/space-portal-footer.svg?v=portal-1929" alt="Spaceport Mission Control Footer" width="100%" />
+<img src="./assets/space-portal-footer.svg?v=portal-v5" alt="Spaceport Mission Control Footer" width="100%" />
 
 </div>

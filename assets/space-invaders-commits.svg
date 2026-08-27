@@ -1,307 +1,377 @@
 <svg width="850" height="275" viewBox="0 0 850 275" fill="none" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <style>
-      .bh-bg       { fill: #111215; stroke: #2C303B; stroke-width: 1.5; }
-      .tag-txt     { font-family: 'JetBrains Mono', Consolas, monospace; font-size: 11px; font-weight: 700; fill: #FDFBF7; letter-spacing: 1.5px; }
-      .month-lbl   { font-family: 'JetBrains Mono', Consolas, monospace; font-size: 9px; fill: #52545F; }
-      .score-lbl   { font-family: 'JetBrains Mono', Consolas, monospace; font-size: 9.5px; fill: #71737E; }
+      .bh-bg         { fill: #0B0C10; stroke: #1F2430; stroke-width: 1.5; }
+      .tag-txt       { font-family: 'JetBrains Mono', Consolas, monospace; font-size: 11px; font-weight: 700; fill: #00F0FF; letter-spacing: 2px; }
+      .month-lbl     { font-family: 'JetBrains Mono', Consolas, monospace; font-size: 9px; fill: #71737E; }
+      .day-lbl       { font-family: 'JetBrains Mono', Consolas, monospace; font-size: 8.5px; fill: #71737E; }
+      .score-lbl     { font-family: 'JetBrains Mono', Consolas, monospace; font-size: 9px; fill: #8B949E; }
 
-      @keyframes beaconBlink { 0%, 100% { opacity: 1; } 50% { opacity: 0.2; } }
+      @keyframes beaconBlink {
+        0%, 100% { opacity: 1; }
+        50%      { opacity: 0.2; }
+      }
 
-      .ship-patrol { animation: shipPatrolRoute 16.38s cubic-bezier(0.25, 0, 0.15, 1) infinite; }
-      .live-beacon { animation: beaconBlink 0.8s steps(2, start) infinite; }
-      .counter-frame { fill: #16171C; stroke: #2563EB; stroke-width: 1.2; }
-      .counter-txt { font-family: 'JetBrains Mono', Consolas, monospace; font-size: 10px; font-weight: 700; fill: #39D353; letter-spacing: 0.8px; }
-      .laser-bolt-1   { animation: laserShot1 16.38s linear infinite; }
-      .spark-burst-1  { animation: sparkHit1 16.38s ease-out infinite; transform-origin: 65px 18px; }
-      .commit-target-1 { animation: commitDamage1 16.38s ease-in-out infinite; }
-      .laser-bolt-2   { animation: laserShot2 16.38s linear infinite; }
-      .spark-burst-2  { animation: sparkHit2 16.38s ease-out infinite; transform-origin: 80px 18px; }
-      .commit-target-2 { animation: commitDamage2 16.38s ease-in-out infinite; }
-      .laser-bolt-3   { animation: laserShot3 16.38s linear infinite; }
-      .spark-burst-3  { animation: sparkHit3 16.38s ease-out infinite; transform-origin: 665px 83px; }
-      .commit-target-3 { animation: commitDamage3 16.38s ease-in-out infinite; }
-      .laser-bolt-4   { animation: laserShot4 16.38s linear infinite; }
-      .spark-burst-4  { animation: sparkHit4 16.38s ease-out infinite; transform-origin: 440px 57px; }
-      .commit-target-4 { animation: commitDamage4 16.38s ease-in-out infinite; }
-      .laser-bolt-5   { animation: laserShot5 16.38s linear infinite; }
-      .spark-burst-5  { animation: sparkHit5 16.38s ease-out infinite; transform-origin: 455px 57px; }
-      .commit-target-5 { animation: commitDamage5 16.38s ease-in-out infinite; }
-      .laser-bolt-6   { animation: laserShot6 16.38s linear infinite; }
-      .spark-burst-6  { animation: sparkHit6 16.38s ease-out infinite; transform-origin: 200px 70px; }
-      .commit-target-6 { animation: commitDamage6 16.38s ease-in-out infinite; }
-      .laser-bolt-7   { animation: laserShot7 16.38s linear infinite; }
-      .spark-burst-7  { animation: sparkHit7 16.38s ease-out infinite; transform-origin: 305px 31px; }
-      .commit-target-7 { animation: commitDamage7 16.38s ease-in-out infinite; }
-      .laser-bolt-8   { animation: laserShot8 16.38s linear infinite; }
-      .spark-burst-8  { animation: sparkHit8 16.38s ease-out infinite; transform-origin: 395px 31px; }
-      .commit-target-8 { animation: commitDamage8 16.38s ease-in-out infinite; }
-      .hud-val-0 { animation: hudScore0 16.38s steps(1) infinite; }
-      .hud-val-1 { animation: hudScore1 16.38s steps(1) infinite; }
-      .hud-val-2 { animation: hudScore2 16.38s steps(1) infinite; }
-      .hud-val-3 { animation: hudScore3 16.38s steps(1) infinite; }
-      .hud-val-4 { animation: hudScore4 16.38s steps(1) infinite; }
-      .hud-val-5 { animation: hudScore5 16.38s steps(1) infinite; }
-      .hud-val-6 { animation: hudScore6 16.38s steps(1) infinite; }
-      .hud-val-7 { animation: hudScore7 16.38s steps(1) infinite; }
-      .hud-val-8 { animation: hudScore8 16.38s steps(1) infinite; }
+      .ship-patrol { animation: shipPatrolRoute 15.33s cubic-bezier(0.25, 0, 0.15, 1) infinite; }
+.live-beacon { animation: beaconBlink 0.8s steps(2, start) infinite; }
+.counter-frame { fill: #16171C; stroke: #2563EB; stroke-width: 1.2; }
+.counter-txt { font-family: 'JetBrains Mono', Consolas, monospace; font-size: 10px; font-weight: 700; fill: #39D353; letter-spacing: 0.8px; }
+.laser-bolt-1   { animation: laserShot1 15.33s linear infinite; }
+.spark-burst-1  { animation: sparkHit1 15.33s ease-out infinite; transform-origin: 80px 5px; }
+.commit-target-1 { animation: commitDamage1 15.33s ease-in-out infinite; }
+.laser-bolt-2   { animation: laserShot2 15.33s linear infinite; }
+.spark-burst-2  { animation: sparkHit2 15.33s ease-out infinite; transform-origin: 110px 5px; }
+.commit-target-2 { animation: commitDamage2 15.33s ease-in-out infinite; }
+.laser-bolt-3   { animation: laserShot3 15.33s linear infinite; }
+.spark-burst-3  { animation: sparkHit3 15.33s ease-out infinite; transform-origin: 665px 57px; }
+.commit-target-3 { animation: commitDamage3 15.33s ease-in-out infinite; }
+.laser-bolt-4   { animation: laserShot4 15.33s linear infinite; }
+.spark-burst-4  { animation: sparkHit4 15.33s ease-out infinite; transform-origin: 410px 44px; }
+.commit-target-4 { animation: commitDamage4 15.33s ease-in-out infinite; }
+.laser-bolt-5   { animation: laserShot5 15.33s linear infinite; }
+.spark-burst-5  { animation: sparkHit5 15.33s ease-out infinite; transform-origin: 410px 18px; }
+.commit-target-5 { animation: commitDamage5 15.33s ease-in-out infinite; }
+.laser-bolt-6   { animation: laserShot6 15.33s linear infinite; }
+.spark-burst-6  { animation: sparkHit6 15.33s ease-out infinite; transform-origin: 275px 57px; }
+.commit-target-6 { animation: commitDamage6 15.33s ease-in-out infinite; }
+.laser-bolt-7   { animation: laserShot7 15.33s linear infinite; }
+.spark-burst-7  { animation: sparkHit7 15.33s ease-out infinite; transform-origin: 290px 5px; }
+.commit-target-7 { animation: commitDamage7 15.33s ease-in-out infinite; }
+.laser-bolt-8   { animation: laserShot8 15.33s linear infinite; }
+.spark-burst-8  { animation: sparkHit8 15.33s ease-out infinite; transform-origin: 335px 5px; }
+.commit-target-8 { animation: commitDamage8 15.33s ease-in-out infinite; }
+.hud-val-0 { animation: hudCount0 15.33s steps(1, start) infinite; }
+.hud-val-1 { animation: hudCount1 15.33s steps(1, start) infinite; }
+.hud-val-2 { animation: hudCount2 15.33s steps(1, start) infinite; }
+.hud-val-3 { animation: hudCount3 15.33s steps(1, start) infinite; }
+.hud-val-4 { animation: hudCount4 15.33s steps(1, start) infinite; }
+.hud-val-5 { animation: hudCount5 15.33s steps(1, start) infinite; }
+.hud-val-6 { animation: hudCount6 15.33s steps(1, start) infinite; }
+.hud-val-7 { animation: hudCount7 15.33s steps(1, start) infinite; }
+.hud-val-8 { animation: hudCount8 15.33s steps(1, start) infinite; }
 
-      @keyframes shipPatrolRoute {
-  0.00% { transform: translateX(60px); }
-  3.17% { transform: translateX(60px); }
-  12.94% { transform: translateX(60px); }
-  12.94% { transform: translateX(75px); }
-  15.12% { transform: translateX(75px); }
-  24.89% { transform: translateX(75px); }
-  24.89% { transform: translateX(660px); }
-  28.55% { transform: translateX(660px); }
-  38.32% { transform: translateX(660px); }
-  38.32% { transform: translateX(435px); }
-  41.16% { transform: translateX(435px); }
-  50.93% { transform: translateX(435px); }
-  50.93% { transform: translateX(450px); }
-  53.11% { transform: translateX(450px); }
-  62.88% { transform: translateX(450px); }
-  62.88% { transform: translateX(195px); }
-  65.81% { transform: translateX(195px); }
-  75.58% { transform: translateX(195px); }
-  75.58% { transform: translateX(300px); }
-  78.05% { transform: translateX(300px); }
-  87.81% { transform: translateX(300px); }
-  87.81% { transform: translateX(390px); }
-  90.23% { transform: translateX(390px); }
-  100.00% { transform: translateX(390px); }
-  100% { transform: translateX(60px); }
+@keyframes shipPatrolRoute {
+  0.000%  { transform: translate(80px, 126px); }
+  3.317% { transform: translate(80px, 126px); }
+  12.972%    { transform: translate(80px, 126px); }
+  12.972%  { transform: translate(110px, 126px); }
+  15.355% { transform: translate(110px, 126px); }
+  25.010%    { transform: translate(110px, 126px); }
+  25.010%  { transform: translate(665px, 126px); }
+  29.150% { transform: translate(665px, 126px); }
+  38.805%    { transform: translate(665px, 126px); }
+  38.805%  { transform: translate(410px, 126px); }
+  41.941% { transform: translate(410px, 126px); }
+  51.596%    { transform: translate(410px, 126px); }
+  51.596%  { transform: translate(410px, 126px); }
+  53.879% { transform: translate(410px, 126px); }
+  63.534%    { transform: translate(410px, 126px); }
+  63.534%  { transform: translate(275px, 126px); }
+  66.269% { transform: translate(275px, 126px); }
+  75.923%    { transform: translate(275px, 126px); }
+  75.923%  { transform: translate(290px, 126px); }
+  78.257% { transform: translate(290px, 126px); }
+  87.911%    { transform: translate(290px, 126px); }
+  87.911%  { transform: translate(335px, 126px); }
+  90.345% { transform: translate(335px, 126px); }
+  100.000%    { transform: translate(335px, 126px); }
 }
 
-      @keyframes laserShot1 {
-  0%, 3.77% { opacity: 0; transform: translateY(0px); }
-  3.78% { opacity: 1; transform: translateY(0px); }
-  4.74% { opacity: 1; transform: translateY(-98px); }
-  4.76%, 100% { opacity: 0; transform: translateY(-98px); }
+@keyframes laserShot1 {
+  0% { opacity: 0; transform: translate(80px, 116px) scaleY(0.5); }
+  3.904% { opacity: 0; transform: translate(80px, 116px) scaleY(0.5); }
+  3.969%        { opacity: 1; transform: translate(80px, 116px) scaleY(1.2); }
+  5.013%          { opacity: 1; transform: translate(80px, 5px) scaleY(0.3); }
+  5.144%   { opacity: 0; transform: translate(80px, 5px) scaleY(0); }
+  100% { opacity: 0; transform: translate(80px, 5px); }
 }
 
-      @keyframes laserShot2 {
-  0%, 15.72% { opacity: 0; transform: translateY(0px); }
-  15.73% { opacity: 1; transform: translateY(0px); }
-  16.69% { opacity: 1; transform: translateY(-98px); }
-  16.71%, 100% { opacity: 0; transform: translateY(-98px); }
+@keyframes sparkHit1 {
+  0% { opacity: 0; transform: scale(0.2); }
+  4.948% { opacity: 0; transform: scale(0.2); }
+  5.013%        { opacity: 1; transform: scale(1.6); }
+  5.796%         { opacity: 0.8; transform: scale(1.0); }
+  6.122%  { opacity: 0; transform: scale(0.3); }
+  100% { opacity: 0; transform: scale(0.2); }
 }
 
-      @keyframes laserShot3 {
-  0%, 29.15% { opacity: 0; transform: translateY(0px); }
-  29.16% { opacity: 1; transform: translateY(0px); }
-  30.12% { opacity: 1; transform: translateY(-33px); }
-  30.14%, 100% { opacity: 0; transform: translateY(-33px); }
+@keyframes commitDamage1 {
+  0% { fill: #26A641; }
+  4.948% { fill: #26A641; }
+  5.013%        { fill: #FDFBF7; }
+  5.404% { fill: #006D32; opacity: 0.85; }
+  99.674% { fill: #006D32; }
+  100% { fill: #26A641; }
 }
 
-      @keyframes laserShot4 {
-  0%, 41.76% { opacity: 0; transform: translateY(0px); }
-  41.77% { opacity: 1; transform: translateY(0px); }
-  42.73% { opacity: 1; transform: translateY(-59px); }
-  42.75%, 100% { opacity: 0; transform: translateY(-59px); }
+@keyframes laserShot2 {
+  0% { opacity: 0; transform: translate(110px, 116px) scaleY(0.5); }
+  15.942% { opacity: 0; transform: translate(110px, 116px) scaleY(0.5); }
+  16.008%        { opacity: 1; transform: translate(110px, 116px) scaleY(1.2); }
+  17.051%          { opacity: 1; transform: translate(110px, 5px) scaleY(0.3); }
+  17.182%   { opacity: 0; transform: translate(110px, 5px) scaleY(0); }
+  100% { opacity: 0; transform: translate(110px, 5px); }
 }
 
-      @keyframes laserShot5 {
-  0%, 53.71% { opacity: 0; transform: translateY(0px); }
-  53.72% { opacity: 1; transform: translateY(0px); }
-  54.68% { opacity: 1; transform: translateY(-59px); }
-  54.70%, 100% { opacity: 0; transform: translateY(-59px); }
+@keyframes sparkHit2 {
+  0% { opacity: 0; transform: scale(0.2); }
+  16.986% { opacity: 0; transform: scale(0.2); }
+  17.051%        { opacity: 1; transform: scale(1.6); }
+  17.834%         { opacity: 0.8; transform: scale(1.0); }
+  18.160%  { opacity: 0; transform: scale(0.3); }
+  100% { opacity: 0; transform: scale(0.2); }
 }
 
-      @keyframes laserShot6 {
-  0%, 66.41% { opacity: 0; transform: translateY(0px); }
-  66.42% { opacity: 1; transform: translateY(0px); }
-  67.38% { opacity: 1; transform: translateY(-46px); }
-  67.40%, 100% { opacity: 0; transform: translateY(-46px); }
+@keyframes commitDamage2 {
+  0% { fill: #006D32; }
+  16.986% { fill: #006D32; }
+  17.051%        { fill: #FDFBF7; }
+  17.443% { fill: #0E4429; opacity: 0.85; }
+  99.674% { fill: #0E4429; }
+  100% { fill: #006D32; }
 }
 
-      @keyframes laserShot7 {
-  0%, 78.65% { opacity: 0; transform: translateY(0px); }
-  78.66% { opacity: 1; transform: translateY(0px); }
-  79.61% { opacity: 1; transform: translateY(-85px); }
-  79.63%, 100% { opacity: 0; transform: translateY(-85px); }
+@keyframes laserShot3 {
+  0% { opacity: 0; transform: translate(665px, 116px) scaleY(0.5); }
+  29.737% { opacity: 0; transform: translate(665px, 116px) scaleY(0.5); }
+  29.802%        { opacity: 1; transform: translate(665px, 116px) scaleY(1.2); }
+  30.846%          { opacity: 1; transform: translate(665px, 57px) scaleY(0.3); }
+  30.977%   { opacity: 0; transform: translate(665px, 57px) scaleY(0); }
+  100% { opacity: 0; transform: translate(665px, 57px); }
 }
 
-      @keyframes laserShot8 {
-  0%, 90.83% { opacity: 0; transform: translateY(0px); }
-  90.84% { opacity: 1; transform: translateY(0px); }
-  91.80% { opacity: 1; transform: translateY(-85px); }
-  91.82%, 100% { opacity: 0; transform: translateY(-85px); }
+@keyframes sparkHit3 {
+  0% { opacity: 0; transform: scale(0.2); }
+  30.781% { opacity: 0; transform: scale(0.2); }
+  30.846%        { opacity: 1; transform: scale(1.6); }
+  31.629%         { opacity: 0.8; transform: scale(1.0); }
+  31.955%  { opacity: 0; transform: scale(0.3); }
+  100% { opacity: 0; transform: scale(0.2); }
 }
 
-      @keyframes sparkHit1 {
-  0%, 4.75% { opacity: 0; transform: scale(0.2); }
-  4.76% { opacity: 1; transform: scale(0.6); }
-  5.18% { opacity: 1; transform: scale(1.6); }
-  5.61%, 100% { opacity: 0; transform: scale(0.2); }
+@keyframes commitDamage3 {
+  0% { fill: #26A641; }
+  30.781% { fill: #26A641; }
+  30.846%        { fill: #FDFBF7; }
+  31.237% { fill: #006D32; opacity: 0.85; }
+  99.674% { fill: #006D32; }
+  100% { fill: #26A641; }
 }
 
-      @keyframes sparkHit2 {
-  0%, 16.70% { opacity: 0; transform: scale(0.2); }
-  16.71% { opacity: 1; transform: scale(0.6); }
-  17.14% { opacity: 1; transform: scale(1.6); }
-  17.56%, 100% { opacity: 0; transform: scale(0.2); }
+@keyframes laserShot4 {
+  0% { opacity: 0; transform: translate(410px, 116px) scaleY(0.5); }
+  42.528% { opacity: 0; transform: translate(410px, 116px) scaleY(0.5); }
+  42.593%        { opacity: 1; transform: translate(410px, 116px) scaleY(1.2); }
+  43.637%          { opacity: 1; transform: translate(410px, 44px) scaleY(0.3); }
+  43.768%   { opacity: 0; transform: translate(410px, 44px) scaleY(0); }
+  100% { opacity: 0; transform: translate(410px, 44px); }
 }
 
-      @keyframes sparkHit3 {
-  0%, 30.13% { opacity: 0; transform: scale(0.2); }
-  30.14% { opacity: 1; transform: scale(0.6); }
-  30.57% { opacity: 1; transform: scale(1.6); }
-  30.99%, 100% { opacity: 0; transform: scale(0.2); }
+@keyframes sparkHit4 {
+  0% { opacity: 0; transform: scale(0.2); }
+  43.572% { opacity: 0; transform: scale(0.2); }
+  43.637%        { opacity: 1; transform: scale(1.6); }
+  44.420%         { opacity: 0.8; transform: scale(1.0); }
+  44.746%  { opacity: 0; transform: scale(0.3); }
+  100% { opacity: 0; transform: scale(0.2); }
 }
 
-      @keyframes sparkHit4 {
-  0%, 42.74% { opacity: 0; transform: scale(0.2); }
-  42.75% { opacity: 1; transform: scale(0.6); }
-  43.17% { opacity: 1; transform: scale(1.6); }
-  43.60%, 100% { opacity: 0; transform: scale(0.2); }
+@keyframes commitDamage4 {
+  0% { fill: #0E4429; }
+  43.572% { fill: #0E4429; }
+  43.637%        { fill: #FDFBF7; }
+  44.029% { fill: #161B22; opacity: 0.85; }
+  99.674% { fill: #161B22; }
+  100% { fill: #0E4429; }
 }
 
-      @keyframes sparkHit5 {
-  0%, 54.69% { opacity: 0; transform: scale(0.2); }
-  54.70% { opacity: 1; transform: scale(0.6); }
-  55.13% { opacity: 1; transform: scale(1.6); }
-  55.55%, 100% { opacity: 0; transform: scale(0.2); }
+@keyframes laserShot5 {
+  0% { opacity: 0; transform: translate(410px, 116px) scaleY(0.5); }
+  54.466% { opacity: 0; transform: translate(410px, 116px) scaleY(0.5); }
+  54.531%        { opacity: 1; transform: translate(410px, 116px) scaleY(1.2); }
+  55.575%          { opacity: 1; transform: translate(410px, 18px) scaleY(0.3); }
+  55.706%   { opacity: 0; transform: translate(410px, 18px) scaleY(0); }
+  100% { opacity: 0; transform: translate(410px, 18px); }
 }
 
-      @keyframes sparkHit6 {
-  0%, 67.39% { opacity: 0; transform: scale(0.2); }
-  67.40% { opacity: 1; transform: scale(0.6); }
-  67.83% { opacity: 1; transform: scale(1.6); }
-  68.26%, 100% { opacity: 0; transform: scale(0.2); }
+@keyframes sparkHit5 {
+  0% { opacity: 0; transform: scale(0.2); }
+  55.510% { opacity: 0; transform: scale(0.2); }
+  55.575%        { opacity: 1; transform: scale(1.6); }
+  56.358%         { opacity: 0.8; transform: scale(1.0); }
+  56.684%  { opacity: 0; transform: scale(0.3); }
+  100% { opacity: 0; transform: scale(0.2); }
 }
 
-      @keyframes sparkHit7 {
-  0%, 79.62% { opacity: 0; transform: scale(0.2); }
-  79.63% { opacity: 1; transform: scale(0.6); }
-  80.06% { opacity: 1; transform: scale(1.6); }
-  80.49%, 100% { opacity: 0; transform: scale(0.2); }
+@keyframes commitDamage5 {
+  0% { fill: #0E4429; }
+  55.510% { fill: #0E4429; }
+  55.575%        { fill: #FDFBF7; }
+  55.966% { fill: #161B22; opacity: 0.85; }
+  99.674% { fill: #161B22; }
+  100% { fill: #0E4429; }
 }
 
-      @keyframes sparkHit8 {
-  0%, 91.81% { opacity: 0; transform: scale(0.2); }
-  91.82% { opacity: 1; transform: scale(0.6); }
-  92.25% { opacity: 1; transform: scale(1.6); }
-  92.67%, 100% { opacity: 0; transform: scale(0.2); }
+@keyframes laserShot6 {
+  0% { opacity: 0; transform: translate(275px, 116px) scaleY(0.5); }
+  66.856% { opacity: 0; transform: translate(275px, 116px) scaleY(0.5); }
+  66.921%        { opacity: 1; transform: translate(275px, 116px) scaleY(1.2); }
+  67.965%          { opacity: 1; transform: translate(275px, 57px) scaleY(0.3); }
+  68.095%   { opacity: 0; transform: translate(275px, 57px) scaleY(0); }
+  100% { opacity: 0; transform: translate(275px, 57px); }
 }
 
-      @keyframes commitDamage1 {
-  0%, 4.75% { fill: #006D32; stroke: none; }
-  4.76% { fill: #FDFBF7; stroke: #F59E0B; stroke-width: 1.5; }
-  5.61% { fill: #0E4429; stroke: none; }
-  98.8% { fill: #0E4429; stroke: none; }
-  100% { fill: #006D32; stroke: none; }
+@keyframes sparkHit6 {
+  0% { opacity: 0; transform: scale(0.2); }
+  67.899% { opacity: 0; transform: scale(0.2); }
+  67.965%        { opacity: 1; transform: scale(1.6); }
+  68.747%         { opacity: 0.8; transform: scale(1.0); }
+  69.074%  { opacity: 0; transform: scale(0.3); }
+  100% { opacity: 0; transform: scale(0.2); }
 }
 
-      @keyframes commitDamage2 {
-  0%, 16.70% { fill: #26A641; stroke: none; }
-  16.71% { fill: #FDFBF7; stroke: #F59E0B; stroke-width: 1.5; }
-  17.56% { fill: #006D32; stroke: none; }
-  98.8% { fill: #006D32; stroke: none; }
-  100% { fill: #26A641; stroke: none; }
+@keyframes commitDamage6 {
+  0% { fill: #0E4429; }
+  67.899% { fill: #0E4429; }
+  67.965%        { fill: #FDFBF7; }
+  68.356% { fill: #161B22; opacity: 0.85; }
+  99.674% { fill: #161B22; }
+  100% { fill: #0E4429; }
 }
 
-      @keyframes commitDamage3 {
-  0%, 30.13% { fill: #006D32; stroke: none; }
-  30.14% { fill: #FDFBF7; stroke: #F59E0B; stroke-width: 1.5; }
-  30.99% { fill: #0E4429; stroke: none; }
-  98.8% { fill: #0E4429; stroke: none; }
-  100% { fill: #006D32; stroke: none; }
+@keyframes laserShot7 {
+  0% { opacity: 0; transform: translate(290px, 116px) scaleY(0.5); }
+  78.844% { opacity: 0; transform: translate(290px, 116px) scaleY(0.5); }
+  78.909%        { opacity: 1; transform: translate(290px, 116px) scaleY(1.2); }
+  79.953%          { opacity: 1; transform: translate(290px, 5px) scaleY(0.3); }
+  80.083%   { opacity: 0; transform: translate(290px, 5px) scaleY(0); }
+  100% { opacity: 0; transform: translate(290px, 5px); }
 }
 
-      @keyframes commitDamage4 {
-  0%, 42.74% { fill: #0E4429; stroke: none; }
-  42.75% { fill: #FDFBF7; stroke: #F59E0B; stroke-width: 1.5; }
-  43.60% { fill: #161B22; stroke: none; }
-  98.8% { fill: #161B22; stroke: none; }
-  100% { fill: #0E4429; stroke: none; }
+@keyframes sparkHit7 {
+  0% { opacity: 0; transform: scale(0.2); }
+  79.888% { opacity: 0; transform: scale(0.2); }
+  79.953%        { opacity: 1; transform: scale(1.6); }
+  80.736%         { opacity: 0.8; transform: scale(1.0); }
+  81.062%  { opacity: 0; transform: scale(0.3); }
+  100% { opacity: 0; transform: scale(0.2); }
 }
 
-      @keyframes commitDamage5 {
-  0%, 54.69% { fill: #0E4429; stroke: none; }
-  54.70% { fill: #FDFBF7; stroke: #F59E0B; stroke-width: 1.5; }
-  55.55% { fill: #161B22; stroke: none; }
-  98.8% { fill: #161B22; stroke: none; }
-  100% { fill: #0E4429; stroke: none; }
+@keyframes commitDamage7 {
+  0% { fill: #39D353; }
+  79.888% { fill: #39D353; }
+  79.953%        { fill: #FDFBF7; }
+  80.344% { fill: #26A641; opacity: 0.85; }
+  99.674% { fill: #26A641; }
+  100% { fill: #39D353; }
 }
 
-      @keyframes commitDamage6 {
-  0%, 67.39% { fill: #0E4429; stroke: none; }
-  67.40% { fill: #FDFBF7; stroke: #F59E0B; stroke-width: 1.5; }
-  68.26% { fill: #161B22; stroke: none; }
-  98.8% { fill: #161B22; stroke: none; }
-  100% { fill: #0E4429; stroke: none; }
+@keyframes laserShot8 {
+  0% { opacity: 0; transform: translate(335px, 116px) scaleY(0.5); }
+  90.932% { opacity: 0; transform: translate(335px, 116px) scaleY(0.5); }
+  90.998%        { opacity: 1; transform: translate(335px, 116px) scaleY(1.2); }
+  92.041%          { opacity: 1; transform: translate(335px, 5px) scaleY(0.3); }
+  92.172%   { opacity: 0; transform: translate(335px, 5px) scaleY(0); }
+  100% { opacity: 0; transform: translate(335px, 5px); }
 }
 
-      @keyframes commitDamage7 {
-  0%, 79.62% { fill: #006D32; stroke: none; }
-  79.63% { fill: #FDFBF7; stroke: #F59E0B; stroke-width: 1.5; }
-  80.49% { fill: #0E4429; stroke: none; }
-  98.8% { fill: #0E4429; stroke: none; }
-  100% { fill: #006D32; stroke: none; }
+@keyframes sparkHit8 {
+  0% { opacity: 0; transform: scale(0.2); }
+  91.976% { opacity: 0; transform: scale(0.2); }
+  92.041%        { opacity: 1; transform: scale(1.6); }
+  92.824%         { opacity: 0.8; transform: scale(1.0); }
+  93.150%  { opacity: 0; transform: scale(0.3); }
+  100% { opacity: 0; transform: scale(0.2); }
 }
 
-      @keyframes commitDamage8 {
-  0%, 91.81% { fill: #0E4429; stroke: none; }
-  91.82% { fill: #FDFBF7; stroke: #F59E0B; stroke-width: 1.5; }
-  92.67% { fill: #161B22; stroke: none; }
-  98.8% { fill: #161B22; stroke: none; }
-  100% { fill: #0E4429; stroke: none; }
+@keyframes commitDamage8 {
+  0% { fill: #006D32; }
+  91.976% { fill: #006D32; }
+  92.041%        { fill: #FDFBF7; }
+  92.433% { fill: #0E4429; opacity: 0.85; }
+  99.674% { fill: #0E4429; }
+  100% { fill: #006D32; }
 }
 
-      @keyframes hudScore0 {
-  0%, 0.00% { opacity: 0; }
-  0.00%, 4.75% { opacity: 1; }
-  4.76%, 100% { opacity: 0; }
+@keyframes hudCount0 {
+  0% { opacity: 1; }
+  0.000% { opacity: 0; }
+  0.000%                 { opacity: 1; }
+  4.883%             { opacity: 1; }
+  5.013%                   { opacity: 0; }
+  100% { opacity: 0; }
 }
 
-      @keyframes hudScore1 {
-  0%, 4.75% { opacity: 0; }
-  4.76%, 16.70% { opacity: 1; }
-  16.71%, 100% { opacity: 0; }
+@keyframes hudCount1 {
+  0% { opacity: 0; }
+  4.883% { opacity: 0; }
+  5.013%                 { opacity: 1; }
+  16.921%             { opacity: 1; }
+  17.051%                   { opacity: 0; }
+  100% { opacity: 0; }
 }
 
-      @keyframes hudScore2 {
-  0%, 16.70% { opacity: 0; }
-  16.71%, 30.13% { opacity: 1; }
-  30.14%, 100% { opacity: 0; }
+@keyframes hudCount2 {
+  0% { opacity: 0; }
+  16.921% { opacity: 0; }
+  17.051%                 { opacity: 1; }
+  30.716%             { opacity: 1; }
+  30.846%                   { opacity: 0; }
+  100% { opacity: 0; }
 }
 
-      @keyframes hudScore3 {
-  0%, 30.13% { opacity: 0; }
-  30.14%, 42.74% { opacity: 1; }
-  42.75%, 100% { opacity: 0; }
+@keyframes hudCount3 {
+  0% { opacity: 0; }
+  30.716% { opacity: 0; }
+  30.846%                 { opacity: 1; }
+  43.507%             { opacity: 1; }
+  43.637%                   { opacity: 0; }
+  100% { opacity: 0; }
 }
 
-      @keyframes hudScore4 {
-  0%, 42.74% { opacity: 0; }
-  42.75%, 54.69% { opacity: 1; }
-  54.70%, 100% { opacity: 0; }
+@keyframes hudCount4 {
+  0% { opacity: 0; }
+  43.507% { opacity: 0; }
+  43.637%                 { opacity: 1; }
+  55.445%             { opacity: 1; }
+  55.575%                   { opacity: 0; }
+  100% { opacity: 0; }
 }
 
-      @keyframes hudScore5 {
-  0%, 54.69% { opacity: 0; }
-  54.70%, 67.39% { opacity: 1; }
-  67.40%, 100% { opacity: 0; }
+@keyframes hudCount5 {
+  0% { opacity: 0; }
+  55.445% { opacity: 0; }
+  55.575%                 { opacity: 1; }
+  67.834%             { opacity: 1; }
+  67.965%                   { opacity: 0; }
+  100% { opacity: 0; }
 }
 
-      @keyframes hudScore6 {
-  0%, 67.39% { opacity: 0; }
-  67.40%, 79.62% { opacity: 1; }
-  79.63%, 100% { opacity: 0; }
+@keyframes hudCount6 {
+  0% { opacity: 0; }
+  67.834% { opacity: 0; }
+  67.965%                 { opacity: 1; }
+  79.822%             { opacity: 1; }
+  79.953%                   { opacity: 0; }
+  100% { opacity: 0; }
 }
 
-      @keyframes hudScore7 {
-  0%, 79.62% { opacity: 0; }
-  79.63%, 91.81% { opacity: 1; }
-  91.82%, 100% { opacity: 0; }
+@keyframes hudCount7 {
+  0% { opacity: 0; }
+  79.822% { opacity: 0; }
+  79.953%                 { opacity: 1; }
+  91.911%             { opacity: 1; }
+  92.041%                   { opacity: 0; }
+  100% { opacity: 0; }
 }
 
-      @keyframes hudScore8 {
-  0%, 91.81% { opacity: 0; }
-  91.82%, 99.19% { opacity: 1; }
-  99.20%, 100% { opacity: 0; }
+@keyframes hudCount8 {
+  0% { opacity: 0; }
+  91.911% { opacity: 0; }
+  92.041%                 { opacity: 1; }
+  99.870%             { opacity: 1; }
+  100.000%                   { opacity: 0; }
+  100% { opacity: 1; }
 }
     </style>
   </defs>
@@ -317,15 +387,15 @@
     <!-- Live Counter HUD Badge displaying total commits -->
     <g transform="translate(560, -8)">
       <rect width="250" height="26" rx="3" class="counter-frame"/>
-      <text x="12" y="17" class="counter-txt hud-val-0">DESTROYED: [ 0 / 1,929 COMMITS ]</text>
-      <text x="12" y="17" class="counter-txt hud-val-1">DESTROYED: [ 1 / 1,929 COMMITS ]</text>
-      <text x="12" y="17" class="counter-txt hud-val-2">DESTROYED: [ 2 / 1,929 COMMITS ]</text>
-      <text x="12" y="17" class="counter-txt hud-val-3">DESTROYED: [ 3 / 1,929 COMMITS ]</text>
-      <text x="12" y="17" class="counter-txt hud-val-4">DESTROYED: [ 4 / 1,929 COMMITS ]</text>
-      <text x="12" y="17" class="counter-txt hud-val-5">DESTROYED: [ 5 / 1,929 COMMITS ]</text>
-      <text x="12" y="17" class="counter-txt hud-val-6">DESTROYED: [ 6 / 1,929 COMMITS ]</text>
-      <text x="12" y="17" class="counter-txt hud-val-7">DESTROYED: [ 7 / 1,929 COMMITS ]</text>
-      <text x="12" y="17" class="counter-txt hud-val-8">DESTROYED: [ 8 / 1,929 COMMITS ]</text>
+      <text x="12" y="17" class="counter-txt hud-val-0">DESTROYED: [ 1,921 / 1,929 COMMITS ]</text>
+      <text x="12" y="17" class="counter-txt hud-val-1">DESTROYED: [ 1,922 / 1,929 COMMITS ]</text>
+      <text x="12" y="17" class="counter-txt hud-val-2">DESTROYED: [ 1,923 / 1,929 COMMITS ]</text>
+      <text x="12" y="17" class="counter-txt hud-val-3">DESTROYED: [ 1,924 / 1,929 COMMITS ]</text>
+      <text x="12" y="17" class="counter-txt hud-val-4">DESTROYED: [ 1,925 / 1,929 COMMITS ]</text>
+      <text x="12" y="17" class="counter-txt hud-val-5">DESTROYED: [ 1,926 / 1,929 COMMITS ]</text>
+      <text x="12" y="17" class="counter-txt hud-val-6">DESTROYED: [ 1,927 / 1,929 COMMITS ]</text>
+      <text x="12" y="17" class="counter-txt hud-val-7">DESTROYED: [ 1,928 / 1,929 COMMITS ]</text>
+      <text x="12" y="17" class="counter-txt hud-val-8">DESTROYED: [ 1,929 / 1,929 COMMITS ]</text>
     </g>
   </g>
   <line x1="0" y1="42" x2="850" y2="42" stroke="#2C303B" stroke-width="1"/>
@@ -369,63 +439,63 @@
       <rect x="30" y="39" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="30" y="52" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="30" y="65" width="10" height="10" rx="2" fill="#161B22"/>
-      <rect x="30" y="78" width="10" height="10" rx="2" fill="#0E4429"/>
+      <rect x="30" y="78" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="45" y="0" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="45" y="13" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="45" y="26" width="10" height="10" rx="2" fill="#161B22"/>
-      <rect x="45" y="39" width="10" height="10" rx="2" fill="#0E4429"/>
+      <rect x="45" y="39" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="45" y="52" width="10" height="10" rx="2" fill="#161B22"/>
-      <rect x="45" y="65" width="10" height="10" rx="2" fill="#0E4429"/>
-      <rect x="45" y="78" width="10" height="10" rx="2" fill="#39D353"/>
-      <rect x="60" y="0" width="10" height="10" rx="2" fill="#26A641"/>
-      <rect x="60" y="13" width="10" height="10" rx="2" class="commit-target-1"/>
-      <rect x="60" y="26" width="10" height="10" rx="2" fill="#26A641"/>
+      <rect x="45" y="65" width="10" height="10" rx="2" fill="#161B22"/>
+      <rect x="45" y="78" width="10" height="10" rx="2" fill="#0E4429"/>
+      <rect x="60" y="0" width="10" height="10" rx="2" fill="#161B22"/>
+      <rect x="60" y="13" width="10" height="10" rx="2" fill="#161B22"/>
+      <rect x="60" y="26" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="60" y="39" width="10" height="10" rx="2" fill="#0E4429"/>
-      <rect x="60" y="52" width="10" height="10" rx="2" fill="#006D32"/>
+      <rect x="60" y="52" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="60" y="65" width="10" height="10" rx="2" fill="#0E4429"/>
-      <rect x="60" y="78" width="10" height="10" rx="2" fill="#161B22"/>
-      <rect x="75" y="0" width="10" height="10" rx="2" fill="#161B22"/>
-      <rect x="75" y="13" width="10" height="10" rx="2" class="commit-target-2"/>
-      <rect x="75" y="26" width="10" height="10" rx="2" fill="#161B22"/>
-      <rect x="75" y="39" width="10" height="10" rx="2" fill="#161B22"/>
-      <rect x="75" y="52" width="10" height="10" rx="2" fill="#161B22"/>
-      <rect x="75" y="65" width="10" height="10" rx="2" fill="#161B22"/>
-      <rect x="75" y="78" width="10" height="10" rx="2" fill="#0E4429"/>
-      <rect x="90" y="0" width="10" height="10" rx="2" fill="#006D32"/>
-      <rect x="90" y="13" width="10" height="10" rx="2" fill="#0E4429"/>
-      <rect x="90" y="26" width="10" height="10" rx="2" fill="#0E4429"/>
-      <rect x="90" y="39" width="10" height="10" rx="2" fill="#0E4429"/>
-      <rect x="90" y="52" width="10" height="10" rx="2" fill="#006D32"/>
-      <rect x="90" y="65" width="10" height="10" rx="2" fill="#0E4429"/>
-      <rect x="90" y="78" width="10" height="10" rx="2" fill="#006D32"/>
-      <rect x="105" y="0" width="10" height="10" rx="2" fill="#39D353"/>
-      <rect x="105" y="13" width="10" height="10" rx="2" fill="#26A641"/>
+      <rect x="60" y="78" width="10" height="10" rx="2" fill="#39D353"/>
+      <rect x="75" y="0" width="10" height="10" rx="2" class="commit-target-1"/>
+      <rect x="75" y="13" width="10" height="10" rx="2" fill="#006D32"/>
+      <rect x="75" y="26" width="10" height="10" rx="2" fill="#26A641"/>
+      <rect x="75" y="39" width="10" height="10" rx="2" fill="#0E4429"/>
+      <rect x="75" y="52" width="10" height="10" rx="2" fill="#006D32"/>
+      <rect x="75" y="65" width="10" height="10" rx="2" fill="#0E4429"/>
+      <rect x="75" y="78" width="10" height="10" rx="2" fill="#161B22"/>
+      <rect x="90" y="0" width="10" height="10" rx="2" fill="#161B22"/>
+      <rect x="90" y="13" width="10" height="10" rx="2" fill="#26A641"/>
+      <rect x="90" y="26" width="10" height="10" rx="2" fill="#161B22"/>
+      <rect x="90" y="39" width="10" height="10" rx="2" fill="#161B22"/>
+      <rect x="90" y="52" width="10" height="10" rx="2" fill="#161B22"/>
+      <rect x="90" y="65" width="10" height="10" rx="2" fill="#161B22"/>
+      <rect x="90" y="78" width="10" height="10" rx="2" fill="#0E4429"/>
+      <rect x="105" y="0" width="10" height="10" rx="2" class="commit-target-2"/>
+      <rect x="105" y="13" width="10" height="10" rx="2" fill="#0E4429"/>
       <rect x="105" y="26" width="10" height="10" rx="2" fill="#0E4429"/>
-      <rect x="105" y="39" width="10" height="10" rx="2" fill="#006D32"/>
-      <rect x="105" y="52" width="10" height="10" rx="2" fill="#0E4429"/>
-      <rect x="105" y="65" width="10" height="10" rx="2" fill="#26A641"/>
-      <rect x="105" y="78" width="10" height="10" rx="2" fill="#0E4429"/>
-      <rect x="120" y="0" width="10" height="10" rx="2" fill="#006D32"/>
-      <rect x="120" y="13" width="10" height="10" rx="2" fill="#0E4429"/>
+      <rect x="105" y="39" width="10" height="10" rx="2" fill="#0E4429"/>
+      <rect x="105" y="52" width="10" height="10" rx="2" fill="#006D32"/>
+      <rect x="105" y="65" width="10" height="10" rx="2" fill="#0E4429"/>
+      <rect x="105" y="78" width="10" height="10" rx="2" fill="#006D32"/>
+      <rect x="120" y="0" width="10" height="10" rx="2" fill="#39D353"/>
+      <rect x="120" y="13" width="10" height="10" rx="2" fill="#26A641"/>
       <rect x="120" y="26" width="10" height="10" rx="2" fill="#0E4429"/>
-      <rect x="120" y="39" width="10" height="10" rx="2" fill="#0E4429"/>
+      <rect x="120" y="39" width="10" height="10" rx="2" fill="#006D32"/>
       <rect x="120" y="52" width="10" height="10" rx="2" fill="#0E4429"/>
-      <rect x="120" y="65" width="10" height="10" rx="2" fill="#006D32"/>
+      <rect x="120" y="65" width="10" height="10" rx="2" fill="#26A641"/>
       <rect x="120" y="78" width="10" height="10" rx="2" fill="#0E4429"/>
-      <rect x="135" y="0" width="10" height="10" rx="2" fill="#161B22"/>
+      <rect x="135" y="0" width="10" height="10" rx="2" fill="#006D32"/>
       <rect x="135" y="13" width="10" height="10" rx="2" fill="#0E4429"/>
-      <rect x="135" y="26" width="10" height="10" rx="2" fill="#161B22"/>
+      <rect x="135" y="26" width="10" height="10" rx="2" fill="#0E4429"/>
       <rect x="135" y="39" width="10" height="10" rx="2" fill="#0E4429"/>
       <rect x="135" y="52" width="10" height="10" rx="2" fill="#0E4429"/>
-      <rect x="135" y="65" width="10" height="10" rx="2" fill="#161B22"/>
+      <rect x="135" y="65" width="10" height="10" rx="2" fill="#006D32"/>
       <rect x="135" y="78" width="10" height="10" rx="2" fill="#0E4429"/>
       <rect x="150" y="0" width="10" height="10" rx="2" fill="#161B22"/>
-      <rect x="150" y="13" width="10" height="10" rx="2" fill="#161B22"/>
+      <rect x="150" y="13" width="10" height="10" rx="2" fill="#0E4429"/>
       <rect x="150" y="26" width="10" height="10" rx="2" fill="#161B22"/>
-      <rect x="150" y="39" width="10" height="10" rx="2" fill="#161B22"/>
-      <rect x="150" y="52" width="10" height="10" rx="2" fill="#161B22"/>
+      <rect x="150" y="39" width="10" height="10" rx="2" fill="#0E4429"/>
+      <rect x="150" y="52" width="10" height="10" rx="2" fill="#0E4429"/>
       <rect x="150" y="65" width="10" height="10" rx="2" fill="#161B22"/>
-      <rect x="150" y="78" width="10" height="10" rx="2" fill="#161B22"/>
+      <rect x="150" y="78" width="10" height="10" rx="2" fill="#0E4429"/>
       <rect x="165" y="0" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="165" y="13" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="165" y="26" width="10" height="10" rx="2" fill="#161B22"/>
@@ -445,77 +515,77 @@
       <rect x="195" y="26" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="195" y="39" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="195" y="52" width="10" height="10" rx="2" fill="#161B22"/>
-      <rect x="195" y="65" width="10" height="10" rx="2" class="commit-target-6"/>
-      <rect x="195" y="78" width="10" height="10" rx="2" fill="#0E4429"/>
+      <rect x="195" y="65" width="10" height="10" rx="2" fill="#161B22"/>
+      <rect x="195" y="78" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="210" y="0" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="210" y="13" width="10" height="10" rx="2" fill="#161B22"/>
-      <rect x="210" y="26" width="10" height="10" rx="2" fill="#0E4429"/>
+      <rect x="210" y="26" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="210" y="39" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="210" y="52" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="210" y="65" width="10" height="10" rx="2" fill="#0E4429"/>
-      <rect x="210" y="78" width="10" height="10" rx="2" fill="#161B22"/>
+      <rect x="210" y="78" width="10" height="10" rx="2" fill="#0E4429"/>
       <rect x="225" y="0" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="225" y="13" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="225" y="26" width="10" height="10" rx="2" fill="#0E4429"/>
-      <rect x="225" y="39" width="10" height="10" rx="2" fill="#26A641"/>
+      <rect x="225" y="39" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="225" y="52" width="10" height="10" rx="2" fill="#161B22"/>
-      <rect x="225" y="65" width="10" height="10" rx="2" fill="#26A641"/>
-      <rect x="225" y="78" width="10" height="10" rx="2" fill="#26A641"/>
-      <rect x="240" y="0" width="10" height="10" rx="2" fill="#0E4429"/>
-      <rect x="240" y="13" width="10" height="10" rx="2" fill="#0E4429"/>
+      <rect x="225" y="65" width="10" height="10" rx="2" fill="#0E4429"/>
+      <rect x="225" y="78" width="10" height="10" rx="2" fill="#161B22"/>
+      <rect x="240" y="0" width="10" height="10" rx="2" fill="#161B22"/>
+      <rect x="240" y="13" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="240" y="26" width="10" height="10" rx="2" fill="#0E4429"/>
-      <rect x="240" y="39" width="10" height="10" rx="2" fill="#0E4429"/>
+      <rect x="240" y="39" width="10" height="10" rx="2" fill="#26A641"/>
       <rect x="240" y="52" width="10" height="10" rx="2" fill="#161B22"/>
-      <rect x="240" y="65" width="10" height="10" rx="2" fill="#0E4429"/>
-      <rect x="240" y="78" width="10" height="10" rx="2" fill="#0E4429"/>
-      <rect x="255" y="0" width="10" height="10" rx="2" fill="#161B22"/>
-      <rect x="255" y="13" width="10" height="10" rx="2" fill="#006D32"/>
-      <rect x="255" y="26" width="10" height="10" rx="2" fill="#006D32"/>
+      <rect x="240" y="65" width="10" height="10" rx="2" fill="#26A641"/>
+      <rect x="240" y="78" width="10" height="10" rx="2" fill="#26A641"/>
+      <rect x="255" y="0" width="10" height="10" rx="2" fill="#0E4429"/>
+      <rect x="255" y="13" width="10" height="10" rx="2" fill="#0E4429"/>
+      <rect x="255" y="26" width="10" height="10" rx="2" fill="#0E4429"/>
       <rect x="255" y="39" width="10" height="10" rx="2" fill="#0E4429"/>
-      <rect x="255" y="52" width="10" height="10" rx="2" fill="#0E4429"/>
-      <rect x="255" y="65" width="10" height="10" rx="2" fill="#006D32"/>
-      <rect x="255" y="78" width="10" height="10" rx="2" fill="#006D32"/>
-      <rect x="270" y="0" width="10" height="10" rx="2" fill="#39D353"/>
-      <rect x="270" y="13" width="10" height="10" rx="2" fill="#0E4429"/>
-      <rect x="270" y="26" width="10" height="10" rx="2" fill="#0E4429"/>
+      <rect x="255" y="52" width="10" height="10" rx="2" fill="#161B22"/>
+      <rect x="255" y="65" width="10" height="10" rx="2" fill="#0E4429"/>
+      <rect x="255" y="78" width="10" height="10" rx="2" fill="#0E4429"/>
+      <rect x="270" y="0" width="10" height="10" rx="2" fill="#161B22"/>
+      <rect x="270" y="13" width="10" height="10" rx="2" fill="#006D32"/>
+      <rect x="270" y="26" width="10" height="10" rx="2" fill="#006D32"/>
       <rect x="270" y="39" width="10" height="10" rx="2" fill="#0E4429"/>
-      <rect x="270" y="52" width="10" height="10" rx="2" fill="#161B22"/>
-      <rect x="270" y="65" width="10" height="10" rx="2" fill="#26A641"/>
-      <rect x="270" y="78" width="10" height="10" rx="2" fill="#0E4429"/>
-      <rect x="285" y="0" width="10" height="10" rx="2" fill="#006D32"/>
-      <rect x="285" y="13" width="10" height="10" rx="2" fill="#161B22"/>
-      <rect x="285" y="26" width="10" height="10" rx="2" fill="#006D32"/>
+      <rect x="270" y="52" width="10" height="10" rx="2" class="commit-target-6"/>
+      <rect x="270" y="65" width="10" height="10" rx="2" fill="#006D32"/>
+      <rect x="270" y="78" width="10" height="10" rx="2" fill="#006D32"/>
+      <rect x="285" y="0" width="10" height="10" rx="2" class="commit-target-7"/>
+      <rect x="285" y="13" width="10" height="10" rx="2" fill="#0E4429"/>
+      <rect x="285" y="26" width="10" height="10" rx="2" fill="#0E4429"/>
       <rect x="285" y="39" width="10" height="10" rx="2" fill="#0E4429"/>
       <rect x="285" y="52" width="10" height="10" rx="2" fill="#161B22"/>
-      <rect x="285" y="65" width="10" height="10" rx="2" fill="#161B22"/>
+      <rect x="285" y="65" width="10" height="10" rx="2" fill="#26A641"/>
       <rect x="285" y="78" width="10" height="10" rx="2" fill="#0E4429"/>
-      <rect x="300" y="0" width="10" height="10" rx="2" fill="#0E4429"/>
-      <rect x="300" y="13" width="10" height="10" rx="2" fill="#0E4429"/>
-      <rect x="300" y="26" width="10" height="10" rx="2" class="commit-target-7"/>
-      <rect x="300" y="39" width="10" height="10" rx="2" fill="#161B22"/>
+      <rect x="300" y="0" width="10" height="10" rx="2" fill="#006D32"/>
+      <rect x="300" y="13" width="10" height="10" rx="2" fill="#161B22"/>
+      <rect x="300" y="26" width="10" height="10" rx="2" fill="#006D32"/>
+      <rect x="300" y="39" width="10" height="10" rx="2" fill="#0E4429"/>
       <rect x="300" y="52" width="10" height="10" rx="2" fill="#161B22"/>
-      <rect x="300" y="65" width="10" height="10" rx="2" fill="#0E4429"/>
-      <rect x="300" y="78" width="10" height="10" rx="2" fill="#26A641"/>
-      <rect x="315" y="0" width="10" height="10" rx="2" fill="#006D32"/>
-      <rect x="315" y="13" width="10" height="10" rx="2" fill="#161B22"/>
-      <rect x="315" y="26" width="10" height="10" rx="2" fill="#161B22"/>
+      <rect x="300" y="65" width="10" height="10" rx="2" fill="#161B22"/>
+      <rect x="300" y="78" width="10" height="10" rx="2" fill="#0E4429"/>
+      <rect x="315" y="0" width="10" height="10" rx="2" fill="#0E4429"/>
+      <rect x="315" y="13" width="10" height="10" rx="2" fill="#0E4429"/>
+      <rect x="315" y="26" width="10" height="10" rx="2" fill="#006D32"/>
       <rect x="315" y="39" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="315" y="52" width="10" height="10" rx="2" fill="#161B22"/>
-      <rect x="315" y="65" width="10" height="10" rx="2" fill="#161B22"/>
-      <rect x="315" y="78" width="10" height="10" rx="2" fill="#161B22"/>
-      <rect x="330" y="0" width="10" height="10" rx="2" fill="#161B22"/>
+      <rect x="315" y="65" width="10" height="10" rx="2" fill="#0E4429"/>
+      <rect x="315" y="78" width="10" height="10" rx="2" fill="#26A641"/>
+      <rect x="330" y="0" width="10" height="10" rx="2" class="commit-target-8"/>
       <rect x="330" y="13" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="330" y="26" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="330" y="39" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="330" y="52" width="10" height="10" rx="2" fill="#161B22"/>
-      <rect x="330" y="65" width="10" height="10" rx="2" fill="#0E4429"/>
+      <rect x="330" y="65" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="330" y="78" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="345" y="0" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="345" y="13" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="345" y="26" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="345" y="39" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="345" y="52" width="10" height="10" rx="2" fill="#161B22"/>
-      <rect x="345" y="65" width="10" height="10" rx="2" fill="#161B22"/>
+      <rect x="345" y="65" width="10" height="10" rx="2" fill="#0E4429"/>
       <rect x="345" y="78" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="360" y="0" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="360" y="13" width="10" height="10" rx="2" fill="#161B22"/>
@@ -532,74 +602,74 @@
       <rect x="375" y="65" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="375" y="78" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="390" y="0" width="10" height="10" rx="2" fill="#161B22"/>
-      <rect x="390" y="13" width="10" height="10" rx="2" fill="#0E4429"/>
-      <rect x="390" y="26" width="10" height="10" rx="2" class="commit-target-8"/>
-      <rect x="390" y="39" width="10" height="10" rx="2" fill="#0E4429"/>
+      <rect x="390" y="13" width="10" height="10" rx="2" fill="#161B22"/>
+      <rect x="390" y="26" width="10" height="10" rx="2" fill="#161B22"/>
+      <rect x="390" y="39" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="390" y="52" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="390" y="65" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="390" y="78" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="405" y="0" width="10" height="10" rx="2" fill="#161B22"/>
-      <rect x="405" y="13" width="10" height="10" rx="2" fill="#161B22"/>
-      <rect x="405" y="26" width="10" height="10" rx="2" fill="#161B22"/>
-      <rect x="405" y="39" width="10" height="10" rx="2" fill="#161B22"/>
+      <rect x="405" y="13" width="10" height="10" rx="2" class="commit-target-5"/>
+      <rect x="405" y="26" width="10" height="10" rx="2" fill="#0E4429"/>
+      <rect x="405" y="39" width="10" height="10" rx="2" class="commit-target-4"/>
       <rect x="405" y="52" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="405" y="65" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="405" y="78" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="420" y="0" width="10" height="10" rx="2" fill="#161B22"/>
-      <rect x="420" y="13" width="10" height="10" rx="2" fill="#0E4429"/>
+      <rect x="420" y="13" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="420" y="26" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="420" y="39" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="420" y="52" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="420" y="65" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="420" y="78" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="435" y="0" width="10" height="10" rx="2" fill="#161B22"/>
-      <rect x="435" y="13" width="10" height="10" rx="2" fill="#161B22"/>
+      <rect x="435" y="13" width="10" height="10" rx="2" fill="#0E4429"/>
       <rect x="435" y="26" width="10" height="10" rx="2" fill="#161B22"/>
-      <rect x="435" y="39" width="10" height="10" rx="2" fill="#0E4429"/>
-      <rect x="435" y="52" width="10" height="10" rx="2" class="commit-target-4"/>
+      <rect x="435" y="39" width="10" height="10" rx="2" fill="#161B22"/>
+      <rect x="435" y="52" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="435" y="65" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="435" y="78" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="450" y="0" width="10" height="10" rx="2" fill="#161B22"/>
-      <rect x="450" y="13" width="10" height="10" rx="2" fill="#006D32"/>
-      <rect x="450" y="26" width="10" height="10" rx="2" fill="#0E4429"/>
-      <rect x="450" y="39" width="10" height="10" rx="2" fill="#161B22"/>
-      <rect x="450" y="52" width="10" height="10" rx="2" class="commit-target-5"/>
+      <rect x="450" y="13" width="10" height="10" rx="2" fill="#161B22"/>
+      <rect x="450" y="26" width="10" height="10" rx="2" fill="#161B22"/>
+      <rect x="450" y="39" width="10" height="10" rx="2" fill="#0E4429"/>
+      <rect x="450" y="52" width="10" height="10" rx="2" fill="#0E4429"/>
       <rect x="450" y="65" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="450" y="78" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="465" y="0" width="10" height="10" rx="2" fill="#161B22"/>
-      <rect x="465" y="13" width="10" height="10" rx="2" fill="#161B22"/>
-      <rect x="465" y="26" width="10" height="10" rx="2" fill="#161B22"/>
+      <rect x="465" y="13" width="10" height="10" rx="2" fill="#006D32"/>
+      <rect x="465" y="26" width="10" height="10" rx="2" fill="#0E4429"/>
       <rect x="465" y="39" width="10" height="10" rx="2" fill="#161B22"/>
-      <rect x="465" y="52" width="10" height="10" rx="2" fill="#161B22"/>
+      <rect x="465" y="52" width="10" height="10" rx="2" fill="#0E4429"/>
       <rect x="465" y="65" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="465" y="78" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="480" y="0" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="480" y="13" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="480" y="26" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="480" y="39" width="10" height="10" rx="2" fill="#161B22"/>
-      <rect x="480" y="52" width="10" height="10" rx="2" fill="#0E4429"/>
-      <rect x="480" y="65" width="10" height="10" rx="2" fill="#0E4429"/>
+      <rect x="480" y="52" width="10" height="10" rx="2" fill="#161B22"/>
+      <rect x="480" y="65" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="480" y="78" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="495" y="0" width="10" height="10" rx="2" fill="#161B22"/>
-      <rect x="495" y="13" width="10" height="10" rx="2" fill="#0E4429"/>
+      <rect x="495" y="13" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="495" y="26" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="495" y="39" width="10" height="10" rx="2" fill="#161B22"/>
-      <rect x="495" y="52" width="10" height="10" rx="2" fill="#161B22"/>
-      <rect x="495" y="65" width="10" height="10" rx="2" fill="#161B22"/>
+      <rect x="495" y="52" width="10" height="10" rx="2" fill="#0E4429"/>
+      <rect x="495" y="65" width="10" height="10" rx="2" fill="#0E4429"/>
       <rect x="495" y="78" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="510" y="0" width="10" height="10" rx="2" fill="#161B22"/>
-      <rect x="510" y="13" width="10" height="10" rx="2" fill="#161B22"/>
+      <rect x="510" y="13" width="10" height="10" rx="2" fill="#0E4429"/>
       <rect x="510" y="26" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="510" y="39" width="10" height="10" rx="2" fill="#161B22"/>
-      <rect x="510" y="52" width="10" height="10" rx="2" fill="#0E4429"/>
-      <rect x="510" y="65" width="10" height="10" rx="2" fill="#0E4429"/>
+      <rect x="510" y="52" width="10" height="10" rx="2" fill="#161B22"/>
+      <rect x="510" y="65" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="510" y="78" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="525" y="0" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="525" y="13" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="525" y="26" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="525" y="39" width="10" height="10" rx="2" fill="#161B22"/>
-      <rect x="525" y="52" width="10" height="10" rx="2" fill="#161B22"/>
-      <rect x="525" y="65" width="10" height="10" rx="2" fill="#161B22"/>
+      <rect x="525" y="52" width="10" height="10" rx="2" fill="#0E4429"/>
+      <rect x="525" y="65" width="10" height="10" rx="2" fill="#0E4429"/>
       <rect x="525" y="78" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="540" y="0" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="540" y="13" width="10" height="10" rx="2" fill="#161B22"/>
@@ -625,231 +695,201 @@
       <rect x="585" y="0" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="585" y="13" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="585" y="26" width="10" height="10" rx="2" fill="#161B22"/>
-      <rect x="585" y="39" width="10" height="10" rx="2" fill="#0E4429"/>
+      <rect x="585" y="39" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="585" y="52" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="585" y="65" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="585" y="78" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="600" y="0" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="600" y="13" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="600" y="26" width="10" height="10" rx="2" fill="#161B22"/>
-      <rect x="600" y="39" width="10" height="10" rx="2" fill="#161B22"/>
-      <rect x="600" y="52" width="10" height="10" rx="2" fill="#0E4429"/>
-      <rect x="600" y="65" width="10" height="10" rx="2" fill="#26A641"/>
-      <rect x="600" y="78" width="10" height="10" rx="2" fill="#0E4429"/>
-      <rect x="615" y="0" width="10" height="10" rx="2" fill="#26A641"/>
-      <rect x="615" y="13" width="10" height="10" rx="2" fill="#0E4429"/>
-      <rect x="615" y="26" width="10" height="10" rx="2" fill="#0E4429"/>
-      <rect x="615" y="39" width="10" height="10" rx="2" fill="#0E4429"/>
+      <rect x="600" y="39" width="10" height="10" rx="2" fill="#0E4429"/>
+      <rect x="600" y="52" width="10" height="10" rx="2" fill="#161B22"/>
+      <rect x="600" y="65" width="10" height="10" rx="2" fill="#161B22"/>
+      <rect x="600" y="78" width="10" height="10" rx="2" fill="#161B22"/>
+      <rect x="615" y="0" width="10" height="10" rx="2" fill="#161B22"/>
+      <rect x="615" y="13" width="10" height="10" rx="2" fill="#161B22"/>
+      <rect x="615" y="26" width="10" height="10" rx="2" fill="#161B22"/>
+      <rect x="615" y="39" width="10" height="10" rx="2" fill="#161B22"/>
       <rect x="615" y="52" width="10" height="10" rx="2" fill="#0E4429"/>
-      <rect x="615" y="65" width="10" height="10" rx="2" fill="#0E4429"/>
+      <rect x="615" y="65" width="10" height="10" rx="2" fill="#26A641"/>
       <rect x="615" y="78" width="10" height="10" rx="2" fill="#0E4429"/>
-      <rect x="630" y="0" width="10" height="10" rx="2" fill="#0E4429"/>
+      <rect x="630" y="0" width="10" height="10" rx="2" fill="#26A641"/>
       <rect x="630" y="13" width="10" height="10" rx="2" fill="#0E4429"/>
-      <rect x="630" y="26" width="10" height="10" rx="2" fill="#006D32"/>
-      <rect x="630" y="39" width="10" height="10" rx="2" fill="#006D32"/>
+      <rect x="630" y="26" width="10" height="10" rx="2" fill="#0E4429"/>
+      <rect x="630" y="39" width="10" height="10" rx="2" fill="#0E4429"/>
       <rect x="630" y="52" width="10" height="10" rx="2" fill="#0E4429"/>
-      <rect x="630" y="65" width="10" height="10" rx="2" fill="#26A641"/>
+      <rect x="630" y="65" width="10" height="10" rx="2" fill="#0E4429"/>
       <rect x="630" y="78" width="10" height="10" rx="2" fill="#0E4429"/>
       <rect x="645" y="0" width="10" height="10" rx="2" fill="#0E4429"/>
-      <rect x="645" y="13" width="10" height="10" rx="2" fill="#006D32"/>
-      <rect x="645" y="26" width="10" height="10" rx="2" fill="#26A641"/>
-      <rect x="645" y="39" width="10" height="10" rx="2" fill="#39D353"/>
-      <rect x="645" y="52" width="10" height="10" rx="2" fill="#26A641"/>
+      <rect x="645" y="13" width="10" height="10" rx="2" fill="#0E4429"/>
+      <rect x="645" y="26" width="10" height="10" rx="2" fill="#006D32"/>
+      <rect x="645" y="39" width="10" height="10" rx="2" fill="#006D32"/>
+      <rect x="645" y="52" width="10" height="10" rx="2" fill="#0E4429"/>
       <rect x="645" y="65" width="10" height="10" rx="2" fill="#26A641"/>
-      <rect x="645" y="78" width="10" height="10" rx="2" fill="#39D353"/>
-      <rect x="660" y="0" width="10" height="10" rx="2" fill="#39D353"/>
-      <rect x="660" y="13" width="10" height="10" rx="2" fill="#39D353"/>
-      <rect x="660" y="26" width="10" height="10" rx="2" fill="#0E4429"/>
+      <rect x="645" y="78" width="10" height="10" rx="2" fill="#0E4429"/>
+      <rect x="660" y="0" width="10" height="10" rx="2" fill="#0E4429"/>
+      <rect x="660" y="13" width="10" height="10" rx="2" fill="#006D32"/>
+      <rect x="660" y="26" width="10" height="10" rx="2" fill="#26A641"/>
       <rect x="660" y="39" width="10" height="10" rx="2" fill="#39D353"/>
-      <rect x="660" y="52" width="10" height="10" rx="2" fill="#006D32"/>
-      <rect x="660" y="65" width="10" height="10" rx="2" fill="#006D32"/>
-      <rect x="660" y="78" width="10" height="10" rx="2" class="commit-target-3"/>
-      <rect x="675" y="0" width="10" height="10" rx="2" fill="#0E4429"/>
-      <rect x="675" y="13" width="10" height="10" rx="2" fill="#0E4429"/>
+      <rect x="660" y="52" width="10" height="10" rx="2" class="commit-target-3"/>
+      <rect x="660" y="65" width="10" height="10" rx="2" fill="#26A641"/>
+      <rect x="660" y="78" width="10" height="10" rx="2" fill="#39D353"/>
+      <rect x="675" y="0" width="10" height="10" rx="2" fill="#39D353"/>
+      <rect x="675" y="13" width="10" height="10" rx="2" fill="#39D353"/>
       <rect x="675" y="26" width="10" height="10" rx="2" fill="#0E4429"/>
-      <rect x="675" y="39" width="10" height="10" rx="2" fill="#0E4429"/>
-      <rect x="675" y="52" width="10" height="10" rx="2" fill="#39D353"/>
-      <rect x="675" y="65" width="10" height="10" rx="2" fill="#26A641"/>
-      <rect x="675" y="78" width="10" height="10" rx="2" fill="#39D353"/>
-      <rect x="690" y="0" width="10" height="10" rx="2" fill="#26A641"/>
-      <rect x="690" y="13" width="10" height="10" rx="2" fill="#26A641"/>
+      <rect x="675" y="39" width="10" height="10" rx="2" fill="#39D353"/>
+      <rect x="675" y="52" width="10" height="10" rx="2" fill="#006D32"/>
+      <rect x="675" y="65" width="10" height="10" rx="2" fill="#006D32"/>
+      <rect x="675" y="78" width="10" height="10" rx="2" fill="#006D32"/>
+      <rect x="690" y="0" width="10" height="10" rx="2" fill="#0E4429"/>
+      <rect x="690" y="13" width="10" height="10" rx="2" fill="#0E4429"/>
       <rect x="690" y="26" width="10" height="10" rx="2" fill="#0E4429"/>
-      <rect x="690" y="39" width="10" height="10" rx="2" fill="#006D32"/>
-      <rect x="690" y="52" width="10" height="10" rx="2" fill="#0E4429"/>
+      <rect x="690" y="39" width="10" height="10" rx="2" fill="#0E4429"/>
+      <rect x="690" y="52" width="10" height="10" rx="2" fill="#39D353"/>
       <rect x="690" y="65" width="10" height="10" rx="2" fill="#26A641"/>
-      <rect x="690" y="78" width="10" height="10" rx="2" fill="#26A641"/>
-      <rect x="705" y="0" width="10" height="10" rx="2" fill="#0E4429"/>
-      <rect x="705" y="13" width="10" height="10" rx="2" fill="#006D32"/>
+      <rect x="690" y="78" width="10" height="10" rx="2" fill="#39D353"/>
+      <rect x="705" y="0" width="10" height="10" rx="2" fill="#26A641"/>
+      <rect x="705" y="13" width="10" height="10" rx="2" fill="#26A641"/>
       <rect x="705" y="26" width="10" height="10" rx="2" fill="#0E4429"/>
-      <rect x="705" y="39" width="10" height="10" rx="2" fill="#26A641"/>
-      <rect x="705" y="52" width="10" height="10" rx="2" fill="#006D32"/>
-      <rect x="705" y="65" width="10" height="10" rx="2" fill="#006D32"/>
-      <rect x="705" y="78" width="10" height="10" rx="2" fill="#39D353"/>
-      <rect x="720" y="0" width="10" height="10" rx="2" fill="#006D32"/>
-      <rect x="720" y="13" width="10" height="10" rx="2" fill="#0E4429"/>
-      <rect x="720" y="26" width="10" height="10" rx="2" fill="#39D353"/>
-      <rect x="720" y="39" width="10" height="10" rx="2" fill="#0E4429"/>
-      <rect x="720" y="52" width="10" height="10" rx="2" fill="#0E4429"/>
-      <rect x="720" y="65" width="10" height="10" rx="2" fill="#0E4429"/>
-      <rect x="720" y="78" width="10" height="10" rx="2" fill="#26A641"/>
-      <rect x="735" y="0" width="10" height="10" rx="2" fill="#0E4429"/>
+      <rect x="705" y="39" width="10" height="10" rx="2" fill="#006D32"/>
+      <rect x="705" y="52" width="10" height="10" rx="2" fill="#0E4429"/>
+      <rect x="705" y="65" width="10" height="10" rx="2" fill="#26A641"/>
+      <rect x="705" y="78" width="10" height="10" rx="2" fill="#26A641"/>
+      <rect x="720" y="0" width="10" height="10" rx="2" fill="#0E4429"/>
+      <rect x="720" y="13" width="10" height="10" rx="2" fill="#006D32"/>
+      <rect x="720" y="26" width="10" height="10" rx="2" fill="#0E4429"/>
+      <rect x="720" y="39" width="10" height="10" rx="2" fill="#26A641"/>
+      <rect x="720" y="52" width="10" height="10" rx="2" fill="#006D32"/>
+      <rect x="720" y="65" width="10" height="10" rx="2" fill="#006D32"/>
+      <rect x="720" y="78" width="10" height="10" rx="2" fill="#39D353"/>
+      <rect x="735" y="0" width="10" height="10" rx="2" fill="#006D32"/>
       <rect x="735" y="13" width="10" height="10" rx="2" fill="#0E4429"/>
-      <rect x="735" y="26" width="10" height="10" rx="2" fill="#0E4429"/>
+      <rect x="735" y="26" width="10" height="10" rx="2" fill="#39D353"/>
       <rect x="735" y="39" width="10" height="10" rx="2" fill="#0E4429"/>
       <rect x="735" y="52" width="10" height="10" rx="2" fill="#0E4429"/>
       <rect x="735" y="65" width="10" height="10" rx="2" fill="#0E4429"/>
-      <rect x="735" y="78" width="10" height="10" rx="2" fill="#0E4429"/>
-      <rect x="750" y="0" width="10" height="10" rx="2" fill="#39D353"/>
-      <rect x="750" y="13" width="10" height="10" rx="2" fill="#006D32"/>
-      <rect x="750" y="26" width="10" height="10" rx="2" fill="#006D32"/>
+      <rect x="735" y="78" width="10" height="10" rx="2" fill="#26A641"/>
+      <rect x="750" y="0" width="10" height="10" rx="2" fill="#0E4429"/>
+      <rect x="750" y="13" width="10" height="10" rx="2" fill="#0E4429"/>
+      <rect x="750" y="26" width="10" height="10" rx="2" fill="#0E4429"/>
       <rect x="750" y="39" width="10" height="10" rx="2" fill="#0E4429"/>
       <rect x="750" y="52" width="10" height="10" rx="2" fill="#0E4429"/>
       <rect x="750" y="65" width="10" height="10" rx="2" fill="#0E4429"/>
       <rect x="750" y="78" width="10" height="10" rx="2" fill="#0E4429"/>
-      <rect x="765" y="0" width="10" height="10" rx="2" fill="#0E4429"/>
-      <rect x="765" y="13" width="10" height="10" rx="2" fill="#39D353"/>
+      <rect x="765" y="0" width="10" height="10" rx="2" fill="#39D353"/>
+      <rect x="765" y="13" width="10" height="10" rx="2" fill="#006D32"/>
       <rect x="765" y="26" width="10" height="10" rx="2" fill="#006D32"/>
-      <rect x="765" y="39" width="10" height="10" rx="2" fill="#26A641"/>
-      <rect x="765" y="52" width="10" height="10" rx="2" fill="#161B22"/>
-      <rect x="765" y="65" width="10" height="10" rx="2" fill="#161B22"/>
-      <rect x="765" y="78" width="10" height="10" rx="2" fill="#161B22"/>
+      <rect x="765" y="39" width="10" height="10" rx="2" fill="#0E4429"/>
+      <rect x="765" y="52" width="10" height="10" rx="2" fill="#0E4429"/>
+      <rect x="765" y="65" width="10" height="10" rx="2" fill="#0E4429"/>
+      <rect x="765" y="78" width="10" height="10" rx="2" fill="#0E4429"/>
     </g>
 
-    <!-- Fired Laser Projectile Bolts (Launching from shifted lowered cannon) -->
-    <!-- Laser 1 targeting Col 4, Row 1 -->
-    <g class="laser-bolt-1">
-      <line x1="65" y1="116" x2="65" y2="102" stroke="#E11D48" stroke-width="2.5" stroke-linecap="round"/>
-      <line x1="65" y1="116" x2="65" y2="102" stroke="#FDFBF7" stroke-width="1.2" stroke-linecap="round"/>
-    </g>
-    <!-- Laser 2 targeting Col 5, Row 1 -->
-    <g class="laser-bolt-2">
-      <line x1="80" y1="116" x2="80" y2="102" stroke="#E11D48" stroke-width="2.5" stroke-linecap="round"/>
-      <line x1="80" y1="116" x2="80" y2="102" stroke="#FDFBF7" stroke-width="1.2" stroke-linecap="round"/>
-    </g>
-    <!-- Laser 3 targeting Col 44, Row 6 -->
-    <g class="laser-bolt-3">
-      <line x1="665" y1="116" x2="665" y2="102" stroke="#E11D48" stroke-width="2.5" stroke-linecap="round"/>
-      <line x1="665" y1="116" x2="665" y2="102" stroke="#FDFBF7" stroke-width="1.2" stroke-linecap="round"/>
-    </g>
-    <!-- Laser 4 targeting Col 29, Row 4 -->
-    <g class="laser-bolt-4">
-      <line x1="440" y1="116" x2="440" y2="102" stroke="#E11D48" stroke-width="2.5" stroke-linecap="round"/>
-      <line x1="440" y1="116" x2="440" y2="102" stroke="#FDFBF7" stroke-width="1.2" stroke-linecap="round"/>
-    </g>
-    <!-- Laser 5 targeting Col 30, Row 4 -->
-    <g class="laser-bolt-5">
-      <line x1="455" y1="116" x2="455" y2="102" stroke="#E11D48" stroke-width="2.5" stroke-linecap="round"/>
-      <line x1="455" y1="116" x2="455" y2="102" stroke="#FDFBF7" stroke-width="1.2" stroke-linecap="round"/>
-    </g>
-    <!-- Laser 6 targeting Col 13, Row 5 -->
-    <g class="laser-bolt-6">
-      <line x1="200" y1="116" x2="200" y2="102" stroke="#E11D48" stroke-width="2.5" stroke-linecap="round"/>
-      <line x1="200" y1="116" x2="200" y2="102" stroke="#FDFBF7" stroke-width="1.2" stroke-linecap="round"/>
-    </g>
-    <!-- Laser 7 targeting Col 20, Row 2 -->
-    <g class="laser-bolt-7">
-      <line x1="305" y1="116" x2="305" y2="102" stroke="#E11D48" stroke-width="2.5" stroke-linecap="round"/>
-      <line x1="305" y1="116" x2="305" y2="102" stroke="#FDFBF7" stroke-width="1.2" stroke-linecap="round"/>
-    </g>
-    <!-- Laser 8 targeting Col 26, Row 2 -->
-    <g class="laser-bolt-8">
-      <line x1="395" y1="116" x2="395" y2="102" stroke="#E11D48" stroke-width="2.5" stroke-linecap="round"/>
-      <line x1="395" y1="116" x2="395" y2="102" stroke="#FDFBF7" stroke-width="1.2" stroke-linecap="round"/>
+    <!-- Firing Lasers -->
+    <g>
+    <line x1="0" y1="0" x2="0" y2="18" stroke="#00F0FF" stroke-width="2.5" stroke-linecap="round" class="laser-bolt-1"/>
+    <line x1="0" y1="0" x2="0" y2="18" stroke="#00F0FF" stroke-width="2.5" stroke-linecap="round" class="laser-bolt-2"/>
+    <line x1="0" y1="0" x2="0" y2="18" stroke="#00F0FF" stroke-width="2.5" stroke-linecap="round" class="laser-bolt-3"/>
+    <line x1="0" y1="0" x2="0" y2="18" stroke="#00F0FF" stroke-width="2.5" stroke-linecap="round" class="laser-bolt-4"/>
+    <line x1="0" y1="0" x2="0" y2="18" stroke="#00F0FF" stroke-width="2.5" stroke-linecap="round" class="laser-bolt-5"/>
+    <line x1="0" y1="0" x2="0" y2="18" stroke="#00F0FF" stroke-width="2.5" stroke-linecap="round" class="laser-bolt-6"/>
+    <line x1="0" y1="0" x2="0" y2="18" stroke="#00F0FF" stroke-width="2.5" stroke-linecap="round" class="laser-bolt-7"/>
+    <line x1="0" y1="0" x2="0" y2="18" stroke="#00F0FF" stroke-width="2.5" stroke-linecap="round" class="laser-bolt-8"/>
     </g>
 
-    <!-- Impact Spark Bursts on Targeted Commits -->
-    <!-- Impact Burst 1 at (65, 18) -->
-    <g transform="translate(65, 18)" class="spark-burst-1">
+    <!-- Hit Impact Sparks -->
+    <g>
+    <!-- Impact Burst 1 at (80, 5) -->
+    <g transform="translate(80, 5)" class="spark-burst-1">
       <circle cx="0" cy="0" r="4" fill="#FDFBF7"/>
       <line x1="-5" y1="-5" x2="5" y2="5" stroke="#F59E0B" stroke-width="1.5"/>
       <line x1="5" y1="-5" x2="-5" y2="5" stroke="#F59E0B" stroke-width="1.5"/>
       <line x1="-6" y1="0" x2="6" y2="0" stroke="#E11D48" stroke-width="1.2"/>
       <line x1="0" y1="-6" x2="0" y2="6" stroke="#E11D48" stroke-width="1.2"/>
     </g>
-    <!-- Impact Burst 2 at (80, 18) -->
-    <g transform="translate(80, 18)" class="spark-burst-2">
+    <!-- Impact Burst 2 at (110, 5) -->
+    <g transform="translate(110, 5)" class="spark-burst-2">
       <circle cx="0" cy="0" r="4" fill="#FDFBF7"/>
       <line x1="-5" y1="-5" x2="5" y2="5" stroke="#F59E0B" stroke-width="1.5"/>
       <line x1="5" y1="-5" x2="-5" y2="5" stroke="#F59E0B" stroke-width="1.5"/>
       <line x1="-6" y1="0" x2="6" y2="0" stroke="#E11D48" stroke-width="1.2"/>
       <line x1="0" y1="-6" x2="0" y2="6" stroke="#E11D48" stroke-width="1.2"/>
     </g>
-    <!-- Impact Burst 3 at (665, 83) -->
-    <g transform="translate(665, 83)" class="spark-burst-3">
+    <!-- Impact Burst 3 at (665, 57) -->
+    <g transform="translate(665, 57)" class="spark-burst-3">
       <circle cx="0" cy="0" r="4" fill="#FDFBF7"/>
       <line x1="-5" y1="-5" x2="5" y2="5" stroke="#F59E0B" stroke-width="1.5"/>
       <line x1="5" y1="-5" x2="-5" y2="5" stroke="#F59E0B" stroke-width="1.5"/>
       <line x1="-6" y1="0" x2="6" y2="0" stroke="#E11D48" stroke-width="1.2"/>
       <line x1="0" y1="-6" x2="0" y2="6" stroke="#E11D48" stroke-width="1.2"/>
     </g>
-    <!-- Impact Burst 4 at (440, 57) -->
-    <g transform="translate(440, 57)" class="spark-burst-4">
+    <!-- Impact Burst 4 at (410, 44) -->
+    <g transform="translate(410, 44)" class="spark-burst-4">
       <circle cx="0" cy="0" r="4" fill="#FDFBF7"/>
       <line x1="-5" y1="-5" x2="5" y2="5" stroke="#F59E0B" stroke-width="1.5"/>
       <line x1="5" y1="-5" x2="-5" y2="5" stroke="#F59E0B" stroke-width="1.5"/>
       <line x1="-6" y1="0" x2="6" y2="0" stroke="#E11D48" stroke-width="1.2"/>
       <line x1="0" y1="-6" x2="0" y2="6" stroke="#E11D48" stroke-width="1.2"/>
     </g>
-    <!-- Impact Burst 5 at (455, 57) -->
-    <g transform="translate(455, 57)" class="spark-burst-5">
+    <!-- Impact Burst 5 at (410, 18) -->
+    <g transform="translate(410, 18)" class="spark-burst-5">
       <circle cx="0" cy="0" r="4" fill="#FDFBF7"/>
       <line x1="-5" y1="-5" x2="5" y2="5" stroke="#F59E0B" stroke-width="1.5"/>
       <line x1="5" y1="-5" x2="-5" y2="5" stroke="#F59E0B" stroke-width="1.5"/>
       <line x1="-6" y1="0" x2="6" y2="0" stroke="#E11D48" stroke-width="1.2"/>
       <line x1="0" y1="-6" x2="0" y2="6" stroke="#E11D48" stroke-width="1.2"/>
     </g>
-    <!-- Impact Burst 6 at (200, 70) -->
-    <g transform="translate(200, 70)" class="spark-burst-6">
+    <!-- Impact Burst 6 at (275, 57) -->
+    <g transform="translate(275, 57)" class="spark-burst-6">
       <circle cx="0" cy="0" r="4" fill="#FDFBF7"/>
       <line x1="-5" y1="-5" x2="5" y2="5" stroke="#F59E0B" stroke-width="1.5"/>
       <line x1="5" y1="-5" x2="-5" y2="5" stroke="#F59E0B" stroke-width="1.5"/>
       <line x1="-6" y1="0" x2="6" y2="0" stroke="#E11D48" stroke-width="1.2"/>
       <line x1="0" y1="-6" x2="0" y2="6" stroke="#E11D48" stroke-width="1.2"/>
     </g>
-    <!-- Impact Burst 7 at (305, 31) -->
-    <g transform="translate(305, 31)" class="spark-burst-7">
+    <!-- Impact Burst 7 at (290, 5) -->
+    <g transform="translate(290, 5)" class="spark-burst-7">
       <circle cx="0" cy="0" r="4" fill="#FDFBF7"/>
       <line x1="-5" y1="-5" x2="5" y2="5" stroke="#F59E0B" stroke-width="1.5"/>
       <line x1="5" y1="-5" x2="-5" y2="5" stroke="#F59E0B" stroke-width="1.5"/>
       <line x1="-6" y1="0" x2="6" y2="0" stroke="#E11D48" stroke-width="1.2"/>
       <line x1="0" y1="-6" x2="0" y2="6" stroke="#E11D48" stroke-width="1.2"/>
     </g>
-    <!-- Impact Burst 8 at (395, 31) -->
-    <g transform="translate(395, 31)" class="spark-burst-8">
+    <!-- Impact Burst 8 at (335, 5) -->
+    <g transform="translate(335, 5)" class="spark-burst-8">
       <circle cx="0" cy="0" r="4" fill="#FDFBF7"/>
       <line x1="-5" y1="-5" x2="5" y2="5" stroke="#F59E0B" stroke-width="1.5"/>
       <line x1="5" y1="-5" x2="-5" y2="5" stroke="#F59E0B" stroke-width="1.5"/>
       <line x1="-6" y1="0" x2="6" y2="0" stroke="#E11D48" stroke-width="1.2"/>
       <line x1="0" y1="-6" x2="0" y2="6" stroke="#E11D48" stroke-width="1.2"/>
+    </g>
     </g>
 
-    <!-- Autonomous Rocket Spaceship shifted down with prominent breathing room -->
+    <!-- Rocket Cannon Patrol Ship -->
     <g class="ship-patrol">
-      <g transform="translate(5, 126)">
-        <!-- Rocket Nose Cone (Cannon Tip at y = 116 relative to grid) -->
-        <polygon points="0,-10 9,4 -9,4" fill="#FDFBF7"/>
-        <!-- Rocket Body & Wings -->
-        <rect x="-9" y="4" width="18" height="6" rx="1.5" fill="#2563EB"/>
-        <rect x="-4" y="1" width="8" height="7" fill="#E11D48"/>
-        <!-- Cockpit Window -->
-        <circle cx="0" cy="-2" r="2" fill="#00F0FF"/>
-        <!-- Rocket Thruster Flames -->
-        <polygon points="-6,10 -4,15 -2,10" fill="#F59E0B"/>
-        <polygon points="2,10 4,15 6,10" fill="#F59E0B"/>
+      <g transform="translate(0, 0)">
+        <polygon points="0,-10 7,6 0,2 -7,6" fill="#FDFBF7"/>
+        <polygon points="0,2 7,6 7,12 0,9 -7,12 -7,6" fill="#2563EB"/>
+        <rect x="-3" y="4" width="6" height="6" fill="#E11D48"/>
+        <polygon points="-7,8 -11,14 -7,12" fill="#00F0FF"/>
+        <polygon points="7,8 11,14 7,12" fill="#00F0FF"/>
+        <polygon points="-4,12 0,18 4,12" fill="#F59E0B"/>
+        <circle cx="0" cy="-2" r="1.5" fill="#00F0FF"/>
       </g>
     </g>
+
   </g>
 
-  <!-- Legend & Live Arcade Status -->
-  <g transform="translate(36, 240)">
+  <!-- Bottom Legend Footer with Real Total Commits -->
+  <g transform="translate(36, 252)">
     <rect x="0" y="0" width="9" height="9" rx="2" fill="#161B22"/>
     <text x="14" y="8" class="score-lbl">LEVEL 0 (DEPLETED)</text>
 
-    <rect x="150" y="0" width="9" height="9" rx="2" fill="#0E4429"/>
-    <text x="164" y="8" class="score-lbl">LEVEL 1</text>
+    <rect x="140" y="0" width="9" height="9" rx="2" fill="#0E4429"/>
+    <text x="154" y="8" class="score-lbl">LEVEL 1</text>
 
-    <rect x="250" y="0" width="9" height="9" rx="2" fill="#006D32"/>
-    <text x="264" y="8" class="score-lbl">LEVEL 2</text>
+    <rect x="240" y="0" width="9" height="9" rx="2" fill="#006D32"/>
+    <text x="254" y="8" class="score-lbl">LEVEL 2</text>
 
     <rect x="350" y="0" width="9" height="9" rx="2" fill="#26A641"/>
     <text x="364" y="8" class="score-lbl">LEVEL 3</text>

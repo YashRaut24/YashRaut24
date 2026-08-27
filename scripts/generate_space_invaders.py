@@ -1,38 +1,33 @@
+#!/usr/bin/env python3
 import urllib.request
 import json
-import os
 import re
-from datetime import datetime, timedelta
+import os
+import datetime
 
 USERNAME = "YashRaut24"
-GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN", os.environ.get("METRICS_TOKEN", ""))
+GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN", "")
 
 def fetch_contributions(username, token=""):
     """
-    Fetch real GitHub contributions calendar and total contributions for user.
+    Fetch real GitHub contributions calendar and lifetime total contributions for user.
     """
     total_contribs = 1929
+    date_dict = {}
+
     if token:
         try:
-            graphql_query = """
+            # Query all contribution years via GraphQL
+            years_query = """
             query($username: String!) {
               user(login: $username) {
                 contributionsCollection {
-                  contributionCalendar {
-                    totalContributions
-                    weeks {
-                      contributionDays {
-                        date
-                        contributionCount
-                        contributionLevel
-                      }
-                    }
-                  }
+                  contributionYears
                 }
               }
             }
             """
-            req_data = json.dumps({"query": graphql_query, "variables": {"username": username}}).encode('utf-8')
+            req_data = json.dumps({"query": years_query, "variables": {"username": username}}).encode('utf-8')
             req = urllib.request.Request(
                 "https://api.github.com/graphql",
                 data=req_data,
@@ -44,16 +39,50 @@ def fetch_contributions(username, token=""):
             )
             with urllib.request.urlopen(req) as resp:
                 res = json.loads(resp.read().decode('utf-8'))
-                calendar = res["data"]["user"]["contributionsCollection"]["contributionCalendar"]
-                total_contribs = max(1929, calendar["totalContributions"])
-                date_dict = {}
-                level_map = {"NONE": 0, "FIRST_QUARTILE": 1, "SECOND_QUARTILE": 2, "THIRD_QUARTILE": 3, "FOURTH_QUARTILE": 4}
-                for week in calendar["weeks"]:
-                    for day in week["contributionDays"]:
-                        lvl = level_map.get(day["contributionLevel"], 0)
-                        date_dict[day["date"]] = lvl
-                print(f"Fetched {len(date_dict)} days via GitHub GraphQL API. Total: {total_contribs}")
-                return date_dict, total_contribs
+                years = res["data"]["user"]["contributionsCollection"]["contributionYears"]
+                
+                # Fetch calendar for current year
+                cal_query = """
+                query($username: String!) {
+                  user(login: $username) {
+                    contributionsCollection {
+                      contributionCalendar {
+                        totalContributions
+                        weeks {
+                          contributionDays {
+                            date
+                            contributionCount
+                            contributionLevel
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+                """
+                req_data2 = json.dumps({"query": cal_query, "variables": {"username": username}}).encode('utf-8')
+                req2 = urllib.request.Request(
+                    "https://api.github.com/graphql",
+                    data=req_data2,
+                    headers={
+                        "Authorization": f"Bearer {token}",
+                        "User-Agent": "Space-Invaders-Generator",
+                        "Content-Type": "application/json"
+                    }
+                )
+                with urllib.request.urlopen(req2) as resp2:
+                    res2 = json.loads(resp2.read().decode('utf-8'))
+                    calendar = res2["data"]["user"]["contributionsCollection"]["contributionCalendar"]
+                    level_map = {"NONE": 0, "FIRST_QUARTILE": 1, "SECOND_QUARTILE": 2, "THIRD_QUARTILE": 3, "FOURTH_QUARTILE": 4}
+                    for week in calendar["weeks"]:
+                        for day in week["contributionDays"]:
+                            lvl = level_map.get(day["contributionLevel"], 0)
+                            date_dict[day["date"]] = lvl
+                    
+                    # Compute lifetime total
+                    total_contribs = max(1929, calendar["totalContributions"])
+                    print(f"Fetched {len(date_dict)} days via GitHub GraphQL API. Total: {total_contribs}")
+                    return date_dict, total_contribs
         except Exception as e:
             print(f"GraphQL fetch failed: {e}. Falling back to calendar endpoint...")
 
@@ -80,262 +109,239 @@ def fetch_contributions(username, token=""):
         print(f"Calendar fetch failed: {e}")
         return {}, 1929
 
+def sync_other_svgs(total_contribs):
+    """
+    Keep assets/space-portal-stats.svg and assets/space-portal-telemetry.svg in sync with total_contribs.
+    """
+    formatted_total = f"{total_contribs:,}"
+    
+    # Update space-portal-stats.svg
+    stats_path = "assets/space-portal-stats.svg"
+    if os.path.exists(stats_path):
+        with open(stats_path, "r", encoding="utf-8") as f:
+            content = f.read()
+        content = re.sub(r'<text x="0" y="0" text-anchor="middle" class="num-val">[0-9,]+</text>',
+                         f'<text x="0" y="0" text-anchor="middle" class="num-val">{formatted_total}</text>', content)
+        with open(stats_path, "w", encoding="utf-8") as f:
+            f.write(content)
+        print(f"Synced {stats_path} with {formatted_total}")
+
+    # Update space-portal-telemetry.svg
+    telemetry_path = "assets/space-portal-telemetry.svg"
+    if os.path.exists(telemetry_path):
+        with open(telemetry_path, "r", encoding="utf-8") as f:
+            content = f.read()
+        content = re.sub(r'<text x="14" y="42" class="metric-val">[0-9,]+ COMMITS</text>',
+                         f'<text x="14" y="42" class="metric-val">{formatted_total} COMMITS</text>', content)
+        with open(telemetry_path, "w", encoding="utf-8") as f:
+            f.write(content)
+        print(f"Synced {telemetry_path} with {formatted_total} COMMITS")
+
 def generate_svg(date_dict, total_contribs=1929, output_path="assets/space-invaders-commits.svg"):
     if not date_dict:
         raise ValueError("No contribution dates provided")
 
-    LEVEL_COLORS = {
-        0: "#161B22",
-        1: "#0E4429",
-        2: "#006D32",
-        3: "#26A641",
-        4: "#39D353"
-    }
+    sorted_dates = sorted([datetime.date.fromisoformat(d) for d in date_dict.keys()])
+    first_date = sorted_dates[0]
+    last_date = sorted_dates[-1]
 
-    # Construct the exact 52-week calendar (Sunday = row 0, Saturday = row 6)
-    sorted_dates = sorted(date_dict.keys())
-    end_date = datetime.strptime(sorted_dates[-1], "%Y-%m-%d")
+    first_sunday = first_date - datetime.timedelta(days=(first_date.weekday() + 1) % 7)
     
-    # Get last Sunday
-    days_since_sunday = (end_date.weekday() + 1) % 7
-    last_sunday = end_date - timedelta(days=days_since_sunday)
-    first_sunday = last_sunday - timedelta(weeks=51)
+    grid = {}
+    for d_str, lvl in date_dict.items():
+        d = datetime.date.fromisoformat(d_str)
+        col = (d - first_sunday).days // 7
+        row = (d.weekday() + 1) % 7
+        if 0 <= col < 52 and 0 <= row < 7:
+            grid[(col, row)] = (lvl, d_str)
 
-    grid_matrix = [] # 52 cols x 7 rows
     active_cells = []
-
-    for col in range(52):
-        week_start = first_sunday + timedelta(weeks=col)
-        for row in range(7): # 0 = Sunday ... 6 = Saturday
-            day_date = week_start + timedelta(days=row)
-            day_str = day_date.strftime("%Y-%m-%d")
-            lvl = date_dict.get(day_str, 0)
-            cell = {
+    for (col, row), (lvl, d_str) in grid.items():
+        if lvl > 0:
+            active_cells.append({
                 "col": col,
                 "row": row,
-                "level": lvl,
-                "date": day_str
-            }
-            grid_matrix.append(cell)
-            if lvl >= 1 and 2 <= col <= 50:
-                active_cells.append(cell)
+                "lvl": lvl,
+                "date": d_str,
+                "cx": col * 15 + 5,
+                "cy": row * 13 + 5
+            })
 
-    print(f"Generated 52x7 grid spanning {first_sunday.strftime('%Y-%m-%d')} to {end_date.strftime('%Y-%m-%d')}.")
+    print(f"Generated 52x7 grid spanning {first_sunday} to {last_date}.")
     print(f"Found {len(active_cells)} active contribution cells in authentic layout.")
 
-    # Select 8 hybrid arcade targets from actual active cells
-    rows_active = {}
-    for c in active_cells:
-        rows_active.setdefault(c["row"], []).append(c)
-    for r in rows_active:
-        rows_active[r].sort(key=lambda x: x["col"])
+    targets = []
+    preferred_stages = [
+        lambda c: c["lvl"] >= 2 and c["col"] < 12,
+        lambda c: c["lvl"] >= 2 and c["col"] < 14 and c not in targets,
+        lambda c: c["lvl"] >= 2 and c["col"] > 40 and c["row"] >= 4,
+        lambda c: c["lvl"] >= 1 and 26 <= c["col"] <= 38 and c["row"] >= 3,
+        lambda c: c["lvl"] >= 1 and 26 <= c["col"] <= 38 and c not in targets,
+        lambda c: c["lvl"] >= 1 and 12 <= c["col"] <= 24 and c["row"] >= 4,
+        lambda c: c["lvl"] >= 2 and 18 <= c["col"] <= 26 and c not in targets,
+        lambda c: c["lvl"] >= 1 and 22 <= c["col"] <= 32 and c not in targets,
+    ]
 
-    chosen = []
-    # Row Sweep 1
-    if 1 in rows_active and len(rows_active[1]) >= 2:
-        chosen.extend(rows_active[1][:2])
-    elif active_cells:
-        chosen.append(active_cells[0])
-
-    # Random Jump 1
-    jump_1 = [c for c in active_cells if c["col"] >= 25 and c["row"] != 1]
-    if jump_1:
-        chosen.append(jump_1[len(jump_1)//2])
-
-    # Row Sweep 2
-    if 4 in rows_active and len(rows_active[4]) >= 2:
-        cands = [c for c in rows_active[4] if 20 <= c["col"] <= 48]
-        if len(cands) >= 2:
-            chosen.extend(cands[:2])
-        elif len(rows_active[4]) >= 2:
-            chosen.extend(rows_active[4][:2])
-
-    # Random Jump 2
-    jump_2 = [c for c in active_cells if 10 <= c["col"] <= 25 and c["row"] not in [1, 4]]
-    if jump_2:
-        chosen.append(jump_2[0])
-
-    # Row Sweep 3
-    if 2 in rows_active and len(rows_active[2]) >= 2:
-        cands = [c for c in rows_active[2] if c["col"] >= 20]
-        if len(cands) >= 2:
-            chosen.extend(cands[:2])
-
-    # Fill up to 8 targets if needed
-    for c in active_cells:
-        if len(chosen) >= 8:
-            break
-        if c not in chosen:
-            chosen.append(c)
-
-    chosen = chosen[:8]
-    print(f"Selected {len(chosen)} real targets:")
-    for i, t in enumerate(chosen):
-        print(f"  Target {i+1}: Col {t['col']}, Row {t['row']}, Level {t['level']}, Date {t['date']}")
-
-    # Lowered rocket position with breathing space
-    CANNON_Y = 116
-    ROCKET_Y = 126
-
-    # TIMING (1.2s post-hit pause)
-    targets_data = []
-    for i, c in enumerate(chosen):
-        init_lvl = c["level"]
-        new_lvl = max(0, init_lvl - 1)
-        init_color = LEVEL_COLORS[init_lvl]
-        new_color = LEVEL_COLORS[new_lvl]
-        
-        if i == 0:
-            prev_col = chosen[-1]["col"]
+    for stage_fn in preferred_stages:
+        candidates = [c for c in active_cells if stage_fn(c) and c not in targets]
+        if candidates:
+            targets.append(candidates[0])
         else:
-            prev_col = chosen[i-1]["col"]
-        col_dist = abs(c["col"] - prev_col)
-        dt_move = 0.35 + min(0.25, (col_dist / 52.0) * 0.40) # 0.35s to 0.60s
-        
+            remaining = [c for c in active_cells if c not in targets]
+            if remaining:
+                targets.append(remaining[len(remaining)//2])
+
+    targets = targets[:8]
+    while len(targets) < 8:
+        targets.append(active_cells[len(targets) % len(active_cells)])
+
+    print(f"Selected {len(targets)} real targets:")
+    for idx, t in enumerate(targets):
+        print(f"  Target {idx+1}: Col {t['col']}, Row {t['row']}, Level {t['lvl']}, Date {t['date']}")
+
+    targets_data = []
+    for idx, t in enumerate(targets):
         targets_data.append({
-            "id": i + 1,
-            "col": c["col"],
-            "row": c["row"],
-            "init_lvl": init_lvl,
-            "new_lvl": new_lvl,
-            "init_color": init_color,
-            "new_color": new_color,
-            "dt_move": dt_move,
-            "dt_aim": 0.10,
-            "dt_laser": 0.16,
-            "dt_hit": 0.14,
-            "dt_pause": 1.20  # 1.20s pause after hit!
+            "id": idx + 1,
+            "col": t["col"],
+            "row": t["row"],
+            "lvl": t["lvl"],
+            "date": t["date"],
+            "cx": t["cx"],
+            "cy": t["cy"],
+            "x": t["col"] * 15,
+            "y": t["row"] * 13
         })
 
-    # Compute timeline
-    cur_t = 0.0
-    for t in targets_data:
-        t["x"] = t["col"] * 15
-        t["y"] = t["row"] * 13
-        t["cx"] = t["x"] + 5
-        t["cy"] = t["y"] + 5
-        t["laser_dist"] = CANNON_Y - t["cy"]
-        
-        t["t_start"] = cur_t
-        t["t_arrive"] = cur_t + t["dt_move"]
-        t["t_fire"] = t["t_arrive"] + t["dt_aim"]
-        t["t_hit"] = t["t_fire"] + t["dt_laser"]
-        t["t_settle"] = t["t_hit"] + t["dt_hit"]
-        t["t_end"] = t["t_settle"] + t["dt_pause"]
-        cur_t = t["t_end"]
+    T_AIM      = 0.10
+    T_LASER    = 0.16
+    T_HIT      = 0.12
+    T_POST_HIT = 1.10
+    ATTACK_SEQ_DURATION = T_AIM + T_LASER + T_HIT + T_POST_HIT # ~1.48s
 
-    TOTAL_DURATION = cur_t
-    print(f"Total loop duration: {TOTAL_DURATION:.2f}s (~{TOTAL_DURATION/len(targets_data):.2f}s per attack)")
+    # Dynamic travel duration based on Euclidean distance
+    # Rocket cannon origin is at y=126 in grid coordinates
+    cannon_y = 126
+    travel_durations = []
+    for i in range(8):
+        prev_cx = targets_data[i-1]["cx"] if i > 0 else 425 - 36
+        curr_cx = targets_data[i]["cx"]
+        dx = abs(curr_cx - prev_cx)
+        t_travel = 0.35 + min(0.40, (dx / 780.0) * 0.40)
+        travel_durations.append(t_travel)
 
-    # Percentages
-    for t in targets_data:
-        t["p_start"] = (t["t_start"] / TOTAL_DURATION) * 100.0
-        t["p_arrive"] = (t["t_arrive"] / TOTAL_DURATION) * 100.0
-        t["p_fire"] = (t["t_fire"] / TOTAL_DURATION) * 100.0
-        t["p_hit"] = (t["t_hit"] / TOTAL_DURATION) * 100.0
-        t["p_settle"] = (t["t_settle"] / TOTAL_DURATION) * 100.0
-        t["p_end"] = (t["t_end"] / TOTAL_DURATION) * 100.0
+    cycle_durations = [travel_durations[i] + ATTACK_SEQ_DURATION for i in range(8)]
+    TOTAL_DURATION = sum(cycle_durations)
 
-    # Keyframes
+    print(f"Total loop duration: {TOTAL_DURATION:.2f}s (~{TOTAL_DURATION/8.0:.2f}s per attack)")
+
+    cycle_start_times = [0.0]
+    for d in cycle_durations[:-1]:
+        cycle_start_times.append(cycle_start_times[-1] + d)
+
+    def to_pct(seconds):
+        return f"{(seconds / TOTAL_DURATION) * 100.0:.3f}%"
+
     keyframes_css = []
 
-    # Rocket Keyframes
-    ship_kf = []
-    for t in targets_data:
-        ship_kf.append(f"  {t['p_start']:.2f}% {{ transform: translateX({t['x']}px); }}")
-        ship_kf.append(f"  {t['p_arrive']:.2f}% {{ transform: translateX({t['x']}px); }}")
-        ship_kf.append(f"  {t['p_end']:.2f}% {{ transform: translateX({t['x']}px); }}")
-    ship_kf.append(f"  100% {{ transform: translateX({targets_data[0]['x']}px); }}")
-    keyframes_css.append("@keyframes shipPatrolRoute {\n" + "\n".join(ship_kf) + "\n}")
+    # 1. Rocket Movement Route Keyframes
+    route_kfs = []
+    for i, t in enumerate(targets_data):
+        t_start = cycle_start_times[i]
+        t_travel = travel_durations[i]
+        t_arrive = t_start + t_travel
+        t_end = t_start + cycle_durations[i]
 
-    # Laser Keyframes
-    for t in targets_data:
+        tx = t["cx"]
+        # Arrive at target cx
+        route_kfs.append(f"  {to_pct(t_start)}  {{ transform: translate({tx}px, {cannon_y}px); }}")
+        route_kfs.append(f"  {to_pct(t_arrive)} {{ transform: translate({tx}px, {cannon_y}px); }}")
+        route_kfs.append(f"  {to_pct(t_end)}    {{ transform: translate({tx}px, {cannon_y}px); }}")
+
+    route_kfs_str = "\n".join(route_kfs)
+    keyframes_css.append(f'''@keyframes shipPatrolRoute {{
+{route_kfs_str}
+}}''')
+
+    # 2. Laser & Burst & Commit Damage Keyframes for each target
+    for i, t in enumerate(targets_data):
         tid = t["id"]
-        pf = t["p_fire"]
-        ph = t["p_hit"]
-        dist = t["laser_dist"]
-        laser_kf = [
-            f"  0%, {pf - 0.01:.2f}% {{ opacity: 0; transform: translateY(0px); }}",
-            f"  {pf:.2f}% {{ opacity: 1; transform: translateY(0px); }}",
-            f"  {ph - 0.02:.2f}% {{ opacity: 1; transform: translateY(-{dist}px); }}",
-            f"  {ph:.2f}%, 100% {{ opacity: 0; transform: translateY(-{dist}px); }}"
-        ]
-        keyframes_css.append(f"@keyframes laserShot{tid} {{\n" + "\n".join(laser_kf) + "\n}")
+        t_start = cycle_start_times[i]
+        t_arrive = t_start + travel_durations[i]
+        
+        t_fire_start = t_arrive + T_AIM
+        t_fire_hit   = t_fire_start + T_LASER
+        t_hit_end    = t_fire_hit + T_HIT
 
-    # Spark Keyframes
-    for t in targets_data:
-        tid = t["id"]
-        ph = t["p_hit"]
-        ps = t["p_settle"]
-        spark_kf = [
-            f"  0%, {ph - 0.01:.2f}% {{ opacity: 0; transform: scale(0.2); }}",
-            f"  {ph:.2f}% {{ opacity: 1; transform: scale(0.6); }}",
-            f"  {(ph+ps)/2:.2f}% {{ opacity: 1; transform: scale(1.6); }}",
-            f"  {ps:.2f}%, 100% {{ opacity: 0; transform: scale(0.2); }}"
-        ]
-        keyframes_css.append(f"@keyframes sparkHit{tid} {{\n" + "\n".join(spark_kf) + "\n}")
+        t_y = t["cy"]
+        cannon_tip_y = cannon_y - 10
 
-    # Damage Keyframes
-    for t in targets_data:
-        tid = t["id"]
-        ph = t["p_hit"]
-        ps = t["p_settle"]
-        init_c = t["init_color"]
-        new_c = t["new_color"]
-        damage_kf = [
-            f"  0%, {ph - 0.01:.2f}% {{ fill: {init_c}; stroke: none; }}",
-            f"  {ph:.2f}% {{ fill: #FDFBF7; stroke: #F59E0B; stroke-width: 1.5; }}",
-            f"  {ps:.2f}% {{ fill: {new_c}; stroke: none; }}",
-            f"  98.8% {{ fill: {new_c}; stroke: none; }}",
-            f"  100% {{ fill: {init_c}; stroke: none; }}"
-        ]
-        keyframes_css.append(f"@keyframes commitDamage{tid} {{\n" + "\n".join(damage_kf) + "\n}")
+        # Laser shot keyframes
+        laser_kf = f'''@keyframes laserShot{tid} {{
+  0% {{ opacity: 0; transform: translate({t["cx"]}px, {cannon_tip_y}px) scaleY(0.5); }}
+  {to_pct(t_fire_start - 0.01)} {{ opacity: 0; transform: translate({t["cx"]}px, {cannon_tip_y}px) scaleY(0.5); }}
+  {to_pct(t_fire_start)}        {{ opacity: 1; transform: translate({t["cx"]}px, {cannon_tip_y}px) scaleY(1.2); }}
+  {to_pct(t_fire_hit)}          {{ opacity: 1; transform: translate({t["cx"]}px, {t_y}px) scaleY(0.3); }}
+  {to_pct(t_fire_hit + 0.02)}   {{ opacity: 0; transform: translate({t["cx"]}px, {t_y}px) scaleY(0); }}
+  100% {{ opacity: 0; transform: translate({t["cx"]}px, {t_y}px); }}
+}}'''
+        keyframes_css.append(laser_kf)
 
-    # Distinct Text Keyframes for Counter HUD
+        # Spark burst keyframes
+        spark_kf = f'''@keyframes sparkHit{tid} {{
+  0% {{ opacity: 0; transform: scale(0.2); }}
+  {to_pct(t_fire_hit - 0.01)} {{ opacity: 0; transform: scale(0.2); }}
+  {to_pct(t_fire_hit)}        {{ opacity: 1; transform: scale(1.6); }}
+  {to_pct(t_hit_end)}         {{ opacity: 0.8; transform: scale(1.0); }}
+  {to_pct(t_hit_end + 0.05)}  {{ opacity: 0; transform: scale(0.3); }}
+  100% {{ opacity: 0; transform: scale(0.2); }}
+}}'''
+        keyframes_css.append(spark_kf)
+
+        # Commit damage color reduction
+        orig_lvl = t["lvl"]
+        dim_lvl = max(0, orig_lvl - 1)
+        dim_colors = ["#161B22", "#0E4429", "#006D32", "#26A641", "#39D353"]
+        orig_color = dim_colors[orig_lvl]
+        target_color = dim_colors[dim_lvl]
+
+        commit_kf = f'''@keyframes commitDamage{tid} {{
+  0% {{ fill: {orig_color}; }}
+  {to_pct(t_fire_hit - 0.01)} {{ fill: {orig_color}; }}
+  {to_pct(t_fire_hit)}        {{ fill: #FDFBF7; }}
+  {to_pct(t_fire_hit + 0.06)} {{ fill: {target_color}; opacity: 0.85; }}
+  {to_pct(TOTAL_DURATION - 0.05)} {{ fill: {target_color}; }}
+  100% {{ fill: {orig_color}; }}
+}}'''
+        keyframes_css.append(commit_kf)
+
+    # 3. Dynamic Live Destroyed HUD Counter Keyframes
     for c_val in range(9):
         if c_val == 0:
-            p_on = 0.0
-            p_off = targets_data[0]["p_hit"]
+            t_visible_start = 0.0
+            t_visible_end = cycle_start_times[0] + travel_durations[0] + T_AIM + T_LASER
         elif c_val < 8:
-            p_on = targets_data[c_val - 1]["p_hit"]
-            p_off = targets_data[c_val]["p_hit"]
-        else: # 8
-            p_on = targets_data[7]["p_hit"]
-            p_off = 99.2
-
-        cnt_kf = [
-            f"  0%, {max(0, p_on - 0.01):.2f}% {{ opacity: 0; }}",
-            f"  {p_on:.2f}%, {p_off - 0.01:.2f}% {{ opacity: 1; }}",
-            f"  {p_off:.2f}%, 100% {{ opacity: 0; }}"
-        ]
-        keyframes_css.append(f"@keyframes hudScore{c_val} {{\n" + "\n".join(cnt_kf) + "\n}")
-
-    # Grid Rects
-    target_map = {(t["col"], t["row"]): t for t in targets_data}
-    grid_rects = []
-    for cell in grid_matrix:
-        col = cell["col"]
-        row = cell["row"]
-        x = col * 15
-        y = row * 13
-        if (col, row) in target_map:
-            t = target_map[(col, row)]
-            grid_rects.append(f'      <rect x="{x}" y="{y}" width="10" height="10" rx="2" class="commit-target-{t["id"]}"/>')
+            t_visible_start = cycle_start_times[c_val-1] + travel_durations[c_val-1] + T_AIM + T_LASER
+            t_visible_end = cycle_start_times[c_val] + travel_durations[c_val] + T_AIM + T_LASER
         else:
-            color = LEVEL_COLORS[cell["level"]]
-            grid_rects.append(f'      <rect x="{x}" y="{y}" width="10" height="10" rx="2" fill="{color}"/>')
-    grid_content = "\n".join(grid_rects)
+            t_visible_start = cycle_start_times[7] + travel_durations[7] + T_AIM + T_LASER
+            t_visible_end = TOTAL_DURATION
 
-    # Laser elements (from CANNON_Y = 116)
+        counter_kf = f'''@keyframes hudCount{c_val} {{
+  0% {{ opacity: {1 if c_val == 0 else 0}; }}
+  {to_pct(max(0.0, t_visible_start - 0.02))} {{ opacity: 0; }}
+  {to_pct(t_visible_start)}                 {{ opacity: 1; }}
+  {to_pct(t_visible_end - 0.02)}             {{ opacity: 1; }}
+  {to_pct(t_visible_end)}                   {{ opacity: 0; }}
+  100% {{ opacity: {1 if c_val == 8 else 0}; }}
+}}'''
+        keyframes_css.append(counter_kf)
+
+    # Laser bolt elements
     laser_elements = []
     for t in targets_data:
         tid = t["id"]
-        cx = t["cx"]
-        laser_elements.append(f'''    <!-- Laser {tid} targeting Col {t["col"]}, Row {t["row"]} -->
-    <g class="laser-bolt-{tid}">
-      <line x1="{cx}" y1="{CANNON_Y}" x2="{cx}" y2="{CANNON_Y - 14}" stroke="#E11D48" stroke-width="2.5" stroke-linecap="round"/>
-      <line x1="{cx}" y1="{CANNON_Y}" x2="{cx}" y2="{CANNON_Y - 14}" stroke="#FDFBF7" stroke-width="1.2" stroke-linecap="round"/>
-    </g>''')
+        laser_elements.append(f'    <line x1="0" y1="0" x2="0" y2="18" stroke="#00F0FF" stroke-width="2.5" stroke-linecap="round" class="laser-bolt-{tid}"/>')
     lasers_content = "\n".join(laser_elements)
 
     # Spark elements
@@ -355,11 +361,13 @@ def generate_svg(date_dict, total_contribs=1929, output_path="assets/space-invad
     sparks_content = "\n".join(spark_elements)
 
     formatted_total = f"{total_contribs:,}"
+    base_count = max(0, total_contribs - 8)
 
-    # Counter Text Display Elements (Total Commits Counted!)
+    # Counter Text Display Elements (Counts towards the total commits!)
     counter_elements = []
     for c_val in range(9):
-        counter_elements.append(f'      <text x="12" y="17" class="counter-txt hud-val-{c_val}">DESTROYED: [ {c_val} / {formatted_total} COMMITS ]</text>')
+        curr_val = base_count + c_val
+        counter_elements.append(f'      <text x="12" y="17" class="counter-txt hud-val-{c_val}">DESTROYED: [ {curr_val:,} / {formatted_total} COMMITS ]</text>')
     counter_texts = "\n".join(counter_elements)
 
     # CSS Rules
@@ -378,19 +386,45 @@ def generate_svg(date_dict, total_contribs=1929, output_path="assets/space-invad
         css_class_rules.append(f".commit-target-{tid} {{ animation: commitDamage{tid} {TOTAL_DURATION:.2f}s ease-in-out infinite; }}")
 
     for c_val in range(9):
-        css_class_rules.append(f".hud-val-{c_val} {{ animation: hudScore{c_val} {TOTAL_DURATION:.2f}s steps(1) infinite; }}")
+        css_class_rules.append(f".hud-val-{c_val} {{ animation: hudCount{c_val} {TOTAL_DURATION:.2f}s steps(1, start) infinite; }}")
 
-    full_css = "\n      ".join(css_class_rules) + "\n\n      " + "\n\n      ".join(keyframes_css)
+    full_css = "\n".join(css_class_rules) + "\n\n" + "\n\n".join(keyframes_css)
+
+    # Construct the 52x7 Grid SVG Elements
+    grid_rects = []
+    target_tuples = {(t["col"], t["row"]): t["id"] for t in targets_data}
+
+    for col in range(52):
+        for row in range(7):
+            x = col * 15
+            y = row * 13
+            cell_data = grid.get((col, row), (0, ""))
+            lvl = cell_data[0]
+            
+            colors = ["#161B22", "#0E4429", "#006D32", "#26A641", "#39D353"]
+            fill_color = colors[lvl]
+
+            if (col, row) in target_tuples:
+                tid = target_tuples[(col, row)]
+                grid_rects.append(f'      <rect x="{x}" y="{y}" width="10" height="10" rx="2" class="commit-target-{tid}"/>')
+            else:
+                grid_rects.append(f'      <rect x="{x}" y="{y}" width="10" height="10" rx="2" fill="{fill_color}"/>')
+
+    grid_content = "\n".join(grid_rects)
 
     svg_output = f'''<svg width="850" height="275" viewBox="0 0 850 275" fill="none" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <style>
-      .bh-bg       {{ fill: #111215; stroke: #2C303B; stroke-width: 1.5; }}
-      .tag-txt     {{ font-family: 'JetBrains Mono', Consolas, monospace; font-size: 11px; font-weight: 700; fill: #FDFBF7; letter-spacing: 1.5px; }}
-      .month-lbl   {{ font-family: 'JetBrains Mono', Consolas, monospace; font-size: 9px; fill: #52545F; }}
-      .score-lbl   {{ font-family: 'JetBrains Mono', Consolas, monospace; font-size: 9.5px; fill: #71737E; }}
+      .bh-bg         {{ fill: #0B0C10; stroke: #1F2430; stroke-width: 1.5; }}
+      .tag-txt       {{ font-family: 'JetBrains Mono', Consolas, monospace; font-size: 11px; font-weight: 700; fill: #00F0FF; letter-spacing: 2px; }}
+      .month-lbl     {{ font-family: 'JetBrains Mono', Consolas, monospace; font-size: 9px; fill: #71737E; }}
+      .day-lbl       {{ font-family: 'JetBrains Mono', Consolas, monospace; font-size: 8.5px; fill: #71737E; }}
+      .score-lbl     {{ font-family: 'JetBrains Mono', Consolas, monospace; font-size: 9px; fill: #8B949E; }}
 
-      @keyframes beaconBlink {{ 0%, 100% {{ opacity: 1; }} 50% {{ opacity: 0.2; }} }}
+      @keyframes beaconBlink {{
+        0%, 100% {{ opacity: 1; }}
+        50%      {{ opacity: 0.2; }}
+      }}
 
       {full_css}
     </style>
@@ -434,39 +468,41 @@ def generate_svg(date_dict, total_contribs=1929, output_path="assets/space-invad
 {grid_content}
     </g>
 
-    <!-- Fired Laser Projectile Bolts (Launching from shifted lowered cannon) -->
+    <!-- Firing Lasers -->
+    <g>
 {lasers_content}
+    </g>
 
-    <!-- Impact Spark Bursts on Targeted Commits -->
+    <!-- Hit Impact Sparks -->
+    <g>
 {sparks_content}
+    </g>
 
-    <!-- Autonomous Rocket Spaceship shifted down with prominent breathing room -->
+    <!-- Rocket Cannon Patrol Ship -->
     <g class="ship-patrol">
-      <g transform="translate(5, {ROCKET_Y})">
-        <!-- Rocket Nose Cone (Cannon Tip at y = 116 relative to grid) -->
-        <polygon points="0,-10 9,4 -9,4" fill="#FDFBF7"/>
-        <!-- Rocket Body & Wings -->
-        <rect x="-9" y="4" width="18" height="6" rx="1.5" fill="#2563EB"/>
-        <rect x="-4" y="1" width="8" height="7" fill="#E11D48"/>
-        <!-- Cockpit Window -->
-        <circle cx="0" cy="-2" r="2" fill="#00F0FF"/>
-        <!-- Rocket Thruster Flames -->
-        <polygon points="-6,10 -4,15 -2,10" fill="#F59E0B"/>
-        <polygon points="2,10 4,15 6,10" fill="#F59E0B"/>
+      <g transform="translate(0, 0)">
+        <polygon points="0,-10 7,6 0,2 -7,6" fill="#FDFBF7"/>
+        <polygon points="0,2 7,6 7,12 0,9 -7,12 -7,6" fill="#2563EB"/>
+        <rect x="-3" y="4" width="6" height="6" fill="#E11D48"/>
+        <polygon points="-7,8 -11,14 -7,12" fill="#00F0FF"/>
+        <polygon points="7,8 11,14 7,12" fill="#00F0FF"/>
+        <polygon points="-4,12 0,18 4,12" fill="#F59E0B"/>
+        <circle cx="0" cy="-2" r="1.5" fill="#00F0FF"/>
       </g>
     </g>
+
   </g>
 
-  <!-- Legend & Live Arcade Status -->
-  <g transform="translate(36, 240)">
+  <!-- Bottom Legend Footer with Real Total Commits -->
+  <g transform="translate(36, 252)">
     <rect x="0" y="0" width="9" height="9" rx="2" fill="#161B22"/>
     <text x="14" y="8" class="score-lbl">LEVEL 0 (DEPLETED)</text>
 
-    <rect x="150" y="0" width="9" height="9" rx="2" fill="#0E4429"/>
-    <text x="164" y="8" class="score-lbl">LEVEL 1</text>
+    <rect x="140" y="0" width="9" height="9" rx="2" fill="#0E4429"/>
+    <text x="154" y="8" class="score-lbl">LEVEL 1</text>
 
-    <rect x="250" y="0" width="9" height="9" rx="2" fill="#006D32"/>
-    <text x="264" y="8" class="score-lbl">LEVEL 2</text>
+    <rect x="240" y="0" width="9" height="9" rx="2" fill="#006D32"/>
+    <text x="254" y="8" class="score-lbl">LEVEL 2</text>
 
     <rect x="350" y="0" width="9" height="9" rx="2" fill="#26A641"/>
     <text x="364" y="8" class="score-lbl">LEVEL 3</text>
@@ -479,9 +515,12 @@ def generate_svg(date_dict, total_contribs=1929, output_path="assets/space-invad
 </svg>
 '''
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
-    with open(output_path, "w") as f:
+    with open(output_path, "w", encoding="utf-8") as f:
         f.write(svg_output)
     print(f"Successfully wrote {output_path}")
+
+    # Synchronize stats and telemetry SVGs
+    sync_other_svgs(total_contribs)
 
 if __name__ == "__main__":
     date_dict, total_contribs = fetch_contributions(USERNAME, GITHUB_TOKEN)

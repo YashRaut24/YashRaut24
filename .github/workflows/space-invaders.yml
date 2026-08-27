@@ -31,6 +31,6 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add assets/space-invaders-commits.svg || true
+          git add assets/*.svg || true
           git commit -m "chore: update live space invaders contribution arcade" || exit 0
           git push
