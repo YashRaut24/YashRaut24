@@ -11,10 +11,14 @@ GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN", "")
 
 def fetch_contributions(username, token=""):
     """
-    Fetch real GitHub contributions calendar and lifetime total contributions for user.
+    Fetch real GitHub contributions calendar and total contributions for user.
+    Uses GraphQL API if token is provided, with fallback to GitHub contributions HTML endpoint.
+    Returns:
+        dict: { "YYYY-MM-DD": { "date": "YYYY-MM-DD", "contributions": int, "level": int, "initial_level": int } }
+        int: total contributions count
     """
-    total_contribs = 1942
-    date_dict = {}
+    records = {}
+    total_contribs = 0
 
     if token:
         try:
@@ -56,12 +60,20 @@ def fetch_contributions(username, token=""):
                 for week in calendar["weeks"]:
                     for day in week["contributionDays"]:
                         lvl = level_map.get(day["contributionLevel"], 0)
-                        date_dict[day["date"]] = lvl
+                        cnt = int(day.get("contributionCount", 0))
+                        d_str = day["date"]
+                        records[d_str] = {
+                            "date": d_str,
+                            "contributions": cnt,
+                            "level": lvl,
+                            "initial_level": lvl
+                        }
                 
-                cal_total = calendar["totalContributions"]
-                total_contribs = max(1942, cal_total)
-                print(f"Fetched {len(date_dict)} days via GitHub GraphQL API. Total: {total_contribs}")
-                return date_dict, total_contribs
+                cal_total = int(calendar.get("totalContributions", 0))
+                sum_total = sum(r["contributions"] for r in records.values())
+                total_contribs = cal_total if cal_total > 0 else sum_total
+                print(f"Fetched {len(records)} days via GitHub GraphQL API. Total contributions: {total_contribs}")
+                return records, total_contribs
         except Exception as e:
             print(f"GraphQL fetch failed: {e}. Falling back to calendar endpoint...")
 
@@ -72,27 +84,64 @@ def fetch_contributions(username, token=""):
         with urllib.request.urlopen(req) as resp:
             html = resp.read().decode('utf-8')
         
-        m = re.search(r'([0-9,]+)\s+contributions\s+in', html)
-        if m:
-            parsed_total = int(m.group(1).replace(",", ""))
-            total_contribs = max(1942, parsed_total)
+        # 1. Parse Tooltips for exact contribution counts
+        tooltips = {}
+        for match in re.finditer(r'<tool-tip[^>]*for="([^"]+)"[^>]*>(.*?)</tool-tip>', html, re.DOTALL):
+            tooltips[match.group(1)] = match.group(2).strip()
         
-        matches = re.findall(r'data-date="([^"]+)"(?:\s+[^>]*?)?data-level="([^"]+)"', html)
-        if not matches:
-            matches = re.findall(r'data-level="([^"]+)"(?:\s+[^>]*?)?data-date="([^"]+)"', html)
-            matches = [(d, l) for l, d in matches]
+        # 2. Parse calendar days
+        day_matches = re.finditer(r'<td[^>]*data-date="([^"]+)"[^>]*>', html)
+        for m in day_matches:
+            td_tag = m.group(0)
+            date_m = re.search(r'data-date="([^"]+)"', td_tag)
+            level_m = re.search(r'data-level="([^"]+)"', td_tag)
+            id_m = re.search(r'id="([^"]+)"', td_tag)
+            if date_m:
+                date_val = date_m.group(1)
+                level_val = int(level_m.group(1)) if level_m else 0
+                comp_id = id_m.group(1) if id_m else ""
+                tt_text = tooltips.get(comp_id, "")
+                cnt_m = re.search(r'(\d+)\s+contribution', tt_text)
+                cnt_val = int(cnt_m.group(1)) if cnt_m else 0
+                records[date_val] = {
+                    "date": date_val,
+                    "contributions": cnt_val,
+                    "level": level_val,
+                    "initial_level": level_val
+                }
         
-        date_dict = {d: int(l) for d, l in matches}
-        print(f"Fetched {len(date_dict)} real dates from GitHub. Total contributions: {total_contribs}")
-        return date_dict, total_contribs
+        # If no td matches found via regex, fallback to regex search for data-date and data-level
+        if not records:
+            matches = re.findall(r'data-date="([^"]+)"(?:\s+[^>]*?)?data-level="([^"]+)"', html)
+            if not matches:
+                matches = re.findall(r'data-level="([^"]+)"(?:\s+[^>]*?)?data-date="([^"]+)"', html)
+                matches = [(d, l) for l, d in matches]
+            for d, l in matches:
+                records[d] = {
+                    "date": d,
+                    "contributions": int(l),
+                    "level": int(l),
+                    "initial_level": int(l)
+                }
+
+        # 3. Determine real total contributions
+        h2_m = re.search(r'([0-9,]+)\s+contributions?\s+in', html)
+        h2_total = int(h2_m.group(1).replace(",", "")) if h2_m else 0
+        sum_total = sum(r["contributions"] for r in records.values())
+        
+        total_contribs = h2_total if h2_total > 0 else sum_total
+        print(f"Fetched {len(records)} real dates from GitHub. Total contributions: {total_contribs}")
+        return records, total_contribs
     except Exception as e:
         print(f"Calendar fetch failed: {e}")
-        return {}, 1942
+        return {}, 0
 
 def sync_other_svgs(total_contribs):
     """
     Keep assets/space-portal-stats.svg and assets/space-portal-telemetry.svg in sync with total_contribs.
     """
+    if total_contribs <= 0:
+        return
     formatted_total = f"{total_contribs:,}"
     
     # Update space-portal-stats.svg
@@ -117,32 +166,44 @@ def sync_other_svgs(total_contribs):
             f.write(content)
         print(f"Synced {telemetry_path} with {formatted_total} COMMITS")
 
-def generate_svg(date_dict, total_contribs=1942, output_path="assets/space-invaders-commits.svg"):
-    if not date_dict:
-        raise ValueError("No contribution dates provided")
+def generate_svg(date_records, total_contribs, output_path="assets/space-invaders-commits.svg"):
+    if not date_records:
+        raise ValueError("No contribution records provided")
+    if total_contribs <= 0:
+        total_contribs = sum(r.get("contributions", 0) for r in date_records.values())
 
-    sorted_dates = sorted([datetime.date.fromisoformat(d) for d in date_dict.keys()])
+    sorted_dates = sorted([datetime.date.fromisoformat(d) for d in date_records.keys()])
     first_date = sorted_dates[0]
     last_date = sorted_dates[-1]
 
     first_sunday = first_date - datetime.timedelta(days=(first_date.weekday() + 1) % 7)
     
+    # 52x7 Grid mapping
     grid = {}
-    for d_str, lvl in date_dict.items():
+    for d_str, rec in date_records.items():
         d = datetime.date.fromisoformat(d_str)
         col = (d - first_sunday).days // 7
         row = (d.weekday() + 1) % 7
         if 0 <= col < 52 and 0 <= row < 7:
-            grid[(col, row)] = (lvl, d_str)
+            grid[(col, row)] = {
+                "date": d_str,
+                "contributions": rec.get("contributions", 0),
+                "lvl": rec.get("level", 0),
+                "initial_level": rec.get("initial_level", rec.get("level", 0)),
+                "col": col,
+                "row": row
+            }
 
     active_cells = []
-    for (col, row), (lvl, d_str) in grid.items():
-        if lvl > 0:
+    for (col, row), cell in grid.items():
+        if cell["lvl"] > 0:
             active_cells.append({
                 "col": col,
                 "row": row,
-                "lvl": lvl,
-                "date": d_str,
+                "lvl": cell["lvl"],
+                "initial_level": cell["initial_level"],
+                "contributions": cell["contributions"],
+                "date": cell["date"],
                 "cx": col * 15 + 5,
                 "cy": row * 13 + 5
             })
@@ -177,15 +238,28 @@ def generate_svg(date_dict, total_contribs=1942, output_path="assets/space-invad
 
     print(f"Selected {len(targets)} real targets:")
     for idx, t in enumerate(targets):
-        print(f"  Target {idx+1}: Col {t['col']}, Row {t['row']}, Level {t['lvl']}, Date {t['date']}")
+        print(f"  Target {idx+1}: Col {t['col']}, Row {t['row']}, Level {t['lvl']}, Date {t['date']}, Contribs {t['contributions']}")
 
+    # Build sequence of targets and track state across hits
     targets_data = []
+    cell_state_map = {} # (col, row) -> current animated level
     for idx, t in enumerate(targets):
+        key = (t["col"], t["row"])
+        if key not in cell_state_map:
+            cell_state_map[key] = t["lvl"]
+        
+        start_lvl = cell_state_map[key]
+        damaged_lvl = max(0, start_lvl - 1)
+        cell_state_map[key] = damaged_lvl
+
         targets_data.append({
             "id": idx + 1,
             "col": t["col"],
             "row": t["row"],
-            "lvl": t["lvl"],
+            "lvl": t["lvl"], # authentic initial level from GitHub
+            "start_lvl": start_lvl,
+            "damaged_lvl": damaged_lvl,
+            "contributions": t["contributions"],
             "date": t["date"],
             "cx": t["cx"],
             "cy": t["cy"],
@@ -196,29 +270,31 @@ def generate_svg(date_dict, total_contribs=1942, output_path="assets/space-invad
     T_AIM      = 0.10
     T_LASER    = 0.16
     T_HIT      = 0.12
-    T_POST_HIT = 1.10
-    ATTACK_SEQ_DURATION = T_AIM + T_LASER + T_HIT + T_POST_HIT # ~1.48s
+    T_POST_HIT = 0.50 # snappy post-hit delay (~0.5s max)
+    ATTACK_SEQ_DURATION = T_AIM + T_LASER + T_HIT + T_POST_HIT # ~0.88s
 
     cannon_y = 126
     travel_durations = []
-    for i in range(8):
+    for i in range(len(targets_data)):
         prev_cx = targets_data[i-1]["cx"] if i > 0 else 425 - 36
         curr_cx = targets_data[i]["cx"]
         dx = abs(curr_cx - prev_cx)
         t_travel = 0.35 + min(0.40, (dx / 780.0) * 0.40)
         travel_durations.append(t_travel)
 
-    cycle_durations = [travel_durations[i] + ATTACK_SEQ_DURATION for i in range(8)]
+    cycle_durations = [travel_durations[i] + ATTACK_SEQ_DURATION for i in range(len(targets_data))]
     TOTAL_DURATION = sum(cycle_durations)
 
-    print(f"Total loop duration: {TOTAL_DURATION:.2f}s (~{TOTAL_DURATION/8.0:.2f}s per attack)")
+    print(f"Total loop duration: {TOTAL_DURATION:.2f}s (~{TOTAL_DURATION/len(targets_data):.2f}s per attack)")
 
     cycle_start_times = [0.0]
     for d in cycle_durations[:-1]:
         cycle_start_times.append(cycle_start_times[-1] + d)
 
     def to_pct(seconds):
-        return f"{(seconds / TOTAL_DURATION) * 100.0:.3f}%"
+        pct = (seconds / TOTAL_DURATION) * 100.0
+        pct = max(0.0, min(100.0, pct))
+        return f"{pct:.3f}%"
 
     keyframes_css = []
 
@@ -240,7 +316,7 @@ def generate_svg(date_dict, total_contribs=1942, output_path="assets/space-invad
 {route_kfs_str}
 }}''')
 
-    # 2. Laser & Burst & Commit Damage Keyframes for each target
+    # 2. Laser, Burst & Commit Damage Keyframes for each target
     for i, t in enumerate(targets_data):
         tid = t["id"]
         t_start = cycle_start_times[i]
@@ -273,11 +349,9 @@ def generate_svg(date_dict, total_contribs=1942, output_path="assets/space-invad
 }}'''
         keyframes_css.append(spark_kf)
 
-        orig_lvl = t["lvl"]
-        dim_lvl = max(0, orig_lvl - 1)
         dim_colors = ["#161B22", "#0E4429", "#006D32", "#26A641", "#39D353"]
-        orig_color = dim_colors[orig_lvl]
-        target_color = dim_colors[dim_lvl]
+        orig_color = dim_colors[t["start_lvl"]]
+        target_color = dim_colors[t["damaged_lvl"]]
 
         commit_kf = f'''@keyframes commitDamage{tid} {{
   0% {{ fill: {orig_color}; }}
@@ -289,10 +363,10 @@ def generate_svg(date_dict, total_contribs=1942, output_path="assets/space-invad
 }}'''
         keyframes_css.append(commit_kf)
 
-    # 3. Dynamic Live Destroyed HUD Counter Keyframes (0 -> 1 -> 2 -> ... -> 8 out of Total)
-    for c_val in range(9):
+    # 3. Dynamic Live Destroyed HUD Counter Keyframes (0 -> 1 -> 2 -> ... -> N)
+    num_targets = len(targets_data)
+    for c_val in range(num_targets + 1):
         if c_val == 0:
-            t_visible_start = 0.0
             t_visible_end = cycle_start_times[0] + travel_durations[0] + T_AIM + T_LASER
             counter_kf = f'''@keyframes hudCount0 {{
   0% {{ opacity: 1; }}
@@ -300,7 +374,7 @@ def generate_svg(date_dict, total_contribs=1942, output_path="assets/space-invad
   {to_pct(t_visible_end)} {{ opacity: 0; }}
   100% {{ opacity: 0; }}
 }}'''
-        elif c_val < 8:
+        elif c_val < num_targets:
             t_visible_start = cycle_start_times[c_val-1] + travel_durations[c_val-1] + T_AIM + T_LASER
             t_visible_end = cycle_start_times[c_val] + travel_durations[c_val] + T_AIM + T_LASER
             counter_kf = f'''@keyframes hudCount{c_val} {{
@@ -312,9 +386,8 @@ def generate_svg(date_dict, total_contribs=1942, output_path="assets/space-invad
   100% {{ opacity: 0; }}
 }}'''
         else:
-            t_visible_start = cycle_start_times[7] + travel_durations[7] + T_AIM + T_LASER
-            t_visible_end = TOTAL_DURATION
-            counter_kf = f'''@keyframes hudCount8 {{
+            t_visible_start = cycle_start_times[num_targets-1] + travel_durations[num_targets-1] + T_AIM + T_LASER
+            counter_kf = f'''@keyframes hudCount{num_targets} {{
   0% {{ opacity: 0; }}
   {to_pct(t_visible_start - 0.01)} {{ opacity: 0; }}
   {to_pct(t_visible_start)} {{ opacity: 1; }}
@@ -348,9 +421,9 @@ def generate_svg(date_dict, total_contribs=1942, output_path="assets/space-invad
 
     formatted_total = f"{total_contribs:,}"
 
-    # Counter Text Display Elements (Starts from 0 and increments 1 per laser hit: 0 -> 1 -> 2 -> ... -> 8!)
+    # Counter Text Display Elements (Starts from 0 and increments exactly 1 per laser hit: 0 -> 1 -> 2 -> ... -> 8)
     counter_elements = []
-    for c_val in range(9):
+    for c_val in range(num_targets + 1):
         counter_elements.append(f'      <text x="127" y="17" text-anchor="middle" class="counter-txt hud-val-{c_val}">DESTROYED: [ {c_val} / {formatted_total} COMMITS ]</text>')
     counter_texts = "\n".join(counter_elements)
 
@@ -369,7 +442,7 @@ def generate_svg(date_dict, total_contribs=1942, output_path="assets/space-invad
         css_class_rules.append(f".spark-burst-{tid}  {{ animation: sparkHit{tid} {TOTAL_DURATION:.2f}s ease-out infinite; transform-origin: {cx}px {cy}px; }}")
         css_class_rules.append(f".commit-target-{tid} {{ animation: commitDamage{tid} {TOTAL_DURATION:.2f}s ease-in-out infinite; }}")
 
-    for c_val in range(9):
+    for c_val in range(num_targets + 1):
         init_op = 1 if c_val == 0 else 0
         css_class_rules.append(f".hud-val-{c_val} {{ opacity: {init_op}; animation: hudCount{c_val} {TOTAL_DURATION:.2f}s linear infinite; }}")
 
@@ -383,8 +456,8 @@ def generate_svg(date_dict, total_contribs=1942, output_path="assets/space-invad
         for row in range(7):
             x = col * 15
             y = row * 13
-            cell_data = grid.get((col, row), (0, ""))
-            lvl = cell_data[0]
+            cell = grid.get((col, row), {"lvl": 0})
+            lvl = cell["lvl"]
             
             colors = ["#161B22", "#0E4429", "#006D32", "#26A641", "#39D353"]
             fill_color = colors[lvl]
@@ -508,8 +581,8 @@ def generate_svg(date_dict, total_contribs=1942, output_path="assets/space-invad
     sync_other_svgs(total_contribs)
 
 if __name__ == "__main__":
-    date_dict, total_contribs = fetch_contributions(USERNAME, GITHUB_TOKEN)
-    if date_dict:
-        generate_svg(date_dict, total_contribs)
+    records, total_contribs = fetch_contributions(USERNAME, GITHUB_TOKEN)
+    if records:
+        generate_svg(records, total_contribs)
     else:
-        print("Error: Could not retrieve contribution dates.")
+        print("Error: Could not retrieve contribution records.")
