@@ -180,11 +180,10 @@ def sync_other_svgs(total_contribs):
         print(f"Synced {telemetry_path} with {formatted_total} COMMITS")
 
 def generate_svg(date_records, total_contribs, output_path="assets/space-invaders-commits.svg"):
-    # Lightweight one-shot renderer: one rocket, one laser, one impact burst.
-    # Real GitHub cells remain the source of truth. Each active cell is hit once
-    # per contribution level so its visual state progresses to LEVEL 0.
+    """Generate a compact, browser-friendly arcade SVG from real GitHub data."""
     if not date_records:
         raise ValueError("No contribution records provided")
+
     total_contribs = int(total_contribs or sum(int(r.get("contributions", 0)) for r in date_records.values()))
     if total_contribs <= 0:
         raise ValueError("No positive contribution total provided")
@@ -200,215 +199,136 @@ def generate_svg(date_records, total_contribs, output_path="assets/space-invader
         row = (d.weekday() + 1) % 7
         if 0 <= col < 52 and 0 <= row < 7:
             lvl = max(0, min(4, int(rec.get("level", 0))))
-            grid[(col, row)] = {
-                "date": d_str,
-                "contributions": int(rec.get("contributions", 0)),
-                "lvl": lvl,
-                "initial_level": max(0, min(4, int(rec.get("initial_level", lvl))))
-            }
+            cnt = max(0, int(rec.get("contributions", 0)))
+            grid[(col, row)] = {"date": d_str, "contributions": cnt, "level": lvl,
+                                "cx": col * 15 + 5, "cy": row * 13 + 5}
 
-    active_cells = []
-    for (col, row), cell in grid.items():
-        if cell["contributions"] > 0 and cell["lvl"] > 0:
-            active_cells.append({
-                "col": col, "row": row, "lvl": cell["lvl"],
-                "initial_level": cell["initial_level"],
-                "contributions": cell["contributions"], "date": cell["date"],
-                "cx": col * 15 + 5, "cy": row * 13 + 5
-            })
-    if not active_cells:
+    active = [c for c in grid.values() if c["contributions"] > 0 and c["level"] > 0]
+    if not active:
         raise ValueError("No active contribution cells found")
 
-    print(f"Generated 52x7 grid spanning {first_sunday} to {last_date}.")
-    print(f"Found {len(active_cells)} active contribution cells in authentic layout.")
-    print(f"Real rolling one-year contribution total: {total_contribs:,}")
-
     import random
-    route_cells = active_cells[:]
-    random.Random(20260827).shuffle(route_cells)
+    random.Random(2405).shuffle(active)
 
-    # One event per visual level reduction, not one SVG object per contribution.
-    # This keeps the animation responsive while still taking every real cell to 0.
-    attacks = []
-    for cell in route_cells:
-        levels = max(1, min(4, cell["initial_level"]))
-        base = cell["contributions"] // levels
-        rem = cell["contributions"] % levels
-        for hit_idx in range(levels):
-            attacks.append({
-                **cell,
-                "start_lvl": max(1, cell["initial_level"] - hit_idx),
-                "damaged_lvl": max(0, cell["initial_level"] - hit_idx - 1),
-                "counter_add": base + (1 if hit_idx < rem else 0)
-            })
-
-    delta = total_contribs - sum(a["counter_add"] for a in attacks)
-    if delta:
-        attacks[-1]["counter_add"] += delta
-
-    # Keep the requested one-second attack cadence.
-    ATTACK_INTERVAL = 1.0
-    TOTAL_DURATION = max(ATTACK_INTERVAL, len(attacks) * ATTACK_INTERVAL)
+    # One visual hit per real active cell. The day's real contribution count is
+    # added to the HUD at impact, so the final HUD is the real rolling total.
+    INTERVAL = 0.35
+    MOVE = 0.18
+    HIT = 0.25
+    TOTAL = len(active) * INTERVAL
     cannon_y = 126
-    events = []
-    cumulative = 0
-    previous_x = 425 - 36
-    for i, a in enumerate(attacks):
-        start = i * ATTACK_INTERVAL
-        dx = abs(a["cx"] - previous_x)
-        travel = min(0.34, max(0.10, 0.10 + dx / 1500.0))
-        impact = start + travel + 0.16
-        cumulative += max(0, a["counter_add"])
-        events.append({**a, "start": start, "travel": travel, "impact": impact, "cumulative": cumulative})
-        previous_x = a["cx"]
-    events[-1]["cumulative"] = total_contribs
-
-    print(f"Attack route: {len(attacks):,} level hits across {len(active_cells)} real active cells.")
-    print("Animation mode: lightweight ONE-SHOT — one rocket + one laser + one impact; no reset.")
-    print(f"Attack cadence: exactly {ATTACK_INTERVAL:.2f}s per level hit.")
-    print(f"Total one-shot attack duration: {TOTAL_DURATION:.2f}s ({TOTAL_DURATION/60:.1f} minutes)")
 
     def pct(t):
-        return f"{max(0.0, min(100.0, t / TOTAL_DURATION * 100.0)):.4f}%"
+        return max(0.0, min(100.0, (t / TOTAL) * 100.0))
 
     colors = ["#161B22", "#0E4429", "#006D32", "#26A641", "#39D353"]
-    keyframes = []
 
-    # Single rocket route.
-    route = []
-    for e in events:
-        route.append(f'  {pct(e["start"])} {{ transform: translate({e["cx"]}px,{cannon_y}px); }}')
-        route.append(f'  {pct(e["start"] + e["travel"])} {{ transform: translate({e["cx"]}px,{cannon_y}px); }}')
-    keyframes.append("@keyframes shipRoute {\n" + "\n".join(route) + "\n}")
+    # SVG SMIL is used instead of hundreds of CSS @keyframes blocks. There is
+    # exactly one animated rocket, one laser, one impact and one HUD text node.
+    rocket_values, rocket_times = [], []
+    laser_transform_values, laser_times, laser_opacity = [], [], []
+    impact_values, impact_times, impact_opacity = [], [], []
+    counter_values, counter_times = [], []
+    cumulative = 0
 
-    # Single laser. It is repositioned for each event, so there are never hundreds
-    # of simultaneously animated laser elements.
-    laser = []
-    for e in events:
-        s, fire, hit = e["start"], e["start"] + e["travel"], e["impact"]
-        laser += [
-            f'  {pct(s)} {{ opacity:0; transform:translate({e["cx"]}px,{cannon_y-10}px) scaleY(0); }}',
-            f'  {pct(fire)} {{ opacity:1; transform:translate({e["cx"]}px,{cannon_y-10}px) scaleY(.25); }}',
-            f'  {pct(hit)} {{ opacity:1; transform:translate({e["cx"]}px,{e["cy"]}px) scaleY(1); }}',
-            f'  {pct(hit+.035)} {{ opacity:0; transform:translate({e["cx"]}px,{e["cy"]}px) scaleY(0); }}'
+    for i, cell in enumerate(active):
+        start = i * INTERVAL
+        fire = start + MOVE
+        hit = start + HIT
+        end = start + INTERVAL
+        x, y = cell["cx"], cell["cy"]
+
+        rocket_values.append(f"{x} {cannon_y}")
+        rocket_times.append(f"{pct(start):.3f}%")
+
+        # Laser is a vertical line; scaleY changes its length to the target.
+        length = (y - (cannon_y - 10)) / 18.0
+        laser_transform_values += [
+            f"translate({x} {cannon_y - 10}) scale(1 0)",
+            f"translate({x} {cannon_y - 10}) scale(1 {length:.3f})",
+            f"translate({x} {cannon_y - 10}) scale(1 {length:.3f})",
+            f"translate({x} {cannon_y - 10}) scale(1 0)",
         ]
-    keyframes.append("@keyframes laserRoute {\n" + "\n".join(laser) + "\n}")
+        laser_times += [f"{pct(start):.3f}%", f"{pct(fire):.3f}%", f"{pct(hit):.3f}%", f"{pct(hit + .06):.3f}%"]
+        laser_opacity += ["0", "1", "1", "0"]
 
-    # Single impact burst, always located at the exact cell being hit.
-    impact = []
-    for e in events:
-        s, hit = e["start"], e["impact"]
-        impact += [
-            f'  {pct(s)} {{ opacity:0; transform:translate({e["cx"]}px,{e["cy"]}px) scale(.15); }}',
-            f'  {pct(hit)} {{ opacity:1; transform:translate({e["cx"]}px,{e["cy"]}px) scale(1.8); }}',
-            f'  {pct(hit+.10)} {{ opacity:0; transform:translate({e["cx"]}px,{e["cy"]}px) scale(.25); }}'
-        ]
-    keyframes.append("@keyframes impactRoute {\n" + "\n".join(impact) + "\n}")
+        impact_values += [f"translate({x} {y}) scale(.15)", f"translate({x} {y}) scale(1.6)",
+                          f"translate({x} {y}) scale(.15)"]
+        impact_times += [f"{pct(start):.3f}%", f"{pct(hit):.3f}%", f"{pct(hit + .10):.3f}%"]
+        impact_opacity += ["0", "1", "0"]
 
-    # One animation per real cell for the persistent damage state.
-    cell_events = {}
-    for e in events:
-        cell_events.setdefault((e["col"], e["row"]), []).append(e)
-    cell_css, cell_classes = [], {}
-    for idx, ((col, row), evs) in enumerate(cell_events.items(), 1):
-        cls = f"cell-damage-{idx}"
-        cell_classes[(col, row)] = cls
-        kf = [f'  0% {{ fill:{colors[evs[0]["start_lvl"]]}; }}']
-        for e in evs:
-            kf += [
-                f'  {pct(e["impact"]-.01)} {{ fill:{colors[e["start_lvl"]]}; }}',
-                f'  {pct(e["impact"])} {{ fill:#FDFBF7; }}',
-                f'  {pct(e["impact"]+.055)} {{ fill:{colors[e["damaged_lvl"]]}; }}'
-            ]
-        kf.append(f'  100% {{ fill:{colors[evs[-1]["damaged_lvl"]]}; }}')
-        keyframes.append(f"@keyframes {cls}-kf {{\n" + "\n".join(kf) + "\n}")
-        cell_css.append(f".{cls} {{ animation:{cls}-kf {TOTAL_DURATION:.2f}s linear 1 forwards; }}")
+        cumulative += cell["contributions"]
+        counter_values.append(f"DESTROYED: [ {min(cumulative, total_contribs):,} / {total_contribs:,} ]")
+        counter_times.append(f"{pct(hit):.3f}%")
 
-    # Compact HUD: show the exact cumulative value after every real level hit.
-    # Only one text node is visible at a time; there is no 1,951-node overlap.
-    hud_keyframes = []
-    hud_texts = []
-    for i, e in enumerate(events):
-        start = 0 if i == 0 else events[i-1]["impact"]
-        end = e["impact"]
-        value = e["cumulative"]
-        kf_name = f"hudStep{i}"
-        hud_keyframes.append(
-            f"@keyframes {kf_name} {{ 0%{{opacity:0}} {pct(start)}{{opacity:0}} "
-            f"{pct(end-.001)}{{opacity:1}} {pct(end)}{{opacity:0}} 100%{{opacity:0}} }}"
-        )
-        hud_texts.append(f'      <text x="130" y="17" text-anchor="middle" class="hud hud-{i}">DESTROYED: [ {value:,} / {total_contribs:,} ]</text>')
+    # Add an explicit initial counter value and guarantee the exact API total at the end.
+    counter_values.insert(0, f"DESTROYED: [ 0 / {total_contribs:,} ]")
+    counter_times.insert(0, "0%")
+    if cumulative != total_contribs:
+        counter_values[-1] = f"DESTROYED: [ {total_contribs:,} / {total_contribs:,} ]"
 
-    hud_css = [f".hud {{ font-family:'JetBrains Mono',Consolas,monospace; font-size:10px; font-weight:800; fill:#39D353; letter-spacing:.7px; }}"]
-    for i in range(len(events)):
-        hud_css.append(f".hud-{i} {{ opacity:0; animation:hudStep{i} {TOTAL_DURATION:.2f}s linear 1 forwards; }}")
-
-    grid_rects = []
+    # Static cells are plain rects. Active cells have one tiny SMIL fill animation.
+    rects = []
     for col in range(52):
         for row in range(7):
-            x, y = col*15, row*13
-            cell = grid.get((col,row), {"lvl":0})
-            lvl = max(0,min(4,int(cell.get("lvl",0))))
-            cls = cell_classes.get((col,row))
-            if cls:
-                grid_rects.append(f'      <rect x="{x}" y="{y}" width="10" height="10" rx="2" class="{cls}"/>')
-            else:
-                grid_rects.append(f'      <rect x="{x}" y="{y}" width="10" height="10" rx="2" fill="{colors[lvl]}"/>')
+            cell = grid.get((col, row))
+            x, y = col * 15, row * 13
+            if not cell or cell["contributions"] <= 0 or cell["level"] <= 0:
+                lvl = cell["level"] if cell else 0
+                rects.append(f'<rect x="{x}" y="{y}" width="10" height="10" rx="2" fill="{colors[lvl]}"/>')
 
-    full_css = "\n".join([
-        ".bh-bg{fill:#0B0C10;stroke:#1F2430;stroke-width:1.5}",
-        ".tag-txt{font-family:'JetBrains Mono',Consolas,monospace;font-size:11px;font-weight:700;fill:#00F0FF;letter-spacing:2px}",
-        ".month-lbl{font-family:'JetBrains Mono',Consolas,monospace;font-size:9px;fill:#71737E}",
-        ".score-lbl{font-family:'JetBrains Mono',Consolas,monospace;font-size:9px;fill:#8B949E}",
-        ".live-beacon{animation:beaconBlink .8s steps(2,start) infinite}",
-        ".counter-frame{fill:#111216;stroke:#2563EB;stroke-width:1.2}",
-        ".counter-title{font-family:'JetBrains Mono',Consolas,monospace;font-size:10px;font-weight:800;fill:#39D353;letter-spacing:.7px}",
-        f".ship-patrol{{animation:shipRoute {TOTAL_DURATION:.2f}s cubic-bezier(.2,0,.1,1) 1 forwards}}",
-        f".laser-main{{animation:laserRoute {TOTAL_DURATION:.2f}s linear 1 forwards}}",
-        f".impact-main{{animation:impactRoute {TOTAL_DURATION:.2f}s ease-out 1 forwards}}",
-        *cell_css, *hud_css, *hud_keyframes, *keyframes,
-        "@keyframes beaconBlink{0%,100%{opacity:1}50%{opacity:.2}}"
-    ])
+    # Map active cells by coordinate for their individual one-time damage animation.
+    for i, cell in enumerate(active):
+        original = colors[cell["level"]]
+        hit = i * INTERVAL + HIT
+        end = hit + .08
+        rects.append(
+            f'<rect x="{cell["cx"] - 5}" y="{cell["cy"] - 5}" width="10" height="10" rx="2" fill="{original}">'
+            f'<animate attributeName="fill" dur="{TOTAL:.2f}s" repeatCount="1" fill="freeze" '
+            f'values="{original};#FDFBF7;#161B22" keyTimes="{pct(0):.3f}%;{pct(hit):.3f}%;{pct(end):.3f}%" calcMode="discrete"/>'
+            f'</rect>'
+        )
 
-    formatted_total = f"{total_contribs:,}"
-    svg_output = f'''<svg width="850" height="275" viewBox="0 0 850 275" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <defs><style>{full_css}</style></defs>
-  <rect width="850" height="275" rx="4" class="bh-bg"/>
-  <g transform="translate(24,22)">
-    <circle cx="0" cy="5" r="3.5" fill="#39D353" class="live-beacon"/>
-    <text x="14" y="9" class="tag-txt">PORTAL GATEWAY // SECTOR 03: RETRO LASER CANNON COMMIT ARCADE</text>
-  </g>
-  <g transform="translate(565,10)">
-    <rect width="260" height="26" rx="3" class="counter-frame"/>
-    <text x="130" y="17" text-anchor="middle" class="hud hud-initial">DESTROYED: [ 0 / {total_contribs:,} ]</text>
-{chr(10).join(hud_texts)}
-  </g>
-  <line x1="0" y1="42" x2="850" y2="42" stroke="#2C303B"/>
-  <g transform="translate(36,62)">
-    <text x="0" y="-8" class="month-lbl">JAN</text><text x="64" y="-8" class="month-lbl">FEB</text>
-    <text x="128" y="-8" class="month-lbl">MAR</text><text x="192" y="-8" class="month-lbl">APR</text>
-    <text x="256" y="-8" class="month-lbl">MAY</text><text x="320" y="-8" class="month-lbl">JUN</text>
-    <text x="384" y="-8" class="month-lbl">JUL</text><text x="448" y="-8" class="month-lbl">AUG</text>
-    <text x="512" y="-8" class="month-lbl">SEP</text><text x="576" y="-8" class="month-lbl">OCT</text>
-    <text x="640" y="-8" class="month-lbl">NOV</text><text x="704" y="-8" class="month-lbl">DEC</text>
-    <g>{chr(10).join(grid_rects)}</g>
-    <line x1="0" y1="0" x2="0" y2="18" stroke="#00F0FF" stroke-width="2.5" stroke-linecap="round" class="laser-main"/>
-    <g class="impact-main"><circle r="4" fill="#FDFBF7"/><line x1="-6" y1="-6" x2="6" y2="6" stroke="#F59E0B" stroke-width="1.6"/><line x1="6" y1="-6" x2="-6" y2="6" stroke="#F59E0B" stroke-width="1.6"/><line x1="-7" y1="0" x2="7" y2="0" stroke="#E11D48" stroke-width="1.2"/><line x1="0" y1="-7" x2="0" y2="7" stroke="#E11D48" stroke-width="1.2"/></g>
-    <g class="ship-patrol"><polygon points="0,-10 7,6 0,2 -7,6" fill="#FDFBF7"/><polygon points="0,2 7,6 7,12 0,9 -7,12 -7,6" fill="#2563EB"/><rect x="-3" y="4" width="6" height="6" fill="#E11D48"/><polygon points="-7,8 -11,14 -7,12" fill="#00F0FF"/><polygon points="7,8 11,14 7,12" fill="#00F0FF"/><polygon points="-4,12 0,18 4,12" fill="#F59E0B"/><circle cx="0" cy="-2" r="1.5" fill="#00F0FF"/></g>
-  </g>
-  <g transform="translate(36,252)">
-    <rect width="9" height="9" rx="2" fill="#161B22"/><text x="14" y="8" class="score-lbl">LEVEL 0 (DEPLETED)</text>
-    <rect x="140" width="9" height="9" rx="2" fill="#0E4429"/><text x="154" y="8" class="score-lbl">LEVEL 1</text>
-    <rect x="240" width="9" height="9" rx="2" fill="#006D32"/><text x="254" y="8" class="score-lbl">LEVEL 2</text>
-    <rect x="350" width="9" height="9" rx="2" fill="#26A641"/><text x="364" y="8" class="score-lbl">LEVEL 3</text>
-    <rect x="450" width="9" height="9" rx="2" fill="#39D353"/><text x="464" y="8" class="score-lbl" style="fill:#39D353;font-weight:bold">LEVEL 4 (FULL LIGHT)</text>
-    <text x="630" y="8" font-family="'JetBrains Mono',monospace" font-size="10.5px" font-weight="700" fill="#2563EB">{formatted_total} TOTAL COMMITS</text>
-  </g>
+    formatted = f"{total_contribs:,}"
+    svg = f'''<svg width="850" height="275" viewBox="0 0 850 275" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="850" height="275" rx="4" fill="#0B0C10" stroke="#1F2430" stroke-width="1.5"/>
+<style>
+.tag{{font-family:'JetBrains Mono',Consolas,monospace;font-size:11px;font-weight:700;fill:#00F0FF;letter-spacing:2px}}
+.month{{font-family:'JetBrains Mono',Consolas,monospace;font-size:9px;fill:#71737E}}
+.score{{font-family:'JetBrains Mono',Consolas,monospace;font-size:9px;fill:#8B949E}}
+.counter{{font-family:'JetBrains Mono',Consolas,monospace;font-size:10px;font-weight:800;fill:#39D353;letter-spacing:.5px}}
+</style>
+<g transform="translate(24,22)"><circle cx="0" cy="5" r="3.5" fill="#39D353"/><text x="14" y="9" class="tag">PORTAL GATEWAY // SECTOR 03: RETRO LASER CANNON COMMIT ARCADE</text></g>
+<g transform="translate(565,10)"><rect width="260" height="26" rx="3" fill="#111216" stroke="#2563EB" stroke-width="1.2"/>
+<text x="130" y="17" text-anchor="middle" class="counter">DESTROYED: [ 0 / {formatted} ]<animate attributeName="textContent" dur="{TOTAL:.2f}s" repeatCount="1" fill="freeze" calcMode="discrete" values="{' ; '.join(counter_values)}" keyTimes="{' ; '.join(counter_times)}"/></text></g>
+<line x1="0" y1="42" x2="850" y2="42" stroke="#2C303B"/>
+<g transform="translate(36,62)">
+<text x="0" y="-8" class="month">JAN</text><text x="64" y="-8" class="month">FEB</text><text x="128" y="-8" class="month">MAR</text><text x="192" y="-8" class="month">APR</text><text x="256" y="-8" class="month">MAY</text><text x="320" y="-8" class="month">JUN</text><text x="384" y="-8" class="month">JUL</text><text x="448" y="-8" class="month">AUG</text><text x="512" y="-8" class="month">SEP</text><text x="576" y="-8" class="month">OCT</text><text x="640" y="-8" class="month">NOV</text><text x="704" y="-8" class="month">DEC</text>
+<g>{''.join(rects)}</g>
+<line x1="0" y1="0" x2="0" y2="18" stroke="#00F0FF" stroke-width="2.5" stroke-linecap="round" opacity="0">
+<animateTransform attributeName="transform" type="translate" dur="{TOTAL:.2f}s" repeatCount="1" fill="freeze" calcMode="discrete" values="{' ; '.join(rocket_values)}" keyTimes="{' ; '.join(rocket_times)}"/>
+<animate attributeName="opacity" dur="{TOTAL:.2f}s" repeatCount="1" fill="freeze" values="0;1;0" keyTimes="0%;50%;100%"/>
+</line>
+<line x1="0" y1="0" x2="0" y2="18" stroke="#00F0FF" stroke-width="2.5" stroke-linecap="round">
+<animateTransform attributeName="transform" type="translate" dur="{TOTAL:.2f}s" repeatCount="1" fill="freeze" calcMode="discrete" values="{' ; '.join(laser_transform_values)}" keyTimes="{' ; '.join(laser_times)}"/>
+<animate attributeName="opacity" dur="{TOTAL:.2f}s" repeatCount="1" fill="freeze" calcMode="discrete" values="{' ; '.join(laser_opacity)}" keyTimes="{' ; '.join(laser_times)}"/>
+</line>
+<g><animateTransform attributeName="transform" type="translate" dur="{TOTAL:.2f}s" repeatCount="1" fill="freeze" calcMode="discrete" values="{' ; '.join(impact_values)}" keyTimes="{' ; '.join(impact_times)}"/><animate attributeName="opacity" dur="{TOTAL:.2f}s" repeatCount="1" fill="freeze" calcMode="discrete" values="{' ; '.join(impact_opacity)}" keyTimes="{' ; '.join(impact_times)}"/><circle r="4" fill="#FDFBF7"/><path d="M0 -7V7 M-7 0H7 M-5 -5L5 5 M5 -5L-5 5" stroke="#F59E0B" stroke-width="1.5"/></g>
+<g><animateTransform attributeName="transform" type="translate" dur="{TOTAL:.2f}s" repeatCount="1" fill="freeze" values="{' ; '.join(rocket_values)}" keyTimes="{' ; '.join(rocket_times)}"/><polygon points="0,-10 7,6 0,2 -7,6" fill="#FDFBF7"/><polygon points="0,2 7,6 7,12 0,9 -7,12 -7,6" fill="#2563EB"/><rect x="-3" y="4" width="6" height="6" fill="#E11D48"/><polygon points="-7,8 -11,14 -7,12" fill="#00F0FF"/><polygon points="7,8 11,14 7,12" fill="#00F0FF"/><polygon points="-4,12 0,18 4,12" fill="#F59E0B"/><circle cx="0" cy="-2" r="1.5" fill="#00F0FF"/></g>
+</g>
+<g transform="translate(36,252)"><rect width="9" height="9" rx="2" fill="#161B22"/><text x="14" y="8" class="score">LEVEL 0 (DEPLETED)</text><rect x="140" width="9" height="9" rx="2" fill="#0E4429"/><text x="154" y="8" class="score">LEVEL 1</text><rect x="240" width="9" height="9" rx="2" fill="#006D32"/><text x="254" y="8" class="score">LEVEL 2</text><rect x="350" width="9" height="9" rx="2" fill="#26A641"/><text x="364" y="8" class="score">LEVEL 3</text><rect x="450" width="9" height="9" rx="2" fill="#39D353"/><text x="464" y="8" class="score" style="fill:#39D353;font-weight:bold">LEVEL 4 (FULL LIGHT)</text><text x="630" y="8" font-family="'JetBrains Mono',monospace" font-size="10.5px" font-weight="700" fill="#2563EB">{formatted} TOTAL COMMITS</text></g>
 </svg>'''
 
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
     with open(output_path, "w", encoding="utf-8") as f:
-        f.write(svg_output)
+        f.write(svg)
+    print(f"Generated 52x7 grid spanning {first_sunday} to {last_date}.")
+    print(f"Found {len(active)} active contribution cells in authentic layout.")
+    print(f"Real rolling one-year contribution total: {total_contribs:,}")
+    print(f"Animation mode: ultra-light SMIL — one rocket + one laser + one impact + one counter.")
+    print(f"Visual attack cadence: {INTERVAL:.2f}s per real active cell ({len(active)} visual hits).")
+    print(f"Visual duration: {TOTAL:.2f}s ({TOTAL/60:.1f} minutes)")
+    print(f"Final HUD total: {total_contribs:,}")
     print(f"Successfully wrote {output_path}")
     sync_other_svgs(total_contribs)
 
