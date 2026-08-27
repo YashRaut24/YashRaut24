@@ -12,7 +12,7 @@ def fetch_contributions(username, token=""):
     """
     Fetch real GitHub contributions calendar and lifetime total contributions for user.
     """
-    total_contribs = 1929
+    total_contribs = 1937
     date_dict = {}
 
     if token:
@@ -79,8 +79,7 @@ def fetch_contributions(username, token=""):
                             lvl = level_map.get(day["contributionLevel"], 0)
                             date_dict[day["date"]] = lvl
                     
-                    # Compute lifetime total
-                    total_contribs = max(1929, calendar["totalContributions"])
+                    total_contribs = max(1937, calendar["totalContributions"])
                     print(f"Fetched {len(date_dict)} days via GitHub GraphQL API. Total: {total_contribs}")
                     return date_dict, total_contribs
         except Exception as e:
@@ -95,7 +94,7 @@ def fetch_contributions(username, token=""):
         
         m = re.search(r'([0-9,]+)\s+contributions\s+in', html)
         if m:
-            total_contribs = max(1929, int(m.group(1).replace(",", "")))
+            total_contribs = max(1937, int(m.group(1).replace(",", "")))
         
         matches = re.findall(r'data-date="([^"]+)"(?:\s+[^>]*?)?data-level="([^"]+)"', html)
         if not matches:
@@ -107,7 +106,7 @@ def fetch_contributions(username, token=""):
         return date_dict, total_contribs
     except Exception as e:
         print(f"Calendar fetch failed: {e}")
-        return {}, 1929
+        return {}, 1937
 
 def sync_other_svgs(total_contribs):
     """
@@ -137,7 +136,7 @@ def sync_other_svgs(total_contribs):
             f.write(content)
         print(f"Synced {telemetry_path} with {formatted_total} COMMITS")
 
-def generate_svg(date_dict, total_contribs=1929, output_path="assets/space-invaders-commits.svg"):
+def generate_svg(date_dict, total_contribs=1937, output_path="assets/space-invaders-commits.svg"):
     if not date_dict:
         raise ValueError("No contribution dates provided")
 
@@ -219,8 +218,6 @@ def generate_svg(date_dict, total_contribs=1929, output_path="assets/space-invad
     T_POST_HIT = 1.10
     ATTACK_SEQ_DURATION = T_AIM + T_LASER + T_HIT + T_POST_HIT # ~1.48s
 
-    # Dynamic travel duration based on Euclidean distance
-    # Rocket cannon origin is at y=126 in grid coordinates
     cannon_y = 126
     travel_durations = []
     for i in range(8):
@@ -253,7 +250,6 @@ def generate_svg(date_dict, total_contribs=1929, output_path="assets/space-invad
         t_end = t_start + cycle_durations[i]
 
         tx = t["cx"]
-        # Arrive at target cx
         route_kfs.append(f"  {to_pct(t_start)}  {{ transform: translate({tx}px, {cannon_y}px); }}")
         route_kfs.append(f"  {to_pct(t_arrive)} {{ transform: translate({tx}px, {cannon_y}px); }}")
         route_kfs.append(f"  {to_pct(t_end)}    {{ transform: translate({tx}px, {cannon_y}px); }}")
@@ -276,7 +272,6 @@ def generate_svg(date_dict, total_contribs=1929, output_path="assets/space-invad
         t_y = t["cy"]
         cannon_tip_y = cannon_y - 10
 
-        # Laser shot keyframes
         laser_kf = f'''@keyframes laserShot{tid} {{
   0% {{ opacity: 0; transform: translate({t["cx"]}px, {cannon_tip_y}px) scaleY(0.5); }}
   {to_pct(t_fire_start - 0.01)} {{ opacity: 0; transform: translate({t["cx"]}px, {cannon_tip_y}px) scaleY(0.5); }}
@@ -287,7 +282,6 @@ def generate_svg(date_dict, total_contribs=1929, output_path="assets/space-invad
 }}'''
         keyframes_css.append(laser_kf)
 
-        # Spark burst keyframes
         spark_kf = f'''@keyframes sparkHit{tid} {{
   0% {{ opacity: 0; transform: scale(0.2); }}
   {to_pct(t_fire_hit - 0.01)} {{ opacity: 0; transform: scale(0.2); }}
@@ -298,7 +292,6 @@ def generate_svg(date_dict, total_contribs=1929, output_path="assets/space-invad
 }}'''
         keyframes_css.append(spark_kf)
 
-        # Commit damage color reduction
         orig_lvl = t["lvl"]
         dim_lvl = max(0, orig_lvl - 1)
         dim_colors = ["#161B22", "#0E4429", "#006D32", "#26A641", "#39D353"]
@@ -362,18 +355,19 @@ def generate_svg(date_dict, total_contribs=1929, output_path="assets/space-invad
 
     formatted_total = f"{total_contribs:,}"
 
-    # Counter Text Display Elements (Starts from 0 and increments with each laser hit!)
+    # Counter Text Display Elements (Iterates proportionally from 0 to Total Commits!)
     counter_elements = []
     for c_val in range(9):
-        counter_elements.append(f'      <text x="12" y="17" class="counter-txt hud-val-{c_val}">DESTROYED: [ {c_val} / {formatted_total} COMMITS ]</text>')
+        curr_val = int(round((c_val / 8.0) * total_contribs))
+        counter_elements.append(f'      <text x="12" y="17" class="counter-txt hud-val-{c_val}">DESTROYED: [ {curr_val:,} / {formatted_total} COMMITS ]</text>')
     counter_texts = "\n".join(counter_elements)
 
     # CSS Rules
     css_class_rules = [
         f".ship-patrol {{ animation: shipPatrolRoute {TOTAL_DURATION:.2f}s cubic-bezier(0.25, 0, 0.15, 1) infinite; }}",
-        ".live-beacon { animation: beaconBlink 0.8s steps(2, start) infinite; }",
-        ".counter-frame { fill: #16171C; stroke: #2563EB; stroke-width: 1.2; }",
-        ".counter-txt { font-family: 'JetBrains Mono', Consolas, monospace; font-size: 10px; font-weight: 700; fill: #39D353; letter-spacing: 0.8px; }"
+        ".live-beacon {{ animation: beaconBlink 0.8s steps(2, start) infinite; }}",
+        ".counter-frame {{ fill: #16171C; stroke: #2563EB; stroke-width: 1.2; }}",
+        ".counter-txt {{ font-family: 'JetBrains Mono', Consolas, monospace; font-size: 10px; font-weight: 700; fill: #39D353; letter-spacing: 0.8px; }}"
     ]
     for t in targets_data:
         tid = t["id"]
