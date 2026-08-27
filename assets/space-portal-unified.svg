@@ -1,5 +1,74 @@
-<svg width="850" height="275" viewBox="0 0 850 275" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg width="850" height="1742.0" viewBox="0 0 850 1742.0"
+     fill="none" xmlns="http://www.w3.org/2000/svg">
+  <title>Yash Raut — Unified Space Portal</title>
   <defs>
+
+    <style>
+      .portal-bg       { fill: #0B0C10; stroke: #1F2430; stroke-width: 1.5; }
+      .tag-lbl         { font-family: 'JetBrains Mono', Consolas, monospace; font-size: 11px; font-weight: 700; fill: #00F0FF; letter-spacing: 2px; }
+      .sub-lbl         { font-family: 'JetBrains Mono', Consolas, monospace; font-size: 9.5px; fill: #71737E; letter-spacing: 1.5px; }
+      .name-txt        { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 32px; font-weight: 900; fill: #FDFBF7; letter-spacing: 0.5px; }
+      .role-txt        { font-family: 'JetBrains Mono', Consolas, monospace; font-size: 12.5px; font-weight: 700; fill: #2563EB; letter-spacing: 1px; }
+      .bio-txt         { font-family: 'JetBrains Mono', Consolas, monospace; font-size: 11px; fill: #A0A5B5; }
+      .pill-box        { fill: #111216; stroke: #1F2430; stroke-width: 1; }
+      .pill-txt        { font-family: 'JetBrains Mono', Consolas, monospace; font-size: 9.5px; font-weight: 700; fill: #FDFBF7; letter-spacing: 0.5px; }
+
+      /* Kinetic Stargate Rotations */
+      @keyframes portalSpinCW {
+        from { transform: rotate(0deg); }
+        to   { transform: rotate(360deg); }
+      }
+      @keyframes portalSpinCCW {
+        from { transform: rotate(360deg); }
+        to   { transform: rotate(0deg); }
+      }
+      @keyframes pulseRing {
+        0%, 100% { opacity: 0.9; transform: scale(1); }
+        50%      { opacity: 0.4; transform: scale(0.96); }
+      }
+      @keyframes rocketAscent {
+        0%   { transform: translateY(16px) scale(0.94); opacity: 0.9; }
+        50%  { transform: translateY(-8px) scale(1.04); opacity: 1; }
+        100% { transform: translateY(16px) scale(0.94); opacity: 0.9; }
+      }
+      @keyframes beaconBlink {
+        0%, 100% { opacity: 1; }
+        50%      { opacity: 0.2; }
+      }
+      @keyframes particleFloat {
+        0%   { transform: translateY(0px); opacity: 0; }
+        50%  { opacity: 1; }
+        100% { transform: translateY(-30px); opacity: 0; }
+      }
+
+      .spin-cw     { animation: portalSpinCW 20s linear infinite; transform-origin: 675px 155px; }
+      .spin-ccw    { animation: portalSpinCCW 14s linear infinite; transform-origin: 675px 155px; }
+      .spin-slow   { animation: portalSpinCW 36s linear infinite; transform-origin: 675px 155px; }
+      .pulse       { animation: pulseRing 4s ease-in-out infinite; transform-origin: 675px 155px; }
+      .rocket-anim { animation: rocketAscent 3.5s ease-in-out infinite; transform-origin: 675px 155px; }
+      .beacon      { animation: beaconBlink 1.2s steps(2, start) infinite; }
+      .p1          { animation: particleFloat 2.5s ease-in infinite; }
+      .p2          { animation: particleFloat 3.2s ease-in 0.8s infinite; }
+    </style>
+  
+
+
+    <style>
+      .portal-bg   { fill: #0B0C10; stroke: #1F2430; stroke-width: 1.5; }
+      .tag-lbl     { font-family: 'JetBrains Mono', Consolas, monospace; font-size: 11px; font-weight: 700; fill: #00F0FF; letter-spacing: 2px; }
+      .sub-lbl     { font-family: 'JetBrains Mono', Consolas, monospace; font-size: 9.5px; fill: #71737E; letter-spacing: 1.5px; }
+      .col-box     { fill: #111216; stroke: #1F2430; stroke-width: 1.2; }
+      .col-head    { font-family: 'JetBrains Mono', Consolas, monospace; font-size: 11px; font-weight: 800; fill: #FDFBF7; letter-spacing: 1px; }
+      .col-role    { font-family: 'JetBrains Mono', Consolas, monospace; font-size: 9px; font-weight: 700; fill: #2563EB; letter-spacing: 1.5px; }
+      .tech-tag    { font-family: 'JetBrains Mono', Consolas, monospace; font-size: 9.5px; font-weight: 700; fill: #FDFBF7; }
+      .tech-desc   { font-family: 'JetBrains Mono', Consolas, monospace; font-size: 8.5px; fill: #71737E; }
+
+      @keyframes beaconBlink { 0%, 100% { opacity: 1; } 50% { opacity: 0.2; } }
+      .beacon { animation: beaconBlink 1.2s steps(2, start) infinite; }
+    </style>
+  
+
+
     <style>
       .bh-bg         { fill: #0B0C10; stroke: #1F2430; stroke-width: 1.5; }
       .tag-txt       { font-family: 'JetBrains Mono', Consolas, monospace; font-size: 11px; font-weight: 700; fill: #00F0FF; letter-spacing: 2px; }
@@ -71327,11 +71396,355 @@
   100% { fill: #161B22; opacity: 0.25; }
 }
 </style>
+  
+
+
+    <style>
+      .portal-bg       { fill: #0B0C10; stroke: #1F2430; stroke-width: 1.5; }
+      .tag-lbl         { font-family: 'JetBrains Mono', Consolas, monospace; font-size: 11px; font-weight: 700; fill: #00F0FF; letter-spacing: 2px; }
+      .sub-lbl         { font-family: 'JetBrains Mono', Consolas, monospace; font-size: 9.5px; fill: #71737E; letter-spacing: 1.5px; }
+      .callout-txt     { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 11px; font-weight: 600; fill: #FDFBF7; }
+      .num-val         { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 38px; font-weight: 900; fill: #00F0FF; letter-spacing: -0.5px; }
+      .num-sub         { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 38px; font-weight: 900; fill: #2563EB; letter-spacing: -0.5px; }
+      .lbl-main        { font-family: 'JetBrains Mono', Consolas, monospace; font-size: 12.5px; font-weight: 700; fill: #2563EB; letter-spacing: 1px; }
+      .lbl-center      { font-family: 'JetBrains Mono', Consolas, monospace; font-size: 12.5px; font-weight: 800; fill: #00F0FF; letter-spacing: 1px; }
+      .date-txt        { font-family: 'JetBrains Mono', Consolas, monospace; font-size: 10px; fill: #71737E; letter-spacing: 0.5px; }
+
+      @keyframes ringPulse {
+        0%, 100% { transform: scale(1); opacity: 0.9; }
+        50%      { transform: scale(1.06); opacity: 0.5; }
+      }
+      @keyframes beaconBlink {
+        0%, 100% { opacity: 1; }
+        50%      { opacity: 0.2; }
+      }
+
+      .pulse-ring { animation: ringPulse 3s ease-in-out infinite; transform-origin: 425px 122px; }
+      .beacon     { animation: beaconBlink 1.2s steps(2, start) infinite; }
+    </style>
+  
+
+
+    <style>
+      .portal-bg       { fill: #0B0C10; stroke: #1F2430; stroke-width: 1.5; }
+      .tag-lbl         { font-family: 'JetBrains Mono', Consolas, monospace; font-size: 11px; font-weight: 700; fill: #00F0FF; letter-spacing: 2px; }
+      .sub-lbl         { font-family: 'JetBrains Mono', Consolas, monospace; font-size: 9.5px; fill: #71737E; letter-spacing: 1.5px; }
+      .card-box        { fill: #111216; stroke: #1F2430; stroke-width: 1.2; }
+      .role-tag        { font-family: 'JetBrains Mono', Consolas, monospace; font-size: 9px; font-weight: 700; fill: #00F0FF; letter-spacing: 1px; }
+      .company-txt     { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 13px; font-weight: 800; fill: #FDFBF7; }
+      .date-txt        { font-family: 'JetBrains Mono', Consolas, monospace; font-size: 9px; fill: #71737E; letter-spacing: 0.5px; }
+      .desc-txt        { font-family: 'JetBrains Mono', Consolas, monospace; font-size: 9.5px; fill: #A0A5B5; line-height: 14px; }
+
+      @keyframes beaconBlink {
+        0%, 100% { opacity: 1; }
+        50%      { opacity: 0.2; }
+      }
+      @keyframes pulseWaypoint {
+        0%, 100% { transform: scale(1); opacity: 0.9; }
+        50%      { transform: scale(1.3); opacity: 0.4; }
+      }
+
+      .beacon   { animation: beaconBlink 1.2s steps(2, start) infinite; }
+      .pulse-w1 { animation: pulseWaypoint 2.5s ease-in-out infinite; transform-origin: 40px 145px; }
+      .pulse-w2 { animation: pulseWaypoint 2.5s ease-in-out 0.8s infinite; transform-origin: 310px 145px; }
+      .pulse-w3 { animation: pulseWaypoint 2.5s ease-in-out 1.6s infinite; transform-origin: 580px 145px; }
+    </style>
+  
+
+
+    <style>
+      .portal-bg       { fill: #0B0C10; stroke: #1F2430; stroke-width: 1.5; }
+      .tag-lbl         { font-family: 'JetBrains Mono', Consolas, monospace; font-size: 11px; font-weight: 700; fill: #00F0FF; letter-spacing: 2px; }
+      .sub-lbl         { font-family: 'JetBrains Mono', Consolas, monospace; font-size: 9.5px; fill: #71737E; letter-spacing: 1.5px; }
+      .stat-card       { fill: #111216; stroke: #1F2430; stroke-width: 1.2; }
+      .card-title      { font-family: 'JetBrains Mono', Consolas, monospace; font-size: 9.5px; font-weight: 700; fill: #71737E; letter-spacing: 1.5px; }
+      .metric-val      { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 18px; font-weight: 900; fill: #FDFBF7; }
+      .metric-sub      { font-family: 'JetBrains Mono', Consolas, monospace; font-size: 9px; fill: #A0A5B5; }
+      .tech-pill       { fill: #16171D; stroke: #2C303B; stroke-width: 1; }
+      .pill-txt        { font-family: 'JetBrains Mono', Consolas, monospace; font-size: 9px; font-weight: 700; fill: #FDFBF7; }
+
+      @keyframes compassSpinCW {
+        from { transform: rotate(0deg); }
+        to   { transform: rotate(360deg); }
+      }
+      @keyframes compassSpinCCW {
+        from { transform: rotate(360deg); }
+        to   { transform: rotate(0deg); }
+      }
+      @keyframes beaconBlink { 0%, 100% { opacity: 1; } 50% { opacity: 0.2; } }
+
+      .compass-cw  { animation: compassSpinCW 24s linear infinite; transform-origin: 745px 125px; }
+      .compass-ccw { animation: compassSpinCCW 16s linear infinite; transform-origin: 745px 125px; }
+      .beacon      { animation: beaconBlink 1.2s steps(2, start) infinite; }
+    </style>
+  
+
+
+    <style>
+      .portal-bg       { fill: #0B0C10; stroke: #1F2430; stroke-width: 1.5; }
+      .tag-lbl         { font-family: 'JetBrains Mono', Consolas, monospace; font-size: 11px; font-weight: 700; fill: #00F0FF; letter-spacing: 2px; }
+      .sub-lbl         { font-family: 'JetBrains Mono', Consolas, monospace; font-size: 9.5px; fill: #71737E; letter-spacing: 1.5px; }
+      .stat-card       { fill: #111216; stroke: #1F2430; stroke-width: 1.2; }
+      .card-title      { font-family: 'JetBrains Mono', Consolas, monospace; font-size: 9px; font-weight: 700; fill: #71737E; letter-spacing: 1.5px; }
+      .metric-val      { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 16px; font-weight: 900; fill: #FDFBF7; }
+      .metric-sub      { font-family: 'JetBrains Mono', Consolas, monospace; font-size: 9px; fill: #A0A5B5; }
+      .radar-desc-h    { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 13px; font-weight: 800; fill: #FDFBF7; }
+      .radar-desc-p    { font-family: 'JetBrains Mono', Consolas, monospace; font-size: 9.5px; fill: #A0A5B5; line-height: 14px; }
+
+      /* Radar Sweep Animation */
+      @keyframes radarSweep {
+        from { transform: rotate(0deg); }
+        to   { transform: rotate(360deg); }
+      }
+      @keyframes blipPing1 {
+        0%, 30%   { opacity: 0; transform: scale(0.3); }
+        35%, 65%  { opacity: 1; transform: scale(1); }
+        70%, 100% { opacity: 0; transform: scale(0.3); }
+      }
+      @keyframes blipPing2 {
+        0%, 55%   { opacity: 0; transform: scale(0.3); }
+        60%, 85%  { opacity: 1; transform: scale(1); }
+        90%, 100% { opacity: 0; transform: scale(0.3); }
+      }
+      @keyframes beaconBlink {
+        0%, 100% { opacity: 1; }
+        50%      { opacity: 0.2; }
+      }
+
+      .sweep-beam { animation: radarSweep 4s linear infinite; transform-origin: 745px 100px; }
+      .blip1      { animation: blipPing1 4s ease-out infinite; transform-origin: 768px 80px; }
+      .blip2      { animation: blipPing2 4s ease-out infinite; transform-origin: 722px 118px; }
+      .beacon     { animation: beaconBlink 1.2s steps(2, start) infinite; }
+    </style>
+  
+    .unified-frame {
+      fill: #0B0C10;
+      stroke: #1F2430;
+      stroke-width: 1.5;
+    }
   </defs>
 
-  <!-- Container Box -->
-  <rect width="850" height="275" rx="4" class="bh-bg"/>
+  <!-- One continuous outer frame for the complete profile -->
+  <rect x="1" y="1" width="848" height="1740.0" rx="14" class="unified-frame"/>
 
+  <g id="sector-1" transform="translate(0 18.0)">
+<!-- Portal Container Frame -->
+  <!-- Background Space Grid Hatching -->
+  <g opacity="0.10" stroke="#2C303B" stroke-width="0.8">
+    <line x1="0" y1="50" x2="850" y2="50"/>
+    <line x1="0" y1="100" x2="850" y2="100"/>
+    <line x1="0" y1="150" x2="850" y2="150"/>
+    <line x1="0" y1="200" x2="850" y2="200"/>
+    <line x1="0" y1="250" x2="850" y2="250"/>
+    <line x1="120" y1="0" x2="120" y2="310"/>
+    <line x1="240" y1="0" x2="240" y2="310"/>
+    <line x1="360" y1="0" x2="360" y2="310"/>
+    <line x1="480" y1="0" x2="480" y2="310"/>
+  </g>
+
+  <!-- Top System Header Bar -->
+  <g transform="translate(26, 24)">
+    <circle cx="0" cy="5" r="4" fill="#00F0FF" class="beacon"/>
+    <text x="14" y="9" class="tag-lbl">PORTAL GATEWAY // SECTOR 01: MISSION COMMAND &amp; PILOT IDENTITY</text>
+    <text x="560" y="9" class="sub-lbl">[WARP VECTOR: ACTIVE // DOMBIVLI, MUMBAI]</text>
+  </g>
+  <line x1="0" y1="44" x2="850" y2="44" stroke="#1F2430" stroke-width="1.2"/>
+
+  <!-- Left Mission Deck Content -->
+  <g transform="translate(36, 76)">
+    <!-- Security Authorization Badge -->
+    <rect x="0" y="0" width="220" height="22" rx="3" fill="#111216" stroke="#2563EB" stroke-width="1"/>
+    <text x="10" y="15" font-family="'JetBrains Mono', monospace" font-size="9px" font-weight="700" fill="#00F0FF" letter-spacing="1px">SYS_OP // MERN &amp; AIML ENGINEER</text>
+
+    <!-- Name & Official Title -->
+    <text x="0" y="52" class="name-txt">YASH DINESH RAUT</text>
+    <text x="0" y="74" class="role-txt">&gt; FULL-STACK DEVELOPER · MACHINE LEARNING SPECIALIST</text>
+
+    <!-- Bio & Education (Real Data from Resume) -->
+    <text x="0" y="104" class="bio-txt">B.E. in Computer Engineering · K.C. College of Engineering (CGPA 8.47)</text>
+    <text x="0" y="124" class="bio-txt">Hands-on experience architecting full-stack web platforms (MERN Stack)</text>
+    <text x="0" y="144" class="bio-txt">and engineering intelligent ML/NLP systems for real-world deployment.</text>
+
+    <!-- Status Badges Row -->
+    <g transform="translate(0, 168)">
+      <!-- Badge 1: Education -->
+      <g transform="translate(0, 0)">
+        <rect width="145" height="30" rx="3" class="pill-box"/>
+        <circle cx="12" cy="15" r="3.5" fill="#39D353"/>
+        <text x="22" y="19" class="pill-txt">CGPA: 8.47 / 10</text>
+      </g>
+
+      <!-- Badge 2: Experience -->
+      <g transform="translate(155, 0)">
+        <rect width="185" height="30" rx="3" class="pill-box"/>
+        <circle cx="12" cy="15" r="3.5" fill="#2563EB"/>
+        <text x="22" y="19" class="pill-txt">SAPPHIRE INFOCOM INTERN</text>
+      </g>
+
+      <!-- Badge 3: Award -->
+      <g transform="translate(350, 0)">
+        <rect width="140" height="30" rx="3" class="pill-box"/>
+        <circle cx="12" cy="15" r="3.5" fill="#F59E0B"/>
+        <text x="22" y="19" class="pill-txt">1ST PRIZE AI ART</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- Right Side: Kinetic Space Portal Stargate with Rocket -->
+  <g>
+    <!-- Stargate Outer Hexagon Ring -->
+    <polygon points="675,50 765,102 765,208 675,260 585,208 585,102" fill="none" stroke="#1F2430" stroke-width="1.5" stroke-dasharray="8 4" class="spin-slow"/>
+    
+    <!-- Outer Rotating Stargate Reticle -->
+    <circle cx="675" cy="155" r="100" fill="none" stroke="#2563EB" stroke-width="1.2" stroke-dasharray="14 10" class="spin-cw"/>
+    <circle cx="675" cy="155" r="88" fill="none" stroke="#1F2430" stroke-width="1"/>
+    
+    <!-- Rotating Intermediate Stargate Ring -->
+    <circle cx="675" cy="155" r="76" fill="none" stroke="#00F0FF" stroke-width="1.5" stroke-dasharray="28 14 6 14" class="spin-ccw"/>
+    
+    <!-- Inner Portal Throat Ring -->
+    <circle cx="675" cy="155" r="58" fill="#111216" stroke="#E11D48" stroke-width="2" class="pulse"/>
+    <circle cx="675" cy="155" r="46" fill="#0B0C10" stroke="#00F0FF" stroke-width="1.2" stroke-dasharray="6 4" class="spin-cw"/>
+
+    <!-- Reticle Crosshairs -->
+    <line x1="560" y1="155" x2="790" y2="155" stroke="#1F2430" stroke-width="1"/>
+    <line x1="675" y1="40" x2="675" y2="270" stroke="#1F2430" stroke-width="1"/>
+    <circle cx="675" cy="155" r="3" fill="#00F0FF"/>
+
+    <!-- Star Warp Particles -->
+    <circle cx="665" cy="165" r="1.5" fill="#00F0FF" class="p1"/>
+    <circle cx="686" cy="145" r="2" fill="#F59E0B" class="p2"/>
+
+    <!-- Ascending Vector Rocket -->
+    <g class="rocket-anim">
+      <g transform="translate(675, 155)">
+        <!-- Rocket Nose Cone & Fuselage -->
+        <polygon points="0,-24 12,-2 0,-8 -12,-2" fill="#FDFBF7"/>
+        <polygon points="0,-8 12,-2 12,12 0,6 -12,12 -12,-2" fill="#2563EB"/>
+        <rect x="-5" y="-2" width="10" height="12" fill="#E11D48"/>
+        <!-- Cockpit Window -->
+        <circle cx="0" cy="-6" r="3" fill="#00F0FF"/>
+        <!-- Left & Right Wing Stabilizers -->
+        <polygon points="-12,6 -20,16 -12,14" fill="#00F0FF"/>
+        <polygon points="12,6 20,16 12,14" fill="#00F0FF"/>
+        <!-- Plasma Thruster Exhaust -->
+        <polygon points="-8,14 -4,28 0,14" fill="#F59E0B"/>
+        <polygon points="0,14 4,28 8,14" fill="#F59E0B"/>
+        <polygon points="-3,14 0,34 3,14" fill="#E11D48"/>
+      </g>
+    </g>
+
+    <!-- Sector Coordinates -->
+    <text x="595" y="65" font-family="'JetBrains Mono', monospace" font-size="8.5px" fill="#71737E">GATEWAY::MERN_AIML</text>
+    <text x="715" y="255" font-family="'JetBrains Mono', monospace" font-size="8.5px" fill="#71737E">LOC::MUMBAI_IN</text>
+  </g>
+  </g>
+  <line x1="18" y1="328.0" x2="832" y2="328.0" stroke="#1F2430" stroke-width="1" />
+  <g id="sector-2" transform="translate(0 329.0)">
+<!-- Portal Container Frame -->
+  <!-- Top System Header Bar -->
+  <g transform="translate(26, 24)">
+    <circle cx="0" cy="5" r="4" fill="#2563EB" class="beacon"/>
+    <text x="14" y="9" class="tag-lbl">PORTAL GATEWAY // SECTOR 02: TECHNICAL STACK &amp; CAPABILITIES</text>
+    <text x="610" y="9" class="sub-lbl">[3x CORE FLIGHT DECKS OPERATIONAL]</text>
+  </g>
+  <line x1="0" y1="44" x2="850" y2="44" stroke="#1F2430" stroke-width="1.2"/>
+
+  <!-- 3 Spacecraft Subsystems Flight Matrix -->
+  <g transform="translate(26, 62)">
+    
+    <!-- COLUMN 01: MERN Full Stack -->
+    <g transform="translate(0, 0)">
+      <rect width="252" height="174" rx="4" class="col-box"/>
+      <rect x="0" y="0" width="252" height="3" fill="#00F0FF"/>
+      
+      <g transform="translate(14, 20)">
+        <text x="0" y="0" class="col-role">AVIONICS BAY 01</text>
+        <text x="0" y="16" class="col-head">MERN FULL STACK</text>
+        <line x1="0" y1="26" x2="224" y2="26" stroke="#1F2430" stroke-width="1"/>
+
+        <!-- Capability Items -->
+        <g transform="translate(0, 42)">
+          <rect x="0" y="-8" width="6" height="6" fill="#00F0FF"/>
+          <text x="14" y="-2" class="tech-tag">React.js &amp; Frontend</text>
+          <text x="14" y="10" class="tech-desc">Tailwind CSS, HTML5, Dynamic UI</text>
+        </g>
+        <g transform="translate(0, 72)">
+          <rect x="0" y="-8" width="6" height="6" fill="#00F0FF"/>
+          <text x="14" y="-2" class="tech-tag">Node.js &amp; Express.js</text>
+          <text x="14" y="10" class="tech-desc">20+ REST APIs, JWT, RBAC auth</text>
+        </g>
+        <g transform="translate(0, 102)">
+          <rect x="0" y="-8" width="6" height="6" fill="#00F0FF"/>
+          <text x="14" y="-2" class="tech-tag">Socket.IO &amp; Cloudinary</text>
+          <text x="14" y="10" class="tech-desc">Real-time feeds &amp; media storage</text>
+        </g>
+      </g>
+    </g>
+
+    <!-- COLUMN 02: AI, ML & NLP -->
+    <g transform="translate(272, 0)">
+      <rect width="252" height="174" rx="4" class="col-box"/>
+      <rect x="0" y="0" width="252" height="3" fill="#2563EB"/>
+
+      <g transform="translate(14, 20)">
+        <text x="0" y="0" class="col-role">PROPULSION BAY 02</text>
+        <text x="0" y="16" class="col-head">AI, ML &amp; NLP SYSTEMS</text>
+        <line x1="0" y1="26" x2="224" y2="26" stroke="#1F2430" stroke-width="1"/>
+
+        <!-- Capability Items -->
+        <g transform="translate(0, 42)">
+          <rect x="0" y="-8" width="6" height="6" fill="#2563EB"/>
+          <text x="14" y="-2" class="tech-tag">Machine Learning &amp; NLP</text>
+          <text x="14" y="10" class="tech-desc">Scikit-learn, Pandas, Semantic similarity</text>
+        </g>
+        <g transform="translate(0, 72)">
+          <rect x="0" y="-8" width="6" height="6" fill="#2563EB"/>
+          <text x="14" y="-2" class="tech-tag">LLM Integration &amp; APIs</text>
+          <text x="14" y="10" class="tech-desc">Prompt engineering, Groq API</text>
+        </g>
+        <g transform="translate(0, 102)">
+          <rect x="0" y="-8" width="6" height="6" fill="#2563EB"/>
+          <text x="14" y="-2" class="tech-tag">Predictive Model Tuning</text>
+          <text x="14" y="10" class="tech-desc">Feature analysis &amp; optimization</text>
+        </g>
+      </g>
+    </g>
+
+    <!-- COLUMN 03: Databases & DevOps -->
+    <g transform="translate(544, 0)">
+      <rect width="252" height="174" rx="4" class="col-box"/>
+      <rect x="0" y="0" width="252" height="3" fill="#E11D48"/>
+
+      <g transform="translate(14, 20)">
+        <text x="0" y="0" class="col-role">INFRASTRUCTURE BAY 03</text>
+        <text x="0" y="16" class="col-head">DATABASES &amp; CLOUD TOOLS</text>
+        <line x1="0" y1="26" x2="224" y2="26" stroke="#1F2430" stroke-width="1"/>
+
+        <!-- Capability Items -->
+        <g transform="translate(0, 42)">
+          <rect x="0" y="-8" width="6" height="6" fill="#E11D48"/>
+          <text x="14" y="-2" class="tech-tag">MongoDB &amp; PostgreSQL</text>
+          <text x="14" y="10" class="tech-desc">MySQL, Firebase data architecture</text>
+        </g>
+        <g transform="translate(0, 72)">
+          <rect x="0" y="-8" width="6" height="6" fill="#E11D48"/>
+          <text x="14" y="-2" class="tech-tag">Docker &amp; Containerization</text>
+          <text x="14" y="10" class="tech-desc">Git, GitHub Actions CI/CD</text>
+        </g>
+        <g transform="translate(0, 102)">
+          <rect x="0" y="-8" width="6" height="6" fill="#E11D48"/>
+          <text x="14" y="-2" class="tech-tag">Deployment &amp; Testing</text>
+          <text x="14" y="10" class="tech-desc">Vercel, Render, Postman APIs</text>
+        </g>
+      </g>
+    </g>
+
+  </g>
+  </g>
+  <line x1="18" y1="589.0" x2="832" y2="589.0" stroke="#1F2430" stroke-width="1" />
+  <g id="sector-3" transform="translate(0 590.0)">
+<!-- Container Box -->
   <!-- Top Title Bar with Live Destroyed Counter HUD -->
   <g transform="translate(24, 22)">
     <circle cx="0" cy="5" r="3.5" fill="#39D353" class="live-beacon"/>
@@ -91271,5 +91684,349 @@
     <text x="464" y="8" class="score-lbl" style="fill:#39D353; font-weight:bold;">LEVEL 4 (FULL LIGHT)</text>
 
     <text x="630" y="8" font-family="'JetBrains Mono', monospace" font-size="10.5px" font-weight="700" fill="#2563EB">1,950 TOTAL COMMITS</text>
+  </g>
+  </g>
+  <line x1="18" y1="865.0" x2="832" y2="865.0" stroke="#1F2430" stroke-width="1" />
+  <g id="sector-4" transform="translate(0 866.0)">
+<!-- Container Box Frame -->
+  <!-- Top System Header Bar -->
+  <g transform="translate(26, 24)">
+    <circle cx="0" cy="5" r="4" fill="#39D353" class="beacon"/>
+    <text x="14" y="9" class="tag-lbl">PORTAL GATEWAY // SECTOR 04: FLIGHT STREAKS &amp; CONTRIBUTION CADENCE</text>
+    <text x="590" y="9" class="sub-lbl">[LIVE TELEMETRY STREAM CONNECTED]</text>
+  </g>
+  <line x1="0" y1="44" x2="850" y2="44" stroke="#1F2430" stroke-width="1.2"/>
+
+  <!-- Sub-Quote Pill -->
+  <g transform="translate(26, 56)">
+    <rect width="270" height="24" rx="12" fill="#111216" stroke="#1F2430" stroke-width="1"/>
+    <text x="12" y="16" class="callout-txt">🚀 Side projects are where most new ideas begin.</text>
+  </g>
+
+  <!-- 3-Column Streak & Contribution Deck -->
+  <g transform="translate(0, 75)">
+    
+    <!-- COLUMN 1: Total Contributions -->
+    <g transform="translate(140, 48)">
+      <text x="0" y="0" text-anchor="middle" class="num-val">1,950</text>
+      <text x="0" y="24" text-anchor="middle" class="lbl-main">Total Contributions</text>
+      <text x="0" y="44" text-anchor="middle" class="date-txt">Aug 9, 2024 – Present</text>
+    </g>
+
+    <!-- Divider Line 1 -->
+    <line x1="285" y1="18" x2="285" y2="108" stroke="#1F2430" stroke-width="1.2"/>
+
+    <!-- COLUMN 2: Current Streak (Highlighted Center Ring with Flame) -->
+    <g transform="translate(425, 48)">
+      <!-- Animated Center Ring -->
+      <circle cx="0" cy="-1" r="38" fill="none" stroke="#2563EB" stroke-width="2.5" stroke-dasharray="8 4" class="pulse-ring"/>
+      <circle cx="0" cy="-1" r="44" fill="none" stroke="#00F0FF" stroke-width="1" stroke-opacity="0.3"/>
+      
+      <!-- Flame Icon -->
+      <g transform="translate(-8, -50)">
+        <path d="M8,0 C4,4 0,9 0,14 C0,19 4,22 8,22 C12,22 16,19 16,14 C16,9 12,4 8,0 Z M8,18 C6,18 4,16 4,14 C4,12 6,10 8,8 C10,10 12,12 12,14 C12,16 10,18 8,18 Z" fill="#00F0FF"/>
+      </g>
+      
+      <!-- Center Streak Number -->
+      <text x="0" y="12" text-anchor="middle" class="num-val" style="fill:#FDFBF7;">77</text>
+      
+      <!-- Label & Date Range -->
+      <text x="0" y="58" text-anchor="middle" class="lbl-center">Current Streak</text>
+      <text x="0" y="76" text-anchor="middle" class="date-txt">Jun 11 – Aug 26</text>
+    </g>
+
+    <!-- Divider Line 2 -->
+    <line x1="565" y1="18" x2="565" y2="108" stroke="#1F2430" stroke-width="1.2"/>
+
+    <!-- COLUMN 3: Longest Streak -->
+    <g transform="translate(710, 48)">
+      <text x="0" y="0" text-anchor="middle" class="num-sub" style="fill:#2563EB;">77</text>
+      <text x="0" y="24" text-anchor="middle" class="lbl-main">Longest Streak</text>
+      <text x="0" y="44" text-anchor="middle" class="date-txt">Jun 11 – Aug 26</text>
+    </g>
+
+  </g>
+  </g>
+  <line x1="18" y1="1076.0" x2="832" y2="1076.0" stroke="#1F2430" stroke-width="1" />
+  <g id="sector-5" transform="translate(0 1077.0)">
+<!-- Container Box Frame -->
+  <!-- Top System Header Bar -->
+  <g transform="translate(26, 24)">
+    <circle cx="0" cy="5" r="4" fill="#00F0FF" class="beacon"/>
+    <text x="14" y="9" class="tag-lbl">PORTAL GATEWAY // SECTOR 05: MISSION FLIGHT LOGS &amp; INDUSTRY EXPERIENCE</text>
+    <text x="610" y="9" class="sub-lbl">[EXPERIENCE TRAJECTORY VERIFIED]</text>
+  </g>
+  <line x1="0" y1="44" x2="850" y2="44" stroke="#1F2430" stroke-width="1.2"/>
+
+  <!-- Experience 3-Stage Mission Logs -->
+  <g transform="translate(26, 62)">
+    
+    <!-- MISSION 01: Sapphire Infocom -->
+    <g transform="translate(0, 0)">
+      <rect width="252" height="154" rx="4" class="card-box"/>
+      <rect x="0" y="0" width="252" height="3" fill="#00F0FF"/>
+      
+      <g transform="translate(14, 16)">
+        <text x="0" y="0" class="role-tag">MISSION LOG 01 // INTERNSHIP</text>
+        <text x="0" y="16" class="company-txt">Sapphire Infocom Pvt. Ltd.</text>
+        <text x="0" y="30" class="date-txt">Aug 2025 – Nov 2025 · MERN Stack</text>
+        <line x1="0" y1="38" x2="224" y2="38" stroke="#1F2430" stroke-width="1"/>
+
+        <g transform="translate(0, 52)">
+          <text x="0" y="0" class="desc-txt">• Engineered "Swish" platform with</text>
+          <text x="0" y="14" class="desc-txt">  JWT &amp; RBAC for 1,000+ users.</text>
+          <text x="0" y="32" class="desc-txt">• Built React frontend with 20+</text>
+          <text x="0" y="46" class="desc-txt">  REST APIs &amp; Cloudinary media.</text>
+          <text x="0" y="64" class="desc-txt">• Sub-2s image load optimization.</text>
+        </g>
+      </g>
+    </g>
+
+    <!-- MISSION 02: H.K. Gidwani School -->
+    <g transform="translate(272, 0)">
+      <rect width="252" height="154" rx="4" class="card-box"/>
+      <rect x="0" y="0" width="252" height="3" fill="#2563EB"/>
+
+      <g transform="translate(14, 16)">
+        <text x="0" y="0" class="role-tag" style="fill:#2563EB;">MISSION LOG 02 // FREELANCE</text>
+        <text x="0" y="16" class="company-txt">H.K. Gidwani School</text>
+        <text x="0" y="30" class="date-txt">Apr 2026 – May 2026 · Full Stack</text>
+        <line x1="0" y1="38" x2="224" y2="38" stroke="#1F2430" stroke-width="1"/>
+
+        <g transform="translate(0, 52)">
+          <text x="0" y="0" class="desc-txt">• Built fully functional school portal</text>
+          <text x="0" y="14" class="desc-txt">  end-to-end using MERN stack.</text>
+          <text x="0" y="32" class="desc-txt">• Developed responsive UI for staff</text>
+          <text x="0" y="46" class="desc-txt">  and visitors with fast load speeds.</text>
+          <text x="0" y="64" class="desc-txt">• DB connectivity &amp; asset storage.</text>
+        </g>
+      </g>
+    </g>
+
+    <!-- MISSION 03: Community & Tech Leadership -->
+    <g transform="translate(544, 0)">
+      <rect width="252" height="154" rx="4" class="card-box"/>
+      <rect x="0" y="0" width="252" height="3" fill="#39D353"/>
+
+      <g transform="translate(14, 16)">
+        <text x="0" y="0" class="role-tag" style="fill:#39D353;">MISSION LOG 03 // LEADERSHIP</text>
+        <text x="0" y="16" class="company-txt">Xzibit &amp; E-Cell Community</text>
+        <text x="0" y="30" class="date-txt">2026 · Technical Exhibition Lead</text>
+        <line x1="0" y1="38" x2="224" y2="38" stroke="#1F2430" stroke-width="1"/>
+
+        <g transform="translate(0, 52)">
+          <text x="0" y="0" class="desc-txt">• Coordinated technical project</text>
+          <text x="0" y="14" class="desc-txt">  booths for inter-college expo.</text>
+          <text x="0" y="32" class="desc-txt">• 2nd Prize in Elevator 300</text>
+          <text x="0" y="46" class="desc-txt">  Business Pitch Competition.</text>
+          <text x="0" y="64" class="desc-txt">• Active member of E-Cell network.</text>
+        </g>
+      </g>
+    </g>
+
+  </g>
+  </g>
+  <line x1="18" y1="1317.0" x2="832" y2="1317.0" stroke="#1F2430" stroke-width="1" />
+  <g id="sector-6" transform="translate(0 1318.0)">
+<!-- Portal Container Box -->
+  <!-- Top System Header Bar -->
+  <g transform="translate(26, 24)">
+    <circle cx="0" cy="5" r="4" fill="#39D353" class="beacon"/>
+    <text x="14" y="9" class="tag-lbl">PORTAL GATEWAY // SECTOR 06: ACADEMIC RECORD &amp; NAVIGATION TELEMETRY</text>
+    <text x="590" y="9" class="sub-lbl">[LIVE TELEMETRY STREAM CONNECTED]</text>
+  </g>
+  <line x1="0" y1="44" x2="850" y2="44" stroke="#1F2430" stroke-width="1.2"/>
+
+  <!-- Left Content: Flight Metrics & Stack -->
+  <g transform="translate(26, 62)">
+    
+    <!-- Row 1: 3 Real Metric Cards -->
+    <g>
+      <!-- Metric 1: GitHub Commits -->
+      <g transform="translate(0, 0)">
+        <rect width="195" height="66" rx="4" class="stat-card"/>
+        <rect x="0" y="0" width="3" height="66" fill="#39D353"/>
+        <text x="14" y="18" class="card-title">GIT TELEMETRY</text>
+        <text x="14" y="42" class="metric-val">1,950 COMMITS</text>
+        <text x="14" y="56" class="metric-sub">&gt; All-time contributions</text>
+      </g>
+
+      <!-- Metric 2: Academic CGPA -->
+      <g transform="translate(210, 0)">
+        <rect width="195" height="66" rx="4" class="stat-card"/>
+        <rect x="0" y="0" width="3" height="66" fill="#00F0FF"/>
+        <text x="14" y="18" class="card-title">ACADEMIC RECORD</text>
+        <text x="14" y="42" class="metric-val">CGPA: 8.47 / 10</text>
+        <text x="14" y="56" class="metric-sub">&gt; B.E. Computer Engineering</text>
+      </g>
+
+      <!-- Metric 3: Recognition -->
+      <g transform="translate(420, 0)">
+        <rect width="195" height="66" rx="4" class="stat-card"/>
+        <rect x="0" y="0" width="3" height="66" fill="#2563EB"/>
+        <text x="14" y="18" class="card-title">ACCOLADES</text>
+        <text x="14" y="42" class="metric-val">1ST PRIZE AI ART</text>
+        <text x="14" y="56" class="metric-sub">&gt; Watumull Tech Competition</text>
+      </g>
+    </g>
+
+    <!-- Row 2: Real Tech Stack Badges from Resume -->
+    <g transform="translate(0, 78)">
+      <g transform="translate(0, 0)">
+        <rect width="78" height="24" rx="3" class="tech-pill"/>
+        <circle cx="10" cy="12" r="3" fill="#00F0FF"/>
+        <text x="20" y="15.5" class="pill-txt">React.js</text>
+      </g>
+      <g transform="translate(86, 0)">
+        <rect width="80" height="24" rx="3" class="tech-pill"/>
+        <circle cx="10" cy="12" r="3" fill="#2563EB"/>
+        <text x="20" y="15.5" class="pill-txt">Node.js</text>
+      </g>
+      <g transform="translate(174, 0)">
+        <rect width="72" height="24" rx="3" class="tech-pill"/>
+        <circle cx="10" cy="12" r="3" fill="#00F0FF"/>
+        <text x="20" y="15.5" class="pill-txt">Python</text>
+      </g>
+      <g transform="translate(254, 0)">
+        <rect width="86" height="24" rx="3" class="tech-pill"/>
+        <circle cx="10" cy="12" r="3" fill="#39D353"/>
+        <text x="20" y="15.5" class="pill-txt">MongoDB</text>
+      </g>
+      <g transform="translate(348, 0)">
+        <rect width="72" height="24" rx="3" class="tech-pill"/>
+        <circle cx="10" cy="12" r="3" fill="#2563EB"/>
+        <text x="20" y="15.5" class="pill-txt">Docker</text>
+      </g>
+      <g transform="translate(428, 0)">
+        <rect width="96" height="24" rx="3" class="tech-pill"/>
+        <circle cx="10" cy="12" r="3" fill="#F59E0B"/>
+        <text x="20" y="15.5" class="pill-txt">JavaScript</text>
+      </g>
+      <g transform="translate(532, 0)">
+        <rect width="60" height="24" rx="3" class="tech-pill"/>
+        <circle cx="10" cy="12" r="3" fill="#E11D48"/>
+        <text x="20" y="15.5" class="pill-txt">Java</text>
+      </g>
+      <g transform="translate(600, 0)">
+        <rect width="70" height="24" rx="3" class="tech-pill"/>
+        <circle cx="10" cy="12" r="3" fill="#00F0FF"/>
+        <text x="20" y="15.5" class="pill-txt">MySQL</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- Right Side: Kinetic Deep-Space Gyro-Compass -->
+  <g>
+    <!-- Rotating Outer Scale -->
+    <circle cx="745" cy="125" r="70" fill="none" stroke="#1F2430" stroke-width="1.2" stroke-dasharray="10 8" class="compass-cw"/>
+    <!-- Rotating Intermediate Gyro Ring -->
+    <circle cx="745" cy="125" r="54" fill="none" stroke="#2563EB" stroke-width="1.5" stroke-dasharray="24 12" class="compass-ccw"/>
+    <!-- Inner Telemetry Core -->
+    <circle cx="745" cy="125" r="38" fill="#111216" stroke="#00F0FF" stroke-width="1.5"/>
+    <circle cx="745" cy="125" r="24" fill="#0B0C10" stroke="#E11D48" stroke-width="1" stroke-dasharray="4 4" class="compass-cw"/>
+    <circle cx="745" cy="125" r="3" fill="#39D353"/>
+
+    <!-- Crosshairs & Cardinal Ticks -->
+    <line x1="660" y1="125" x2="830" y2="125" stroke="#1F2430" stroke-width="1"/>
+    <line x1="745" y1="40" x2="745" y2="210" stroke="#1F2430" stroke-width="1"/>
+
+    <!-- Telemetry Compass Labels -->
+    <text x="740" y="52" font-family="'JetBrains Mono', monospace" font-size="8px" font-weight="700" fill="#00F0FF">N</text>
+    <text x="822" y="128" font-family="'JetBrains Mono', monospace" font-size="8px" font-weight="700" fill="#71737E">E</text>
+    <text x="741" y="205" font-family="'JetBrains Mono', monospace" font-size="8px" font-weight="700" fill="#71737E">S</text>
+    <text x="664" y="128" font-family="'JetBrains Mono', monospace" font-size="8px" font-weight="700" fill="#71737E">W</text>
+  </g>
+  </g>
+  <line x1="18" y1="1548.0" x2="832" y2="1548.0" stroke="#1F2430" stroke-width="1" />
+  <g id="sector-7" transform="translate(0 1549.0)">
+<!-- Container Box Frame -->
+  <!-- Top System Header Bar -->
+  <g transform="translate(26, 24)">
+    <circle cx="0" cy="5" r="4" fill="#00F0FF" class="beacon"/>
+    <text x="14" y="9" class="tag-lbl">PORTAL GATEWAY // SECTOR 07: SENSOR ARRAY &amp; ORBITAL RADAR</text>
+    <text x="590" y="9" class="sub-lbl">[360° DEEP-SPACE SCANNER ACTIVE]</text>
+  </g>
+  <line x1="0" y1="44" x2="850" y2="44" stroke="#1F2430" stroke-width="1.2"/>
+
+  <!-- Left Content Deck: 3 Telemetry Cards + Readout -->
+  <g transform="translate(26, 60)">
+    
+    <!-- Row 1: 3 Telemetry Cards -->
+    <g>
+      <!-- Card 1: Scanner Array -->
+      <g transform="translate(0, 0)">
+        <rect width="195" height="58" rx="4" class="stat-card"/>
+        <rect x="0" y="0" width="3" height="58" fill="#00F0FF"/>
+        <text x="14" y="16" class="card-title">SCANNER ARRAY</text>
+        <text x="14" y="36" class="metric-val">RADAR ONLINE</text>
+        <text x="14" y="49" class="metric-sub">&gt; Proximity telemetry active</text>
+      </g>
+
+      <!-- Card 2: Location Coordinate -->
+      <g transform="translate(210, 0)">
+        <rect width="195" height="58" rx="4" class="stat-card"/>
+        <rect x="0" y="0" width="3" height="58" fill="#2563EB"/>
+        <text x="14" y="16" class="card-title">SECTOR ORIGIN</text>
+        <text x="14" y="36" class="metric-val">MUMBAI ORBIT</text>
+        <text x="14" y="49" class="metric-sub">&gt; Dombivli, Maharashtra, IN</text>
+      </g>
+
+      <!-- Card 3: Link Status -->
+      <g transform="translate(420, 0)">
+        <rect width="195" height="58" rx="4" class="stat-card"/>
+        <rect x="0" y="0" width="3" height="58" fill="#39D353"/>
+        <text x="14" y="16" class="card-title">SUBSPACE RELAY</text>
+        <text x="14" y="36" class="metric-val">LINK ESTABLISHED</text>
+        <text x="14" y="49" class="metric-sub">&gt; Real-time traffic monitoring</text>
+      </g>
+    </g>
+
+    <!-- Row 2: Subspace Radar Description -->
+    <g transform="translate(0, 68)">
+      <rect width="615" height="34" rx="4" fill="#111216" stroke="#1F2430" stroke-width="1"/>
+      <g transform="translate(14, 12)">
+        <circle cx="0" cy="4" r="3" fill="#00F0FF" class="beacon"/>
+        <text x="12" y="7" class="radar-desc-h">Deep-Space Subspace Sensor Array &amp; Orbital Visitor Tracking</text>
+        <text x="12" y="20" class="radar-desc-p">Continuous 360-degree sector surveillance monitoring incoming visitor trajectories.</text>
+      </g>
+    </g>
+
+  </g>
+
+  <!-- Right Side: Full-Scale Kinetic Animated Radar Screen -->
+  <g>
+    <!-- Radar Outer Rings -->
+    <circle cx="745" cy="100" r="54" fill="#111216" stroke="#1F2430" stroke-width="1.5"/>
+    <circle cx="745" cy="100" r="40" fill="none" stroke="#2563EB" stroke-width="1.2" stroke-dasharray="5 3"/>
+    <circle cx="745" cy="100" r="26" fill="none" stroke="#1F2430" stroke-width="1"/>
+    <circle cx="745" cy="100" r="12" fill="none" stroke="#1F2430" stroke-width="1"/>
+    <circle cx="745" cy="100" r="2.5" fill="#00F0FF"/>
+
+    <!-- Crosshairs -->
+    <line x1="685" y1="100" x2="805" y2="100" stroke="#1F2430" stroke-width="1"/>
+    <line x1="745" y1="40" x2="745" y2="160" stroke="#1F2430" stroke-width="1"/>
+
+    <!-- Rotating Radar Sweep Beam -->
+    <g class="sweep-beam">
+      <line x1="745" y1="100" x2="745" y2="46" stroke="#00F0FF" stroke-width="2" stroke-linecap="round"/>
+      <polygon points="745,100 739,46 745,46" fill="#00F0FF" opacity="0.3"/>
+    </g>
+
+    <!-- Radar Blip Pings -->
+    <g class="blip1">
+      <circle cx="768" cy="80" r="3" fill="#39D353"/>
+      <circle cx="768" cy="80" r="6" fill="none" stroke="#39D353" stroke-width="1"/>
+    </g>
+    <g class="blip2">
+      <circle cx="722" cy="118" r="3" fill="#00F0FF"/>
+      <circle cx="722" cy="118" r="6" fill="none" stroke="#00F0FF" stroke-width="1"/>
+    </g>
+
+    <!-- Cardinal Coordinates -->
+    <text x="741" y="50" font-family="'JetBrains Mono', monospace" font-size="7.5px" font-weight="700" fill="#00F0FF">0°</text>
+    <text x="793" y="103" font-family="'JetBrains Mono', monospace" font-size="7.5px" font-weight="700" fill="#71737E">90°</text>
+    <text x="737" y="152" font-family="'JetBrains Mono', monospace" font-size="7.5px" font-weight="700" fill="#71737E">180°</text>
+    <text x="691" y="103" font-family="'JetBrains Mono', monospace" font-size="7.5px" font-weight="700" fill="#71737E">270°</text>
+  </g>
   </g>
 </svg>
