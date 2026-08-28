@@ -12,13 +12,13 @@ width="96%"
 
 <!-- ORBITAL FLIGHT DECK // DIRECT COMM-LINKS -->
 
-<table width="84%">
+<table width="85%">
   <tr>
     <td align="center" width="58%">
       <img
         src="./assets/Image.svg"
         alt="Yash Raut Orbital Identity"
-        width="390"
+        width="400"
       />
     </td>
     <td align="center" width="42%">
