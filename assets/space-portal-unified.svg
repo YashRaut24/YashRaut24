@@ -801,7 +801,16 @@
           <rect width="126" height="18" rx="3" fill="#0B0C10" stroke="#1F2430" stroke-width="1"/>
           <rect x="96" width="30" height="18" rx="3" fill="#00F0FF"/>
           <text x="9" y="12.5" class="traffic-lbl">ORBITAL TRAFFIC</text>
-          <text x="104" y="13" class="traffic-val">75</text>
+
+          <image
+            x="96"
+            y="1"
+            width="30"
+            height="16"
+            href="https://komarev.com/ghpvc/?username=YashRaut24&amp;style=flat-square&amp;color=0B0C10&amp;labelColor=00F0FF&amp;label=TRAFFIC"
+            preserveAspectRatio="xMidYMid meet"
+            aria-label="Live GitHub profile visitor count"
+          />
         </g>
       </g>
     </g>
