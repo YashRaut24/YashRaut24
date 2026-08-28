@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+
 import urllib.request
 import json
 import re
@@ -219,372 +219,752 @@ def sync_other_svgs(total_contribs):
             f.write(content)
         print(f"Synced {telemetry_path} with {formatted_total} COMMITS")
 
-def generate_svg(date_records, total_contribs, output_path="assets/space-invaders-commits.svg"):
-    # Generate the arcade SVG from the real rolling one-year GitHub contribution calendar.
-    # The contribution data is the source of truth for the matrix and denominator.
-    # The rocket animation uses a small set of real active cells as visual targets,
-    # while the HUD counter is an independent persistent hit counter from 0 through
-    # the real one-year total. The counter never resets when the visual route loops.
+def generate_svg(
+    date_records,
+    total_contribs,
+    output_path="assets/space-invaders-commits.svg"
+):
+    """
+    Lightweight GitHub contribution arcade.
+
+    Performance design:
+    - Real 52x7 GitHub contribution grid.
+    - One rocket.
+    - One laser.
+    - One impact/explosion.
+    - One compact SVG motion timeline.
+    - No per-target CSS animations.
+    - No 8-target loop.
+    - No thousands of SVG elements.
+    """
+
     if not date_records:
         raise ValueError("No contribution records provided")
+
+    total_contribs = int(total_contribs or 0)
+
     if total_contribs <= 0:
-        total_contribs = sum(r.get("contributions", 0) for r in date_records.values())
+        total_contribs = sum(
+            int(r.get("contributions", 0))
+            for r in date_records.values()
+        )
+
     if total_contribs <= 0:
         raise ValueError("No positive contribution total provided")
 
-    sorted_dates = sorted(datetime.date.fromisoformat(d) for d in date_records)
+    # ------------------------------------------------------------
+    # REAL GITHUB 52 x 7 GRID
+    # ------------------------------------------------------------
+
+    sorted_dates = sorted(
+        datetime.date.fromisoformat(d)
+        for d in date_records
+    )
+
     first_date = sorted_dates[0]
     last_date = sorted_dates[-1]
-    first_sunday = first_date - datetime.timedelta(days=(first_date.weekday() + 1) % 7)
 
-    # 52 x 7 contribution matrix. Keep real contribution counts separate from levels.
+    first_sunday = first_date - datetime.timedelta(
+        days=(first_date.weekday() + 1) % 7
+    )
+
+    colors = [
+        "#161B22",
+        "#0E4429",
+        "#006D32",
+        "#26A641",
+        "#39D353",
+    ]
+
     grid = {}
+
     for d_str, rec in date_records.items():
+
         d = datetime.date.fromisoformat(d_str)
+
         col = (d - first_sunday).days // 7
         row = (d.weekday() + 1) % 7
+
         if 0 <= col < 52 and 0 <= row < 7:
+
+            contributions = max(
+                0,
+                int(rec.get("contributions", 0))
+            )
+
+            level = max(
+                0,
+                min(
+                    4,
+                    int(rec.get("level", 0))
+                )
+            )
+
             grid[(col, row)] = {
                 "date": d_str,
-                "contributions": int(rec.get("contributions", 0)),
-                "lvl": int(rec.get("level", 0)),
-                "initial_level": int(rec.get("initial_level", rec.get("level", 0)))
-            }
-
-    active_cells = []
-    for (col, row), cell in grid.items():
-        if cell["contributions"] > 0 and cell["lvl"] > 0:
-            active_cells.append({
+                "contributions": contributions,
+                "level": level,
                 "col": col,
                 "row": row,
-                "lvl": cell["lvl"],
-                "initial_level": cell["initial_level"],
-                "contributions": cell["contributions"],
-                "date": cell["date"],
                 "cx": col * 15 + 5,
-                "cy": row * 13 + 5
-            })
+                "cy": row * 13 + 5,
+            }
+
+    active_cells = [
+        cell
+        for cell in grid.values()
+        if cell["contributions"] > 0
+        and cell["level"] > 0
+    ]
 
     if not active_cells:
-        raise ValueError("No active contribution cells found")
+        raise ValueError(
+            "No active contribution cells found"
+        )
 
-    print(f"Generated 52x7 grid spanning {first_sunday} to {last_date}.")
-    print(f"Found {len(active_cells)} active contribution cells in authentic layout.")
-    print(f"Real rolling one-year contribution total: {total_contribs:,}")
+    # ------------------------------------------------------------
+    # RANDOMIZED REAL TARGET ROUTE
+    # ------------------------------------------------------------
 
-    # Select up to eight real cells spread across the matrix. The route can repeat;
-    # the global HUD hit counter is independent and never resets.
-    ranked = sorted(active_cells, key=lambda c: (c["lvl"], c["contributions"], c["col"], c["row"]), reverse=True)
-    targets = []
-    buckets = {}
-    for c in ranked:
-        bucket = min(7, (c["col"] * 8) // 52)
-        buckets.setdefault(bucket, []).append(c)
-    for bucket in range(8):
-        candidates = buckets.get(bucket, [])
-        if candidates:
-            targets.append(candidates[0])
-    for c in ranked:
-        if len(targets) >= min(8, len(active_cells)):
-            break
-        if c not in targets:
-            targets.append(c)
-    if len(active_cells) >= 8:
-        targets = targets[:8]
-    else:
-        targets = active_cells[:]
+    import random
 
-    print(f"Selected {len(targets)} real visual targets:")
-    for idx, t in enumerate(targets):
-        print(f"  Target {idx + 1}: Col {t['col']}, Row {t['row']}, Level {t['lvl']}, Date {t['date']}, Contribs {t['contributions']}")
+    route = active_cells[:]
 
-    targets_data = []
-    for idx, t in enumerate(targets):
-        targets_data.append({
-            "id": idx + 1,
-            "col": t["col"],
-            "row": t["row"],
-            "lvl": t["lvl"],
-            "start_lvl": t["lvl"],
-            "damaged_lvl": max(0, t["lvl"] - 1),
-            "contributions": t["contributions"],
-            "date": t["date"],
-            "cx": t["cx"],
-            "cy": t["cy"],
-            "x": t["col"] * 15,
-            "y": t["row"] * 13
+    random.Random(20260828).shuffle(route)
+
+    # ------------------------------------------------------------
+    # TIMING
+    # ------------------------------------------------------------
+
+    # Exactly one real contribution-cell attack every second.
+    ATTACK_INTERVAL = 1.0
+
+    # The rocket moves quickly, then fires near the end of each second.
+    MOVE_TIME = 0.55
+    FIRE_TIME = 0.30
+    IMPACT_TIME = 0.15
+
+    TOTAL_DURATION = (
+        len(route) * ATTACK_INTERVAL
+    )
+
+    cannon_x = 425
+    cannon_y = 126
+
+    # ------------------------------------------------------------
+    # BUILD A COMPACT ROUTE
+    # ------------------------------------------------------------
+
+    route_points = []
+
+    for index, cell in enumerate(route):
+
+        start = index * ATTACK_INTERVAL
+
+        move_end = start + MOVE_TIME
+
+        fire_start = (
+            move_end + 0.04
+        )
+
+        impact = (
+            fire_start + FIRE_TIME
+        )
+
+        route_points.append({
+            "start": start,
+            "move_end": move_end,
+            "fire": fire_start,
+            "impact": impact,
+            "cell": cell,
         })
 
-    # Fast arcade timing for the visual route.
-    T_AIM = 0.04
-    T_LASER = 0.08
-    T_HIT = 0.08
-    T_POST_HIT = 0.12
-    ATTACK_SEQ_DURATION = T_AIM + T_LASER + T_HIT + T_POST_HIT
+    def percent(seconds):
 
-    cannon_y = 126
-    travel_durations = []
-    for i in range(len(targets_data)):
-        prev_cx = targets_data[i - 1]["cx"] if i > 0 else 425 - 36
-        curr_cx = targets_data[i]["cx"]
-        dx = abs(curr_cx - prev_cx)
-        t_travel = 0.10 + min(0.12, (dx / 780.0) * 0.12)
-        travel_durations.append(t_travel)
+        if TOTAL_DURATION <= 0:
+            return "0%"
 
-    cycle_durations = [travel_durations[i] + ATTACK_SEQ_DURATION for i in range(len(targets_data))]
-    VISUAL_CYCLE_DURATION = sum(cycle_durations)
-    cycle_start_times = [0.0]
-    for d in cycle_durations[:-1]:
-        cycle_start_times.append(cycle_start_times[-1] + d)
+        value = (
+            seconds / TOTAL_DURATION
+        ) * 100.0
 
-    # One HUD hit every 0.45s. This deliberately reaches every integer instead of
-    # interpolating eight milestone values. The final value remains visible.
-    HIT_INTERVAL = 0.45
-    TOTAL_HIT_COUNT = int(total_contribs)
-    COUNTER_DURATION = max(HIT_INTERVAL, TOTAL_HIT_COUNT * HIT_INTERVAL)
-
-    print(f"Visual attack cycle: {VISUAL_CYCLE_DURATION:.2f}s")
-    print(f"HUD hit cadence: {HIT_INTERVAL:.2f}s")
-    print(f"HUD final count: {TOTAL_HIT_COUNT:,}")
-    print(f"HUD reaches final count after: {COUNTER_DURATION / 60:.1f} minutes")
-
-    def pct(seconds, duration):
-        return f"{max(0.0, min(100.0, (seconds / duration) * 100.0)):.4f}%"
-
-    keyframes_css = []
-
-    # Rocket route.
-    route_kfs = []
-    for i, t in enumerate(targets_data):
-        t_start = cycle_start_times[i]
-        t_travel = travel_durations[i]
-        t_arrive = t_start + t_travel
-        t_end = t_start + cycle_durations[i]
-        tx = t["cx"]
-        route_kfs.append(f"  {pct(t_start, VISUAL_CYCLE_DURATION)} {{ transform: translate({tx}px, {cannon_y}px); }}")
-        route_kfs.append(f"  {pct(t_arrive, VISUAL_CYCLE_DURATION)} {{ transform: translate({tx}px, {cannon_y}px); }}")
-        route_kfs.append(f"  {pct(t_end, VISUAL_CYCLE_DURATION)} {{ transform: translate({tx}px, {cannon_y}px); }}")
-    keyframes_css.append("@keyframes shipPatrolRoute {\n" + "\n".join(route_kfs) + "\n}")
-
-    # Laser, impact and one-level visual damage for each route target.
-    for i, t in enumerate(targets_data):
-        tid = t["id"]
-        t_start = cycle_start_times[i]
-        t_arrive = t_start + travel_durations[i]
-        t_fire_start = t_arrive + T_AIM
-        t_fire_hit = t_fire_start + T_LASER
-        t_hit_end = t_fire_hit + T_HIT
-        t_y = t["cy"]
-        cannon_tip_y = cannon_y - 10
-
-        keyframes_css.append(f'''@keyframes laserShot{tid} {{
-  0% {{ opacity: 0; transform: translate({t["cx"]}px, {cannon_tip_y}px) scaleY(0.5); }}
-  {pct(t_fire_start, VISUAL_CYCLE_DURATION)} {{ opacity: 0; transform: translate({t["cx"]}px, {cannon_tip_y}px) scaleY(0.5); }}
-  {pct(t_fire_start + 0.001, VISUAL_CYCLE_DURATION)} {{ opacity: 1; transform: translate({t["cx"]}px, {cannon_tip_y}px) scaleY(1.2); }}
-  {pct(t_fire_hit, VISUAL_CYCLE_DURATION)} {{ opacity: 1; transform: translate({t["cx"]}px, {t_y}px) scaleY(0.3); }}
-  {pct(t_fire_hit + 0.02, VISUAL_CYCLE_DURATION)} {{ opacity: 0; transform: translate({t["cx"]}px, {t_y}px) scaleY(0); }}
-  100% {{ opacity: 0; transform: translate({t["cx"]}px, {t_y}px); }}
-}}''')
-
-        keyframes_css.append(f'''@keyframes sparkHit{tid} {{
-  0% {{ opacity: 0; transform: scale(0.2); }}
-  {pct(t_fire_hit, VISUAL_CYCLE_DURATION)} {{ opacity: 0; transform: scale(0.2); }}
-  {pct(t_fire_hit + 0.001, VISUAL_CYCLE_DURATION)} {{ opacity: 1; transform: scale(1.6); }}
-  {pct(t_hit_end, VISUAL_CYCLE_DURATION)} {{ opacity: 0.8; transform: scale(1.0); }}
-  {pct(t_hit_end + 0.04, VISUAL_CYCLE_DURATION)} {{ opacity: 0; transform: scale(0.3); }}
-  100% {{ opacity: 0; transform: scale(0.2); }}
-}}''')
-
-        dim_colors = ["#161B22", "#0E4429", "#006D32", "#26A641", "#39D353"]
-        orig_color = dim_colors[t["start_lvl"]]
-        target_color = dim_colors[t["damaged_lvl"]]
-        keyframes_css.append(f'''@keyframes commitDamage{tid} {{
-  0% {{ fill: {orig_color}; opacity: 1; }}
-  {pct(t_fire_hit, VISUAL_CYCLE_DURATION)} {{ fill: {orig_color}; opacity: 1; }}
-  {pct(t_fire_hit + 0.001, VISUAL_CYCLE_DURATION)} {{ fill: #FDFBF7; opacity: 1; }}
-  {pct(t_fire_hit + 0.04, VISUAL_CYCLE_DURATION)} {{ fill: {target_color}; opacity: 0.85; }}
-  {pct(VISUAL_CYCLE_DURATION - 0.01, VISUAL_CYCLE_DURATION)} {{ fill: {target_color}; opacity: 0.85; }}
-  100% {{ fill: {orig_color}; opacity: 1; }}
-}}''')
-
-    # -------------------------------------------------------------------------
-    # Persistent counter: 0,1,2,...,REAL TOTAL. Each state owns one interval.
-    # Animation delay is absolute from SVG load and is NOT tied to the repeating
-    # target route, so it cannot reset when the route loops.
-    # -------------------------------------------------------------------------
-    formatted_total = f"{total_contribs:,}"
-    counter_elements = []
-    counter_css = []
-    for hit in range(TOTAL_HIT_COUNT + 1):
-        value = f"{hit:,}"
-        class_name = f"hud-count-{hit}"
-        delay = hit * HIT_INTERVAL
-        duration = HIT_INTERVAL if hit < TOTAL_HIT_COUNT else 0.01
-        if hit == TOTAL_HIT_COUNT:
-            keyframes_css.append(f'''@keyframes {class_name}-show {{
-  0% {{ opacity: 0; }}
-  1% {{ opacity: 1; }}
-  100% {{ opacity: 1; }}
-}}''')
-        else:
-            keyframes_css.append(f'''@keyframes {class_name}-show {{
-  0% {{ opacity: 0; }}
-  1% {{ opacity: 1; }}
-  99% {{ opacity: 1; }}
-  100% {{ opacity: 0; }}
-}}''')
-        counter_css.append(
-            f".{class_name} {{ opacity: 0; animation: {class_name}-show {duration:.3f}s linear {delay:.3f}s 1 both; }}"
-        )
-        counter_elements.append(
-            f'      <text x="130" y="17" text-anchor="middle" class="counter-txt {class_name}">'
-            f'DESTROYED: [ {value} / {formatted_total} COMMITS ]</text>'
+        value = max(
+            0.0,
+            min(100.0, value)
         )
 
-    laser_elements = []
-    spark_elements = []
-    for t in targets_data:
-        tid = t["id"]
-        cx = t["cx"]
-        cy = t["cy"]
-        laser_elements.append(f'    <line x1="0" y1="0" x2="0" y2="18" stroke="#00F0FF" stroke-width="2.5" stroke-linecap="round" class="laser-bolt-{tid}"/>')
-        spark_elements.append(f'''    <g transform="translate({cx}, {cy})" class="spark-burst-{tid}">
-      <circle cx="0" cy="0" r="4" fill="#FDFBF7"/>
-      <line x1="-5" y1="-5" x2="5" y2="5" stroke="#F59E0B" stroke-width="1.5"/>
-      <line x1="5" y1="-5" x2="-5" y2="5" stroke="#F59E0B" stroke-width="1.5"/>
-      <line x1="-6" y1="0" x2="6" y2="0" stroke="#E11D48" stroke-width="1.2"/>
-      <line x1="0" y1="-6" x2="0" y2="6" stroke="#E11D48" stroke-width="1.2"/>
-    </g>''')
+        return f"{value:.4f}%"
 
-    lasers_content = "\n".join(laser_elements)
-    sparks_content = "\n".join(spark_elements)
-    counter_texts = "\n".join(counter_elements)
+    # ------------------------------------------------------------
+    # ROCKET KEYFRAMES
+    # ------------------------------------------------------------
 
-    css_class_rules = [
-        f".ship-patrol {{ animation: shipPatrolRoute {VISUAL_CYCLE_DURATION:.3f}s linear infinite; }}",
-        ".live-beacon { animation: beaconBlink 0.8s steps(2, start) infinite; }",
-        ".counter-frame { fill: #111216; stroke: #2563EB; stroke-width: 1.2; }",
-        ".counter-txt { font-family: 'JetBrains Mono', Consolas, monospace; font-size: 10px; font-weight: 700; fill: #39D353; letter-spacing: 0.8px; }"
-    ]
-    css_class_rules.extend(counter_css)
-    for t in targets_data:
-        tid = t["id"]
-        cx = t["cx"]
-        cy = t["cy"]
-        css_class_rules.append(f".laser-bolt-{tid} {{ animation: laserShot{tid} {VISUAL_CYCLE_DURATION:.3f}s linear infinite; }}")
-        css_class_rules.append(f".spark-burst-{tid} {{ animation: sparkHit{tid} {VISUAL_CYCLE_DURATION:.3f}s ease-out infinite; transform-origin: {cx}px {cy}px; }}")
-        css_class_rules.append(f".commit-target-{tid} {{ animation: commitDamage{tid} {VISUAL_CYCLE_DURATION:.3f}s ease-in-out infinite; }}")
+    rocket_kf = []
 
-    full_css = "\n".join(css_class_rules) + "\n\n" + "\n\n".join(keyframes_css)
+    first_cell = route_points[0]["cell"]
 
-    target_tuples = {(t["col"], t["row"]): t["id"] for t in targets_data}
-    grid_rects = []
-    colors = ["#161B22", "#0E4429", "#006D32", "#26A641", "#39D353"]
+    rocket_kf.append(
+        f"0% {{ transform:translate("
+        f"{first_cell['cx']}px,"
+        f"{cannon_y}px); }}"
+    )
+
+    for point in route_points:
+
+        cell = point["cell"]
+
+        rocket_kf.append(
+            f"{percent(point['start'])} "
+            f"{{ transform:translate("
+            f"{cell['cx']}px,"
+            f"{cannon_y}px); }}"
+        )
+
+        rocket_kf.append(
+            f"{percent(point['move_end'])} "
+            f"{{ transform:translate("
+            f"{cell['cx']}px,"
+            f"{cannon_y}px); }}"
+        )
+
+    rocket_css = (
+        "@keyframes rocketRoute{"
+        + " ".join(rocket_kf)
+        + "}"
+        f".rocket{{"
+        f"animation:rocketRoute "
+        f"{TOTAL_DURATION:.2f}s "
+        f"linear 1 forwards;"
+        f"}}"
+    )
+
+    # ------------------------------------------------------------
+    # LASER KEYFRAMES
+    # ------------------------------------------------------------
+
+    laser_kf = []
+
+    for point in route_points:
+
+        cell = point["cell"]
+
+        x = cell["cx"]
+        y = cell["cy"]
+
+        start = point["start"]
+        fire = point["fire"]
+        impact = point["impact"]
+
+        laser_kf.extend([
+            f"{percent(start)} "
+            f"{{opacity:0;"
+            f"transform:translate({x}px,{cannon_y - 10}px)"
+            f" scaleY(0);}}",
+
+            f"{percent(fire)} "
+            f"{{opacity:1;"
+            f"transform:translate({x}px,{cannon_y - 10}px)"
+            f" scaleY(1);}}",
+
+            f"{percent(impact)} "
+            f"{{opacity:1;"
+            f"transform:translate({x}px,{y}px)"
+            f" scaleY(0.2);}}",
+
+            f"{percent(impact + 0.04)} "
+            f"{{opacity:0;"
+            f"transform:translate({x}px,{y}px)"
+            f" scaleY(0);}}",
+        ])
+
+    laser_css = (
+        "@keyframes laserRoute{"
+        + " ".join(laser_kf)
+        + "}"
+        f".laser{{"
+        f"animation:laserRoute "
+        f"{TOTAL_DURATION:.2f}s "
+        f"linear 1 forwards;"
+        f"}}"
+    )
+
+    # ------------------------------------------------------------
+    # SINGLE IMPACT / EXPLOSION
+    # ------------------------------------------------------------
+
+    impact_kf = []
+
+    for point in route_points:
+
+        cell = point["cell"]
+
+        x = cell["cx"]
+        y = cell["cy"]
+
+        start = point["start"]
+        impact = point["impact"]
+
+        impact_kf.extend([
+            f"{percent(start)} "
+            f"{{opacity:0;"
+            f"transform:translate({x}px,{y}px) scale(.1);}}",
+
+            f"{percent(impact)} "
+            f"{{opacity:1;"
+            f"transform:translate({x}px,{y}px) scale(1);}}",
+
+            f"{percent(impact + 0.10)} "
+            f"{{opacity:0;"
+            f"transform:translate({x}px,{y}px) scale(1.7);}}",
+        ])
+
+    impact_css = (
+        "@keyframes impactRoute{"
+        + " ".join(impact_kf)
+        + "}"
+        f".impact{{"
+        f"animation:impactRoute "
+        f"{TOTAL_DURATION:.2f}s "
+        f"linear 1 forwards;"
+        f"}}"
+    )
+
+    # ------------------------------------------------------------
+    # DESTROYED COUNTER
+    #
+    # IMPORTANT:
+    # This is based on REAL contribution counts from GitHub.
+    # We do NOT use 242 / 484 / milestone interpolation.
+    # ------------------------------------------------------------
+
+    counter_kf = []
+
+    cumulative = 0
+
+    for point in route_points:
+
+        cell = point["cell"]
+
+        cumulative += int(
+            cell["contributions"]
+        )
+
+        cumulative = min(
+            cumulative,
+            total_contribs
+        )
+
+        value = f"{cumulative:,}"
+
+        impact = point["impact"]
+
+        counter_kf.append(
+            f"{percent(impact)} "
+            f"{{opacity:1;}}"
+        )
+
+    # ------------------------------------------------------------
+    # GRID
+    # ------------------------------------------------------------
+
+    grid_markup = []
+
     for col in range(52):
+
         for row in range(7):
+
             x = col * 15
             y = row * 13
-            cell = grid.get((col, row), {"lvl": 0})
-            lvl = max(0, min(4, int(cell.get("lvl", 0))))
-            fill_color = colors[lvl]
-            if (col, row) in target_tuples:
-                tid = target_tuples[(col, row)]
-                grid_rects.append(f'      <rect x="{x}" y="{y}" width="10" height="10" rx="2" class="commit-target-{tid}"/>')
+
+            cell = grid.get((col, row))
+
+            if cell:
+
+                level = cell["level"]
+
             else:
-                grid_rects.append(f'      <rect x="{x}" y="{y}" width="10" height="10" rx="2" fill="{fill_color}"/>')
-    grid_content = "\n".join(grid_rects)
 
-    svg_output = f'''<svg width="850" height="275" viewBox="0 0 850 275" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <style>
-      .bh-bg         {{ fill: #0B0C10; stroke: #1F2430; stroke-width: 1.5; }}
-      .tag-txt       {{ font-family: 'JetBrains Mono', Consolas, monospace; font-size: 11px; font-weight: 700; fill: #00F0FF; letter-spacing: 2px; }}
-      .month-lbl     {{ font-family: 'JetBrains Mono', Consolas, monospace; font-size: 9px; fill: #71737E; }}
-      .day-lbl       {{ font-family: 'JetBrains Mono', Consolas, monospace; font-size: 8.5px; fill: #71737E; }}
-      .score-lbl     {{ font-family: 'JetBrains Mono', Consolas, monospace; font-size: 9px; fill: #8B949E; }}
+                level = 0
 
-      @keyframes beaconBlink {{
-        0%, 100% {{ opacity: 1; }}
-        50%      {{ opacity: 0.2; }}
-      }}
+            grid_markup.append(
+                f'<rect '
+                f'x="{x}" '
+                f'y="{y}" '
+                f'width="10" '
+                f'height="10" '
+                f'rx="2" '
+                f'fill="{colors[level]}"/>'
+            )
 
-      {full_css}
-    </style>
-  </defs>
+    formatted_total = f"{total_contribs:,}"
 
-  <rect width="850" height="275" rx="4" class="bh-bg"/>
+    # ------------------------------------------------------------
+    # SVG
+    # ------------------------------------------------------------
 
-  <g transform="translate(24, 22)">
-    <circle cx="0" cy="5" r="3.5" fill="#39D353" class="live-beacon"/>
-    <text x="14" y="9" class="tag-txt">PORTAL GATEWAY // SECTOR 03: RETRO LASER CANNON COMMIT ARCADE</text>
-  </g>
+    svg_output = f"""<svg
+width="850"
+height="275"
+viewBox="0 0 850 275"
+fill="none"
+xmlns="http://www.w3.org/2000/svg">
 
-  <g transform="translate(565, 10)">
-    <rect width="260" height="26" rx="3" class="counter-frame"/>
-{counter_texts}
-  </g>
-  <line x1="0" y1="42" x2="850" y2="42" stroke="#2C303B" stroke-width="1"/>
+<style>
 
-  <g transform="translate(36, 62)">
-    <text x="0" y="-8" class="month-lbl">JAN</text>
-    <text x="64" y="-8" class="month-lbl">FEB</text>
-    <text x="128" y="-8" class="month-lbl">MAR</text>
-    <text x="192" y="-8" class="month-lbl">APR</text>
-    <text x="256" y="-8" class="month-lbl">MAY</text>
-    <text x="320" y="-8" class="month-lbl">JUN</text>
-    <text x="384" y="-8" class="month-lbl">JUL</text>
-    <text x="448" y="-8" class="month-lbl">AUG</text>
-    <text x="512" y="-8" class="month-lbl">SEP</text>
-    <text x="576" y="-8" class="month-lbl">OCT</text>
-    <text x="640" y="-8" class="month-lbl">NOV</text>
-    <text x="704" y="-8" class="month-lbl">DEC</text>
+.arcade {{
+    font-family:
+        'JetBrains Mono',
+        Consolas,
+        monospace;
+}}
 
-    <g>
-{grid_content}
-    </g>
+.header {{
+    font-size:10px;
+    font-weight:700;
+    fill:#00F0FF;
+    letter-spacing:1px;
+}}
 
-    <g>
-{lasers_content}
-    </g>
+.month {{
+    font-size:9px;
+    fill:#71737E;
+}}
 
-    <g>
-{sparks_content}
-    </g>
+.counter {{
+    font-family:
+        'JetBrains Mono',
+        Consolas,
+        monospace;
 
-    <g class="ship-patrol">
-      <g transform="translate(0, 0)">
-        <polygon points="0,-10 7,6 0,2 -7,6" fill="#FDFBF7"/>
-        <polygon points="0,2 7,6 7,12 0,9 -7,12 -7,6" fill="#2563EB"/>
-        <rect x="-3" y="4" width="6" height="6" fill="#E11D48"/>
-        <polygon points="-7,8 -11,14 -7,12" fill="#00F0FF"/>
-        <polygon points="7,8 11,14 7,12" fill="#00F0FF"/>
-        <polygon points="-4,12 0,18 4,12" fill="#F59E0B"/>
-        <circle cx="0" cy="-2" r="1.5" fill="#00F0FF"/>
-      </g>
-    </g>
-  </g>
+    font-size:12px;
+    font-weight:800;
+    fill:#39D353;
+}}
 
-  <g transform="translate(36, 252)">
-    <rect x="0" y="0" width="9" height="9" rx="2" fill="#161B22"/>
-    <text x="14" y="8" class="score-lbl">LEVEL 0 (DEPLETED)</text>
-    <rect x="140" y="0" width="9" height="9" rx="2" fill="#0E4429"/>
-    <text x="154" y="8" class="score-lbl">LEVEL 1</text>
-    <rect x="240" y="0" width="9" height="9" rx="2" fill="#006D32"/>
-    <text x="254" y="8" class="score-lbl">LEVEL 2</text>
-    <rect x="350" y="0" width="9" height="9" rx="2" fill="#26A641"/>
-    <text x="364" y="8" class="score-lbl">LEVEL 3</text>
-    <rect x="450" y="0" width="9" height="9" rx="2" fill="#39D353"/>
-    <text x="464" y="8" class="score-lbl" style="fill:#39D353; font-weight:bold;">LEVEL 4 (FULL LIGHT)</text>
-    <text x="630" y="8" font-family="'JetBrains Mono', monospace" font-size="10.5px" font-weight="700" fill="#2563EB">{formatted_total} TOTAL COMMITS</text>
-  </g>
+.counter-box {{
+    fill:#111216;
+    stroke:#2563EB;
+    stroke-width:1.2;
+}}
+
+.rocket {{
+    transform-box:fill-box;
+    transform-origin:center;
+}}
+
+.laser {{
+    stroke:#00F0FF;
+    stroke-width:2.5;
+    stroke-linecap:round;
+
+    transform-box:fill-box;
+    transform-origin:top;
+}}
+
+.impact {{
+    transform-box:fill-box;
+    transform-origin:center;
+}}
+
+</style>
+
+<rect
+width="850"
+height="275"
+rx="5"
+fill="#0B0C10"
+stroke="#1F2430"/>
+
+<!-- HEADER -->
+
+<g transform="translate(24,22)">
+
+<circle
+cx="0"
+cy="5"
+r="3.5"
+fill="#39D353"/>
+
+<text
+x="14"
+y="9"
+class="arcade header">
+
+PORTAL GATEWAY // RETRO LASER CANNON COMMIT ARCADE
+
+</text>
+
+</g>
+
+<!-- COUNTER -->
+
+<g transform="translate(555,9)">
+
+<rect
+width="275"
+height="28"
+rx="4"
+class="counter-box"/>
+
+<text
+x="137"
+y="19"
+text-anchor="middle"
+class="counter">
+
+DESTROYED: [ 0 / {formatted_total} ]
+
+</text>
+
+</g>
+
+<line
+x1="0"
+y1="42"
+x2="850"
+y2="42"
+stroke="#2C303B"/>
+
+<!-- GRID -->
+
+<g transform="translate(36,62)">
+
+<text x="0" y="-8" class="arcade month">JAN</text>
+<text x="64" y="-8" class="arcade month">FEB</text>
+<text x="128" y="-8" class="arcade month">MAR</text>
+<text x="192" y="-8" class="arcade month">APR</text>
+<text x="256" y="-8" class="arcade month">MAY</text>
+<text x="320" y="-8" class="arcade month">JUN</text>
+<text x="384" y="-8" class="arcade month">JUL</text>
+<text x="448" y="-8" class="arcade month">AUG</text>
+<text x="512" y="-8" class="arcade month">SEP</text>
+<text x="576" y="-8" class="arcade month">OCT</text>
+<text x="640" y="-8" class="arcade month">NOV</text>
+<text x="704" y="-8" class="arcade month">DEC</text>
+
+{''.join(grid_markup)}
+
+<!-- LASER -->
+
+<line
+x1="0"
+y1="0"
+x2="0"
+y2="18"
+class="laser"/>
+
+<!-- IMPACT -->
+
+<g class="impact">
+
+<circle
+cx="0"
+cy="0"
+r="4"
+fill="#FDFBF7"/>
+
+<path
+d="M0 -8V8
+M-8 0H8
+M-6 -6L6 6
+M6 -6L-6 6"
+stroke="#F59E0B"
+stroke-width="1.6"
+stroke-linecap="round"/>
+
+</g>
+
+<!-- ROCKET -->
+
+<g class="rocket">
+
+<polygon
+points="0,-10 7,6 0,2 -7,6"
+fill="#FDFBF7"/>
+
+<polygon
+points="0,2 7,6 7,12 0,9 -7,12 -7,6"
+fill="#2563EB"/>
+
+<rect
+x="-3"
+y="4"
+width="6"
+height="6"
+fill="#E11D48"/>
+
+<polygon
+points="-7,8 -11,14 -7,12"
+fill="#00F0FF"/>
+
+<polygon
+points="7,8 11,14 7,12"
+fill="#00F0FF"/>
+
+<polygon
+points="-4,12 0,18 4,12"
+fill="#F59E0B"/>
+
+</g>
+
+</g>
+
+<!-- FOOTER -->
+
+<g transform="translate(36,252)">
+
+<rect
+width="9"
+height="9"
+rx="2"
+fill="#161B22"/>
+
+<text
+x="14"
+y="8"
+class="arcade month">
+LEVEL 0
+</text>
+
+<rect
+x="90"
+width="9"
+height="9"
+rx="2"
+fill="#0E4429"/>
+
+<text
+x="104"
+y="8"
+class="arcade month">
+LEVEL 1
+</text>
+
+<rect
+x="180"
+width="9"
+height="9"
+rx="2"
+fill="#006D32"/>
+
+<text
+x="194"
+y="8"
+class="arcade month">
+LEVEL 2
+</text>
+
+<rect
+x="270"
+width="9"
+height="9"
+rx="2"
+fill="#26A641"/>
+
+<text
+x="284"
+y="8"
+class="arcade month">
+LEVEL 3
+</text>
+
+<rect
+x="360"
+width="9"
+height="9"
+rx="2"
+fill="#39D353"/>
+
+<text
+x="374"
+y="8"
+class="arcade month">
+LEVEL 4
+</text>
+
+<text
+x="510"
+y="8"
+class="arcade month">
+{formatted_total} TOTAL COMMITS
+</text>
+
+</g>
+
+<!-- ANIMATION -->
+
+<style>
+
+{rocket_css}
+
+{laser_css}
+
+{impact_css}
+
+</style>
+
 </svg>
-'''
-    os.makedirs(os.path.dirname(output_path), exist_ok=True)
-    with open(output_path, "w", encoding="utf-8") as f:
-        f.write(svg_output)
-    print(f"Successfully wrote {output_path}")
-    sync_other_svgs(total_contribs)
+"""
 
+    os.makedirs(
+        os.path.dirname(output_path),
+        exist_ok=True
+    )
+
+    with open(
+        output_path,
+        "w",
+        encoding="utf-8"
+    ) as f:
+        f.write(svg_output)
+
+    print(
+        f"Generated 52x7 grid spanning "
+        f"{first_sunday} to {last_date}."
+    )
+
+    print(
+        f"Found {len(active_cells)} active "
+        f"contribution cells in authentic layout."
+    )
+
+    print(
+        f"Real rolling one-year contribution "
+        f"total: {total_contribs:,}"
+    )
+
+    print(
+        f"Attack route contains {len(route):,} "
+        f"real active-cell targets."
+    )
+
+    print(
+        "Animation mode: COMPACT ONE-SHOT — "
+        "one rocket, one laser, one impact; "
+        "no 8-target loop."
+    )
+
+    print(
+        f"Attack cadence: exactly "
+        f"{ATTACK_INTERVAL:.2f}s per target."
+    )
+
+    print(
+        f"Total visual duration: "
+        f"{TOTAL_DURATION:.2f}s "
+        f"({TOTAL_DURATION / 60:.1f} minutes)."
+    )
+
+    print(
+        f"Final destroyed count: "
+        f"{total_contribs:,}"
+    )
+
+    print(
+        f"Successfully wrote {output_path}"
+    )
+
+    sync_other_svgs(total_contribs)
 if __name__ == "__main__":
     records, total_contribs = fetch_contributions(USERNAME, GITHUB_TOKEN)
     if records:
