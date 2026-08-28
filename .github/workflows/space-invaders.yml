@@ -68,6 +68,24 @@ jobs:
 
           echo "Live visitor count: ${VISITOR_COUNT}"
 
+          BASELINE_FILE=".data/visitor-baseline.txt"
+
+          if [ ! -f "$BASELINE_FILE" ]; then
+            echo "${VISITOR_COUNT}" > "$BASELINE_FILE"
+          fi
+
+          BASELINE="$(cat "$BASELINE_FILE")"
+
+          DISPLAY_COUNT=$((VISITOR_COUNT - BASELINE))
+
+          if [ "$DISPLAY_COUNT" -lt 0 ]; then
+            DISPLAY_COUNT=0
+          fi
+
+          echo "Komarev count: ${VISITOR_COUNT}"
+          echo "Baseline: ${BASELINE}"
+          echo "Displayed orbital traffic: ${DISPLAY_COUNT}"
+
           python - "${VISITOR_COUNT}" <<'PY'
           import re
           import sys

@@ -797,21 +797,19 @@
         <circle cx="0" cy="4" r="3" fill="#00F0FF" class="beacon"/>
         <text x="12" y="7" class="radar-desc-h">Deep-Space Subspace Sensor Array &amp; Orbital Visitor Tracking</text>
         <text x="12" y="20" class="radar-desc-p">360-degree sector surveillance tracking visitor trajectories.</text>
-    <g transform="translate(448, -3)">
-      <rect width="126" height="18" rx="3"
-            fill="#0B0C10"
-            stroke="#1F2430"
-            stroke-width="1"/>
-
-      <rect x="96" width="30" height="18" rx="3"
-            fill="#00F0FF"/>
-
-      <text x="9" y="12.5"
-            class="traffic-lbl">ORBITAL TRAFFIC</text>
-
-      <text x="111" y="13"
-            class="traffic-val">314</text>
-    </g>
+        <g transform="translate(420, -3)">
+          <rect width="154" height="18" rx="3" fill="#0B0C10" stroke="#1F2430" stroke-width="1"/>
+          
+          <text x="9" y="12.5" class="traffic-lbl">ORBITAL TRAFFIC</text>
+          
+          <rect x="118" width="36" height="18" rx="3" fill="#00F0FF"/>
+          
+          <text
+            x="136"
+            y="12.5"
+            text-anchor="middle"
+            class="traffic-val">0</text>
+        </g>
       </g>
     </g>
 
