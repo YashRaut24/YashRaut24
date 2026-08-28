@@ -8,6 +8,12 @@ alt="Yash Raut Unified Space Portal Profile"
 width="96%"
 />
 
+<img
+  src="https://komarev.com/ghpvc/?username=YashRaut24&style=flat-square&color=0B0C10&labelColor=2563EB&label=TRAFFIC"
+  width="0" height="0" alt=""
+  style="visibility:hidden;position:absolute;"
+/>
+
 <!-- ORBITAL FLIGHT DECK // DIRECT COMM-LINKS -->
 
 <table width="85%">
