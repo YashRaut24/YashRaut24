@@ -41,29 +41,28 @@ jobs:
             "https://komarev.com/ghpvc/?username=YashRaut24&style=flat-square&label=TRAFFIC&_=$(date +%s)" \
             -o /tmp/komarev.svg
 
-          echo "Komarev response:"
-          cat /tmp/komarev.svg
-
           VISITOR_COUNT="$(
             python - <<'PY'
           import re
 
-          with open("/tmp/komarev.svg", "r", encoding="utf-8") as f:
-              svg = f.read()
+          svg = open("/tmp/komarev.svg", "r", encoding="utf-8").read()
 
-          # Find numeric SVG text nodes.
+          # Extract numeric values from the Komarev SVG.
           values = re.findall(r">([0-9][0-9,]*)<", svg)
 
           if not values:
-              raise SystemExit("Could not find visitor count in Komarev response")
+              raise SystemExit(
+                  "Could not find visitor count in Komarev response"
+              )
 
-          # The visitor count is the numeric value in the response.
-          count = values[-1].replace(",", "")
+          visitor_count = values[-1].replace(",", "")
 
-          if not count.isdigit():
-              raise SystemExit(f"Invalid visitor count: {count!r}")
+          if not visitor_count.isdigit():
+              raise SystemExit(
+                  f"Invalid visitor count: {visitor_count!r}"
+              )
 
-          print(count)
+          print(visitor_count)
           PY
           )"
 
@@ -79,29 +78,70 @@ jobs:
           path = Path("assets/space-portal-unified.svg")
           content = path.read_text(encoding="utf-8")
 
-          pattern = (
-              r'(<text\s+x="[^"]+"\s+y="[^"]+"\s+'
-              r'class="traffic-val">)[^<]*(</text>)'
-          )
+          # IMPORTANT:
+          # Only replace the text inside the existing Sector 7
+          # traffic-val element. Do not change its position, size,
+          # transform, surrounding <g>, or any other SVG content.
+          pattern = r'(class="traffic-val">)[^<]*(</text>)'
 
           content, replacements = re.subn(
               pattern,
-              rf'\g<1>{visitor_count}\g<2>',
+              lambda match: (
+                  match.group(1)
+                  + visitor_count
+                  + match.group(2)
+              ),
               content,
               count=1,
           )
 
           if replacements != 1:
               raise SystemExit(
-                  "Could not locate the existing traffic-val inside "
-                  "space-portal-unified.svg"
+                  "ERROR: Could not locate the existing "
+                  'class="traffic-val"> element in '
+                  "assets/space-portal-unified.svg"
               )
 
           path.write_text(content, encoding="utf-8")
 
           print(
-              f"Updated Sector 7 ORBITAL TRAFFIC counter to {visitor_count}"
+              f"Updated Sector 7 ORBITAL TRAFFIC counter "
+              f"to {visitor_count}"
           )
+          PY
+
+      - name: Verify visitor counter
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          echo "Verifying Sector 7 visitor counter..."
+
+          python - <<'PY'
+          import re
+          from pathlib import Path
+
+          path = Path("assets/space-portal-unified.svg")
+          content = path.read_text(encoding="utf-8")
+
+          match = re.search(
+              r'class="traffic-val">([^<]*)</text>',
+              content,
+          )
+
+          if not match:
+              raise SystemExit(
+                  "ERROR: traffic-val element is missing"
+              )
+
+          value = match.group(1).strip()
+
+          if not value.isdigit():
+              raise SystemExit(
+                  f"ERROR: traffic-val contains invalid value: {value!r}"
+              )
+
+          print(f"Verified ORBITAL TRAFFIC: {value}")
           PY
 
       - name: Commit and push if changed

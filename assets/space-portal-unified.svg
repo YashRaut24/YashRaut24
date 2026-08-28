@@ -810,7 +810,7 @@
             class="traffic-lbl">ORBITAL TRAFFIC</text>
 
       <text x="111" y="13"
-            class="traffic-val">•••</text>
+            class="traffic-val">314</text>
     </g>
       </g>
     </g>
@@ -854,3 +854,4 @@
   </g>
   </g>
 </svg>
+
