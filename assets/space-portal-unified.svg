@@ -211,15 +211,15 @@
 <!-- Portal Container Frame -->
   <!-- Background Space Grid Hatching -->
   <g opacity="0.10" stroke="#2C303B" stroke-width="0.8">
-    <line x1="0" y1="50" x2="850" y2="50"/>
-    <line x1="0" y1="100" x2="850" y2="100"/>
-    <line x1="0" y1="150" x2="850" y2="150"/>
-    <line x1="0" y1="200" x2="850" y2="200"/>
-    <line x1="0" y1="250" x2="850" y2="250"/>
-    <line x1="120" y1="0" x2="120" y2="310"/>
-    <line x1="240" y1="0" x2="240" y2="310"/>
-    <line x1="360" y1="0" x2="360" y2="310"/>
-    <line x1="480" y1="0" x2="480" y2="310"/>
+    <line x1="18" y1="50" x2="832" y2="50"/>
+    <line x1="18" y1="100" x2="832" y2="100"/>
+    <line x1="18" y1="150" x2="832" y2="150"/>
+    <line x1="18" y1="200" x2="832" y2="200"/>
+    <line x1="18" y1="250" x2="832" y2="250"/>
+    <line x1="138" y1="0" x2="138" y2="310"/>
+    <line x1="258" y1="0" x2="258" y2="310"/>
+    <line x1="378" y1="0" x2="378" y2="310"/>
+    <line x1="498" y1="0" x2="498" y2="310"/>
   </g>
 
   <!-- Top System Header Bar -->
@@ -228,7 +228,7 @@
     <text x="14" y="9" class="tag-lbl">PORTAL GATEWAY // SECTOR 01: MISSION COMMAND &amp; PILOT IDENTITY</text>
     <text x="560" y="9" class="sub-lbl">[WARP VECTOR: ACTIVE // DOMBIVLI, MUMBAI]</text>
   </g>
-  <line x1="0" y1="44" x2="850" y2="44" stroke="#1F2430" stroke-width="1.2"/>
+  <line x1="18" y1="44" x2="832" y2="44" stroke="#1F2430" stroke-width="1.2"/>
 
   <!-- Left Mission Deck Content -->
   <g transform="translate(36, 76)">
