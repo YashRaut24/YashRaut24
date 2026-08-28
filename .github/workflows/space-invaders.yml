@@ -100,9 +100,7 @@ jobs:
           # Only replace the text inside the existing Sector 7
           # traffic-val element. Do not change its position, size,
           # transform, surrounding <g>, or any other SVG content.
-          pattern = (
-              r'(<text[^>]*class="traffic-val"[^>]*>)[^<]*(</text>)'
-          )
+          pattern = r'(<text[^>]*class="traffic-val"[^>]*>)[^<]*(</text>)'
 
           content, replacements = re.subn(
               pattern,
