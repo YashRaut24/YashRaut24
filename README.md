@@ -3,9 +3,9 @@
 <!-- UNIFIED SPACE PORTAL PROFILE -->
 
 <img
-src="./assets/space-portal-unified.svg?v=sector7-live"
-alt="Yash Raut Unified Space Portal Profile"
-width="96%"
+  src="./assets/space-portal-unified.svg?v=sector7-live"
+  alt="Yash Raut Unified Space Portal Profile"
+  width="96%"
 />
 
 <!-- ORBITAL FLIGHT DECK // DIRECT COMM-LINKS -->
@@ -19,6 +19,7 @@ width="96%"
         width="400"
       />
     </td>
+
     <td align="center" width="42%">
       <a href="https://yash-raut-portfolio.vercel.app/" target="_blank">
         <img
@@ -27,7 +28,9 @@ width="96%"
           width="300"
         />
       </a>
+
       <br/>
+
       <a href="https://drive.google.com/file/d/1wxB0VFUBAfz9cwoHMvBYegOlju8308Sa/view?usp=sharing" target="_blank">
         <img
           src="./assets/button-flight-resume.svg"
@@ -35,7 +38,9 @@ width="96%"
           width="300"
         />
       </a>
+
       <br/>
+
       <a href="https://www.linkedin.com/in/yash-raut-240505-yr30/" target="_blank">
         <img
           src="./assets/button-linkedin.svg"
@@ -43,7 +48,9 @@ width="96%"
           width="300"
         />
       </a>
+
       <br/>
+
       <a href="mailto:yashdr2405@gmail.com">
         <img
           src="./assets/button-email.svg"
