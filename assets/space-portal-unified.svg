@@ -746,8 +746,8 @@
     <text x="664" y="128" font-family="'JetBrains Mono', monospace" font-size="8px" font-weight="700" fill="#71737E">W</text>
   </g>
   </g>
-  <line x1="18" y1="1548.0" x2="832" y2="1548.0" stroke="#1F2430" stroke-width="1" />
-  <g id="sector-7" transform="translate(0 1549.0)">
+  <line x1="18" y1="1523.0" x2="832" y2="1523.0" stroke="#1F2430" stroke-width="1" />
+  <g id="sector-7" transform="translate(0 1524.0)">
 <!-- Container Box Frame -->
   <!-- Top System Header Bar -->
   <g transform="translate(26, 24)">

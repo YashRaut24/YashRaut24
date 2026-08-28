@@ -8,7 +8,7 @@ alt="Yash Raut Unified Space Portal Profile"
 width="96%"
 />
 
-<br/><br/>
+<br/>
 
 <!-- ORBITAL FLIGHT DECK // DIRECT COMM-LINKS -->
 
