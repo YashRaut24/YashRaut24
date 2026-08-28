@@ -1,0 +1,51 @@
+<svg width="140" height="168" viewBox="0 0 140 168" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      @keyframes radarSweep {
+        from { transform: rotate(0deg); }
+        to   { transform: rotate(360deg); }
+      }
+      @keyframes blipPing1 {
+        0%, 30%   { opacity: 0; transform: scale(0.3); }
+        35%, 65%  { opacity: 1; transform: scale(1); }
+        70%, 100% { opacity: 0; transform: scale(0.3); }
+      }
+      @keyframes blipPing2 {
+        0%, 55%   { opacity: 0; transform: scale(0.3); }
+        60%, 85%  { opacity: 1; transform: scale(1); }
+        90%, 100% { opacity: 0; transform: scale(0.3); }
+      }
+      .sweep-beam { animation: radarSweep 4s linear infinite; transform-origin: 70px 84px; }
+      .blip1      { animation: blipPing1 4s ease-out infinite; transform-origin: 93px 64px; }
+      .blip2      { animation: blipPing2 4s ease-out infinite; transform-origin: 47px 102px; }
+    </style>
+  </defs>
+
+  <circle cx="70" cy="84" r="54" fill="#111216" stroke="#1F2430" stroke-width="1.5"/>
+  <circle cx="70" cy="84" r="40" fill="none" stroke="#2563EB" stroke-width="1.2" stroke-dasharray="5 3"/>
+  <circle cx="70" cy="84" r="26" fill="none" stroke="#1F2430" stroke-width="1"/>
+  <circle cx="70" cy="84" r="12" fill="none" stroke="#1F2430" stroke-width="1"/>
+  <circle cx="70" cy="84" r="2.5" fill="#00F0FF"/>
+
+  <line x1="10" y1="84" x2="130" y2="84" stroke="#1F2430" stroke-width="1"/>
+  <line x1="70" y1="24" x2="70" y2="144" stroke="#1F2430" stroke-width="1"/>
+
+  <g class="sweep-beam">
+    <line x1="70" y1="84" x2="70" y2="30" stroke="#00F0FF" stroke-width="2" stroke-linecap="round"/>
+    <polygon points="70,84 64,30 70,30" fill="#00F0FF" opacity="0.3"/>
+  </g>
+
+  <g class="blip1">
+    <circle cx="93" cy="64" r="3" fill="#39D353"/>
+    <circle cx="93" cy="64" r="6" fill="none" stroke="#39D353" stroke-width="1"/>
+  </g>
+  <g class="blip2">
+    <circle cx="47" cy="102" r="3" fill="#00F0FF"/>
+    <circle cx="47" cy="102" r="6" fill="none" stroke="#00F0FF" stroke-width="1"/>
+  </g>
+
+  <text x="66" y="34" font-family="'JetBrains Mono', monospace" font-size="7.5px" font-weight="700" fill="#00F0FF">0°</text>
+  <text x="118" y="87" font-family="'JetBrains Mono', monospace" font-size="7.5px" font-weight="700" fill="#71737E">90°</text>
+  <text x="62" y="136" font-family="'JetBrains Mono', monospace" font-size="7.5px" font-weight="700" fill="#71737E">180°</text>
+  <text x="16" y="87" font-family="'JetBrains Mono', monospace" font-size="7.5px" font-weight="700" fill="#71737E">270°</text>
+</svg>
