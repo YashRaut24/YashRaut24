@@ -11,13 +11,13 @@
 
 <!-- ORBITAL FLIGHT DECK // DIRECT COMM-LINKS -->
 
-<table width="96%">
+<table width="92%">
   <tr>
     <td align="center" width="58%">
       <img
         src="./assets/Image.svg"
         alt="Yash Raut Orbital Identity"
-        width="470"
+        width="450"
       />
     </td>
     <td align="center" width="42%">
@@ -50,13 +50,6 @@
           src="./assets/button-email.svg"
           alt="Email"
           width="340"
-        />
-      </a>
-      <br/>
-      <a href="https://komarev.com/ghpvc/?username=YashRaut24-spaceport">
-        <img
-          src="https://komarev.com/ghpvc/?username=YashRaut24-spaceport&style=flat-square&color=00F0FF&labelColor=0B0C10&label=ORBITAL+TRAFFIC"
-          alt="Orbital Traffic Counter"
         />
       </a>
     </td>
