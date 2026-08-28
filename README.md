@@ -1,23 +1,24 @@
 <div align="center">
 
 <!-- UNIFIED SPACE PORTAL PROFILE -->
+
 <img
-  src="./assets/space-portal-unified.svg?v=unified-portal"
-  alt="Yash Raut Unified Space Portal Profile"
-  width="96%"
+src="./assets/space-portal-unified.svg?v=unified-portal"
+alt="Yash Raut Unified Space Portal Profile"
+width="96%"
 />
 
 <br/><br/>
 
 <!-- ORBITAL FLIGHT DECK // DIRECT COMM-LINKS -->
 
-<table width="87%">
+<table width="80%">
   <tr>
     <td align="center" width="58%">
       <img
         src="./assets/Image.svg"
         alt="Yash Raut Orbital Identity"
-        width="450"
+        width="390"
       />
     </td>
     <td align="center" width="42%">
@@ -25,7 +26,7 @@
         <img
           src="./assets/button-orbital-portfolio.svg"
           alt="Orbital Portfolio"
-          width="340"
+          width="300"
         />
       </a>
       <br/>
@@ -33,7 +34,7 @@
         <img
           src="./assets/button-flight-resume.svg"
           alt="Flight Resume"
-          width="340"
+          width="300"
         />
       </a>
       <br/>
@@ -41,7 +42,7 @@
         <img
           src="./assets/button-linkedin.svg"
           alt="LinkedIn"
-          width="340"
+          width="300"
         />
       </a>
       <br/>
@@ -49,7 +50,7 @@
         <img
           src="./assets/button-email.svg"
           alt="Email"
-          width="340"
+          width="300"
         />
       </a>
     </td>
