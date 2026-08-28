@@ -30,149 +30,17 @@ jobs:
         run: |
           python scripts/generate_space_invaders.py
 
-      - name: Fetch live Komarev visitor count
-        shell: bash
-        run: |
-          set -euo pipefail
-
-          echo "Fetching live GitHub profile visitor count..."
-
-          curl -fsSL \
-            "https://komarev.com/ghpvc/?username=YashRaut24&style=flat-square&label=TRAFFIC&_=$(date +%s)" \
-            -o /tmp/komarev.svg
-
-          VISITOR_COUNT="$(
-            python - <<'PY'
-          import re
-
-          svg = open("/tmp/komarev.svg", "r", encoding="utf-8").read()
-
-          # Extract numeric values from the Komarev SVG.
-          values = re.findall(r">([0-9][0-9,]*)<", svg)
-
-          if not values:
-              raise SystemExit(
-                  "Could not find visitor count in Komarev response"
-              )
-
-          visitor_count = values[-1].replace(",", "")
-
-          if not visitor_count.isdigit():
-              raise SystemExit(
-                  f"Invalid visitor count: {visitor_count!r}"
-              )
-
-          print(visitor_count)
-          PY
-          )"
-
-          echo "Live visitor count: ${VISITOR_COUNT}"
-
-          BASELINE_FILE=".data/visitor-baseline.txt"
-
-          if [ ! -f "$BASELINE_FILE" ]; then
-            echo "${VISITOR_COUNT}" > "$BASELINE_FILE"
-          fi
-
-          BASELINE="$(cat "$BASELINE_FILE")"
-
-          DISPLAY_COUNT=$((VISITOR_COUNT - BASELINE))
-
-          if [ "$DISPLAY_COUNT" -lt 0 ]; then
-            DISPLAY_COUNT=0
-          fi
-
-          echo "Komarev count: ${VISITOR_COUNT}"
-          echo "Baseline: ${BASELINE}"
-          echo "Displayed orbital traffic: ${DISPLAY_COUNT}"
-
-          python - "${DISPLAY_COUNT}" <<'PY'
-          import re
-          import sys
-          from pathlib import Path
-
-          visitor_count = sys.argv[1]
-
-          path = Path("assets/space-portal-unified.svg")
-          content = path.read_text(encoding="utf-8")
-
-          # IMPORTANT:
-          # Only replace the text inside the existing Sector 7
-          # traffic-val element. Do not change its position, size,
-          # transform, surrounding <g>, or any other SVG content.
-          pattern = r'(<text[^>]*class="traffic-val"[^>]*>)[^<]*(</text>)'
-
-          content, replacements = re.subn(
-              pattern,
-              lambda match: (
-                  match.group(1)
-                  + visitor_count
-                  + match.group(2)
-              ),
-              content,
-              count=1,
-          )
-
-          if replacements != 1:
-              raise SystemExit(
-                  "ERROR: Could not locate the existing "
-                  'class="traffic-val"> element in '
-                  "assets/space-portal-unified.svg"
-              )
-
-          path.write_text(content, encoding="utf-8")
-
-          print(
-              f"Updated Sector 7 ORBITAL TRAFFIC counter "
-              f"to {visitor_count}"
-          )
-          PY
-
-      - name: Verify visitor counter
-        shell: bash
-        run: |
-          set -euo pipefail
-
-          echo "Verifying Sector 7 visitor counter..."
-
-          python - <<'PY'
-          import re
-          from pathlib import Path
-
-          path = Path("assets/space-portal-unified.svg")
-          content = path.read_text(encoding="utf-8")
-
-          match = re.search(
-              r'class="traffic-val">([^<]*)</text>',
-              content,
-          )
-
-          if not match:
-              raise SystemExit(
-                  "ERROR: traffic-val element is missing"
-              )
-
-          value = match.group(1).strip()
-
-          if not value.isdigit():
-              raise SystemExit(
-                  f"ERROR: traffic-val contains invalid value: {value!r}"
-              )
-
-          print(f"Verified ORBITAL TRAFFIC: {value}")
-          PY
-
       - name: Commit and push if changed
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-          git add assets/*.svg .data/visitor-baseline.txt
+          git add assets/*.svg
 
           git diff --cached --quiet && {
             echo "No changes to commit."
             exit 0
           }
 
-          git commit -m "chore: update live space portal visitor count"
+          git commit -m "chore: update space portal arcade telemetry"
           git push

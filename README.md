@@ -1,5 +1,11 @@
 <div align="center">
 
+<!-- LIVE ORBITAL TRAFFIC: GitHub fetches this image on every profile view, so the count increments immediately. -->
+<img
+  src="https://komarev.com/ghpvc/?username=YashRaut24&label=ORBITAL%20TRAFFIC&color=00F0FF&style=for-the-badge"
+  alt="Orbital Traffic"
+/>
+
 <!-- UNIFIED SPACE PORTAL PROFILE -->
 
 <img
