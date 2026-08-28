@@ -3,7 +3,7 @@
 <!-- UNIFIED SPACE PORTAL PROFILE -->
 
 <img
-src="./assets/space-portal-unified.svg?v=sector7-live-2"
+src="./assets/space-portal-unified.svg?v=sector7-live"
 alt="Yash Raut Unified Space Portal Profile"
 width="96%"
 />
