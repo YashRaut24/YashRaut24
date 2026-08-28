@@ -12,7 +12,7 @@ width="96%"
 
 <!-- ORBITAL FLIGHT DECK // DIRECT COMM-LINKS -->
 
-<table width="80%">
+<table width="82%">
   <tr>
     <td align="center" width="58%">
       <img
