@@ -2,7 +2,7 @@ name: generate space invaders commit arcade
 
 on:
   schedule:
-    - cron: "0 */12 * * *" # twice a day
+    - cron: "0 */12 * * *"
   workflow_dispatch:
   push:
     branches:
@@ -11,13 +11,16 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+
     permissions:
       contents: write
+
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: "3.10"
 
@@ -27,10 +30,91 @@ jobs:
         run: |
           python scripts/generate_space_invaders.py
 
+      - name: Fetch live Komarev visitor count
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          echo "Fetching live GitHub profile visitor count..."
+
+          curl -fsSL \
+            "https://komarev.com/ghpvc/?username=YashRaut24&style=flat-square&label=TRAFFIC&_=$(date +%s)" \
+            -o /tmp/komarev.svg
+
+          echo "Komarev response:"
+          cat /tmp/komarev.svg
+
+          VISITOR_COUNT="$(
+            python - <<'PY'
+          import re
+
+          with open("/tmp/komarev.svg", "r", encoding="utf-8") as f:
+              svg = f.read()
+
+          # Find numeric SVG text nodes.
+          values = re.findall(r">([0-9][0-9,]*)<", svg)
+
+          if not values:
+              raise SystemExit("Could not find visitor count in Komarev response")
+
+          # The visitor count is the numeric value in the response.
+          count = values[-1].replace(",", "")
+
+          if not count.isdigit():
+              raise SystemExit(f"Invalid visitor count: {count!r}")
+
+          print(count)
+          PY
+          )"
+
+          echo "Live visitor count: ${VISITOR_COUNT}"
+
+          python - "${VISITOR_COUNT}" <<'PY'
+          import re
+          import sys
+          from pathlib import Path
+
+          visitor_count = sys.argv[1]
+
+          path = Path("assets/space-portal-unified.svg")
+          content = path.read_text(encoding="utf-8")
+
+          pattern = (
+              r'(<text\s+x="[^"]+"\s+y="[^"]+"\s+'
+              r'class="traffic-val">)[^<]*(</text>)'
+          )
+
+          content, replacements = re.subn(
+              pattern,
+              rf'\g<1>{visitor_count}\g<2>',
+              content,
+              count=1,
+          )
+
+          if replacements != 1:
+              raise SystemExit(
+                  "Could not locate the existing traffic-val inside "
+                  "space-portal-unified.svg"
+              )
+
+          path.write_text(content, encoding="utf-8")
+
+          print(
+              f"Updated Sector 7 ORBITAL TRAFFIC counter to {visitor_count}"
+          )
+          PY
+
       - name: Commit and push if changed
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add assets/*.svg || true
-          git commit -m "chore: update live space invaders contribution arcade" || exit 0
+
+          git add assets/*.svg
+
+          git diff --cached --quiet && {
+            echo "No changes to commit."
+            exit 0
+          }
+
+          git commit -m "chore: update live space portal visitor count"
           git push
