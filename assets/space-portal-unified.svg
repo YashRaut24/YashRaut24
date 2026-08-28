@@ -804,7 +804,7 @@
           
           <rect x="118" width="36" height="18" rx="3" fill="#00F0FF"/>
           
-          <text x="111" y="13" text-anchor="middle" class="traffic-val">0</text>
+          <text x="136" y="13" text-anchor="middle" dominant-baseline="middle" font-family="monospace" font-size="10" font-weight="900" fill="#0B0C10" class="traffic-val">0</text>
         </g>
       </g>
     </g>
