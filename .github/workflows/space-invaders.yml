@@ -86,7 +86,7 @@ jobs:
           echo "Baseline: ${BASELINE}"
           echo "Displayed orbital traffic: ${DISPLAY_COUNT}"
 
-          python - "${VISITOR_COUNT}" <<'PY'
+          python - "${DISPLAY_COUNT}" <<'PY'
           import re
           import sys
           from pathlib import Path
@@ -167,7 +167,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-          git add assets/*.svg
+          git add assets/*.svg .data/visitor-baseline.txt
 
           git diff --cached --quiet && {
             echo "No changes to commit."
