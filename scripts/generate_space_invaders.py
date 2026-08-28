@@ -246,6 +246,8 @@ def build_arcade(date_records, total_contribs):
     Performance design:
     - Real rolling GitHub contribution grid.
     - One rocket, one laser, one impact -- not one animated element per cell.
+    - Active cells take visible damage: each impact drops the target cell by
+      one GitHub color level until it becomes level 0.
     - A discrete, real-data DESTROYED counter that advances one commit at a
       time: 0, 1, 2, 3 ... all the way to the fetched total.
     - 4-decimal keyframe percentages so sub-second laser, impact, and counter
@@ -353,7 +355,8 @@ def build_arcade(date_records, total_contribs):
     MOVE_TIME = 0.55
     FIRE_TIME = 0.30
     IMPACT_LOCK_TIME = 0.06
-    COUNTER_AFTER_IMPACT = 0.05
+    DAMAGE_AFTER_IMPACT = 0.03
+    COUNTER_AFTER_IMPACT = 0.06
     FINAL_HOLD = 4.0
 
     ATTACK_DURATION = len(route) * ATTACK_INTERVAL
@@ -471,12 +474,60 @@ def build_arcade(date_records, total_contribs):
     )
 
     # ------------------------------------------------------------
+    # CELL DAMAGE
+    #
+    # The grid starts with the real GitHub color level. Every laser impact
+    # drops that target by one visible level after the bolt arrives. A level 3
+    # cell becomes level 2, level 1 becomes level 0, and extra hits keep the
+    # cell at level 0 while the counter continues counting individual commits.
+    # ------------------------------------------------------------
+
+    damage_times_by_cell = {}
+    for point in route_points:
+        cell = point["cell"]
+        key = (cell["col"], cell["row"])
+        damage_times_by_cell.setdefault(key, []).append(
+            point["impact"] + DAMAGE_AFTER_IMPACT
+        )
+
+    damage_css_parts = []
+    for cell in active_cells:
+        col, row = cell["col"], cell["row"]
+        hit_times = damage_times_by_cell.get((col, row), [])
+        if not hit_times:
+            continue
+
+        current_level = max(1, min(4, int(cell["level"])))
+        cell_kf = [f"0%{{fill:{colors[current_level]};}}"]
+
+        for damage_time in hit_times[:current_level]:
+            next_level = max(0, current_level - 1)
+            pre_damage = max(0.0, damage_time - 0.02)
+            cell_kf.append(f"{percent(pre_damage)}{{fill:{colors[current_level]};}}")
+            cell_kf.append(f"{percent(damage_time)}{{fill:{colors[next_level]};}}")
+            current_level = next_level
+
+        cell_kf.append(f"100%{{fill:{colors[current_level]};}}")
+
+        damage_name = f"arcadeCellDamage{col}_{row}"
+        damage_css_parts.append(
+            f"@keyframes {damage_name}{{{''.join(cell_kf)}}}"
+            f".arcade-cell-{col}-{row}{{animation:{damage_name} {TOTAL_DURATION:.2f}s linear 1 forwards;}}"
+        )
+
+    damage_css = (
+        ".arcade-cell{animation-iteration-count:1;animation-fill-mode:forwards;}"
+        + "".join(damage_css_parts)
+    )
+
+    # ------------------------------------------------------------
     # DESTROYED COUNTER -- REAL, DISCRETE, ACTUALLY WIRED UP
     #
     # Each state is a separate <text> shown only during its own real window.
     # Because the route contains one entry per commit, the HUD counts exactly:
     # 0, 1, 2, 3 ... total. The counter starts just after impact so the number
-    # never changes before the laser visibly reaches its target.
+    # never changes before the laser visibly reaches its target and damages
+    # the cell.
     # ------------------------------------------------------------
 
     formatted_total = f"{total_contribs:,}"
@@ -531,8 +582,12 @@ def build_arcade(date_records, total_contribs):
             y = row * 13
             cell = grid.get((col, row))
             level = cell["level"] if cell else 0
+            class_attr = ""
+            if cell and cell["contributions"] > 0:
+                level = max(1, level)
+                class_attr = f' class="arcade-cell arcade-cell-{col}-{row}"'
             grid_markup.append(
-                f'<rect x="{x}" y="{y}" width="10" height="10" rx="2" fill="{colors[level]}"/>'
+                f'<rect x="{x}" y="{y}" width="10" height="10" rx="2" fill="{colors[level]}"{class_attr}/>'
             )
 
     # ------------------------------------------------------------
@@ -616,7 +671,7 @@ def build_arcade(date_records, total_contribs):
         ".rocket{transform-box:fill-box;transform-origin:center;}"
         ".laser{stroke:#00F0FF;stroke-width:2.5;stroke-linecap:round;transform-box:fill-box;transform-origin:top;}"
         ".impact{transform-box:fill-box;transform-origin:center;}"
-        + rocket_css + laser_css + impact_css + counter_css
+        + rocket_css + laser_css + impact_css + damage_css + counter_css
     )
 
     print(
@@ -643,6 +698,9 @@ def build_arcade(date_records, total_contribs):
     )
     print(
         f"Destroyed counter states: {len(counter_states)} (strict 0..{total_contribs:,} count)."
+    )
+    print(
+        f"Cell damage animations: {len(damage_css_parts)} active cells dim toward level 0."
     )
     print(
         f"Final destroyed count: {total_contribs:,}"
