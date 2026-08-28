@@ -4,20 +4,20 @@
 <img
   src="./assets/space-portal-unified.svg?v=unified-portal"
   alt="Yash Raut Unified Space Portal Profile"
-  width="100%"
+  width="96%"
 />
 
 <br/><br/>
 
 <!-- ORBITAL FLIGHT DECK // DIRECT COMM-LINKS -->
 
-<table width="100%">
+<table width="96%">
   <tr>
     <td align="center" width="58%">
       <img
         src="./assets/Image.svg"
         alt="Yash Raut Orbital Identity"
-        width="500"
+        width="470"
       />
     </td>
     <td align="center" width="42%">
