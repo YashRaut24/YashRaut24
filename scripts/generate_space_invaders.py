@@ -244,12 +244,12 @@ def build_arcade(date_records, total_contribs):
     assets/space-portal-unified.svg, so the two never drift apart again.
 
     Performance design:
-    - Real 52x7 GitHub contribution grid.
+    - Real rolling GitHub contribution grid.
     - One rocket, one laser, one impact -- not one animated element per cell.
-    - A discrete, real-data DESTROYED counter (jumps by each day's actual
-      contribution count, not by 1 and not by a fake milestone interpolation).
-    - 2-decimal keyframe percentages instead of 4 -- sub-20ms precision loss,
-      meaningfully smaller CSS payload.
+    - A discrete, real-data DESTROYED counter that advances one commit at a
+      time: 0, 1, 2, 3 ... all the way to the fetched total.
+    - 4-decimal keyframe percentages so sub-second laser, impact, and counter
+      ordering stays intact even when the animation contains thousands of hits.
     """
 
     if not date_records:
@@ -267,7 +267,7 @@ def build_arcade(date_records, total_contribs):
         raise ValueError("No positive contribution total provided")
 
     # ------------------------------------------------------------
-    # REAL GITHUB 52 x 7 GRID
+    # REAL GITHUB ROLLING-WEEK GRID
     # ------------------------------------------------------------
 
     sorted_dates = sorted(
@@ -281,6 +281,8 @@ def build_arcade(date_records, total_contribs):
     first_sunday = first_date - datetime.timedelta(
         days=(first_date.weekday() + 1) % 7
     )
+    week_count = ((last_date - first_sunday).days // 7) + 1
+    week_count = max(1, min(54, week_count))
 
     colors = [
         "#161B22",
@@ -299,7 +301,7 @@ def build_arcade(date_records, total_contribs):
         col = (d - first_sunday).days // 7
         row = (d.weekday() + 1) % 7
 
-        if 0 <= col < 52 and 0 <= row < 7:
+        if 0 <= col < week_count and 0 <= row < 7:
 
             contributions = max(0, int(rec.get("contributions", 0)))
             level = max(0, min(4, int(rec.get("level", 0))))
@@ -318,17 +320,29 @@ def build_arcade(date_records, total_contribs):
         cell
         for cell in grid.values()
         if cell["contributions"] > 0
-        and cell["level"] > 0
     ]
 
     if not active_cells:
         raise ValueError("No active contribution cells found")
 
+    visible_commit_total = sum(cell["contributions"] for cell in active_cells)
+    if visible_commit_total != total_contribs:
+        print(
+            "Contribution total mismatch between fetched headline "
+            f"({total_contribs:,}) and visible grid cells "
+            f"({visible_commit_total:,}); using visible grid total for "
+            "one-hit-per-commit animation."
+        )
+        total_contribs = visible_commit_total
+
     # ------------------------------------------------------------
     # RANDOMIZED REAL TARGET ROUTE
     # ------------------------------------------------------------
 
-    route = active_cells[:]
+    route = []
+    for cell in active_cells:
+        route.extend([cell] * cell["contributions"])
+
     random.Random(20260828).shuffle(route)
 
     # ------------------------------------------------------------
@@ -338,8 +352,12 @@ def build_arcade(date_records, total_contribs):
     ATTACK_INTERVAL = 1.0
     MOVE_TIME = 0.55
     FIRE_TIME = 0.30
+    IMPACT_LOCK_TIME = 0.06
+    COUNTER_AFTER_IMPACT = 0.05
+    FINAL_HOLD = 4.0
 
-    TOTAL_DURATION = len(route) * ATTACK_INTERVAL
+    ATTACK_DURATION = len(route) * ATTACK_INTERVAL
+    TOTAL_DURATION = ATTACK_DURATION + FINAL_HOLD
 
     cannon_x = 425
     cannon_y = 126
@@ -365,10 +383,7 @@ def build_arcade(date_records, total_contribs):
             return "0%"
         value = (seconds / TOTAL_DURATION) * 100.0
         value = max(0.0, min(100.0, value))
-        # 2 decimal places instead of 4: at a 183s total duration this is
-        # ~1.8ms of timing precision, imperceptible, but noticeably shrinks
-        # every single keyframe entry across all three animated elements.
-        return f"{value:.2f}%"
+        return f"{value:.4f}%"
 
     # ------------------------------------------------------------
     # ROCKET KEYFRAMES
@@ -390,6 +405,11 @@ def build_arcade(date_records, total_contribs):
             f"{percent(point['move_end'])}{{transform:translate({cell['cx']}px,{cannon_y}px);}}"
         )
 
+    last_cell = route_points[-1]["cell"]
+    rocket_kf.append(
+        f"100%{{transform:translate({last_cell['cx']}px,{cannon_y}px);}}"
+    )
+
     rocket_css = (
         "@keyframes rocketRoute{" + "".join(rocket_kf) + "}"
         f".rocket{{animation:rocketRoute {TOTAL_DURATION:.2f}s linear 1 forwards;}}"
@@ -404,13 +424,19 @@ def build_arcade(date_records, total_contribs):
         cell = point["cell"]
         x, y = cell["cx"], cell["cy"]
         start, fire, impact = point["start"], point["fire"], point["impact"]
+        pre_impact = max(fire, impact - IMPACT_LOCK_TIME)
 
         laser_kf.extend([
             f"{percent(start)}{{opacity:0;transform:translate({x}px,{cannon_y - 10}px) scaleY(0);}}",
             f"{percent(fire)}{{opacity:1;transform:translate({x}px,{cannon_y - 10}px) scaleY(1);}}",
+            f"{percent(pre_impact)}{{opacity:1;transform:translate({x}px,{y + 8}px) scaleY(0.8);}}",
             f"{percent(impact)}{{opacity:1;transform:translate({x}px,{y}px) scaleY(0.2);}}",
             f"{percent(impact + 0.04)}{{opacity:0;transform:translate({x}px,{y}px) scaleY(0);}}",
         ])
+
+    laser_kf.append(
+        f"100%{{opacity:0;transform:translate({last_cell['cx']}px,{last_cell['cy']}px) scaleY(0);}}"
+    )
 
     laser_css = (
         "@keyframes laserRoute{" + "".join(laser_kf) + "}"
@@ -426,12 +452,18 @@ def build_arcade(date_records, total_contribs):
         cell = point["cell"]
         x, y = cell["cx"], cell["cy"]
         start, impact = point["start"], point["impact"]
+        pre_impact = max(start, impact - IMPACT_LOCK_TIME)
 
         impact_kf.extend([
             f"{percent(start)}{{opacity:0;transform:translate({x}px,{y}px) scale(.1);}}",
+            f"{percent(pre_impact)}{{opacity:0;transform:translate({x}px,{y}px) scale(.1);}}",
             f"{percent(impact)}{{opacity:1;transform:translate({x}px,{y}px) scale(1);}}",
             f"{percent(impact + 0.10)}{{opacity:0;transform:translate({x}px,{y}px) scale(1.7);}}",
         ])
+
+    impact_kf.append(
+        f"100%{{opacity:0;transform:translate({last_cell['cx']}px,{last_cell['cy']}px) scale(.1);}}"
+    )
 
     impact_css = (
         "@keyframes impactRoute{" + "".join(impact_kf) + "}"
@@ -441,50 +473,49 @@ def build_arcade(date_records, total_contribs):
     # ------------------------------------------------------------
     # DESTROYED COUNTER -- REAL, DISCRETE, ACTUALLY WIRED UP
     #
-    # Each state is a separate <text> shown only during its own real
-    # window (from the moment of that impact until the next one), using
-    # ONE shared @keyframes definition plus a tiny per-state delay/duration
-    # rule. This gives a correct, jump-by-real-contribution-count counter
-    # without needing one full @keyframes block per state.
+    # Each state is a separate <text> shown only during its own real window.
+    # Because the route contains one entry per commit, the HUD counts exactly:
+    # 0, 1, 2, 3 ... total. The counter starts just after impact so the number
+    # never changes before the laser visibly reaches its target.
     # ------------------------------------------------------------
 
     formatted_total = f"{total_contribs:,}"
 
     counter_states = []  # (start_seconds, duration_seconds, label)
-    first_gap = max(route_points[0]["impact"], 0.05)
+    first_gap = max(route_points[0]["impact"] + COUNTER_AFTER_IMPACT, 0.05)
     counter_states.append((0.0, first_gap, f"DESTROYED: [ 0 / {formatted_total} ]"))
 
-    cumulative = 0
     for i, point in enumerate(route_points):
-        cumulative += int(point["cell"]["contributions"])
-        cumulative = min(cumulative, total_contribs)
-
-        start = point["impact"]
+        destroyed_count = min(i + 1, total_contribs)
+        start = point["impact"] + COUNTER_AFTER_IMPACT
         end = (
-            route_points[i + 1]["impact"]
+            route_points[i + 1]["impact"] + COUNTER_AFTER_IMPACT
             if i + 1 < len(route_points)
             else TOTAL_DURATION
         )
         duration = max(end - start, 0.05)
 
         counter_states.append(
-            (start, duration, f"DESTROYED: [ {cumulative:,} / {formatted_total} ]")
+            (start, duration, f"DESTROYED: [ {destroyed_count:,} / {formatted_total} ]")
         )
 
     counter_text_markup = []
     counter_rules = []
+    final_counter_idx = len(counter_states) - 1
 
     for idx, (start, duration, label) in enumerate(counter_states):
         counter_text_markup.append(
             f'<text x="137" y="19" text-anchor="middle" class="counter cnt-{idx}">{label}</text>'
         )
+        animation_name = "counterFinal" if idx == final_counter_idx else "counterPulse"
         counter_rules.append(
-            f".cnt-{idx}{{animation-delay:{start:.2f}s;animation-duration:{duration:.2f}s;}}"
+            f".cnt-{idx}{{animation-name:{animation_name};animation-delay:{start:.2f}s;animation-duration:{duration:.2f}s;}}"
         )
 
     counter_css = (
         "@keyframes counterPulse{0%{opacity:0;}2%{opacity:1;}98%{opacity:1;}100%{opacity:0;}}"
-        ".counter{opacity:0;animation-name:counterPulse;animation-timing-function:linear;"
+        "@keyframes counterFinal{0%{opacity:0;}2%{opacity:1;}100%{opacity:1;}}"
+        ".counter{opacity:0;animation-timing-function:linear;"
         "animation-iteration-count:1;animation-fill-mode:forwards;}"
         + "".join(counter_rules)
     )
@@ -494,7 +525,7 @@ def build_arcade(date_records, total_contribs):
     # ------------------------------------------------------------
 
     grid_markup = []
-    for col in range(52):
+    for col in range(week_count):
         for row in range(7):
             x = col * 15
             y = row * 13
@@ -589,7 +620,7 @@ def build_arcade(date_records, total_contribs):
     )
 
     print(
-        f"Generated 52x7 grid spanning {first_sunday} to {last_date}."
+        f"Generated {week_count}x7 grid spanning {first_sunday} to {last_date}."
     )
     print(
         f"Found {len(active_cells)} active contribution cells in authentic layout."
@@ -598,11 +629,11 @@ def build_arcade(date_records, total_contribs):
         f"Real rolling one-year contribution total: {total_contribs:,}"
     )
     print(
-        f"Attack route contains {len(route):,} real active-cell targets."
+        f"Attack route contains {len(route):,} individual commit targets."
     )
     print(
         "Animation mode: COMPACT ONE-SHOT -- one rocket, one laser, one impact; "
-        "no 8-target loop."
+        "one counted hit per commit."
     )
     print(
         f"Attack cadence: exactly {ATTACK_INTERVAL:.2f}s per target."
@@ -611,7 +642,7 @@ def build_arcade(date_records, total_contribs):
         f"Total visual duration: {TOTAL_DURATION:.2f}s ({TOTAL_DURATION / 60:.1f} minutes)."
     )
     print(
-        f"Destroyed counter states: {len(counter_states)} (real per-day jumps, not a 1-by-1 count)."
+        f"Destroyed counter states: {len(counter_states)} (strict 0..{total_contribs:,} count)."
     )
     print(
         f"Final destroyed count: {total_contribs:,}"
