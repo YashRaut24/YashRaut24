@@ -11,7 +11,7 @@
 
 <!-- ORBITAL FLIGHT DECK // DIRECT COMM-LINKS -->
 
-<table width="92%">
+<table width="87%">
   <tr>
     <td align="center" width="58%">
       <img
