@@ -572,25 +572,6 @@ def build_arcade(date_records, total_contribs):
     )
 
     # ------------------------------------------------------------
-    # MONTH HEADER LABELS -- dynamic, matching the real rolling window
-    # (e.g. Sep -> Aug), not a hardcoded Jan..Dec calendar year.
-    # A label is placed at the first week-column where a new month
-    # begins, the same way GitHub's own contribution graph does it.
-    # ------------------------------------------------------------
-
-    month_label_markup = []
-    prev_month = None
-    for col in range(week_count):
-        week_start = first_sunday + datetime.timedelta(days=col * 7)
-        month_name = week_start.strftime("%b").upper()
-        if month_name != prev_month:
-            x = col * 15
-            month_label_markup.append(
-                f'<text x="{x}" y="-8" class="arcade month">{month_name}</text>'
-            )
-            prev_month = month_name
-
-    # ------------------------------------------------------------
     # GRID
     # ------------------------------------------------------------
 
@@ -629,7 +610,18 @@ def build_arcade(date_records, total_contribs):
 
 <!-- GRID -->
 <g transform="translate(36,62)">
-{''.join(month_label_markup)}
+<text x="0" y="-8" class="arcade month">JAN</text>
+<text x="64" y="-8" class="arcade month">FEB</text>
+<text x="128" y="-8" class="arcade month">MAR</text>
+<text x="192" y="-8" class="arcade month">APR</text>
+<text x="256" y="-8" class="arcade month">MAY</text>
+<text x="320" y="-8" class="arcade month">JUN</text>
+<text x="384" y="-8" class="arcade month">JUL</text>
+<text x="448" y="-8" class="arcade month">AUG</text>
+<text x="512" y="-8" class="arcade month">SEP</text>
+<text x="576" y="-8" class="arcade month">OCT</text>
+<text x="640" y="-8" class="arcade month">NOV</text>
+<text x="704" y="-8" class="arcade month">DEC</text>
 
 {''.join(grid_markup)}
 
