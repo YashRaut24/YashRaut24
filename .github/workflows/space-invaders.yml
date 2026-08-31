@@ -30,6 +30,304 @@ jobs:
         run: |
           python scripts/generate_space_invaders.py
 
+      - name: Update live GitHub contribution telemetry
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          import re
+          import urllib.request
+          from datetime import date, datetime, timedelta, timezone
+          from pathlib import Path
+
+          TOKEN = os.environ["GITHUB_TOKEN"]
+          LOGIN = "YashRaut24"
+          SVG_PATH = Path("assets/space-portal-unified.svg")
+
+          def graphql(query, variables):
+              body = json.dumps({
+                  "query": query,
+                  "variables": variables,
+              }).encode("utf-8")
+
+              request = urllib.request.Request(
+                  "https://api.github.com/graphql",
+                  data=body,
+                  headers={
+                      "Authorization": f"bearer {TOKEN}",
+                      "Content-Type": "application/json",
+                      "User-Agent": "YashRaut24-profile-telemetry",
+                  },
+                  method="POST",
+              )
+
+              with urllib.request.urlopen(request, timeout=30) as response:
+                  payload = json.load(response)
+
+              if payload.get("errors"):
+                  raise SystemExit(
+                      "GitHub GraphQL error: "
+                      + json.dumps(payload["errors"])
+                  )
+
+              return payload["data"]
+
+          QUERY = """
+          query($login: String!, $from: DateTime!, $to: DateTime!) {
+            user(login: $login) {
+              contributionsCollection(from: $from, to: $to) {
+                totalContributions
+                totalCommitContributions
+                contributionCalendar {
+                  totalContributions
+                  weeks {
+                    contributionDays {
+                      date
+                      contributionCount
+                    }
+                  }
+                }
+              }
+            }
+          }
+          """
+
+          today = datetime.now(timezone.utc).date()
+
+          # The profile's telemetry period starts on Aug 9, 2024.
+          period_start = date(2024, 8, 9)
+
+          # Sum non-overlapping yearly ranges so the all-time telemetry is
+          # not limited to the normal one-year profile calendar.
+          ranges = []
+          cursor = period_start
+          while cursor <= today:
+              end = min(cursor.replace(year=cursor.year + 1) - timedelta(days=1), today)
+              ranges.append((cursor, end))
+              cursor = end + timedelta(days=1)
+
+          total_contributions = 0
+          total_commits = 0
+
+          for start, end in ranges:
+              data = graphql(
+                  QUERY,
+                  {
+                      "login": LOGIN,
+                      "from": f"{start.isoformat()}T00:00:00Z",
+                      "to": f"{end.isoformat()}T23:59:59Z",
+                  },
+              )
+              collection = data["user"]["contributionsCollection"]
+              total_contributions += collection["totalContributions"]
+              total_commits += collection["totalCommitContributions"]
+
+          # Fetch the latest year's daily calendar for current/longest streaks.
+          streak_start = today - timedelta(days=366)
+          streak_data = graphql(
+              QUERY,
+              {
+                  "login": LOGIN,
+                  "from": f"{streak_start.isoformat()}T00:00:00Z",
+                  "to": f"{today.isoformat()}T23:59:59Z",
+              },
+          )["user"]["contributionsCollection"]
+
+          days = []
+          for week in streak_data["contributionCalendar"]["weeks"]:
+              for day in week["contributionDays"]:
+                  days.append(
+                      (
+                          date.fromisoformat(day["date"]),
+                          int(day["contributionCount"]),
+                      )
+                  )
+
+          days.sort()
+
+          # Keep only dates in the requested period.
+          days = [(d, c) for d, c in days if streak_start <= d <= today]
+
+          # Current streak ends on the most recent day with a contribution.
+          latest_active = None
+          for d, count in reversed(days):
+              if count > 0:
+                  latest_active = d
+                  break
+
+          current_streak = 0
+          current_start = None
+          current_end = latest_active
+
+          if latest_active is not None:
+              expected = latest_active
+              for d, count in reversed(days):
+                  if d != expected:
+                      break
+                  if count <= 0:
+                      break
+                  current_streak += 1
+                  current_start = d
+                  expected -= timedelta(days=1)
+
+          # Longest consecutive run of contribution days.
+          longest_streak = 0
+          longest_start = None
+          longest_end = None
+          run = 0
+          run_start = None
+          previous = None
+
+          for d, count in days:
+              if count > 0 and (
+                  previous is not None and d == previous + timedelta(days=1)
+              ):
+                  run += 1
+              elif count > 0:
+                  run = 1
+                  run_start = d
+              else:
+                  run = 0
+                  run_start = None
+
+              if run > longest_streak:
+                  longest_streak = run
+                  longest_start = run_start
+                  longest_end = d
+
+              previous = d
+
+          def fmt_number(value):
+              return f"{value:,}"
+
+          def fmt_range(start, end):
+              if start is None or end is None:
+                  return "—"
+              if start.year == end.year:
+                  return f"{start.strftime('%b %d')} – {end.strftime('%b %d')}"
+              return f"{start.strftime('%b %d, %Y')} – {end.strftime('%b %d, %Y')}"
+
+          svg = SVG_PATH.read_text(encoding="utf-8")
+
+          # Top contribution total.
+          svg, n = re.subn(
+              r'(<text x="0" y="0" text-anchor="middle" class="num-val">)[^<]*(</text>)',
+              rf'\g<1>{fmt_number(total_contributions)}\g<2>',
+              svg,
+              count=1,
+          )
+          if n != 1:
+              raise SystemExit("Could not update Total Contributions.")
+
+          # Git telemetry commit total.
+          svg, n = re.subn(
+              r'(<text x="14" y="42" class="metric-val">)[^<]*( COMMITS</text>)',
+              rf'\g<1>{fmt_number(total_commits)}\g<2>',
+              svg,
+              count=1,
+          )
+          if n != 1:
+              raise SystemExit("Could not update Git telemetry commit total.")
+
+          # Current streak.
+          svg, n = re.subn(
+              r'(<text x="0" y="12" text-anchor="middle" class="num-val" style="fill:#FDFBF7;">)[^<]*(</text>)',
+              rf'\g<1>{current_streak}\g<2>',
+              svg,
+              count=1,
+          )
+          if n != 1:
+              raise SystemExit("Could not update Current Streak.")
+
+          svg, n = re.subn(
+              r'(<text x="0" y="76" text-anchor="middle" class="date-txt">)[^<]*(</text>)',
+              rf'\g<1>{fmt_range(current_start, current_end)}\g<2>',
+              svg,
+              count=1,
+          )
+          if n != 1:
+              raise SystemExit("Could not update Current Streak dates.")
+
+          # Longest streak.
+          svg, n = re.subn(
+              r'(<text x="0" y="0" text-anchor="middle" class="num-sub" style="fill:#2563EB;">)[^<]*(</text>)',
+              rf'\g<1>{longest_streak}\g<2>',
+              svg,
+              count=1,
+          )
+          if n != 1:
+              raise SystemExit("Could not update Longest Streak.")
+
+          svg, n = re.subn(
+              r'(<g transform="translate\(710, 48\)">.*?<text x="0" y="44" text-anchor="middle" class="date-txt">)[^<]*(</text>)',
+              rf'\g<1>{fmt_range(longest_start, longest_end)}\g<2>',
+              svg,
+              count=1,
+              flags=re.DOTALL,
+          )
+          if n != 1:
+              raise SystemExit("Could not update Longest Streak dates.")
+
+          # Keep the existing counter styling, but show the live total
+          # immediately instead of replaying a multi-minute historical count.
+          live_counter_css = (
+              "@keyframes counterPulse{0%{opacity:0;}2%{opacity:1;}"
+              "98%{opacity:1;}100%{opacity:0;}}"
+              "@keyframes counterFinal{0%{opacity:1;}100%{opacity:1;}}"
+              ".counter{opacity:1;animation-timing-function:linear;"
+              "animation-iteration-count:1;animation-fill-mode:forwards;}"
+              ".cnt-live{animation-name:counterFinal;"
+              "animation-delay:0s;animation-duration:0s;}"
+              "\n/* ARCADE_STYLE_END */"
+          )
+
+          css_pattern = re.compile(
+              r'@keyframes counterPulse\{.*?/\* ARCADE_STYLE_END \*/',
+              re.DOTALL,
+          )
+          svg, n = css_pattern.subn(
+              live_counter_css,
+              svg,
+              count=1,
+          )
+          if n != 1:
+              raise SystemExit("Could not rebuild arcade counter CSS.")
+
+          counter_pattern = re.compile(
+              r'<g transform="translate\(555,9\)">.*?</g>',
+              re.DOTALL,
+          )
+          counter_replacement = (
+              '<g transform="translate(555,9)">\n'
+              '<rect width="275" height="28" rx="4" class="counter-box" />\n'
+              f'<text x="137" y="19" text-anchor="middle" '
+              f'class="counter cnt-live">DESTROYED: [ '
+              f'{total_commits:,} / {total_commits:,} ]</text>\n'
+              '</g>'
+          )
+
+          svg, n = counter_pattern.subn(
+              counter_replacement,
+              svg,
+              count=1,
+          )
+          if n != 1:
+              raise SystemExit("Could not rebuild arcade counter.")
+
+          SVG_PATH.write_text(svg, encoding="utf-8")
+
+          print(f"Live total contributions: {total_contributions:,}")
+          print(f"Live total commits: {total_commits:,}")
+          print(f"Live current streak: {current_streak}")
+          print(f"Live longest streak: {longest_streak}")
+          print(f"Current streak range: {fmt_range(current_start, current_end)}")
+          print(f"Longest streak range: {fmt_range(longest_start, longest_end)}")
+          print(f"Arcade counter max: {total_commits:,}")
+          PY
+
       - name: Commit and push if changed
         run: |
           git config user.name "github-actions[bot]"
@@ -42,5 +340,5 @@ jobs:
             exit 0
           }
 
-          git commit -m "chore: update space portal arcade telemetry"
+          git commit -m "chore: update live GitHub contribution telemetry"
           git push
