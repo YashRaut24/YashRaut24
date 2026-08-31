@@ -46,6 +46,7 @@ jobs:
           TOKEN = os.environ["GITHUB_TOKEN"]
           LOGIN = "YashRaut24"
           SVG_PATH = Path("assets/space-portal-unified.svg")
+          STATS_SVG_PATH = Path("assets/space-portal-stats.svg")
 
           def graphql(query, variables):
               body = json.dumps({
@@ -210,19 +211,67 @@ jobs:
                   return f"{start.strftime('%b %d')} – {end.strftime('%b %d')}"
               return f"{start.strftime('%b %d, %Y')} – {end.strftime('%b %d, %Y')}"
 
+          def patch_stats_block(svg_text, label):
+              """Apply live Total Contributions / Current Streak / Longest
+              Streak values to any SVG that contains this shared block
+              (assets/space-portal-unified.svg and
+              assets/space-portal-stats.svg share identical markup here)."""
+
+              # Top contribution total.
+              svg_text, n = re.subn(
+                  r'(<text x="0" y="0" text-anchor="middle" class="num-val">)[^<]*(</text>)',
+                  rf'\g<1>{fmt_number(total_contributions)}\g<2>',
+                  svg_text,
+                  count=1,
+              )
+              if n != 1:
+                  raise SystemExit(f"Could not update Total Contributions in {label}.")
+
+              # Current streak.
+              svg_text, n = re.subn(
+                  r'(<text x="0" y="12" text-anchor="middle" class="num-val" style="fill:#FDFBF7;">)[^<]*(</text>)',
+                  rf'\g<1>{current_streak}\g<2>',
+                  svg_text,
+                  count=1,
+              )
+              if n != 1:
+                  raise SystemExit(f"Could not update Current Streak in {label}.")
+
+              svg_text, n = re.subn(
+                  r'(<text x="0" y="76" text-anchor="middle" class="date-txt">)[^<]*(</text>)',
+                  rf'\g<1>{fmt_range(current_start, current_end)}\g<2>',
+                  svg_text,
+                  count=1,
+              )
+              if n != 1:
+                  raise SystemExit(f"Could not update Current Streak dates in {label}.")
+
+              # Longest streak.
+              svg_text, n = re.subn(
+                  r'(<text x="0" y="0" text-anchor="middle" class="num-sub" style="fill:#2563EB;">)[^<]*(</text>)',
+                  rf'\g<1>{longest_streak}\g<2>',
+                  svg_text,
+                  count=1,
+              )
+              if n != 1:
+                  raise SystemExit(f"Could not update Longest Streak in {label}.")
+
+              svg_text, n = re.subn(
+                  r'(<g transform="translate\(710, 48\)">.*?<text x="0" y="44" text-anchor="middle" class="date-txt">)[^<]*(</text>)',
+                  rf'\g<1>{fmt_range(longest_start, longest_end)}\g<2>',
+                  svg_text,
+                  count=1,
+                  flags=re.DOTALL,
+              )
+              if n != 1:
+                  raise SystemExit(f"Could not update Longest Streak dates in {label}.")
+
+              return svg_text
+
           svg = SVG_PATH.read_text(encoding="utf-8")
+          svg = patch_stats_block(svg, str(SVG_PATH))
 
-          # Top contribution total.
-          svg, n = re.subn(
-              r'(<text x="0" y="0" text-anchor="middle" class="num-val">)[^<]*(</text>)',
-              rf'\g<1>{fmt_number(total_contributions)}\g<2>',
-              svg,
-              count=1,
-          )
-          if n != 1:
-              raise SystemExit("Could not update Total Contributions.")
-
-          # Git telemetry commit total.
+          # Git telemetry commit total (unified portal only).
           svg, n = re.subn(
               r'(<text x="14" y="42" class="metric-val">)[^<]*( COMMITS</text>)',
               rf'\g<1>{fmt_number(total_commits)}\g<2>',
@@ -232,44 +281,13 @@ jobs:
           if n != 1:
               raise SystemExit("Could not update Git telemetry commit total.")
 
-          # Current streak.
-          svg, n = re.subn(
-              r'(<text x="0" y="12" text-anchor="middle" class="num-val" style="fill:#FDFBF7;">)[^<]*(</text>)',
-              rf'\g<1>{current_streak}\g<2>',
-              svg,
-              count=1,
-          )
-          if n != 1:
-              raise SystemExit("Could not update Current Streak.")
-
-          svg, n = re.subn(
-              r'(<text x="0" y="76" text-anchor="middle" class="date-txt">)[^<]*(</text>)',
-              rf'\g<1>{fmt_range(current_start, current_end)}\g<2>',
-              svg,
-              count=1,
-          )
-          if n != 1:
-              raise SystemExit("Could not update Current Streak dates.")
-
-          # Longest streak.
-          svg, n = re.subn(
-              r'(<text x="0" y="0" text-anchor="middle" class="num-sub" style="fill:#2563EB;">)[^<]*(</text>)',
-              rf'\g<1>{longest_streak}\g<2>',
-              svg,
-              count=1,
-          )
-          if n != 1:
-              raise SystemExit("Could not update Longest Streak.")
-
-          svg, n = re.subn(
-              r'(<g transform="translate\(710, 48\)">.*?<text x="0" y="44" text-anchor="middle" class="date-txt">)[^<]*(</text>)',
-              rf'\g<1>{fmt_range(longest_start, longest_end)}\g<2>',
-              svg,
-              count=1,
-              flags=re.DOTALL,
-          )
-          if n != 1:
-              raise SystemExit("Could not update Longest Streak dates.")
+          # Also refresh the standalone stats card with the same live values.
+          if STATS_SVG_PATH.exists():
+              stats_svg = STATS_SVG_PATH.read_text(encoding="utf-8")
+              stats_svg = patch_stats_block(stats_svg, str(STATS_SVG_PATH))
+              STATS_SVG_PATH.write_text(stats_svg, encoding="utf-8")
+          else:
+              print(f"{STATS_SVG_PATH} not found -- skipping.")
 
           # Keep the existing counter styling, but show the live total
           # immediately instead of replaying a multi-minute historical count.
