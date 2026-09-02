@@ -47,7 +47,7 @@
     
     <!-- COLUMN 1: Total Contributions -->
     <g transform="translate(140, 48)">
-      <text x="0" y="0" text-anchor="middle" class="num-val">2,040</text>
+      <text x="0" y="0" text-anchor="middle" class="num-val">2,053</text>
       <text x="0" y="24" text-anchor="middle" class="lbl-main">Total Contributions</text>
       <text x="0" y="44" text-anchor="middle" class="date-txt">Aug 9, 2024 – Present</text>
     </g>
@@ -67,11 +67,11 @@
       </g>
       
       <!-- Center Streak Number -->
-      <text x="0" y="12" text-anchor="middle" class="num-val" style="fill:#FDFBF7;">0</text>
+      <text x="0" y="12" text-anchor="middle" class="num-val" style="fill:#FDFBF7;">84</text>
       
       <!-- Label & Date Range -->
       <text x="0" y="58" text-anchor="middle" class="lbl-center">Current Streak</text>
-      <text x="0" y="76" text-anchor="middle" class="date-txt">—</text>
+      <text x="0" y="76" text-anchor="middle" class="date-txt">Jun 11 – Sep 02</text>
     </g>
 
     <!-- Divider Line 2 -->
@@ -79,7 +79,7 @@
 
     <!-- COLUMN 3: Longest Streak -->
     <g transform="translate(710, 48)">
-      <text x="0" y="0" text-anchor="middle" class="num-sub" style="fill:#2563EB;">82</text>
+      <text x="0" y="0" text-anchor="middle" class="num-sub" style="fill:#2563EB;">84</text>
       <text x="0" y="24" text-anchor="middle" class="lbl-main">Longest Streak</text>
       <text x="0" y="44" text-anchor="middle" class="date-txt">—</text>
     </g>
