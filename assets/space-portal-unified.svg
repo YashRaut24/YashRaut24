@@ -531,11 +531,11 @@
       </g>
       
       <!-- Center Streak Number -->
-      <text x="0" y="12" text-anchor="middle" class="num-val" style="fill:#FDFBF7;">84</text>
+      <text x="0" y="12" text-anchor="middle" class="num-val" style="fill:#FDFBF7;">0</text>
       
       <!-- Label & Date Range -->
       <text x="0" y="58" text-anchor="middle" class="lbl-center">Current Streak</text>
-      <text x="0" y="76" text-anchor="middle" class="date-txt">Jun 11 – Sep 02</text>
+      <text x="0" y="76" text-anchor="middle" class="date-txt">—</text>
     </g>
 
     <!-- Divider Line 2 -->
