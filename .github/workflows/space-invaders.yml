@@ -151,27 +151,28 @@ jobs:
           # Keep only dates in the requested period.
           days = [(d, c) for d, c in days if streak_start <= d <= today]
  
-          # Current streak ends on the most recent day with a contribution.
-          latest_active = None
-          for d, count in reversed(days):
-              if count > 0:
-                  latest_active = d
-                  break
+          # Build dictionary of all days for accurate streak logic.
+          day_map = {d: c for d, c in days}
  
+          # Current streak: active if today has contributions OR yesterday has contributions
           current_streak = 0
           current_start = None
-          current_end = latest_active
+          current_end = None
  
-          if latest_active is not None:
-              expected = latest_active
-              for d, count in reversed(days):
-                  if d != expected:
-                      break
-                  if count <= 0:
-                      break
+          if day_map.get(today, 0) > 0:
+              current_end = today
+              cur = today
+              while cur in day_map and day_map[cur] > 0:
                   current_streak += 1
-                  current_start = d
-                  expected -= timedelta(days=1)
+                  current_start = cur
+                  cur -= timedelta(days=1)
+          elif day_map.get(today - timedelta(days=1), 0) > 0:
+              current_end = today - timedelta(days=1)
+              cur = current_end
+              while cur in day_map and day_map[cur] > 0:
+                  current_streak += 1
+                  current_start = cur
+                  cur -= timedelta(days=1)
  
           # Longest consecutive run of contribution days.
           longest_streak = 0
@@ -179,26 +180,39 @@ jobs:
           longest_end = None
           run = 0
           run_start = None
-          previous = None
+          prev_active_date = None
  
           for d, count in days:
-              if count > 0 and (
-                  previous is not None and d == previous + timedelta(days=1)
-              ):
-                  run += 1
-              elif count > 0:
-                  run = 1
-                  run_start = d
+              if count > 0:
+                  if prev_active_date is not None and d == prev_active_date + timedelta(days=1):
+                      run += 1
+                  else:
+                      run = 1
+                      run_start = d
+                  prev_active_date = d
+                  if run > longest_streak:
+                      longest_streak = run
+                      longest_start = run_start
+                      longest_end = d
               else:
                   run = 0
                   run_start = None
+                  prev_active_date = None
  
-              if run > longest_streak:
-                  longest_streak = run
-                  longest_start = run_start
-                  longest_end = d
- 
-              previous = d
+          # Fetch live visitor count (Orbital Traffic)
+          visitor_count = None
+          try:
+              req = urllib.request.Request(
+                  f"https://komarev.com/ghpvc/?username={LOGIN}",
+                  headers={"User-Agent": "Mozilla/5.0 (Space-Invaders-Telemetry)"}
+              )
+              with urllib.request.urlopen(req, timeout=10) as resp:
+                  komarev_svg = resp.read().decode("utf-8")
+                  matches = re.findall(r'<text[^>]*>(\d+)</text>', komarev_svg)
+                  if matches:
+                      visitor_count = int(matches[-1])
+          except Exception as e:
+              print(f"Komarev visitor fetch note: {e}")
  
           def fmt_number(value):
               return f"{value:,}"
@@ -280,6 +294,30 @@ jobs:
           if n != 1:
               raise SystemExit("Could not update Git telemetry commit total.")
  
+          # Update Orbital Traffic visitor count (Sector 7)
+          if visitor_count is not None:
+              formatted_visitors = f"{visitor_count:,}"
+              svg, n = re.subn(
+                  r'(<text x="111" y="12.5" text-anchor="middle" dominant-baseline="middle" class="traffic-val">)[^<]*(</text>)',
+                  rf'\g<1>{formatted_visitors}\g<2>',
+                  svg,
+                  count=1,
+              )
+              if n >= 1:
+                  print(f"Updated Orbital Traffic visitor count in unified SVG: {formatted_visitors}")
+ 
+              # Also update standalone sector-7 svg if present
+              s7_path = Path("assets/space-portal-sector-7.svg")
+              if s7_path.exists():
+                  s7_svg = s7_path.read_text(encoding="utf-8")
+                  s7_svg = re.sub(
+                      r'(<text x="111" y="12.5" text-anchor="middle" dominant-baseline="middle" class="traffic-val">)[^<]*(</text>)',
+                      rf'\g<1>{formatted_visitors}\g<2>',
+                      s7_svg,
+                      count=1,
+                  )
+                  s7_path.write_text(s7_svg, encoding="utf-8")
+ 
           # Also refresh the standalone stats card with the same live values.
           if STATS_SVG_PATH.exists():
               stats_svg = STATS_SVG_PATH.read_text(encoding="utf-8")
@@ -342,6 +380,8 @@ jobs:
           print(f"Live longest streak: {longest_streak}")
           print(f"Current streak range: {fmt_range(current_start, current_end)}")
           print(f"Longest streak range: {fmt_range(longest_start, longest_end)}")
+          if visitor_count is not None:
+              print(f"Live orbital traffic visitors: {visitor_count:,}")
           print(f"Arcade counter max: {total_commits:,}")
           PY
  

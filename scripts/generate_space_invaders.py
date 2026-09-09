@@ -201,24 +201,133 @@ def fetch_contributions(username, token=""):
     return {}, 0
 
 
-def sync_other_svgs(total_contribs):
+def calculate_streaks(records):
     """
-    Keep assets/space-portal-stats.svg and assets/space-portal-telemetry.svg in sync with total_contribs.
+    Calculate current streak, longest streak, and date ranges from date records.
+    """
+    days = []
+    for d_str, data in records.items():
+        try:
+            d = datetime.date.fromisoformat(d_str)
+            cnt = int(data.get("contributions", 0))
+            days.append((d, cnt))
+        except Exception:
+            continue
+
+    days.sort()
+    if not days:
+        return 0, None, None, 0, None, None
+
+    today = datetime.datetime.now(datetime.timezone.utc).date()
+    day_map = {d: c for d, c in days}
+
+    # Current streak: active if today has contributions OR yesterday has contributions
+    current_streak = 0
+    current_start = None
+    current_end = None
+
+    if day_map.get(today, 0) > 0:
+        current_end = today
+        cur = today
+        while cur in day_map and day_map[cur] > 0:
+            current_streak += 1
+            current_start = cur
+            cur -= datetime.timedelta(days=1)
+    elif day_map.get(today - datetime.timedelta(days=1), 0) > 0:
+        current_end = today - datetime.timedelta(days=1)
+        cur = current_end
+        while cur in day_map and day_map[cur] > 0:
+            current_streak += 1
+            current_start = cur
+            cur -= datetime.timedelta(days=1)
+
+    # Longest streak: max consecutive run of active contribution days
+    longest_streak = 0
+    longest_start = None
+    longest_end = None
+    run = 0
+    run_start = None
+    prev_active_date = None
+
+    for d, count in days:
+        if count > 0:
+            if prev_active_date is not None and d == prev_active_date + datetime.timedelta(days=1):
+                run += 1
+            else:
+                run = 1
+                run_start = d
+            prev_active_date = d
+            if run > longest_streak:
+                longest_streak = run
+                longest_start = run_start
+                longest_end = d
+        else:
+            run = 0
+            run_start = None
+            prev_active_date = None
+
+    return current_streak, current_start, current_end, longest_streak, longest_start, longest_end
+
+
+def fetch_visitor_count(username=USERNAME):
+    """
+    Fetch live visitor count from Komarev visitor badge service.
+    """
+    try:
+        req = urllib.request.Request(
+            f"https://komarev.com/ghpvc/?username={username}",
+            headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"}
+        )
+        with urllib.request.urlopen(req, timeout=10) as resp:
+            content = resp.read().decode("utf-8")
+            matches = re.findall(r'<text[^>]*>(\d+)</text>', content)
+            if matches:
+                return int(matches[-1])
+    except Exception as e:
+        print(f"Komarev visitor fetch fallback notice: {e}")
+    return None
+
+
+def fmt_range(start, end):
+    if start is None or end is None:
+        return "—"
+    if start.year == end.year:
+        return f"{start.strftime('%b %d')} – {end.strftime('%b %d')}"
+    return f"{start.strftime('%b %d, %Y')} – {end.strftime('%b %d, %Y')}"
+
+
+def sync_other_svgs(records, total_contribs, visitor_count=None):
+    """
+    Keep assets/space-portal-stats.svg, telemetry.svg, and sector-7.svg in sync with live telemetry.
     """
     if total_contribs <= 0:
         return
     formatted_total = f"{total_contribs:,}"
+    cur_streak, cur_start, cur_end, max_streak, max_start, max_end = calculate_streaks(records)
 
     # Update space-portal-stats.svg
     stats_path = "assets/space-portal-stats.svg"
     if os.path.exists(stats_path):
         with open(stats_path, "r", encoding="utf-8") as f:
             content = f.read()
-        content = re.sub(r'<text x="0" y="0" text-anchor="middle" class="num-val">[0-9,]+</text>',
-                         f'<text x="0" y="0" text-anchor="middle" class="num-val">{formatted_total}</text>', content)
+
+        # Update Total Contributions
+        content = re.sub(r'(<text x="0" y="0" text-anchor="middle" class="num-val">)[^<]*(</text>)',
+                         rf'\g<1>{formatted_total}\g<2>', content, count=1)
+        # Update Current Streak
+        content = re.sub(r'(<text x="0" y="12" text-anchor="middle" class="num-val" style="fill:#FDFBF7;">)[^<]*(</text>)',
+                         rf'\g<1>{cur_streak}\g<2>', content, count=1)
+        content = re.sub(r'(<text x="0" y="76" text-anchor="middle" class="date-txt">)[^<]*(</text>)',
+                         rf'\g<1>{fmt_range(cur_start, cur_end)}\g<2>', content, count=1)
+        # Update Longest Streak
+        content = re.sub(r'(<text x="0" y="0" text-anchor="middle" class="num-sub" style="fill:#2563EB;">)[^<]*(</text>)',
+                         rf'\g<1>{max_streak}\g<2>', content, count=1)
+        content = re.sub(r'(<g transform="translate\(710, 48\)">.*?<text x="0" y="44" text-anchor="middle" class="date-txt">)[^<]*(</text>)',
+                         rf'\g<1>{fmt_range(max_start, max_end)}\g<2>', content, count=1, flags=re.DOTALL)
+
         with open(stats_path, "w", encoding="utf-8") as f:
             f.write(content)
-        print(f"Synced {stats_path} with {formatted_total}")
+        print(f"Synced {stats_path} (Streak: {cur_streak}, Max: {max_streak}, Total: {formatted_total})")
 
     # Update space-portal-telemetry.svg
     telemetry_path = "assets/space-portal-telemetry.svg"
@@ -230,6 +339,23 @@ def sync_other_svgs(total_contribs):
         with open(telemetry_path, "w", encoding="utf-8") as f:
             f.write(content)
         print(f"Synced {telemetry_path} with {formatted_total} COMMITS")
+
+    # Update space-portal-sector-7.svg (Orbital Traffic)
+    if visitor_count is not None:
+        formatted_visitors = f"{visitor_count:,}"
+        s7_path = "assets/space-portal-sector-7.svg"
+        if os.path.exists(s7_path):
+            with open(s7_path, "r", encoding="utf-8") as f:
+                content = f.read()
+            content = re.sub(
+                r'(<text x="111" y="12.5" text-anchor="middle" dominant-baseline="middle" class="traffic-val">)[^<]*(</text>)',
+                rf'\g<1>{formatted_visitors}\g<2>',
+                content,
+                count=1,
+            )
+            with open(s7_path, "w", encoding="utf-8") as f:
+                f.write(content)
+            print(f"Synced {s7_path} with Orbital Traffic: {formatted_visitors}")
 
 
 def build_arcade(date_records, total_contribs):
@@ -759,20 +885,15 @@ xmlns="http://www.w3.org/2000/svg">
 def update_unified_portal(
     inner_markup,
     style_block,
+    records=None,
+    total_contribs=0,
+    visitor_count=None,
     unified_path="assets/space-portal-unified.svg",
 ):
     """
     Splices the freshly generated arcade block into assets/space-portal-unified.svg,
-    replacing the stale, per-target-element arcade section that was committed once
-    and never regenerated. Everything else in that file (header, subsystems,
-    quote panel, telemetry, radar, etc.) is left completely untouched.
-
-    First run: locates the block structurally (sector-3 container + the old
-    "hud-val-0" CSS fingerprint left over from the previous per-cell counter
-    implementation) and wraps the new content in sentinel markers.
-    Every run after that: finds those markers directly. If neither the
-    markers nor the structural fingerprint can be found, this raises loudly
-    instead of guessing and corrupting a 4MB+ hand-authored file.
+    and synchronizes Sector 04 flight streaks/contributions telemetry and Sector 07
+    Orbital Traffic visitor metrics.
     """
 
     if not os.path.exists(unified_path):
@@ -806,9 +927,6 @@ def update_unified_portal(
         idx_g_open_end = content.index(">", idx_sector3) + 1
         idx_sector4 = content.index(sector4_open, idx_sector3)
 
-        # The divider line immediately preceding sector-4 marks the end of
-        # sector-3's replaceable region; the </g> closing sector-3 sits
-        # right before it.
         idx_divider = content.rfind('<line x1="18" y1="', idx_g_open_end, idx_sector4)
         if idx_divider == -1:
             raise RuntimeError(
@@ -840,25 +958,81 @@ def update_unified_portal(
         print("Replaced arcade CSS via existing markers.")
     else:
         fingerprint = "hud-val-0"
-        if fingerprint not in content:
-            raise RuntimeError(
-                "Could not locate the old arcade <style> block in "
-                f"{unified_path} (no markers, no 'hud-val-0' fingerprint). "
-                "Refusing to modify the file blindly -- check it manually."
-            )
-        idx_fp = content.index(fingerprint)
-        idx_style_open = content.rfind("<style", 0, idx_fp)
-        idx_style_open_end = content.index(">", idx_style_open) + 1
-        idx_style_close = content.index("</style>", idx_fp)
+        if fingerprint in content:
+            idx_fp = content.index(fingerprint)
+            idx_style_open = content.rfind("<style", 0, idx_fp)
+            idx_style_open_end = content.index(">", idx_style_open) + 1
+            idx_style_close = content.index("</style>", idx_fp)
 
-        content = (
-            content[:idx_style_open_end]
-            + "\n"
-            + wrapped_style
-            + "\n"
-            + content[idx_style_close:]
+            content = (
+                content[:idx_style_open_end]
+                + "\n"
+                + wrapped_style
+                + "\n"
+                + content[idx_style_close:]
+            )
+            print("Replaced arcade CSS via structural style-block detection (first run).")
+
+    # --- Sync Sector 04 Flight Streaks & Contributions Telemetry ---
+    if records and total_contribs > 0:
+        formatted_total = f"{total_contribs:,}"
+        cur_streak, cur_start, cur_end, max_streak, max_start, max_end = calculate_streaks(records)
+
+        # Update Total Contributions in Sector 4
+        content = re.sub(
+            r'(<text x="0" y="0" text-anchor="middle" class="num-val">)[^<]*(</text>)',
+            rf'\g<1>{formatted_total}\g<2>',
+            content,
+            count=1,
         )
-        print("Replaced arcade CSS via structural style-block detection (first run).")
+
+        # Update Current Streak Number & Date Range
+        content = re.sub(
+            r'(<text x="0" y="12" text-anchor="middle" class="num-val" style="fill:#FDFBF7;">)[^<]*(</text>)',
+            rf'\g<1>{cur_streak}\g<2>',
+            content,
+            count=1,
+        )
+        content = re.sub(
+            r'(<text x="0" y="76" text-anchor="middle" class="date-txt">)[^<]*(</text>)',
+            rf'\g<1>{fmt_range(cur_start, cur_end)}\g<2>',
+            content,
+            count=1,
+        )
+
+        # Update Longest Streak Number & Date Range
+        content = re.sub(
+            r'(<text x="0" y="0" text-anchor="middle" class="num-sub" style="fill:#2563EB;">)[^<]*(</text>)',
+            rf'\g<1>{max_streak}\g<2>',
+            content,
+            count=1,
+        )
+        content = re.sub(
+            r'(<g transform="translate\(710, 48\)">.*?<text x="0" y="44" text-anchor="middle" class="date-txt">)[^<]*(</text>)',
+            rf'\g<1>{fmt_range(max_start, max_end)}\g<2>',
+            content,
+            count=1,
+            flags=re.DOTALL,
+        )
+        print(f"Synced Sector 04 (Streak: {cur_streak} [{fmt_range(cur_start, cur_end)}], Max: {max_streak} [{fmt_range(max_start, max_end)}])")
+
+    # --- Sync Sector 07 Orbital Traffic Visitor Count ---
+    if visitor_count is not None:
+        formatted_visitors = f"{visitor_count:,}"
+        content = re.sub(
+            r'(<text x="111" y="12.5" text-anchor="middle" dominant-baseline="middle" class="traffic-val">)[^<]*(</text>)',
+            rf'\g<1>{formatted_visitors}\g<2>',
+            content,
+            count=1,
+        )
+        print(f"Synced Sector 07 Orbital Traffic: {formatted_visitors}")
+
+    # Ensure pulse ring has centered transform origin
+    content = re.sub(
+        r'\.pulse-ring\s*\{[^}]*\}',
+        '.pulse-ring { animation: ringPulse 3s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }',
+        content,
+    )
 
     with open(unified_path, "w", encoding="utf-8") as f:
         f.write(content)
@@ -869,9 +1043,10 @@ def update_unified_portal(
 
 if __name__ == "__main__":
     records, total_contribs = fetch_contributions(USERNAME, GITHUB_TOKEN)
+    visitor_count = fetch_visitor_count(USERNAME)
     if records:
         inner_markup, style_block, formatted_total = generate_svg(records, total_contribs)
-        sync_other_svgs(total_contribs)
-        update_unified_portal(inner_markup, style_block)
+        sync_other_svgs(records, total_contribs, visitor_count)
+        update_unified_portal(inner_markup, style_block, records, total_contribs, visitor_count)
     else:
         print("Error: Could not retrieve contribution records.")
