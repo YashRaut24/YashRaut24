@@ -24,26 +24,35 @@ for m in re.finditer(r'<td[^>]*data-date="([^"]+)"[^>]*>', html):
 
 days.sort()
 
-# Bug analysis:
-# 1. Current streak calculation in space-invaders.yml:
-# It searched backwards in `days` for latest_active.
-# If latest_active is yesterday (because user hasn't committed today yet),
-# the loop started iterating from `days[-1]` (which is today).
-# In `space-invaders.yml`:
-# `expected = latest_active`
-# `for d, count in reversed(days):`
-#    `if d != expected: break` -> since `days[-1]` (today) != `latest_active` (yesterday), it broke on the FIRST iteration!
-# That's why current_streak was 0 and current_start was None!
+# 1. Fixed Longest Streak
+longest_streak = 0
+longest_start = None
+longest_end = None
 
-# Correct Current Streak logic:
+run = 0
+run_start = None
+prev_active_date = None
+
+for d, count in days:
+    if count > 0:
+        if prev_active_date is not None and d == prev_active_date + timedelta(days=1):
+            run += 1
+        else:
+            run = 1
+            run_start = d
+        prev_active_date = d
+        if run > longest_streak:
+            longest_streak = run
+            longest_start = run_start
+            longest_end = d
+    else:
+        run = 0
+        run_start = None
+        prev_active_date = None
+
+# 2. Fixed Current Streak
 today = datetime.now(timezone.utc).date()
 day_map = {d: c for d, c in days}
-
-# In GitHub standard streak calculation:
-# A streak is active if there is a contribution on `today` OR `today - 1` (yesterday).
-# If count(today) > 0: streak ends today.
-# Else if count(yesterday) > 0: streak ends yesterday (today is still in progress).
-# Else: streak is 0 (broken).
 
 current_streak = 0
 current_start = None
@@ -64,31 +73,12 @@ elif day_map.get(today - timedelta(days=1), 0) > 0:
         current_start = cur
         cur -= timedelta(days=1)
 
-print(f"Fixed Current Streak: {current_streak}, {current_start} to {current_end}")
+def fmt_range(start, end):
+    if start is None or end is None:
+        return "—"
+    if start.year == end.year:
+        return f"{start.strftime('%b %d')} – {end.strftime('%b %d')}"
+    return f"{start.strftime('%b %d, %Y')} – {end.strftime('%b %d, %Y')}"
 
-# Longest Streak calculation across all fetched days:
-longest_streak = 0
-longest_start = None
-longest_end = None
-
-run = 0
-run_start = None
-prev_date = None
-
-for d, count in days:
-    if count > 0:
-        if prev_date is not None and d == prev_date + timedelta(days=1):
-            run += 1
-        else:
-            run = 1
-            run_start = d
-        if run > longest_streak:
-            longest_streak = run
-            longest_start = run_start
-            longest_end = d
-    else:
-        run = 0
-        run_start = None
-    prev_date = d
-
-print(f"Longest Streak: {longest_streak}, {longest_start} to {longest_end}")
+print(f"Current Streak: {current_streak}, Range: {fmt_range(current_start, current_end)}")
+print(f"Longest Streak: {longest_streak}, Range: {fmt_range(longest_start, longest_end)}")
