@@ -798,9 +798,9 @@ def build_arcade(date_records, total_contribs):
 
     style_block = (
         ".arcade{font-family:'JetBrains Mono',Consolas,monospace;}"
-        ".header{font-size:10px;font-weight:700;fill:#00F0FF;letter-spacing:1px;}"
-        ".month{font-size:9px;fill:#71737E;}"
-        ".counter{font-family:'JetBrains Mono',Consolas,monospace;font-size:12px;font-weight:800;fill:#39D353;}"
+        ".header{font-size:11px;font-weight:700;fill:#00F0FF;letter-spacing:1px;}"
+        ".month{font-size:10px;fill:#71737E;}"
+        ".counter{font-family:'JetBrains Mono',Consolas,monospace;font-size:13px;font-weight:800;fill:#39D353;}"
         ".counter-box{fill:#111216;stroke:#2563EB;stroke-width:1.2;}"
         ".rocket{transform-box:fill-box;transform-origin:center;}"
         ".laser{stroke:#00F0FF;stroke-width:2.5;stroke-linecap:round;transform-box:fill-box;transform-origin:top;}"
